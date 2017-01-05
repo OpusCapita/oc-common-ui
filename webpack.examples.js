@@ -1,4 +1,6 @@
 var path = require('path');
+var autoprefixer = require('autoprefixer');
+var precss = require('precss');
 
 var plugins = [];
 
@@ -15,6 +17,11 @@ var config = {
         test: /(\.jsx|\.js)$/,
         loader: 'babel',
         exclude: /(node_modules|bower_components)/
+      },
+      {
+        test: /\.scss$/,
+        include: [path.resolve(__dirname, 'src')],
+        loader: 'style!css!postcss!sass'
       }
       /* {
         test: /(\.jsx|\.js)$/,
@@ -27,7 +34,10 @@ var config = {
     root: path.resolve('./examples'),
     extensions: ['', '.js']
   },
-  plugins: plugins
+  plugins: plugins,
+  postcss: function() {
+    return [precss, autoprefixer];
+  },
 };
 
 module.exports = config;

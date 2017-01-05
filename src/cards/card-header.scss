@@ -1,0 +1,24 @@
+
+.oc-card-header {
+  font-size: 18px;
+
+  .content {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .children {
+    flex-grow: 50;
+  }
+
+  .collapse-expand {
+    height: 30px;
+    align-self: center;
+  }
+
+  button {
+    border: 0;
+    background-color: #fff;
+  }
+}

@@ -1,1 +1,1 @@
-export { CardContent } from './cards/card-content.component.jsx';
+export { CardContent } from './cards/index.js';

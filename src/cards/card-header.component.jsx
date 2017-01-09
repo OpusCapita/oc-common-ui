@@ -1,5 +1,7 @@
 import React, {PropTypes} from 'react';
 
+import Icon from '../icons/icon.component.jsx';
+
 import './card-header.scss';
 
 
@@ -15,12 +17,14 @@ export class CardHeader extends React.Component {
       <button onClick={() => {
         this.props.setExpanded(this.props.id, false);
       }}>
-        collapse
+        <Icon type="indicator"
+              name="minus"/>
       </button> :
       <button onClick={() => {
         this.props.setExpanded(this.props.id, true);
       }}>
-        expand
+        <Icon type="indicator"
+              name="plus"/>
       </button>);
   }
 

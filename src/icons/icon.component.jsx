@@ -145,7 +145,7 @@ var components = {
   },
 };
 
-class Icon extends React.Component {
+export class Icon extends React.Component {
   width = null;
   height = null;
 
@@ -194,5 +194,3 @@ Icon.propTypes = {
   height: PropTypes.number,
   iconClass: PropTypes.string,
 };
-
-export default Icon;

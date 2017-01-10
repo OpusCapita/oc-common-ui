@@ -1,14 +1,14 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { Router, Route, hashHistory } from 'react-router'
 
-import { Cards, Card, CardHeader, CardContent } from '../src/index.js';
+import App from './app.component.jsx';
+import CardsView from './cards-view/cards-view.component.jsx';
 
 
 render((
-  <Cards>
-    <Card id="example" expanded={true} setExpanded={() => {} }>
-      <CardHeader>I'm card header</CardHeader>
-      <CardContent>I'm card content</CardContent>
-    </Card>
-  </Cards>
+  <Router history={hashHistory}>
+    <Route path="/" component={App}/>
+    <Route path="/cards" component={CardsView}/>
+  </Router>
 ), document.getElementById('examples'));

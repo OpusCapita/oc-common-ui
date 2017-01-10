@@ -1,6 +1,6 @@
 import React, {PropTypes} from 'react';
 
-import Icon from '../icons/icon.component.jsx';
+import { Icon } from '../icons/icon.component.jsx';
 
 import './card-header.scss';
 

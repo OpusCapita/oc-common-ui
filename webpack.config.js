@@ -4,10 +4,12 @@ var path = require('path');
 var env = require('yargs').argv.mode;
 var autoprefixer = require('autoprefixer');
 var precss = require('precss');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
+var combineLoaders = require('webpack-combine-loaders');
 
 var libraryName = 'ocfrontend';
 
-var plugins = [], outputFile;
+var plugins = [new ExtractTextPlugin('ocfrontend.css')], outputFile;
 
 if (env === 'build') {
   plugins.push(new UglifyJsPlugin({ minimize: true }));
@@ -34,20 +36,34 @@ var config = {
         exclude: /(node_modules|bower_components)/,
       },
       {
-        test: /\.scss$/,
-        include: [path.resolve(__dirname, 'src')],
-        loader: 'style!css!postcss!sass',
+        test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=100&mimetype=application/font-woff',
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=100&mimetype=application/octet-stream',
+      },
+      {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file',
+      },
+      {
+      test: /\.scss$/,
+      loader: ExtractTextPlugin.extract(
+          combineLoaders([{
+            loader: 'css-loader!postcss-loader!sass-loader',
+            query: {
+              modules: true,
+              localIdentName: '[name]__[local]___[hash:base64:5]'
+            }
+          }])
+        )
       },
       {
         test: /\.svg$/,
         loaders: ['babel','react-svg'],
         exclude: /node_modules/,
       },
-      /* {
-        test: /(\.jsx|\.js)$/,
-        loader: "eslint-loader",
-        exclude: /node_modules/
-      }*/
     ],
   },
   resolve: {

@@ -19,8 +19,19 @@ var config = {
         exclude: /(node_modules|bower_components)/,
       },
       {
+        test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=100&mimetype=application/font-woff',
+      },
+      {
+        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'url?limit=100&mimetype=application/octet-stream',
+      },
+      {
+        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+        loader: 'file',
+      },
+      {
         test: /\.scss$/,
-        include: [path.resolve(__dirname, 'src')],
         loader: 'style!css!postcss!sass',
       },
       {
@@ -28,11 +39,6 @@ var config = {
         loaders: ['babel','react-svg'],
         exclude: /node_modules/,
       },
-      /* {
-        test: /(\.jsx|\.js)$/,
-        loader: "eslint-loader",
-        exclude: /node_modules/
-      }*/
     ],
   },
   resolve: {

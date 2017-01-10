@@ -1,7 +1,5 @@
-import React from 'react';
 import chai from 'chai';
 import chaiImmutable from 'chai-immutable';
-import sinon from 'sinon';
 
 chai.use(chaiImmutable);
 

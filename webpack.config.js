@@ -2,6 +2,8 @@ var webpack = require('webpack');
 var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 var path = require('path');
 var env = require('yargs').argv.mode;
+var autoprefixer = require('autoprefixer');
+var precss = require('precss');
 
 var libraryName = 'ocfrontend';
 
@@ -31,6 +33,16 @@ var config = {
         loader: 'babel',
         exclude: /(node_modules|bower_components)/,
       },
+      {
+        test: /\.scss$/,
+        include: [path.resolve(__dirname, 'src')],
+        loader: 'style!css!postcss!sass',
+      },
+      {
+        test: /\.svg$/,
+        loaders: ['babel','react-svg'],
+        exclude: /node_modules/,
+      },
       /* {
         test: /(\.jsx|\.js)$/,
         loader: "eslint-loader",
@@ -43,6 +55,9 @@ var config = {
     extensions: ['', '.js'],
   },
   plugins: plugins,
+  postcss: function() {
+    return [precss, autoprefixer];
+  },
 };
 
 module.exports = config;

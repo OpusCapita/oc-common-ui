@@ -1,6 +1,6 @@
 {
   "name": "ocfrontend",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "private": true,
   "description": "OpusCapita common UI components",
   "main": "lib/ocfrontend.min.js",

@@ -6,6 +6,7 @@ var autoprefixer = require('autoprefixer');
 var precss = require('precss');
 var ExtractTextPlugin = require('extract-text-webpack-plugin');
 var combineLoaders = require('webpack-combine-loaders');
+var nodeExternals = require('webpack-node-externals');
 
 var libraryName = 'ocfrontend';
 
@@ -28,6 +29,7 @@ var config = {
     libraryTarget: 'umd',
     umdNamedDefine: true,
   },
+  externals: [nodeExternals()],
   module: {
     loaders: [
       {
@@ -48,16 +50,16 @@ var config = {
         loader: 'file',
       },
       {
-      test: /\.scss$/,
-      loader: ExtractTextPlugin.extract(
-          combineLoaders([{
-            loader: 'css-loader!postcss-loader!sass-loader',
-            query: {
-              modules: true,
-              localIdentName: '[name]__[local]___[hash:base64:5]'
-            }
-          }])
-        )
+        test: /\.scss$/,
+        loader: ExtractTextPlugin.extract(
+            combineLoaders([{
+              loader: 'css-loader!postcss-loader!sass-loader',
+              query: {
+                modules: true,
+                localIdentName: '[name]__[local]___[hash:base64:5]',
+              },
+            }])
+          ),
       },
       {
         test: /\.svg$/,

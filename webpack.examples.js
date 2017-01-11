@@ -20,15 +20,19 @@ var config = {
       },
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=100&mimetype=application/font-woff',
+        loader: 'url?limit=100&mimetype=application/font-woff&name=[hash].[ext]',
       },
       {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=100&mimetype=application/octet-stream',
+        loader: 'url?limit=100&mimetype=application/octet-stream&name=[hash].[ext]',
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
         loader: 'file',
+      },
+      {
+        test: /\.ejs$/,
+        loader: 'ejs-loader?variable=data',
       },
       {
         test: /\.scss$/,

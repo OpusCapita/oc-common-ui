@@ -5,6 +5,8 @@ import { Router, Route, hashHistory } from 'react-router'
 import App from './app.component.jsx';
 import CardsView from './cards-view/cards-view.component.jsx';
 
+import './app.component.scss';
+
 
 render((
   <Router history={hashHistory}>

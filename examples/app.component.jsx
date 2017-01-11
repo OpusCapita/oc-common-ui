@@ -9,6 +9,7 @@ export default class App extends React.Component {
         <h1>ocfrontend examples</h1>
         <ul role="nav">
           <li><Link to="/cards">Cards</Link></li>
+          <li><Link to="/spinner">Spinner</Link></li>
         </ul>
       </div>
     )

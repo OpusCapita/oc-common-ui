@@ -8,10 +8,15 @@ import { CardContent } from '../../src/index.js';
 describe('CardContent component', function() {
 
   it('should render correctly', () => {
-    const wrapper = mount(
+    let wrapper = mount(
+      <CardContent expanded={true}>hello!</CardContent>
+    );
+    expect(wrapper.text()).to.eql('hello!');
+
+    wrapper = mount(
       <CardContent>hello!</CardContent>
     );
-    expect(wrapper.props().children).to.eql('hello!');
+    expect(wrapper.text()).to.eql('');
   });
 
 });

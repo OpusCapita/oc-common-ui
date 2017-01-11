@@ -1,5 +1,8 @@
+import React from 'react';
 import chai from 'chai';
 import chaiImmutable from 'chai-immutable';
+import sinon from 'sinon';
+import { Icon } from '../src/icons/icon.component.jsx';
 
 chai.use(chaiImmutable);
 
@@ -22,3 +25,7 @@ Object.keys(document.defaultView).forEach((property) => {
 global.navigator = {
   userAgent: 'node.js',
 };
+
+sinon.stub(Icon.prototype, 'render', function() {
+  return <span className="icon" { ...this.props } />;
+});

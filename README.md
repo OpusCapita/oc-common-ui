@@ -25,5 +25,5 @@ Creating a new release tag:
 
 * Run `npm run build`
 * Commit changes
-* git tag -a 0.0.1 -m "version 0.0.1"
-* git push origin 0.0.1
+* npm version 0.0.1
+* git push origin v0.0.1

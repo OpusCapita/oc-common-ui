@@ -1,5 +1,5 @@
-import React from 'react'
-import { Link } from 'react-router'
+import React from 'react';
+import { Link } from 'react-router';
 
 
 export default class App extends React.Component {
@@ -8,10 +8,11 @@ export default class App extends React.Component {
       <div>
         <h1>ocfrontend examples</h1>
         <ul role="nav">
+          <li><Link to="/alerts">Alerts</Link></li>
           <li><Link to="/cards">Cards</Link></li>
           <li><Link to="/spinner">Spinner</Link></li>
         </ul>
       </div>
-    )
+    );
   }
 }

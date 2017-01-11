@@ -1,0 +1,72 @@
+@import '../../styles/colors';
+
+
+#global-notification {
+    position:absolute;
+    z-index: 2;
+    bottom: 15%;
+    width: 100%;
+    left:50%;
+    transform: translate3d(-50%,0,0);
+    max-width: 650px;
+
+    .cover {
+        border: none;
+        position: absolute;
+        top: 0;
+        left: 0;
+        height: 100%;
+        width: 100%;
+        z-index: -1;
+    }
+
+    img {
+        height: 38px;
+        width: 38px;
+    }
+
+    .alert {
+        line-height: 1.846;
+        box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14),
+                    0 3px 1px -2px rgba(0, 0, 0, 0.2),
+                    0 1px 5px 0 rgba(0, 0, 0, 0.12);
+        margin: 20px auto 0;
+        border-style: solid;
+        border-width: 0px 0px 6px 0px;
+        font-size: 110%;
+        background: $oc-color-toast-background;
+        position: relative;
+        overflow: hidden;
+        margin-bottom: 15px;
+        color: $oc-color-black;
+
+        &.alert-success {
+            border-color: $oc-color-success;
+        }
+
+        &.alert-info {
+            border-color: $oc-color-info;
+        }
+
+        &.alert-warning {
+            border-color: $oc-color-warning;
+        }
+
+        &.alert-danger {
+            border-color: $oc-color-error;
+        }
+
+        .close {
+            font-size: 34px;
+            font-weight: 300;
+            line-height: 24px;
+            opacity: 0.6;
+            text-shadow:none;
+            &:hover {
+                opacity: 1;
+            }
+        }
+
+    }
+
+}

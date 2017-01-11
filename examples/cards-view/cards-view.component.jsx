@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 import { Cards, Card, CardHeader, CardContent } from '../../src/index.js';
 
@@ -32,6 +32,6 @@ export default class CardsView extends React.Component {
           </Card>
         </Cards>
       </div>
-    )
+    );
   }
 }

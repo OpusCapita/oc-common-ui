@@ -46,7 +46,7 @@ export class OCAlert extends React.Component {
 
 OCAlert.propTypes = {
   id: PropTypes.string.isRequired,
-  type: PropTypes.string.isRequired,
+  type: PropTypes.oneOf(['success', 'info', 'warning', 'danger']).isRequired,
   message: PropTypes.any.isRequired,
   translate: PropTypes.bool.isRequired,
   values: PropTypes.object,

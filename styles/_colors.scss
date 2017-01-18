@@ -1,7 +1,11 @@
 ﻿/* Primary */
-$oc-color-primary-orange: #E66608;
+$oc-color-primary-orange: #EC6608;
 $oc-color-primary-yellow: #FECA1D;
 $oc-color-primary-azure: #67707c;
+
+$oc-color-background-aside: #EAEFF3;
+$oc-color-bacgkround-menu: #3C4A55;
+$oc-color-main: $oc-color-primary-orange;
 
 /* Support */
 $oc-color-support-black: #000000;
@@ -11,7 +15,7 @@ $oc-color-support-gray: #CCCCCC;
 $oc-color-support-lightgray: #D3DADE;
 
 /* Attention */
-$oc-color-attention-red: #D82515;
+$oc-color-attention-red: #DD2515;
 $oc-color-attention-green: #3AA57B;
 
 /* Other colors e.g. graphs */
@@ -58,50 +62,29 @@ $oc-color-content-background: $oc-color-white;
 $oc-color-site-background: $oc-color-support-lightgray;
 
 /* Buttons */
+$oc-color-button-text: $oc-color-white;
+$oc-color-button-text-disabled: $oc-color-text-disabled;
+
 $oc-color-button-normal: $oc-color-primary-azure;
 $oc-color-button-focused: $oc-color-primary-azure;
 $oc-color-button-hover: #77818c;
 $oc-color-button-pressed: #585F68;
-$oc-color-button-disabled: #f0f0f0;
 
-$oc-color-button-priority-normal: $oc-color-primary-orange;
-$oc-color-button-priority-focused: $oc-color-primary-orange;
+$oc-color-button-priority-normal: $oc-color-orange;
+$oc-color-button-priority-focused: $oc-color-orange;
 $oc-color-button-priority-hover: #ff7517;
 $oc-color-button-priority-pressed: #d35c0b;
+
+$oc-color-button-disabled: #f0f0f0;
 
 /* Date picker */
 
 $oc-color-date-picker-content: #E9E9E9;
 
-/* Dropdown */
-$oc-color-dropdown-pressed: #f7a600;
-
 /* Grids */
-$oc-color-grid-column-text: $oc-color-support-petrol;
 $oc-color-grid-text: $oc-color-primary-azure;
-$oc-color-grid-highlight: #e3e8ec;
-
-/* Splitter */
-$oc-color-splitter-background: $oc-color-support-lightgray;
-$oc-color-splitter-ghost-background: #E9EFF2;
-$oc-color-splitter-hover: #c3c7ca;
-$oc-color-splitter-focused: $oc-color-primary-yellow;
-
-/* Current Colour Scheme */
-$mainColour: rgb(236, 102, 8);
-$petrolBlue: rgb(0, 96, 112);
-$deepRed: rgb(221, 37, 21);
-$lightYellow: rgb(254, 202, 29);
-$warmYellow: rgb(247, 166, 0);
-$black: rgb(0, 0, 0);
-$darkGreen: rgb(39, 104, 46);
-$darkSilver: rgb(103, 112, 124);
-$gray: rgb(70, 75, 80);
-$lightBlueSilver: #E9EFF2;
-$white: rgb(255, 255, 255);
-$chromium:  rgb(207, 209, 218);
-$lightgray: rgb(233, 233, 233);
-$silver: #bbbbbb;
-$light-silver: #f1f1f1;
-$dark-silver: #424242;
-$dark-chromium: #5A5A5A;
+$oc-color-grid-border: $oc-color-support-lightgray;
+$oc-color-grid-background: $oc-color-white;
+$oc-color-grid-stripe: $oc-color-support-lightgray;
+$oc-color-grid-highlight: #eff2f4;
+$oc-color-grid-selected: #e6e9eb;

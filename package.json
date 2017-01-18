@@ -3,12 +3,16 @@
   "version": "0.0.3",
   "private": true,
   "description": "OpusCapita common UI components",
-  "main": "lib/ocfrontend.min.js",
+  "main": "lib/ocfrontend.js",
   "scripts": {
     "build": "webpack --mode=build",
     "dev": "webpack --progress --colors --watch --mode=dev",
     "test": "mocha --require ignore-styles --compilers js:babel-core/register --colors test/test.setup.js test/**/*.spec.js",
     "examples": "webpack --config webpack.examples.js"
+  },
+  "peerDependencies": {
+    "react": ">=0.15.4",
+    "react-dom": ">=0.15.4"
   },
   "devDependencies": {
     "autoprefixer": "^6.6.1",

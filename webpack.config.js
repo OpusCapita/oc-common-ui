@@ -14,7 +14,7 @@ var plugins = [new ExtractTextPlugin('ocfrontend.css')], outputFile;
 
 if (env === 'build') {
   plugins.push(new UglifyJsPlugin({ minimize: true }));
-  outputFile = libraryName + '.min.js';
+  outputFile = libraryName + '.js';
 } else {
   outputFile = libraryName + '.js';
 }

@@ -42,10 +42,12 @@ import IndicatorPlus from
   '../../images/indicators/Plus.svg';
 import IndicatorMinus from
   '../../images/indicators/Minus.svg';
-import ArrowLeft from
+import IndicatorArrowLeft from
   '../../images/indicators/ArrowLeft.svg';
 import IndicatorHelp from
   '../../images/indicators/Help.svg';
+import IndicatorMore from
+  '../../images/indicators/More.svg';
 
 import ProductInvoices from
   '../../images/products/Invoices.svg';
@@ -113,8 +115,9 @@ var components = {
     exclamation: React.createFactory(IndicatorExclamation),
     plus: React.createFactory(IndicatorPlus),
     minus: React.createFactory(IndicatorMinus),
-    arrowLeft: React.createFactory(ArrowLeft),
+    arrowLeft: React.createFactory(IndicatorArrowLeft),
     help: React.createFactory(IndicatorHelp),
+    more: React.createFactory(IndicatorMore),
   },
   product: {
     Invoices: React.createFactory(ProductInvoices),
@@ -146,44 +149,33 @@ var components = {
 };
 
 export class Icon extends React.Component {
-  width = null;
-  height = null;
 
-  getIcon = (type, name) => {
-    let component = components[this.props.type][this.props.name];
-
-    let defaultWidth = null;
-    let defaultHeight = null;
-
-    switch (this.props.type) {
+  constructor(props) {
+    super(props);
+    switch (props.type) {
       case 'product':
-        defaultWidth = 40;
-        defaultHeight = 40;
+        this.defaultWidth = 40;
+        this.defaultHeight = 40;
         break;
       case 'indicator':
-        defaultWidth = 30;
-        defaultHeight = 30;
+        this.defaultWidth = 30;
+        this.defaultHeight = 30;
         break;
       default:
-        defaultWidth = 40;
-        defaultHeight = 40;
-        break;
+        this.defaultWidth = 40;
+        this.defaultHeight = 40;
     }
-
-    let properties = {
-      width: this.props.width || defaultWidth,
-      height: this.props.height || defaultHeight,
-    };
-
-    if (this.props.iconClass) {
-      properties.className = this.props.iconClass;
-    }
-
-    return component(properties);
   }
 
   render() {
-    return (this.getIcon());
+    const { type, name, width, height, ...otherProps } = this.props;
+    const component = components[type] && components[type][name];
+    const properties = {
+      width: width || this.defaultWidth,
+      height: height || this.defaultHeight,
+      ...otherProps,
+    };
+    return component(properties);
   }
 }
 
@@ -192,5 +184,4 @@ Icon.propTypes = {
   name: PropTypes.string.isRequired,
   width: PropTypes.number,
   height: PropTypes.number,
-  iconClass: PropTypes.string,
 };

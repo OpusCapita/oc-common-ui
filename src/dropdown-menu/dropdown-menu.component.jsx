@@ -1,5 +1,4 @@
 import React, { PropTypes } from 'react';
-import ImmutablePropTypes from 'react-immutable-proptypes';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 import { Icon } from '../icons';
 import './dropdown-menu.component.scss';

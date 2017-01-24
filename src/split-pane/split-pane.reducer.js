@@ -1,4 +1,3 @@
-import Immutable, { Map, List } from 'immutable';
 import { TYPES } from './split-pane.actions.js';
 import { INITIAL_STATE } from './split-pane.constants.js';
 

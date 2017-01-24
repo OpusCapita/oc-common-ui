@@ -15,6 +15,8 @@ import App from './app.component.jsx';
 import CardsView from './cards-view/cards-view.component.jsx';
 import SpinnerView from './spinner-view/spinner-view.component.jsx';
 import AlertsView from './alerts-view/alerts-view.component.jsx';
+import SplitPaneView from './split-pane-view/split-pane-view.component.jsx';
+import DropdownMenuView from './dropdown-menu-view/dropdown-menu-view.component.jsx';
 
 import './app.component.scss';
 
@@ -39,6 +41,8 @@ render((
         <Route path="/alerts" component={AlertsView}/>
         <Route path="/cards" component={CardsView}/>
         <Route path="/spinner" component={SpinnerView}/>
+        <Route path="/split-pane" component={SplitPaneView}/>
+        <Route path="/dropdown-menu" component={DropdownMenuView}/>
       </Router>
     </IntlProvider>
   </Provider>

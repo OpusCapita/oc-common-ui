@@ -5,7 +5,11 @@ import { resize } from './split-pane.actions.js';
 import './split-pane.component.scss';
 
 const getFromStorage = (id) => {
-  return sessionStorage['splitpane_'+id+'_size'];
+  const item = sessionStorage.getItem('splitpane_'+id+'_size');
+  if (item) {
+    return parseInt(item, 10);
+  }
+  return undefined;
 }
 
 const mapStateToProps = (state, ownProps) => {

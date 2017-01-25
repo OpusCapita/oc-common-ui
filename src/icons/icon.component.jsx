@@ -175,7 +175,11 @@ export class Icon extends React.Component {
       height: height || this.defaultHeight,
       ...otherProps,
     };
-    return component(properties);
+    if (typeof IndicatorLogout === 'function')
+      return component(properties);
+    else {
+      return <span className="icon" {...this.props} />;
+    }
   }
 }
 

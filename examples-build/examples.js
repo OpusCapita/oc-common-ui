@@ -413,15 +413,8 @@
 /* 4 */
 /***/ function(module, exports) {
 
-	/*
-	object-assign
-	(c) Sindre Sorhus
-	@license MIT
-	*/
-	
 	'use strict';
 	/* eslint-disable no-unused-vars */
-	var getOwnPropertySymbols = Object.getOwnPropertySymbols;
 	var hasOwnProperty = Object.prototype.hasOwnProperty;
 	var propIsEnumerable = Object.prototype.propertyIsEnumerable;
 	
@@ -442,7 +435,7 @@
 			// Detect buggy property enumeration order in older V8 versions.
 	
 			// https://bugs.chromium.org/p/v8/issues/detail?id=4118
-			var test1 = new String('abc');  // eslint-disable-line no-new-wrappers
+			var test1 = new String('abc');  // eslint-disable-line
 			test1[5] = 'de';
 			if (Object.getOwnPropertyNames(test1)[0] === '5') {
 				return false;
@@ -471,7 +464,7 @@
 			}
 	
 			return true;
-		} catch (err) {
+		} catch (e) {
 			// We don't expect any of the above to throw, but better to be safe.
 			return false;
 		}
@@ -491,8 +484,8 @@
 				}
 			}
 	
-			if (getOwnPropertySymbols) {
-				symbols = getOwnPropertySymbols(from);
+			if (Object.getOwnPropertySymbols) {
+				symbols = Object.getOwnPropertySymbols(from);
 				for (var i = 0; i < symbols.length; i++) {
 					if (propIsEnumerable.call(from, symbols[i])) {
 						to[symbols[i]] = from[symbols[i]];
@@ -21845,7 +21838,7 @@
 	
 	  var match = void 0,
 	      lastIndex = 0,
-	      matcher = /:([a-zA-Z_$][a-zA-Z0-9_$]*)|\*\*|\*|\(|\)|\\\(|\\\)/g;
+	      matcher = /:([a-zA-Z_$][a-zA-Z0-9_$]*)|\*\*|\*|\(|\)/g;
 	  while (match = matcher.exec(pattern)) {
 	    if (match.index !== lastIndex) {
 	      tokens.push(pattern.slice(lastIndex, match.index));
@@ -21865,10 +21858,6 @@
 	      regexpSource += '(?:';
 	    } else if (match[0] === ')') {
 	      regexpSource += ')?';
-	    } else if (match[0] === '\\(') {
-	      regexpSource += '\\(';
-	    } else if (match[0] === '\\)') {
-	      regexpSource += '\\)';
 	    }
 	
 	    tokens.push(match[0]);
@@ -22023,10 +22012,6 @@
 	      parenCount -= 1;
 	
 	      if (parenCount) parenHistory[parenCount - 1] += parenText;else pathname += parenText;
-	    } else if (token === '\\(') {
-	      pathname += '(';
-	    } else if (token === '\\)') {
-	      pathname += ')';
 	    } else if (token.charAt(0) === ':') {
 	      paramName = token.substring(1);
 	      paramValue = params[paramName];
@@ -22894,7 +22879,7 @@
 	  return runTransitionHooks(hooks.length, function (index, replace, next) {
 	    var wrappedNext = function wrappedNext() {
 	      if (enterHooks.has(hooks[index])) {
-	        next.apply(undefined, arguments);
+	        next();
 	        enterHooks.remove(hooks[index]);
 	      }
 	    };
@@ -22918,7 +22903,7 @@
 	  return runTransitionHooks(hooks.length, function (index, replace, next) {
 	    var wrappedNext = function wrappedNext() {
 	      if (changeHooks.has(hooks[index])) {
-	        next.apply(undefined, arguments);
+	        next();
 	        changeHooks.remove(hooks[index]);
 	      }
 	    };
@@ -23320,14 +23305,9 @@
 	    if ((0, _PromiseUtils.isPromise)(indexRoutesReturn)) indexRoutesReturn.then(function (indexRoute) {
 	      return callback(null, (0, _RouteUtils.createRoutes)(indexRoute)[0]);
 	    }, callback);
-	  } else if (route.childRoutes || route.getChildRoutes) {
-	    var onChildRoutes = function onChildRoutes(error, childRoutes) {
-	      if (error) {
-	        callback(error);
-	        return;
-	      }
-	
-	      var pathless = childRoutes.filter(function (childRoute) {
+	  } else if (route.childRoutes) {
+	    (function () {
+	      var pathless = route.childRoutes.filter(function (childRoute) {
 	        return !childRoute.path;
 	      });
 	
@@ -23343,12 +23323,7 @@
 	      }, function (err, routes) {
 	        callback(null, routes);
 	      });
-	    };
-	
-	    var result = getChildRoutes(route, location, paramNames, paramValues, onChildRoutes);
-	    if (result) {
-	      onChildRoutes.apply(undefined, result);
-	    }
+	    })();
 	  } else {
 	    callback();
 	  }
@@ -23402,7 +23377,7 @@
 	    // By assumption, pattern is non-empty here, which is the prerequisite for
 	    // actually terminating a match.
 	    if (remainingPathname === '') {
-	      var _ret = function () {
+	      var _ret2 = function () {
 	        var match = {
 	          routes: [route],
 	          params: createParams(paramNames, paramValues)
@@ -23433,7 +23408,7 @@
 	        };
 	      }();
 	
-	      if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
+	      if ((typeof _ret2 === 'undefined' ? 'undefined' : _typeof(_ret2)) === "object") return _ret2.v;
 	    }
 	  }
 	
@@ -24011,7 +23986,7 @@
 	
 	    if (router) {
 	      // If user does not specify a `to` prop, return an empty anchor tag.
-	      if (!to) {
+	      if (to == null) {
 	        return _react2.default.createElement('a', props);
 	      }
 	
@@ -24128,10 +24103,6 @@
 	      var _this = this;
 	
 	      var router = this.props.router || this.context.router;
-	      if (!router) {
-	        return _react2.default.createElement(WrappedComponent, this.props);
-	      }
-	
 	      var params = router.params,
 	          location = router.location,
 	          routes = router.routes;
@@ -24797,92 +24768,6 @@
 	var strictUriEncode = __webpack_require__(212);
 	var objectAssign = __webpack_require__(4);
 	
-	function encoderForArrayFormat(opts) {
-		switch (opts.arrayFormat) {
-			case 'index':
-				return function (key, value, index) {
-					return value === null ? [
-						encode(key, opts),
-						'[',
-						index,
-						']'
-					].join('') : [
-						encode(key, opts),
-						'[',
-						encode(index, opts),
-						']=',
-						encode(value, opts)
-					].join('');
-				};
-	
-			case 'bracket':
-				return function (key, value) {
-					return value === null ? encode(key, opts) : [
-						encode(key, opts),
-						'[]=',
-						encode(value, opts)
-					].join('');
-				};
-	
-			default:
-				return function (key, value) {
-					return value === null ? encode(key, opts) : [
-						encode(key, opts),
-						'=',
-						encode(value, opts)
-					].join('');
-				};
-		}
-	}
-	
-	function parserForArrayFormat(opts) {
-		var result;
-	
-		switch (opts.arrayFormat) {
-			case 'index':
-				return function (key, value, accumulator) {
-					result = /\[(\d*)]$/.exec(key);
-	
-					key = key.replace(/\[\d*]$/, '');
-	
-					if (!result) {
-						accumulator[key] = value;
-						return;
-					}
-	
-					if (accumulator[key] === undefined) {
-						accumulator[key] = {};
-					}
-	
-					accumulator[key][result[1]] = value;
-				};
-	
-			case 'bracket':
-				return function (key, value, accumulator) {
-					result = /(\[])$/.exec(key);
-	
-					key = key.replace(/\[]$/, '');
-	
-					if (!result || accumulator[key] === undefined) {
-						accumulator[key] = value;
-						return;
-					}
-	
-					accumulator[key] = [].concat(accumulator[key], value);
-				};
-	
-			default:
-				return function (key, value, accumulator) {
-					if (accumulator[key] === undefined) {
-						accumulator[key] = value;
-						return;
-					}
-	
-					accumulator[key] = [].concat(accumulator[key], value);
-				};
-		}
-	}
-	
 	function encode(value, opts) {
 		if (opts.encode) {
 			return opts.strict ? strictUriEncode(value) : encodeURIComponent(value);
@@ -24891,29 +24776,11 @@
 		return value;
 	}
 	
-	function keysSorter(input) {
-		if (Array.isArray(input)) {
-			return input.sort();
-		} else if (typeof input === 'object') {
-			return keysSorter(Object.keys(input)).sort(function (a, b) {
-				return Number(a) - Number(b);
-			}).map(function (key) {
-				return input[key];
-			});
-		}
-	
-		return input;
-	}
-	
 	exports.extract = function (str) {
 		return str.split('?')[1] || '';
 	};
 	
-	exports.parse = function (str, opts) {
-		opts = objectAssign({arrayFormat: 'none'}, opts);
-	
-		var formatter = parserForArrayFormat(opts);
-	
+	exports.parse = function (str) {
 		// Create an object with no prototype
 		// https://github.com/sindresorhus/query-string/issues/47
 		var ret = Object.create(null);
@@ -24935,36 +24802,31 @@
 			var key = parts.shift();
 			var val = parts.length > 0 ? parts.join('=') : undefined;
 	
+			key = decodeURIComponent(key);
+	
 			// missing `=` should be `null`:
 			// http://w3.org/TR/2012/WD-url-20120524/#collect-url-parameters
 			val = val === undefined ? null : decodeURIComponent(val);
 	
-			formatter(decodeURIComponent(key), val, ret);
+			if (ret[key] === undefined) {
+				ret[key] = val;
+			} else if (Array.isArray(ret[key])) {
+				ret[key].push(val);
+			} else {
+				ret[key] = [ret[key], val];
+			}
 		});
 	
-		return Object.keys(ret).sort().reduce(function (result, key) {
-			var val = ret[key];
-			if (Boolean(val) && typeof val === 'object' && !Array.isArray(val)) {
-				// Sort object keys, not values
-				result[key] = keysSorter(val);
-			} else {
-				result[key] = val;
-			}
-	
-			return result;
-		}, Object.create(null));
+		return ret;
 	};
 	
 	exports.stringify = function (obj, opts) {
 		var defaults = {
 			encode: true,
-			strict: true,
-			arrayFormat: 'none'
+			strict: true
 		};
 	
 		opts = objectAssign(defaults, opts);
-	
-		var formatter = encoderForArrayFormat(opts);
 	
 		return obj ? Object.keys(obj).sort().map(function (key) {
 			var val = obj[key];
@@ -24985,7 +24847,11 @@
 						return;
 					}
 	
-					result.push(formatter(key, val2, result.length));
+					if (val2 === null) {
+						result.push(encode(key, opts));
+					} else {
+						result.push(encode(key, opts) + '=' + encode(val2, opts));
+					}
 				});
 	
 				return result.join('&');
@@ -28800,8 +28666,8 @@
 /* 271 */
 /***/ function(module, exports, __webpack_require__) {
 
-	/* WEBPACK VAR INJECTION */(function(process) {/*
-	 * Copyright 2017, Yahoo Inc.
+	/* WEBPACK VAR INJECTION */(function(global, process) {/*
+	 * Copyright 2016, Yahoo Inc.
 	 * Copyrights licensed under the New BSD License.
 	 * See the accompanying LICENSE file for terms.
 	 */
@@ -28874,15 +28740,257 @@
 	  return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj;
 	};
 	
+	var jsx = function () {
+	  var REACT_ELEMENT_TYPE = typeof Symbol === "function" && Symbol.for && Symbol.for("react.element") || 0xeac7;
+	  return function createRawReactElement(type, props, key, children) {
+	    var defaultProps = type && type.defaultProps;
+	    var childrenLength = arguments.length - 3;
 	
+	    if (!props && childrenLength !== 0) {
+	      props = {};
+	    }
 	
+	    if (props && defaultProps) {
+	      for (var propName in defaultProps) {
+	        if (props[propName] === void 0) {
+	          props[propName] = defaultProps[propName];
+	        }
+	      }
+	    } else if (!props) {
+	      props = defaultProps || {};
+	    }
 	
+	    if (childrenLength === 1) {
+	      props.children = children;
+	    } else if (childrenLength > 1) {
+	      var childArray = Array(childrenLength);
 	
+	      for (var i = 0; i < childrenLength; i++) {
+	        childArray[i] = arguments[i + 3];
+	      }
 	
+	      props.children = childArray;
+	    }
 	
+	    return {
+	      $$typeof: REACT_ELEMENT_TYPE,
+	      type: type,
+	      key: key === undefined ? null : '' + key,
+	      ref: null,
+	      props: props,
+	      _owner: null
+	    };
+	  };
+	}();
 	
+	var asyncIterator = function (iterable) {
+	  if (typeof Symbol === "function") {
+	    if (Symbol.asyncIterator) {
+	      var method = iterable[Symbol.asyncIterator];
+	      if (method != null) return method.call(iterable);
+	    }
 	
+	    if (Symbol.iterator) {
+	      return iterable[Symbol.iterator]();
+	    }
+	  }
 	
+	  throw new TypeError("Object is not async iterable");
+	};
+	
+	var asyncGenerator = function () {
+	  function AwaitValue(value) {
+	    this.value = value;
+	  }
+	
+	  function AsyncGenerator(gen) {
+	    var front, back;
+	
+	    function send(key, arg) {
+	      return new Promise(function (resolve, reject) {
+	        var request = {
+	          key: key,
+	          arg: arg,
+	          resolve: resolve,
+	          reject: reject,
+	          next: null
+	        };
+	
+	        if (back) {
+	          back = back.next = request;
+	        } else {
+	          front = back = request;
+	          resume(key, arg);
+	        }
+	      });
+	    }
+	
+	    function resume(key, arg) {
+	      try {
+	        var result = gen[key](arg);
+	        var value = result.value;
+	
+	        if (value instanceof AwaitValue) {
+	          Promise.resolve(value.value).then(function (arg) {
+	            resume("next", arg);
+	          }, function (arg) {
+	            resume("throw", arg);
+	          });
+	        } else {
+	          settle(result.done ? "return" : "normal", result.value);
+	        }
+	      } catch (err) {
+	        settle("throw", err);
+	      }
+	    }
+	
+	    function settle(type, value) {
+	      switch (type) {
+	        case "return":
+	          front.resolve({
+	            value: value,
+	            done: true
+	          });
+	          break;
+	
+	        case "throw":
+	          front.reject(value);
+	          break;
+	
+	        default:
+	          front.resolve({
+	            value: value,
+	            done: false
+	          });
+	          break;
+	      }
+	
+	      front = front.next;
+	
+	      if (front) {
+	        resume(front.key, front.arg);
+	      } else {
+	        back = null;
+	      }
+	    }
+	
+	    this._invoke = send;
+	
+	    if (typeof gen.return !== "function") {
+	      this.return = undefined;
+	    }
+	  }
+	
+	  if (typeof Symbol === "function" && Symbol.asyncIterator) {
+	    AsyncGenerator.prototype[Symbol.asyncIterator] = function () {
+	      return this;
+	    };
+	  }
+	
+	  AsyncGenerator.prototype.next = function (arg) {
+	    return this._invoke("next", arg);
+	  };
+	
+	  AsyncGenerator.prototype.throw = function (arg) {
+	    return this._invoke("throw", arg);
+	  };
+	
+	  AsyncGenerator.prototype.return = function (arg) {
+	    return this._invoke("return", arg);
+	  };
+	
+	  return {
+	    wrap: function (fn) {
+	      return function () {
+	        return new AsyncGenerator(fn.apply(this, arguments));
+	      };
+	    },
+	    await: function (value) {
+	      return new AwaitValue(value);
+	    }
+	  };
+	}();
+	
+	var asyncGeneratorDelegate = function (inner, awaitWrap) {
+	  var iter = {},
+	      waiting = false;
+	
+	  function pump(key, value) {
+	    waiting = true;
+	    value = new Promise(function (resolve) {
+	      resolve(inner[key](value));
+	    });
+	    return {
+	      done: false,
+	      value: awaitWrap(value)
+	    };
+	  }
+	
+	  
+	
+	  if (typeof Symbol === "function" && Symbol.iterator) {
+	    iter[Symbol.iterator] = function () {
+	      return this;
+	    };
+	  }
+	
+	  iter.next = function (value) {
+	    if (waiting) {
+	      waiting = false;
+	      return value;
+	    }
+	
+	    return pump("next", value);
+	  };
+	
+	  if (typeof inner.throw === "function") {
+	    iter.throw = function (value) {
+	      if (waiting) {
+	        waiting = false;
+	        throw value;
+	      }
+	
+	      return pump("throw", value);
+	    };
+	  }
+	
+	  if (typeof inner.return === "function") {
+	    iter.return = function (value) {
+	      return pump("return", value);
+	    };
+	  }
+	
+	  return iter;
+	};
+	
+	var asyncToGenerator = function (fn) {
+	  return function () {
+	    var gen = fn.apply(this, arguments);
+	    return new Promise(function (resolve, reject) {
+	      function step(key, arg) {
+	        try {
+	          var info = gen[key](arg);
+	          var value = info.value;
+	        } catch (error) {
+	          reject(error);
+	          return;
+	        }
+	
+	        if (info.done) {
+	          resolve(value);
+	        } else {
+	          return Promise.resolve(value).then(function (value) {
+	            step("next", value);
+	          }, function (err) {
+	            step("throw", err);
+	          });
+	        }
+	      }
+	
+	      return step("next");
+	    });
+	  };
+	};
 	
 	var classCallCheck = function (instance, Constructor) {
 	  if (!(instance instanceof Constructor)) {
@@ -28908,9 +29016,31 @@
 	  };
 	}();
 	
+	var defineEnumerableProperties = function (obj, descs) {
+	  for (var key in descs) {
+	    var desc = descs[key];
+	    desc.configurable = desc.enumerable = true;
+	    if ("value" in desc) desc.writable = true;
+	    Object.defineProperty(obj, key, desc);
+	  }
 	
+	  return obj;
+	};
 	
+	var defaults = function (obj, defaults) {
+	  var keys = Object.getOwnPropertyNames(defaults);
 	
+	  for (var i = 0; i < keys.length; i++) {
+	    var key = keys[i];
+	    var value = Object.getOwnPropertyDescriptor(defaults, key);
+	
+	    if (value && value.configurable && obj[key] === undefined) {
+	      Object.defineProperty(obj, key, value);
+	    }
+	  }
+	
+	  return obj;
+	};
 	
 	var defineProperty = function (obj, key, value) {
 	  if (key in obj) {
@@ -28941,7 +29071,30 @@
 	  return target;
 	};
 	
+	var get = function get(object, property, receiver) {
+	  if (object === null) object = Function.prototype;
+	  var desc = Object.getOwnPropertyDescriptor(object, property);
 	
+	  if (desc === undefined) {
+	    var parent = Object.getPrototypeOf(object);
+	
+	    if (parent === null) {
+	      return undefined;
+	    } else {
+	      return get(parent, property, receiver);
+	    }
+	  } else if ("value" in desc) {
+	    return desc.value;
+	  } else {
+	    var getter = desc.get;
+	
+	    if (getter === undefined) {
+	      return undefined;
+	    }
+	
+	    return getter.call(receiver);
+	  }
+	};
 	
 	var inherits = function (subClass, superClass) {
 	  if (typeof superClass !== "function" && superClass !== null) {
@@ -28959,13 +29112,46 @@
 	  if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass;
 	};
 	
+	var _instanceof = function (left, right) {
+	  if (right != null && typeof Symbol !== "undefined" && right[Symbol.hasInstance]) {
+	    return right[Symbol.hasInstance](left);
+	  } else {
+	    return left instanceof right;
+	  }
+	};
 	
+	var interopRequireDefault = function (obj) {
+	  return obj && obj.__esModule ? obj : {
+	    default: obj
+	  };
+	};
 	
+	var interopRequireWildcard = function (obj) {
+	  if (obj && obj.__esModule) {
+	    return obj;
+	  } else {
+	    var newObj = {};
 	
+	    if (obj != null) {
+	      for (var key in obj) {
+	        if (Object.prototype.hasOwnProperty.call(obj, key)) newObj[key] = obj[key];
+	      }
+	    }
 	
+	    newObj.default = obj;
+	    return newObj;
+	  }
+	};
 	
+	var newArrowCheck = function (innerThis, boundThis) {
+	  if (innerThis !== boundThis) {
+	    throw new TypeError("Cannot instantiate an arrow function");
+	  }
+	};
 	
-	
+	var objectDestructuringEmpty = function (obj) {
+	  if (obj == null) throw new TypeError("Cannot destructure undefined");
+	};
 	
 	var objectWithoutProperties = function (obj, keys) {
 	  var target = {};
@@ -28987,23 +29173,112 @@
 	  return call && (typeof call === "object" || typeof call === "function") ? call : self;
 	};
 	
+	var selfGlobal = typeof global === "undefined" ? self : global;
 	
+	var set = function set(object, property, value, receiver) {
+	  var desc = Object.getOwnPropertyDescriptor(object, property);
 	
+	  if (desc === undefined) {
+	    var parent = Object.getPrototypeOf(object);
 	
+	    if (parent !== null) {
+	      set(parent, property, value, receiver);
+	    }
+	  } else if ("value" in desc && desc.writable) {
+	    desc.value = value;
+	  } else {
+	    var setter = desc.set;
 	
+	    if (setter !== undefined) {
+	      setter.call(receiver, value);
+	    }
+	  }
 	
+	  return value;
+	};
 	
+	var slicedToArray = function () {
+	  function sliceIterator(arr, i) {
+	    var _arr = [];
+	    var _n = true;
+	    var _d = false;
+	    var _e = undefined;
 	
+	    try {
+	      for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) {
+	        _arr.push(_s.value);
 	
+	        if (i && _arr.length === i) break;
+	      }
+	    } catch (err) {
+	      _d = true;
+	      _e = err;
+	    } finally {
+	      try {
+	        if (!_n && _i["return"]) _i["return"]();
+	      } finally {
+	        if (_d) throw _e;
+	      }
+	    }
 	
+	    return _arr;
+	  }
 	
+	  return function (arr, i) {
+	    if (Array.isArray(arr)) {
+	      return arr;
+	    } else if (Symbol.iterator in Object(arr)) {
+	      return sliceIterator(arr, i);
+	    } else {
+	      throw new TypeError("Invalid attempt to destructure non-iterable instance");
+	    }
+	  };
+	}();
 	
+	var slicedToArrayLoose = function (arr, i) {
+	  if (Array.isArray(arr)) {
+	    return arr;
+	  } else if (Symbol.iterator in Object(arr)) {
+	    var _arr = [];
 	
+	    for (var _iterator = arr[Symbol.iterator](), _step; !(_step = _iterator.next()).done;) {
+	      _arr.push(_step.value);
 	
+	      if (i && _arr.length === i) break;
+	    }
 	
+	    return _arr;
+	  } else {
+	    throw new TypeError("Invalid attempt to destructure non-iterable instance");
+	  }
+	};
 	
+	var taggedTemplateLiteral = function (strings, raw) {
+	  return Object.freeze(Object.defineProperties(strings, {
+	    raw: {
+	      value: Object.freeze(raw)
+	    }
+	  }));
+	};
 	
+	var taggedTemplateLiteralLoose = function (strings, raw) {
+	  strings.raw = raw;
+	  return strings;
+	};
 	
+	var temporalRef = function (val, name, undef) {
+	  if (val === undef) {
+	    throw new ReferenceError(name + " is not defined - temporal dead zone");
+	  } else {
+	    return val;
+	  }
+	};
+	
+	var temporalUndefined = {};
+	
+	var toArray = function (arr) {
+	  return Array.isArray(arr) ? arr : Array.from(arr);
+	};
 	
 	var toConsumableArray = function (arr) {
 	  if (Array.isArray(arr)) {
@@ -29014,6 +29289,42 @@
 	    return Array.from(arr);
 	  }
 	};
+	
+	
+	
+	var babelHelpers$1 = Object.freeze({
+		jsx: jsx,
+		asyncIterator: asyncIterator,
+		asyncGenerator: asyncGenerator,
+		asyncGeneratorDelegate: asyncGeneratorDelegate,
+		asyncToGenerator: asyncToGenerator,
+		classCallCheck: classCallCheck,
+		createClass: createClass,
+		defineEnumerableProperties: defineEnumerableProperties,
+		defaults: defaults,
+		defineProperty: defineProperty,
+		get: get,
+		inherits: inherits,
+		interopRequireDefault: interopRequireDefault,
+		interopRequireWildcard: interopRequireWildcard,
+		newArrowCheck: newArrowCheck,
+		objectDestructuringEmpty: objectDestructuringEmpty,
+		objectWithoutProperties: objectWithoutProperties,
+		possibleConstructorReturn: possibleConstructorReturn,
+		selfGlobal: selfGlobal,
+		set: set,
+		slicedToArray: slicedToArray,
+		slicedToArrayLoose: slicedToArrayLoose,
+		taggedTemplateLiteral: taggedTemplateLiteral,
+		taggedTemplateLiteralLoose: taggedTemplateLiteralLoose,
+		temporalRef: temporalRef,
+		temporalUndefined: temporalUndefined,
+		toArray: toArray,
+		toConsumableArray: toConsumableArray,
+		typeof: _typeof,
+		extends: _extends,
+		instanceof: _instanceof
+	});
 	
 	/*
 	 * Copyright 2015, Yahoo Inc.
@@ -29055,7 +29366,7 @@
 	    formatHTMLMessage: funcReq
 	};
 	
-	var intlShape = shape(_extends({}, intlConfigPropTypes, intlFormatPropTypes, {
+	var intlShape = shape(babelHelpers$1['extends']({}, intlConfigPropTypes, intlFormatPropTypes, {
 	    formatters: object,
 	    now: funcReq
 	}));
@@ -29163,7 +29474,7 @@
 	        return true;
 	    }
 	
-	    if ((typeof objA === 'undefined' ? 'undefined' : _typeof(objA)) !== 'object' || objA === null || (typeof objB === 'undefined' ? 'undefined' : _typeof(objB)) !== 'object' || objB === null) {
+	    if ((typeof objA === 'undefined' ? 'undefined' : babelHelpers$1['typeof'](objA)) !== 'object' || objA === null || (typeof objB === 'undefined' ? 'undefined' : babelHelpers$1['typeof'](objB)) !== 'object' || objB === null) {
 	        return false;
 	    }
 	
@@ -29242,7 +29553,7 @@
 	        }, {
 	            key: 'render',
 	            value: function render() {
-	                return React__default.createElement(WrappedComponent, _extends({}, this.props, defineProperty({}, intlPropName, this.context.intl), {
+	                return React__default.createElement(WrappedComponent, babelHelpers$1['extends']({}, this.props, defineProperty({}, intlPropName, this.context.intl), {
 	                    ref: withRef ? 'wrappedInstance' : null
 	                }));
 	            }
@@ -29375,7 +29686,7 @@
 	
 	    if (!filteredOptions.hour && !filteredOptions.minute && !filteredOptions.second) {
 	        // Add default formatting options if hour, minute, or second isn't defined.
-	        filteredOptions = _extends({}, filteredOptions, { hour: 'numeric', minute: 'numeric' });
+	        filteredOptions = babelHelpers$1['extends']({}, filteredOptions, { hour: 'numeric', minute: 'numeric' });
 	    }
 	
 	    try {
@@ -29403,7 +29714,7 @@
 	
 	    // Capture the current threshold values, then temporarily override them with
 	    // specific values just for this render.
-	    var oldThresholds = _extends({}, IntlRelativeFormat.thresholds);
+	    var oldThresholds = babelHelpers$1['extends']({}, IntlRelativeFormat.thresholds);
 	    updateRelativeFormatThresholds(RELATIVE_FORMAT_THRESHOLDS);
 	
 	    try {
@@ -29617,7 +29928,7 @@
 	            getPluralFormat: memoizeIntlConstructor(IntlPluralFormat)
 	        } : _ref$formatters;
 	
-	        _this.state = _extends({}, formatters, {
+	        _this.state = babelHelpers$1['extends']({}, formatters, {
 	
 	            // Wrapper to provide stable "now" time for initial render.
 	            now: function now() {
@@ -29662,7 +29973,7 @@
 	                // The `messages` are overridden to the `defaultProps` empty object
 	                // to maintain referential equality across re-renders. It's assumed
 	                // each <FormattedMessage> contains a `defaultMessage` prop.
-	                config = _extends({}, config, {
+	                config = babelHelpers$1['extends']({}, config, {
 	                    locale: defaultLocale,
 	                    formats: defaultFormats,
 	                    messages: defaultProps.messages
@@ -29693,7 +30004,7 @@
 	
 	
 	            return {
-	                intl: _extends({}, config, boundFormatFns, {
+	                intl: babelHelpers$1['extends']({}, config, boundFormatFns, {
 	                    formatters: formatters,
 	                    now: now
 	                })
@@ -29729,7 +30040,7 @@
 	IntlProvider.childContextTypes = {
 	    intl: intlShape.isRequired
 	};
-	process.env.NODE_ENV !== "production" ? IntlProvider.propTypes = _extends({}, intlConfigPropTypes, {
+	process.env.NODE_ENV !== "production" ? IntlProvider.propTypes = babelHelpers$1['extends']({}, intlConfigPropTypes, {
 	    children: React.PropTypes.element.isRequired,
 	    initialNow: React.PropTypes.any
 	}) : void 0;
@@ -29792,7 +30103,7 @@
 	FormattedDate.contextTypes = {
 	    intl: intlShape
 	};
-	process.env.NODE_ENV !== "production" ? FormattedDate.propTypes = _extends({}, dateTimeFormatPropTypes, {
+	process.env.NODE_ENV !== "production" ? FormattedDate.propTypes = babelHelpers$1['extends']({}, dateTimeFormatPropTypes, {
 	    value: React.PropTypes.any.isRequired,
 	    format: React.PropTypes.string,
 	    children: React.PropTypes.func
@@ -29856,7 +30167,7 @@
 	FormattedTime.contextTypes = {
 	    intl: intlShape
 	};
-	process.env.NODE_ENV !== "production" ? FormattedTime.propTypes = _extends({}, dateTimeFormatPropTypes, {
+	process.env.NODE_ENV !== "production" ? FormattedTime.propTypes = babelHelpers$1['extends']({}, dateTimeFormatPropTypes, {
 	    value: React.PropTypes.any.isRequired,
 	    format: React.PropTypes.string,
 	    children: React.PropTypes.func
@@ -30020,7 +30331,7 @@
 	                children = _props.children;
 	
 	
-	            var formattedRelative = formatRelative(value, _extends({}, this.props, this.state));
+	            var formattedRelative = formatRelative(value, babelHelpers$1['extends']({}, this.props, this.state));
 	
 	            if (typeof children === 'function') {
 	                return children(formattedRelative);
@@ -30043,7 +30354,7 @@
 	FormattedRelative.defaultProps = {
 	    updateInterval: 1000 * 10
 	};
-	process.env.NODE_ENV !== "production" ? FormattedRelative.propTypes = _extends({}, relativeFormatPropTypes, {
+	process.env.NODE_ENV !== "production" ? FormattedRelative.propTypes = babelHelpers$1['extends']({}, relativeFormatPropTypes, {
 	    value: React.PropTypes.any.isRequired,
 	    format: React.PropTypes.string,
 	    updateInterval: React.PropTypes.number,
@@ -30109,7 +30420,7 @@
 	FormattedNumber.contextTypes = {
 	    intl: intlShape
 	};
-	process.env.NODE_ENV !== "production" ? FormattedNumber.propTypes = _extends({}, numberFormatPropTypes, {
+	process.env.NODE_ENV !== "production" ? FormattedNumber.propTypes = babelHelpers$1['extends']({}, numberFormatPropTypes, {
 	    value: React.PropTypes.any.isRequired,
 	    format: React.PropTypes.string,
 	    children: React.PropTypes.func
@@ -30178,7 +30489,7 @@
 	FormattedPlural.defaultProps = {
 	    style: 'cardinal'
 	};
-	process.env.NODE_ENV !== "production" ? FormattedPlural.propTypes = _extends({}, pluralFormatPropTypes, {
+	process.env.NODE_ENV !== "production" ? FormattedPlural.propTypes = babelHelpers$1['extends']({}, pluralFormatPropTypes, {
 	    value: React.PropTypes.any.isRequired,
 	
 	    other: React.PropTypes.node.isRequired,
@@ -30223,7 +30534,7 @@
 	            // Since `values` has already been checked, we know they're not
 	            // different, so the current `values` are carried over so the shallow
 	            // equals comparison on the other props isn't affected by the `values`.
-	            var nextPropsToCheck = _extends({}, nextProps, {
+	            var nextPropsToCheck = babelHelpers$1['extends']({}, nextProps, {
 	                values: values
 	            });
 	
@@ -30332,7 +30643,7 @@
 	FormattedMessage.defaultProps = {
 	    values: {}
 	};
-	process.env.NODE_ENV !== "production" ? FormattedMessage.propTypes = _extends({}, messageDescriptorPropTypes, {
+	process.env.NODE_ENV !== "production" ? FormattedMessage.propTypes = babelHelpers$1['extends']({}, messageDescriptorPropTypes, {
 	    values: React.PropTypes.object,
 	    tagName: React.PropTypes.string,
 	    children: React.PropTypes.func
@@ -30370,7 +30681,7 @@
 	            // Since `values` has already been checked, we know they're not
 	            // different, so the current `values` are carried over so the shallow
 	            // equals comparison on the other props isn't affected by the `values`.
-	            var nextPropsToCheck = _extends({}, nextProps, {
+	            var nextPropsToCheck = babelHelpers$1['extends']({}, nextProps, {
 	                values: values
 	            });
 	
@@ -30425,7 +30736,7 @@
 	FormattedHTMLMessage.defaultProps = {
 	    values: {}
 	};
-	process.env.NODE_ENV !== "production" ? FormattedHTMLMessage.propTypes = _extends({}, messageDescriptorPropTypes, {
+	process.env.NODE_ENV !== "production" ? FormattedHTMLMessage.propTypes = babelHelpers$1['extends']({}, messageDescriptorPropTypes, {
 	    values: React.PropTypes.object,
 	    tagName: React.PropTypes.string,
 	    children: React.PropTypes.func
@@ -30460,7 +30771,7 @@
 	exports.FormattedMessage = FormattedMessage;
 	exports.FormattedHTMLMessage = FormattedHTMLMessage;
 	
-	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }()), __webpack_require__(3)))
 
 /***/ },
 /* 272 */
@@ -33186,8 +33497,8 @@
 	exports.__esModule = true;
 	function createThunkMiddleware(extraArgument) {
 	  return function (_ref) {
-	    var dispatch = _ref.dispatch,
-	        getState = _ref.getState;
+	    var dispatch = _ref.dispatch;
+	    var getState = _ref.getState;
 	    return function (next) {
 	      return function (action) {
 	        if (typeof action === 'function') {
@@ -34141,7 +34452,9 @@
 	        width: width || this.defaultWidth,
 	        height: height || this.defaultHeight
 	      }, otherProps);
-	      return component(properties);
+	      if (typeof _Logout2.default === 'function') return component(properties);else {
+	        return _react2.default.createElement('span', _extends({ className: 'icon' }, this.props));
+	      }
 	    }
 	  }]);
 	
@@ -80558,15 +80871,9 @@
 	});
 	exports.splitPaneReducer = splitPaneReducer;
 	
-	var _immutable = __webpack_require__(672);
-	
-	var _immutable2 = _interopRequireDefault(_immutable);
-	
 	var _splitPaneActions = __webpack_require__(668);
 	
-	var _splitPaneConstants = __webpack_require__(673);
-	
-	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+	var _splitPaneConstants = __webpack_require__(672);
 	
 	function splitPaneReducer() {
 	  var state = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : _splitPaneConstants.INITIAL_STATE;
@@ -80582,6 +80889,21 @@
 
 /***/ },
 /* 672 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+	exports.INITIAL_STATE = undefined;
+	
+	var _immutable = __webpack_require__(673);
+	
+	var INITIAL_STATE = exports.INITIAL_STATE = (0, _immutable.Map)();
+
+/***/ },
+/* 673 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -85565,21 +85887,6 @@
 	}));
 
 /***/ },
-/* 673 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-	
-	Object.defineProperty(exports, "__esModule", {
-	  value: true
-	});
-	exports.INITIAL_STATE = undefined;
-	
-	var _immutable = __webpack_require__(672);
-	
-	var INITIAL_STATE = exports.INITIAL_STATE = (0, _immutable.Map)();
-
-/***/ },
 /* 674 */
 /***/ function(module, exports, __webpack_require__) {
 
@@ -86079,6 +86386,8 @@
 	
 	
 	    // Sizes are stored to sessionStorage
+	    // Check more feature here:
+	    // https://github.com/tomkp/react-split-pane
 	
 	    value: function render() {
 	      return _react2.default.createElement(

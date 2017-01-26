@@ -48,6 +48,8 @@ import IndicatorHelp from
   '../../images/indicators/Help.svg';
 import IndicatorMore from
   '../../images/indicators/More.svg';
+import IndicatorSettings from
+  '../../images/indicators/Settings.svg';
 
 import ProductInvoices from
   '../../images/products/Invoices.svg';
@@ -118,6 +120,7 @@ var components = {
     arrowLeft: React.createFactory(IndicatorArrowLeft),
     help: React.createFactory(IndicatorHelp),
     more: React.createFactory(IndicatorMore),
+    settings: React.createFactory(IndicatorSettings),
   },
   product: {
     Invoices: React.createFactory(ProductInvoices),

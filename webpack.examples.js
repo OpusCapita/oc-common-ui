@@ -1,8 +1,14 @@
 var path = require('path');
 var autoprefixer = require('autoprefixer');
 var precss = require('precss');
+var HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var plugins = [];
+var plugins = [
+  new HtmlWebpackPlugin({
+    filename: 'examples.html',
+    template: 'examples/examples.html',
+  }),
+];
 
 var config = {
   entry: __dirname + '/examples/index.js',

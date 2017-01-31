@@ -8,8 +8,18 @@ export default class DropdownMenuView extends React.Component {
   render() {
 
     const containerStyle = {
-      width: '100%',
+      width: '50%',
+      padding: '10px',
       margin: '10px',
+      background: 'white',
+      textAlign: 'right',
+    };
+
+    const containerStyle2 = {
+      width: '50%',
+      padding: '10px',
+      margin: '10px',
+      background: 'white',
     };
 
     return (
@@ -20,7 +30,9 @@ export default class DropdownMenuView extends React.Component {
             id="example"
             menuItems={[
               {
-                title: 'Item 1',
+                id: 'item_id_1',
+                title: 'Item 1, dont\'t close',
+                disableClosing: true,
                 onClick: ()=>console.log('Item 1 clicked'),
               },
               {
@@ -39,7 +51,7 @@ export default class DropdownMenuView extends React.Component {
             ]}
           />
         </div>
-        <div style={containerStyle}>
+        <div style={containerStyle2}>
           {/* More customized dropdown menu */}
           <DropdownMenu
             id="example2"
@@ -66,8 +78,8 @@ export default class DropdownMenuView extends React.Component {
               },
             ]}
           />
-        </div>
       </div>
-    );
+    </div>
+  );
   }
 }

@@ -1,4 +1,8 @@
-@import '../styles/colors';
+@import '../styles/main';
+@import '../styles/bootstrap_v3_custom';
+$icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+@import "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+// @import '../styles/bootstrap_v3_overrides';
 
 html, body {
   margin: 0;
@@ -8,11 +12,53 @@ html, body {
   font-family: 'Lato', sans-serif !important;
 }
 
-#examples {
-  height: 100%;
-  background-color: $oc-color-site-background;
+.oc-margin-bottom {
+    margin-bottom: 1rem;
 }
 
-h1 {
-  margin: 0;
+#oc-vertical-layout {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+#oc-layout-left {
+    width: auto;
+    height: 100%;
+}
+
+#oc-layout-right {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;   
+    position: relative;
+}
+
+#oc-layout-content {
+    width: 100%;
+    height: 100%;    
+}
+
+#oc-horizontal-layout {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+#oc-layout-top {
+    height: auto;
+    flex: none;
+    width: 100%;
+}
+
+#oc-layout-bottom {
+    width: 100%;
+    height: 100%;
+    flex: 1;    
+    overflow-y: auto;
+}
+
+#oc-examples {
+  height: 100%;
 }

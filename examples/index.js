@@ -17,9 +17,8 @@ import SpinnerView from './spinner-view/spinner-view.component.jsx';
 import AlertsView from './alerts-view/alerts-view.component.jsx';
 import SplitPaneView from './split-pane-view/split-pane-view.component.jsx';
 import DropdownMenuView from './dropdown-menu-view/dropdown-menu-view.component.jsx';
-
-import './app.component.scss';
-
+import BootstrapView from './bootstrap-view/bootstrap.component.jsx';
+import StyleView from './style-view/style-view.component.jsx';
 
 let store = createStore(
   combineReducers({
@@ -37,13 +36,16 @@ render((
   <Provider store={store}>
     <IntlProvider>
       <Router history={hashHistory}>
-        <Route path="/" component={App}/>
-        <Route path="/alerts" component={AlertsView}/>
-        <Route path="/cards" component={CardsView}/>
-        <Route path="/spinner" component={SpinnerView}/>
-        <Route path="/split-pane" component={SplitPaneView}/>
-        <Route path="/dropdown-menu" component={DropdownMenuView}/>
+        <Route path="/" component={App}>
+          <Route path="/style" component={StyleView}/>
+          <Route path="/bootstrap" component={BootstrapView}/>
+          <Route path="/alerts" component={AlertsView}/>
+          <Route path="/cards" component={CardsView}/>
+          <Route path="/spinner" component={SpinnerView}/>
+          <Route path="/split-pane" component={SplitPaneView}/>
+          <Route path="/dropdown-menu" component={DropdownMenuView}/>
+        </Route>        
       </Router>
     </IntlProvider>
   </Provider>
-), document.getElementById('examples'));
+), document.getElementById('oc-examples'));

@@ -39,6 +39,11 @@ var config = {
         loader: 'style!css!postcss!sass',
       },
       {
+        test: /\.svg($|\?)/,
+        loader: 'url-loader',
+        include: /node_modules/,
+      },
+      {
         test: /\.svg$/,
         loaders: ['babel','react-svg'],
         exclude: /node_modules/,

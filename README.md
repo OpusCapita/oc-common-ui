@@ -25,6 +25,9 @@ Some components needs reducers to be loaded in the redux store, those are done i
 * Run `npm unlink ocfrontend` at project's dir that's using `ocfrontend`
 * Run `npm install` to install remote copy of the `ocfrontend` package
 
+### Changelog
+* Remember to update the CHANGELOG.md file with information about the changes to `src`
+
 ### Creating a new release tag
 * Run `npm run build`
 * Commit changes

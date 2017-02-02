@@ -4,3 +4,9 @@
 	flex-wrap: wrap;
 	flex-direction: row;
 }
+
+@media screen and (max-width: 650px) {
+   .oc-colors-container {
+		 justify-content: space-around;
+	 }
+}

@@ -8,9 +8,7 @@ import { createStore,
 import { Provider } from 'react-redux';
 import { IntlProvider, intlReducer } from 'react-intl-redux';
 import thunk from 'redux-thunk';
-
 import { alertsReducer, OCAlert } from '../src/index.js';
-
 import App from './app.component.jsx';
 import CardsView from './cards-view/cards-view.component.jsx';
 import SpinnerView from './spinner-view/spinner-view.component.jsx';
@@ -19,6 +17,8 @@ import SplitPaneView from './split-pane-view/split-pane-view.component.jsx';
 import DropdownMenuView from './dropdown-menu-view/dropdown-menu-view.component.jsx';
 import BootstrapView from './bootstrap-view/bootstrap.component.jsx';
 import StyleView from './style-view/style-view.component.jsx';
+
+require('../images/favicon.ico');
 
 let store = createStore(
   combineReducers({

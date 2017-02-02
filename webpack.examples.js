@@ -54,6 +54,11 @@ var config = {
         loaders: ['babel','react-svg'],
         exclude: /node_modules/,
       },
+      {
+        test: /\.ico$/,
+        loader: 'file?name=[name].[ext]',
+        include: /images/,
+      },
     ],
   },
   resolve: {

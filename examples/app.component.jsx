@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
+import Logo from './style-view/components/logos/logo.component.jsx';
 
 import './app.component.scss';
 
@@ -36,7 +37,8 @@ export default class App extends React.Component {
                 <span className="icon-bar"/>
                 <span className="icon-bar"/>
                 <span className="icon-bar"/>
-              </button>              
+              </button>   
+              <Logo containerStyle={{ display: 'flex', alignItems: 'center', height: 40, width: 200}} width={200} height={30}/>                         
             </div>
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul className="nav navbar-nav">               

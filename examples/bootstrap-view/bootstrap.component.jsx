@@ -4,7 +4,7 @@ import Typography from './typography.component.jsx';
 import Form from './form.component.jsx';
 import Tooltips from './tooltips.component.jsx';
 
-require('./columns.scss');
+require('../columns.scss');
 
 export default class BootstrapView extends React.Component {
   render() {

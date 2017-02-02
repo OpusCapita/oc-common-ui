@@ -1,0 +1,54 @@
+@import '../../../../styles/colors';
+
+.oc-logo {
+  // display: flex;
+  // align-items: center;
+  .oc-icon-logo {
+    fill: $oc-color-primary-orange;
+  }
+}
+
+.oc-logo-product {
+  color: $oc-color-white;
+  background-color: $oc-color-primary-orange;
+  padding: 0.4rem 1.5rem 0.4rem 1.5rem;
+  text-align: center;
+  font-style: italic;
+  font-weight: 700;
+}
+
+.oc-logo-product-dark {
+  color: $oc-color-primary-azure;  
+  background-color: transparent;
+  padding: 0 0.5rem;
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.oc-logo-horizontal {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  .oc-logo-text {
+    margin-left: 1rem;
+  }
+
+  .oc-logo-product {
+    display: flex;
+    align-items: center;
+    text-align: unset;
+    height: 50%;
+  }
+}
+
+.oc-logo-inverted {
+  .oc-icon-logo {
+    fill: $oc-color-white;    
+  }
+
+  .oc-logo-product {
+    color: $oc-color-white;
+    background-color: transparent;
+  }
+}

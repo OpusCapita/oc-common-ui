@@ -90,9 +90,9 @@ import InvoicesXls from
   '../../images/invoices/document/xls.svg';
 
 import OCLong from
-  '../../images/logo/oc-logo-white.svg';
+  '../../images/logo/oc-logo.svg';
 import OCShort from
-  '../../images/logo/oc-logo-short-white.svg';
+  '../../images/logo/oc-logo-short.svg';
 
 var components = {
   indicator: {

@@ -75,6 +75,8 @@ import ProductTools from
   '../../images/products/Tools.svg';
 import ProductUsers from
   '../../images/products/Users.svg';
+import ProductMatching from
+  '../../images/products/Info.svg'; // temporaily, until there is no specific icon
 
 import InvoicesGeneric from
   '../../images/invoices/document/generic.svg';
@@ -136,6 +138,7 @@ var components = {
     Tools: React.createFactory(ProductTools),
     Users: React.createFactory(ProductUsers),
     Examples: React.createFactory(ProductInfo),
+    Matching: React.createFactory(ProductMatching),
   },
   invoices: {
     generic: React.createFactory(InvoicesGeneric),

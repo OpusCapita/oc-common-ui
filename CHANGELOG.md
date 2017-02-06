@@ -5,6 +5,7 @@
 ## 0.0.10
 
 * icons.scss added to `styles` and imported in main.scss.
+* added 'Matching' product icon
 
 ## 0.0.9
 

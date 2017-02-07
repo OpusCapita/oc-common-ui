@@ -17,6 +17,8 @@ import SplitPaneView from './split-pane-view/split-pane-view.component.jsx';
 import DropdownMenuView from './dropdown-menu-view/dropdown-menu-view.component.jsx';
 import BootstrapView from './bootstrap-view/bootstrap.component.jsx';
 import StyleView from './style-view/style-view.component.jsx';
+import ResponsiveNavbarView from
+  './responsive-navbar-view/responsive-navbar-view.component.jsx';
 
 require('../images/favicon.ico');
 
@@ -44,7 +46,8 @@ render((
           <Route path="/spinner" component={SpinnerView}/>
           <Route path="/split-pane" component={SplitPaneView}/>
           <Route path="/dropdown-menu" component={DropdownMenuView}/>
-        </Route>        
+          <Route path="/responsive-navbar" component={ResponsiveNavbarView}/>
+        </Route>
       </Router>
     </IntlProvider>
   </Provider>

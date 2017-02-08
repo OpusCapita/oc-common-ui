@@ -64,7 +64,7 @@ export class ResponsiveNavbar extends React.Component {
         <NavItem key={index}
                  eventKey={index}
                  ref={'navitemref' + String(index)}
-                 href={item.href}>
+                 href={'#' + item.href}>
           {item.name}
         </NavItem>
       );
@@ -91,7 +91,7 @@ export class ResponsiveNavbar extends React.Component {
       );
     });
     return (
-      <FormGroup controlId="formControlsSelect">
+      <FormGroup id="responsive-navbar-select" controlId="formControlsSelect">
         <FormControl componentClass="select"
                      placeholder="select"
                      defaultValue={this.props.list[this.props.activeKey].href}

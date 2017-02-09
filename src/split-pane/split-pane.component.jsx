@@ -10,11 +10,13 @@ const getFromStorage = (id) => {
     return parseInt(item, 10);
   }
   return undefined;
-}
+};
 
 const mapStateToProps = (state, ownProps) => {
   return {
-    size: state.splitpane ? state.splitpane.getIn([ownProps.id, 'size'], getFromStorage(ownProps.id)) : getFromStorage(ownProps.id),
+    size: state.splitpane ? state.splitpane.getIn([ownProps.id, 'size'],
+                            getFromStorage(ownProps.id))
+                          : getFromStorage(ownProps.id),
   };
 };
 
@@ -32,6 +34,7 @@ export class SplitPane extends React.Component {
   };
 
   onChange = (size) => {
+    console.log('change');
     this.props.resize(this.props.id, size);
     // Fire resize event to recalculate component sizes, eg. datagrid
     if (document.createEvent) {
@@ -42,7 +45,7 @@ export class SplitPane extends React.Component {
   };
 
   render() {
-    const { id, children, resize, size, defaultSize, ...otherProps } = this.props;
+    const { id, children, size, defaultSize, ...otherProps } = this.props;
     return (
       <ReactSplitPane
         {...otherProps}

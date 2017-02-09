@@ -1,6 +1,8 @@
 import chai from 'chai';
 import chaiImmutable from 'chai-immutable';
 
+import mockStorage from './storage.mock';
+
 chai.use(chaiImmutable);
 
 // Configure JSDOM and set global variables
@@ -9,6 +11,8 @@ var jsdom = require('jsdom').jsdom;
 
 var exposedProperties = ['window', 'navigator', 'document'];
 
+global.localStorage = mockStorage();
+global.sessionStorage = mockStorage();
 global.document = jsdom('');
 global.window = document.defaultView;
 

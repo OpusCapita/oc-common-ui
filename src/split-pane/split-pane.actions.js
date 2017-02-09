@@ -10,4 +10,4 @@ export const resize = (id, size) =>
       id,
       size,
     });
-  }
+  };

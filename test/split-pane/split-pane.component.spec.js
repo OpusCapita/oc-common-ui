@@ -25,8 +25,6 @@ describe('Split-pane component', function() {
 
     expect(wrapper.find('#content1').text()).to.eql('Content 1');
     expect(wrapper.find('#content2').text()).to.eql('Content 2');
-
-    wrapper.find(SplitPane).simulate('change');
   });
 
 });

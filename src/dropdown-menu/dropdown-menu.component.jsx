@@ -42,11 +42,11 @@ export class DropdownMenu extends React.Component {
   }
 
   dropdownToggle = (newValue) => {
-    if (this._dontCloseDropdownMenu){
-        this.setState({ menuOpen: true });
-        this._dontCloseDropdownMenu = false;
+    if (this._dontCloseDropdownMenu) {
+      this.setState({ menuOpen: true });
+      this._dontCloseDropdownMenu = false;
     } else {
-        this.setState({ menuOpen: newValue });
+      this.setState({ menuOpen: newValue });
     }
   }
 

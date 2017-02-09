@@ -34,7 +34,6 @@ export class SplitPane extends React.Component {
   };
 
   onChange = (size) => {
-    console.log('change');
     this.props.resize(this.props.id, size);
     // Fire resize event to recalculate component sizes, eg. datagrid
     if (document.createEvent) {

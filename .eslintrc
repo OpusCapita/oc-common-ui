@@ -1,9 +1,5 @@
 {
-  "extends": [
-    "eslint:recommended",
-    "plugin:import/errors",
-    "plugin:import/warnings"
-  ],
+  "extends": "airbnb",
   "plugins": [
     "react"
   ],
@@ -39,53 +35,9 @@
     "mocha": true
   },
   "rules": {
-    "import/no-unresolved": [error, { caseSensitive: false }],
-    "accessor-pairs": off,
-    "brace-style": [error, "1tbs"],
-    "comma-dangle": [error, "always-multiline"],
-    "consistent-return": error,
-    "dot-location": [error, "property"],
-    "dot-notation": error,
-    "eol-last": error,
-    "eqeqeq": [error, "allow-null"],
-    "indent": [error, 2, {SwitchCase: 1}],
-    "jsx-quotes": [error, "prefer-double"],
-    "no-bitwise": off,
-    "no-inner-declarations": [error, "functions"],
-    "no-multi-spaces": error,
-    "no-restricted-syntax": [error, "WithStatement"],
-    "no-shadow": error,
-    "no-unused-expressions": error,
-    "no-unused-vars": [error, {args: "none"}],
-    "quotes": [error, "single", "avoid-escape"],
-    "keyword-spacing": ["error", { "before": true, "after": true }],
-    "space-before-blocks": error,
-    "space-before-function-paren": [error, {anonymous: "never", named: "never"}],
-    "strict": [error, "global"],
-    "semi": [error, "always"],
-
-    // React & JSX
-    // Our transforms set this automatically
-    "react/display-name": off,
-    "react/jsx-boolean-value": [error, "always"],
-    "react/jsx-no-undef": error,
-    // We don"t care to do this
-    "react/jsx-sort-prop-types": off,
-    "react/jsx-sort-props": off,
-    "react/jsx-uses-react": error,
-    "react/jsx-uses-vars": error,
-    // It"s easier to test some things this way
-    "react/no-did-mount-set-state": off,
-    "react/no-did-update-set-state": off,
-    // We define multiple components in test files
-    "react/no-multi-comp": off,
-    "react/no-unknown-property": off,
-    // This isn"t useful in our test code
-    "react/prop-types": off,
-    "react/react-in-jsx-scope": error,
-    "react/self-closing-comp": error,
-    // We don"t care to do this
-    "react/sort-comp": off,
-    "react/jsx-wrap-multilines": [error, {declaration: false, assignment: false}],
+    "import/no-extraneous-dependencies": ["error", {
+      "devDependencies": true,
+      "optionalDependencies": true,
+      "peerDependencies": true}]
   }
 }

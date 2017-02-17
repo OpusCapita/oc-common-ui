@@ -2,6 +2,7 @@ import React, { PropTypes } from 'react';
 import { Alert } from 'react-bootstrap';
 import { FormattedMessage as M } from 'react-intl';
 import { OCAlert as alertAction } from './alerts.actions.js';
+import { Icon } from '../icons';
 
 export class OCAlert extends React.Component {
   handleAlertDismiss = () => {
@@ -36,10 +37,30 @@ export class OCAlert extends React.Component {
     }
   }
 
+  getIcon() {
+    const names = {
+      success: 'ok',
+      info: 'exclamation',
+      warning: 'alert',
+      danger: 'error',
+    };
+    return (
+      <Icon
+        type="indicator"
+        name={names[this.props.type]}
+        width={38}
+        height={38}
+      />
+    );
+  }
+
   render() {
     return (
       <Alert bsStyle={this.props.type} onDismiss={this.handleAlertDismiss}>
-        {this.getMessage()}
+        <div className="alert-content">
+          { this.getIcon() }
+          <span>{this.getMessage()}</span>
+        </div>
       </Alert>);
   }
 }

@@ -1,29 +1,31 @@
-var webpack = require('webpack');
-var UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-var path = require('path');
-var env = require('yargs').argv.mode;
-var autoprefixer = require('autoprefixer');
-var precss = require('precss');
-var ExtractTextPlugin = require('extract-text-webpack-plugin');
-var combineLoaders = require('webpack-combine-loaders');
-var nodeExternals = require('webpack-node-externals');
+const webpack = require('webpack');
+const path = require('path');
+const env = require('yargs').argv.mode;
+const autoprefixer = require('autoprefixer');
+const precss = require('precss');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const combineLoaders = require('webpack-combine-loaders');
+const nodeExternals = require('webpack-node-externals');
 
-var libraryName = 'ocfrontend';
+const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 
-var plugins = [new ExtractTextPlugin('ocfrontend.css')], outputFile;
+const libraryName = 'ocfrontend';
+
+const plugins = [new ExtractTextPlugin('ocfrontend.css')];
+let outputFile;
 
 if (env === 'build') {
   plugins.push(new UglifyJsPlugin({ minimize: true }));
-  outputFile = libraryName + '.js';
+  outputFile = `${libraryName}.js`;
 } else {
-  outputFile = libraryName + '.js';
+  outputFile = `${libraryName}.js`;
 }
 
-var config = {
-  entry: __dirname + '/src/index.js',
+const config = {
+  entry: path.join(__dirname, '/src/index.js'),
   devtool: 'source-map',
   output: {
-    path: __dirname + '/lib',
+    path: path.join(__dirname, '/lib'),
     filename: outputFile,
     library: libraryName,
     libraryTarget: 'umd',
@@ -58,22 +60,21 @@ var config = {
                 modules: true,
                 localIdentName: '[name]__[local]___[hash:base64:5]',
               },
-            }])
-          ),
+            }])),
       },
       {
         test: /\.svg$/,
-        loaders: ['babel','react-svg'],
+        loaders: ['babel', 'react-svg'],
         exclude: /node_modules/,
       },
     ],
   },
   resolve: {
     root: path.resolve('./src'),
-    extensions: ['', '.js'],
+    extensions: ['', '.js', 'jsx'],
   },
-  plugins: plugins,
-  postcss: function() {
+  plugins,
+  postcss: function postcss() {
     return [precss, autoprefixer];
   },
 };

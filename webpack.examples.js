@@ -1,20 +1,20 @@
-var path = require('path');
-var autoprefixer = require('autoprefixer');
-var precss = require('precss');
-var HtmlWebpackPlugin = require('html-webpack-plugin');
+const path = require('path');
+const autoprefixer = require('autoprefixer');
+const precss = require('precss');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
-var plugins = [
+const plugins = [
   new HtmlWebpackPlugin({
     filename: 'examples.html',
     template: 'examples/examples.html',
   }),
 ];
 
-var config = {
-  entry: __dirname + '/examples/index.js',
+const config = {
+  entry: path.join(__dirname, '/examples/index.js'),
   devtool: 'source-map',
   output: {
-    path: __dirname + '/examples-build',
+    path: path.join(__dirname, '/examples-build'),
     filename: 'examples.js',
   },
   module: {
@@ -51,7 +51,7 @@ var config = {
       },
       {
         test: /\.svg$/,
-        loaders: ['babel','react-svg'],
+        loaders: ['babel', 'react-svg'],
         exclude: /node_modules/,
       },
       {
@@ -63,10 +63,10 @@ var config = {
   },
   resolve: {
     root: path.resolve('./examples'),
-    extensions: ['', '.js']
+    extensions: ['', '.js', 'jsx'],
   },
-  plugins: plugins,
-  postcss: function() {
+  plugins,
+  postcss: function postcss() {
     return [precss, autoprefixer];
   },
 };

@@ -9,7 +9,9 @@
 .oc-columns-container {      
   column-gap: $oc-space-content;
   column-count: 2;
-  margin: $oc-space-content;
+  margin-left: $oc-space-content;
+  margin-top: $oc-space-content;
+  margin-right: $oc-space-content;
 
   .oc-columns-item-container {
     -webkit-column-break-inside: avoid;
@@ -23,11 +25,11 @@
   .oc-columns-container {
     column-count: 1;
 
-    .oc-columns-item-container {
-      &:last-child {
-        padding-bottom: 0;
-      }
-    }
+    // .oc-columns-item-container {
+    //   &:last-child {
+    //     padding-bottom: 0;
+    //   }
+    // }
   }
 }
 

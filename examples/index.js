@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
-import { Router, Route, hashHistory } from 'react-router';
+import { Router, Route, hashHistory, IndexRedirect } from 'react-router';
 import { createStore,
          applyMiddleware,
          compose,
@@ -38,7 +38,8 @@ render((
   <Provider store={store}>
     <IntlProvider>
       <Router history={hashHistory}>
-        <Route path="/" component={App}>
+        <Route path="/" component={App} >
+          <IndexRedirect to="/style" />
           <Route path="/style" component={StyleView}/>
           <Route path="/bootstrap" component={BootstrapView}/>
           <Route path="/alerts" component={AlertsView}/>
@@ -47,7 +48,7 @@ render((
           <Route path="/split-pane" component={SplitPaneView}/>
           <Route path="/dropdown-menu" component={DropdownMenuView}/>
           <Route path="/responsive-navbar" component={ResponsiveNavbarView}/>
-        </Route>
+        </Route>        
       </Router>
     </IntlProvider>
   </Provider>

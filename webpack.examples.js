@@ -59,6 +59,10 @@ const config = {
         loader: 'file?name=[name].[ext]',
         include: /images/,
       },
+      {
+        test: /\.css$/,
+        loader: 'style-loader!css-loader!postcss-loader',
+      },
     ],
   },
   resolve: {

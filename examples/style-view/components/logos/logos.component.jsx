@@ -35,7 +35,7 @@ export default class Logos extends React.Component {
             </div>
              <div className="oc-logos-item">
               <div><strong>{ CONTENT.favicon }</strong></div>
-              <div><img alt="OpusCapita favicon" src={favIcon} /></div>
+              <div><img alt="OpusCapita favicon" src={favIcon}/></div>
             </div>
           </div>
         </CardContent> 

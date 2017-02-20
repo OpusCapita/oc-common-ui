@@ -1,8 +1,8 @@
 import React from 'react';
-import Buttons from './buttons.component.jsx';
+import Buttons from './buttons/buttons.component.jsx';
 import Typography from './typography.component.jsx';
-import Form from './form.component.jsx';
-import Tooltips from './tooltips.component.jsx';
+import Form from './form/form.component.jsx';
+import Tooltips from './tooltips/tooltips.component.jsx';
 
 require('../columns.scss');
 

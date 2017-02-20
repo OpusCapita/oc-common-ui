@@ -7,7 +7,7 @@ require('./colors.scss');
 export default class Colors extends React.Component {
   getMainColors = () => {
     let colors = [
-      { name: 'Orange', hex: '#EC6608', rgb: 'R233 G102 B8' },
+      { name: 'Orange', hex: '#EC6608', rgb: 'R236 G102 B8' },
       { name: 'Yellow', hex: '#FECA1D', rgb: 'R254 G202 B29' },
       { name: 'Azure', hex: '#67707C', rgb: 'R103 G112 B124' },
       { name: 'Red', hex: '#DD2515', rgb: 'R221 G37 B21' },

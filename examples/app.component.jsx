@@ -44,14 +44,21 @@ export default class App extends React.Component {
             </div>
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul className="nav navbar-nav">
-                <li className="active"><Link activeClassName="active" to="/bootstrap">Bootstrap</Link></li>
-                <li><Link activeClassName="active" to="/alerts">Alerts</Link></li>
-                <li><Link activeClassName="active" to="/style">Style</Link></li>
-                <li><Link activeClassName="active" to="/cards">Cards</Link></li>
-                <li><Link activeClassName="active" to="/spinner">Spinner</Link></li>
-                <li><Link activeClassName="active" to="/split-pane">Split Pane</Link></li>
-                <li><Link activeClassName="active" to="/dropdown-menu">Dropdown Menu</Link></li>
-                <li><Link activeClassName="active" to="/responsive-navbar">Responsive Navbar</Link></li>
+                <li><Link activeClassName="oc-link-active" to="/style">Style</Link></li>
+                <li><Link activeClassName="oc-link-active" to="/bootstrap">Bootstrap</Link></li>               
+                <li role="presentation" className="dropdown">
+                  <a className="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                    Components <span className="caret"/>
+                  </a>
+                  <ul className="dropdown-menu">
+                    <li><Link activeClassName="oc-link-active" to="/alerts">Alerts</Link></li>
+                    <li><Link activeClassName="oc-link-active" to="/cards">Cards</Link></li>
+                    <li><Link activeClassName="oc-link-active" to="/spinner">Spinner</Link></li>
+                    <li><Link activeClassName="oc-link-active" to="/split-pane">Split Pane</Link></li>
+                    <li><Link activeClassName="oc-link-active" to="/dropdown-menu">Dropdown Menu</Link></li>
+                    <li><Link activeClassName="oc-link-active" to="/responsive-navbar">Responsive Navbar</Link></li>
+                  </ul>
+                </li>
               </ul>
             </div>
           </div>

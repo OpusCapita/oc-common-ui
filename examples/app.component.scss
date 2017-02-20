@@ -1,8 +1,22 @@
-@import '../styles/main';
+// @import '../styles/main';
+@import "../styles/colors",       
+        "../styles/variables";
+
 @import '../styles/bootstrap_v3_custom';
 $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
-// @import '../styles/bootstrap_v3_overrides';
+
+@import "../styles/mixins",
+        "../styles/fonts",
+        "../styles/icons",
+        "../styles/buttons",
+        "../styles/links",
+        "../styles/inputs";
+
+@import './flex';
+
+@import '../styles/_react_select_custom';
+@import '../node_modules/react-select/scss/components.scss';
 
 html, body {
   margin: 0;
@@ -61,4 +75,8 @@ html, body {
 
 #oc-examples {
   height: 100%;
+}
+
+.oc-link-active {
+    color: $oc-color-primary-orange !important;
 }

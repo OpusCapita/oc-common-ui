@@ -14,7 +14,7 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
         "../styles/inputs";
 
 @import './flex';
-
+@import '../styles/bootstrap_v3_overrides';
 @import '../styles/_react_select_custom';
 @import '../node_modules/react-select/scss/components.scss';
 
@@ -80,7 +80,5 @@ html, body {
     padding: $oc-space-content;
     margin: $oc-space-content;
     min-height: 100%;
-    // overflow-y: auto;
-    // overflow-x: hidden;
     background-color: $oc-color-content-background;
 }

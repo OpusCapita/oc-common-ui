@@ -1,7 +1,7 @@
 import React from 'react';
-
 import { SplitPane } from '../../src/index.js';
 
+require('./split-pane.scss');
 
 export default class SplitPaneView extends React.Component {
 
@@ -13,10 +13,10 @@ export default class SplitPaneView extends React.Component {
     return (
       <SplitPane id="vertical" minSize={100} defaultSize="50%">
         <SplitPane id="horizontal" split="horizontal">
-          <div>Content 1</div>
-          <div>Content 2</div>
+          <div className="oc-split-pane-content content1">Content 1</div>
+          <div className="oc-split-pane-content content2">Content 2</div>
         </SplitPane>
-        <div>Content 3</div>
+        <div className="oc-split-pane-content content3">Content 3</div>
       </SplitPane>
     );
   }

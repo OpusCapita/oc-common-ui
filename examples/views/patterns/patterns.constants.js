@@ -70,10 +70,16 @@ export const CONTENT = {
         }, 
         {
             heading: 'Dismissing',
-            content: `User can dismiss every type of notification manually.
-                  Informational and success are dismissed automatically by default after certain period of time.
-                  By default warning and error notifications are not dismissed automatically.
+            topics: [              
+              { 
+                content: `User can dismiss every type of notification manually.
+                    Informational and success are dismissed automatically by default after certain period of time.`
+              },
+              { 
+                content: `By default warning and error notifications are not dismissed automatically.
                   Dismiss behavior and automatic closing time can be adjusted case by case as needed.`
+              }
+            ]
         }
       ]
     },

@@ -1,4 +1,5 @@
 export const CONTENT = {
+  heading: 'Patterns',
   topics: [
     { 
       heading: 'Empty states',
@@ -48,24 +49,11 @@ export const CONTENT = {
           content: `Multiple warning and error notification for same reason should not be stacked i.e. previous ones are removed.`
         },
         {
-          heading: 'Types',
-          topics: [
-            { 
-              heading: 'Informational', 
-              content: `Informational.`
+          unordereds: [ 
+            {
+              heading: 'Types',
+              items: ['Informational', 'Success', 'Warning', 'Error']              
             },
-            { 
-              heading: 'Success', 
-              content: `Success.`
-            },
-            { 
-              heading: 'Warning', 
-              content: `Warning.`
-            },
-            { 
-              heading: 'Error', 
-              content: `Error.`
-            },  
           ]
         }, 
         {
@@ -88,7 +76,8 @@ export const CONTENT = {
       topics: [
         { 
           heading: '', 
-          content: ``
+          content: `Bootstrap is used as a basis for implementation.
+            Overlapping modals i.e. two at a time should never be used: this is an indication that something is wrong in the workflow.`
         },
       ]
     },
@@ -97,7 +86,8 @@ export const CONTENT = {
       topics: [
         { 
           heading: '', 
-          content: ``
+          content: `For obtrusive use modals and inline confirmation for unobtrusive. 
+            Obtrusiveness depends on the cardinality of the action e.g. invoice deletion requires an obtrusive confirmation.`
         },
       ]
     }

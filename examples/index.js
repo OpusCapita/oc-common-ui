@@ -43,7 +43,7 @@ render((
     <IntlProvider>
       <Router history={hashHistory}>
         <Route path="/" component={App} >
-          <IndexRedirect to="/style" />
+          <IndexRedirect to="/introduction" />
           <Route path="/introduction" component={Introduction}/>
           <Route path="/layout" component={Layout}/>
           <Route path="/patterns" component={Patterns}/>

@@ -4,20 +4,20 @@ export const ITEMS = [
     to: '/introduction'
   },
   { 
-    name: 'Patterns',
-    to: '/patterns'
-  },
-  { 
-    name: 'Layout',
-    to: '/layout'
-  },
-  { 
     name: 'Style',
     to: '/style'
   },
   { 
     name: 'Bootstrap',
     to: '/bootstrap'
+  },
+  { 
+    name: 'Patterns',
+    to: '/patterns'
+  },
+  { 
+    name: 'Layout',
+    to: '/layout'
   },
   { 
     name: 'Components',

@@ -25,12 +25,30 @@ export default class Render {
       }
     }
     
+    let getUnordredLists = function(topic) {
+      if(!topic.unordereds) return null;
+
+      return topic.unordereds.map((list, index) => {
+        return <div key={index}>
+        <strong>{list.heading}</strong> 
+        <ul>        
+          { list.items.map((item, index) => {
+            return <li key={index}>{item}</li>
+            }) 
+          }
+        </ul>
+      </div> 
+      })
+      
+    }
+
     let getTopics = function(level, topics) {
       level++;
       return topics.map((topic, index) => {
         return <div key={index}>
           { getHeading(level, topic.heading) }
           <p>{ topic.content }</p>
+          { getUnordredLists(topic) }
             { topic.topics ? getTopics(level, topic.topics) : null }        
         </div>
       });

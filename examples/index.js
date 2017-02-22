@@ -17,6 +17,10 @@ import SplitPaneView from './split-pane-view/split-pane-view.component.jsx';
 import DropdownMenuView from './dropdown-menu-view/dropdown-menu-view.component.jsx';
 import BootstrapView from './bootstrap-view/bootstrap.component.jsx';
 import StyleView from './style-view/style-view.component.jsx';
+import Introduction from './views/introduction/introduction.component.jsx';
+import Patterns from './views/patterns/patterns.component.jsx';
+import Layout from './views/layout/layout.component.jsx';
+
 import ResponsiveNavbarView from
   './responsive-navbar-view/responsive-navbar-view.component.jsx';
 
@@ -40,6 +44,9 @@ render((
       <Router history={hashHistory}>
         <Route path="/" component={App} >
           <IndexRedirect to="/style" />
+          <Route path="/introduction" component={Introduction}/>
+          <Route path="/layout" component={Layout}/>
+          <Route path="/patterns" component={Patterns}/>
           <Route path="/style" component={StyleView}/>
           <Route path="/bootstrap" component={BootstrapView}/>
           <Route path="/alerts" component={AlertsView}/>

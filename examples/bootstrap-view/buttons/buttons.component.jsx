@@ -95,7 +95,7 @@ export default class Buttons extends React.Component {
               </thead>
               <tbody>
                 { CONTENT.labels.examples.map((example, index) => {
-                  return (<tr>
+                  return (<tr key={index}>
                     <td>{ example.label }</td>
                     <td>{ example.for }</td>
                   </tr>)

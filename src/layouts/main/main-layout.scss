@@ -1,0 +1,33 @@
+.oc-layout-main {
+  padding: 0;
+  margin: 0;
+  height: 100%;
+  background-color: $oc-color-content-background;
+}
+
+.oc-layout-header {
+  min-height: 4rem;
+  background-color: $oc-color-support-lightgray;
+}
+
+.oc-layout-main-content {
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    
+}
+
+.oc-layout-main-left {
+    width: auto;
+    height: 100%;
+    background-color: $oc-color-support-darksteel;
+}
+
+.oc-layout-main-right {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;   
+    position: relative;
+    background-color: $oc-color-site-background;
+}

@@ -1,36 +1,24 @@
 import React from 'react';
 import { Link } from 'react-router';
 import Logo from './style-view/components/logos/logo.component.jsx';
-
+var Sidebar = require('react-sidebar').default;
 import './app.component.scss';
+import Menu from '../src/menu/menu.component.jsx';
+import { ITEMS } from './layout/menu.constants';
 
 export default class App extends React.Component {
-  getVerticalLayout = () => {
-    return (<div id="oc-layout">
-        <div id="oc-layout-left">
-          <ul role="nav">
-            <li><Link to="/bootstrap">Bootstrap</Link></li>
-            <li><Link to="/alerts">Alerts</Link></li>
-            <li><Link to="/cards">Cards</Link></li>
-            <li><Link to="/spinner">Spinner</Link></li>
-            <li><Link to="/split-pane">Split Pane</Link></li>
-            <li><Link to="/dropdown-menu">Dropdown Menu</Link></li>
-            <li><Link to="/responsive-navbar">Responsive Navbar</Link></li>
-          </ul>
-        </div>
+  constructor(props) {
+    super(props);
+    this.state = {sidebarOpen: true, isNarrow: false, isSideMenuOpen: false };
+  }
 
-        <div id="oc-layout-right">
-          <div id="oc-layout-content">
-              {this.props.children}
-            </div>
-        </div>
-    </div>);
-  };
+  onSetSideMenu = () => {
+    this.setState({isSideMenuOpen: !this.state.isSideMenuOpen});
+  }
 
-  getHorizontalLayout = () => {
+  getHeader = () => {
+    let burger = this.state.isNarrow ? <button type="button" className="btn btn-default navbar-btn" onClick={this.onSetSideMenu}>Burger</button> : null;
     return (
-      <div id="oc-horizontal-layout">
-        <div id="oc-layout-top">
         <nav className="navbar navbar-default">
           <div className="container-fluid">
             <div className="navbar-header">
@@ -40,7 +28,10 @@ export default class App extends React.Component {
                 <span className="icon-bar"/>
                 <span className="icon-bar"/>
               </button>
-              <Logo containerStyle={{ display: 'flex', alignItems: 'center', height: 40, width: 200}} width={200} height={30}/>
+              <div className="oc-layout-header-inline">
+                { burger}
+                <Logo containerStyle={{ display: 'flex', alignItems: 'center', height: 40, width: 200}} width={200} height={30}/>
+              </div>
             </div>
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul className="nav navbar-nav">
@@ -63,19 +54,58 @@ export default class App extends React.Component {
             </div>
           </div>
         </nav>
-        </div>
-
-        <div id="oc-layout-bottom">
-          <div id="oc-layout-content">
-              {this.props.children}
-            </div>
-        </div>
-    </div>);
-  };
-
-  render() {
-    return (
-      this.getHorizontalLayout()
     );
   }
+
+  onSetSidebarOpen = (open) => {
+    this.setState({sidebarOpen: open});
+  }
+
+  mediaQueryChanged = () => {
+    this.setState({isNarrow: this.state.mql.matches});
+  }
+
+  componentWillMount = () => {
+    var mql = window.matchMedia(`(max-width: 1279px)`);
+    mql.addListener(this.mediaQueryChanged);
+    this.setState({mql: mql, isNarrow: mql.matches});
+  }
+
+  getWithSidebar = () => {
+    var sidebarContent = <Menu/>;
+    return (
+       <Sidebar sidebar={sidebarContent}
+               docked={this.state.sidebarOpen}
+               onSetOpen={this.onSetSidebarOpen}>
+      <div className="oc-layout">
+        <div className="oc-layout-header">
+          { this.getHeader() }
+        </div>
+         <div className="oc-layout-content">        
+            {this.props.children}            
+        </div>       
+    </div>
+     </Sidebar>
+    )
+  };
+
+  getWithoutSidebar = () => {   
+    return (
+      <div className="oc-layout">
+        <div className="oc-layout-header">
+          { this.getHeader() }
+        </div>
+         <div className="oc-layout-content">        
+            <div className="oc-layout-content-left" hidden={!this.state.isSideMenuOpen && this.state.isNarrow}>
+              <Menu items={ITEMS}/>
+            </div>
+          <div className="oc-layout-content-right">
+            {this.props.children}
+          </div>            
+        </div>       
+    </div> 
+    )
+  };
+
+  render() { return this.getWithoutSidebar(); }
 }

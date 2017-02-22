@@ -3,6 +3,11 @@ oc-flex-row {
   flex-direction: row;
 }
 
+oc-flex-column {
+  display: flex;
+  flex-direction: row;
+}
+
 oc-flex-wrap {
   flex-wrap: wrap;
 }

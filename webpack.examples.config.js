@@ -2,15 +2,23 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const webpack = require('webpack');
 
 const plugins = [
   new HtmlWebpackPlugin({
     filename: 'examples.html',
     template: 'examples/examples.html',
   }),
+  new webpack.DefinePlugin({    
+    'process.env': {
+      NODE_ENV: JSON.stringify('production'),
+    },
+  }),
 ];
 
 const config = {
+  debug: false,
+  noInfo: true,
   entry: path.join(__dirname, '/examples/index.js'),
   devtool: 'source-map',
   output: {

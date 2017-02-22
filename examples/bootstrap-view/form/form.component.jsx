@@ -41,13 +41,12 @@ export default class Form extends React.Component {
           label="Password *"
           type="password"
         />
-        <this.FieldGroup
-          id="formControlsError"
-          label="Error"
-          type="text"            
-          validationState="error"
-          help="This field has an error"
-        />
+     
+        <FormGroup controlId="formControlsError" validationState="error">
+          <ControlLabel>Error</ControlLabel>
+          <FormControl type="text" />
+          <HelpBlock>This field has an error</HelpBlock>
+        </FormGroup>
         <FormGroup controlId="formControlsTextarea">
           <ControlLabel>Textarea</ControlLabel>
           <FormControl componentClass="textarea" placeholder="textarea" />

@@ -5,6 +5,7 @@ var Sidebar = require('react-sidebar').default;
 import './app.component.scss';
 import Menu from '../src/menu/menu.component.jsx';
 import { ITEMS } from './layout/menu.constants';
+import { Icon } from '../src/index.js';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -16,9 +17,10 @@ export default class App extends React.Component {
     this.setState({isSideMenuOpen: !this.state.isSideMenuOpen});
   }
 
-  getHeader = () => {
+  getHeader2 = () => {
     let burger = this.state.isNarrow ? <button type="button" className="btn btn-default navbar-btn" onClick={this.onSetSideMenu}>Burger</button> : null;
     return (
+      <div className="oc-layout-header">
         <nav className="navbar navbar-default">
           <div className="container-fluid">
             <div className="navbar-header">
@@ -54,7 +56,25 @@ export default class App extends React.Component {
             </div>
           </div>
         </nav>
+      </div>
     );
+  }
+
+  getHeader = () => {
+    if(!this.state.isNarrow) {
+      return null;
+    } else {
+      return (
+        <div className="oc-layout-header">
+          <div className="oc-layout-header-content">
+            <a className="oc-burger" onClick={this.onSetSideMenu}>
+              <Icon type="indicator" name={this.state.isSideMenuOpen ? 'burgerClose' : 'burger'} width={30} height={30}/>
+            </a>
+            <Logo containerStyle={{ display: 'flex', alignItems: 'center', height: 30, width: 200}} width={200} height={30}/>
+          </div>
+        </div>
+      );
+    }
   }
 
   onSetSidebarOpen = (open) => {
@@ -91,12 +111,14 @@ export default class App extends React.Component {
 
   getWithoutSidebar = () => {   
     return (
-      <div className="oc-layout">
-        <div className="oc-layout-header">
-          { this.getHeader() }
-        </div>
+      <div className="oc-layout">        
+        { this.getHeader() }        
          <div className="oc-layout-content">        
             <div className="oc-layout-content-left" hidden={!this.state.isSideMenuOpen && this.state.isNarrow}>
+              { 
+                this.state.isNarrow ? null : 
+                <Logo containerStyle={{ display: 'flex', alignItems: 'center', height: 40, width: 200}} width={200} height={30}/> 
+              }
               <Menu items={ITEMS}/>
             </div>
           <div className="oc-layout-content-right">

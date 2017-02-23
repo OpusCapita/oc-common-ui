@@ -6,8 +6,8 @@ const webpack = require('webpack');
 
 const plugins = [
   new HtmlWebpackPlugin({
-    filename: 'examples.html',
-    template: 'examples/examples.html',
+    filename: 'index.html',
+    template: 'examples/index.html',
   }),
   new webpack.DefinePlugin({    
     'process.env': {

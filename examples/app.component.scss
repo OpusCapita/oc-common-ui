@@ -38,6 +38,26 @@ html, body {
     box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
 }
 
+.oc-layout-header-content {
+    display: flex;
+    height: 100%;
+    flex-direction: row;
+    background-color: $oc-color-white;
+    padding: 0 $oc-space-content 0 $oc-space-content;
+    // justify-content: center;
+    align-items: center;
+}
+
+.oc-burger {
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    // padding: 5px;
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
 .oc-layout-header-inline {
     display: flex;
     flex-direction: row;
@@ -56,9 +76,14 @@ html, body {
 }
 
 .oc-layout-content-left {
+    background-color: $oc-color-background-menu;
     width: auto;
     height: 100%;
     box-shadow: 2px 2px 4px rgba(0, 0, 0, 0.15);
+
+    .oc-icon-logo {
+        fill: $oc-color-white;
+    }
 }
 
 .oc-layout-content-right {

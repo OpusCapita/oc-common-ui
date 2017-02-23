@@ -1,5 +1,11 @@
 import React, {PropTypes} from 'react';
 
+import IndicatorRemove from
+  '../../images/indicators/Remove.svg';
+import IndicatorBurgerClose from
+  '../../images/indicators/Burger-close.svg';
+import IndicatorBurger from
+  '../../images/indicators/Burger.svg';
 import IndicatorLogout from
   '../../images/indicators/Logout.svg';
 import IndicatorCaretRight from
@@ -98,6 +104,9 @@ import OCShort from
 
 var components = {
   indicator: {
+    burgerClose: React.createFactory(IndicatorBurgerClose),
+    remove: React.createFactory(IndicatorRemove),
+    burger: React.createFactory(IndicatorBurger),
     logout: React.createFactory(IndicatorLogout),
     CaretRight: React.createFactory(IndicatorCaretRight),
     CaretLeft: React.createFactory(IndicatorCaretLeft),

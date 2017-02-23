@@ -2,6 +2,10 @@ export const CONTENT = {
   heading: 'Layout',
   topics: [
     { 
+      heading: 'Header',
+      content: 'Header is optional in desktop and mandatory in mobile: opened from header.',      
+    },
+    { 
       heading: 'Search',
       topics: [
         { 
@@ -11,12 +15,8 @@ export const CONTENT = {
       ]
     },
     { 
-      heading: 'Header',
-      content: 'Header is optional in desktop and mandatory in mobile: opened from header.',      
-    },
-    { 
       heading: 'Content',
-      content: 'Main content has margin has scrolls vertically by default.',      
+      content: 'Main content has margin and scrolls vertically by default.',      
     },
     { 
       heading: 'Footer',

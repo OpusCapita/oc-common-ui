@@ -75,8 +75,8 @@ const configuration = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-    filename: 'examples.html',
-    template: 'examples/examples.html',
+    filename: 'index.html',
+    template: 'examples/index.html',
     })
   ],
   postcss: function postcss() {

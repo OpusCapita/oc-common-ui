@@ -4,7 +4,7 @@ import Brand from './components/brand/brand.component.jsx';
 import Rebranding from './components/rebranding/rebranding.component.jsx';
 import Logos from './components/logos/logos.component.jsx';
 import Logos3rdParty from './components/logos/logos-3rdparty.component.jsx';
-
+import Fonts from './components/fonts/fonts.component.jsx';
 require('./style.scss');
 
 export default class StyleView extends React.Component {
@@ -26,7 +26,10 @@ export default class StyleView extends React.Component {
           </div>   
           <div className="oc-columns-item-container">
             <Rebranding/>
-          </div>     
+          </div>
+           <div className="oc-columns-item-container">
+            <Fonts/>
+          </div>          
         </div>
       </div>   
     );

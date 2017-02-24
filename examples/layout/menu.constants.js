@@ -7,9 +7,15 @@ export const ITEMS = [
     name: 'Style',
     to: '/style'
   },
-  { 
-    name: 'Bootstrap',
-    to: '/bootstrap'
+  {
+   name: 'Technology',
+   to: '/technology',
+   items: [ 
+     { 
+      name: 'Bootstrap',
+      to: '/bootstrap'
+      }
+    ],
   },
   { 
     name: 'Patterns',

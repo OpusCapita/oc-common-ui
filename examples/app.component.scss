@@ -17,14 +17,7 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '../styles/bootstrap_v3_overrides';
 @import '../styles/_react_select_custom';
 @import '../node_modules/react-select/scss/components.scss';
-
-html, body {
-  margin: 0;
-  padding: 0;
-  height: 100%;
-  overflow: hidden;
-  font-family: 'Lato', sans-serif !important;
-}
+@import '../styles/_app';
 
 .oc-layout {
     display: flex;
@@ -106,4 +99,16 @@ html, body {
     margin: $oc-space-content;
     min-height: 100%;
     background-color: $oc-color-content-background;
+}
+
+.oc-font-light {
+    font-weight: 300;
+}
+
+.oc-font-normal {
+    font-weight: 400;
+}
+
+.oc-font-bold {
+    font-weight: 700;
 }

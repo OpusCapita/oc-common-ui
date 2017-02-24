@@ -23,7 +23,7 @@ export const CONTENT = {
     content: 'Indicate a mandatory field is using an asterisk ( * ) after the label.',
   },
   buttons: {
-    title: 'Order of primary and secondary buttons in forms.',
-    content: 'Primary button is first and secondary buttons come after that. Buttons are aligned to the right.'
+    title: 'Order of the primary and secondary buttons in forms.',
+    content: 'The primary button is first and secondary buttons come after that. Buttons are aligned to the right.'
   }
 };

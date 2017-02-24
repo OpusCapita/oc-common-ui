@@ -12,8 +12,8 @@ export const ITEMS = [
    to: '/technology',
    items: [ 
      { 
-      name: 'Bootstrap',
-      to: '/bootstrap'
+      name: 'CSS',
+      to: '/css'
       }
     ],
   },

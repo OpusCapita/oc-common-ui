@@ -1,5 +1,5 @@
 import React from 'react';
-import { FormGroup, FormControl, ControlLabel, HelpBlock, Checkbox, Button, Radio } from 'react-bootstrap';
+import { FormGroup, FormControl, ControlLabel, ButtonToolbar, HelpBlock, Checkbox, Button, Radio } from 'react-bootstrap';
 
 import { Card, CardHeader, CardContent } from '../../../src/index.js';
 import Select from 'react-select';
@@ -134,6 +134,25 @@ export default class Form extends React.Component {
     );
   }
 
+  buttons = () => {
+    return (
+      <div>
+        <h4>{ CONTENT.buttons.title }</h4>
+        <p> { CONTENT.buttons.content }</p>
+        <ButtonToolbar className="pull-right">   
+          <Button type="submit" bsStyle="primary">
+            Primary
+          </Button>
+          <Button type="submit" bsStyle="default">
+            Secondary
+          </Button>
+          <Button type="submit" bsStyle="default">
+            Secondary
+          </Button>
+        </ButtonToolbar>
+      </div>
+    );
+  }
   render() {    
     return (
       <Card expanded={true} id="form">    
@@ -144,10 +163,8 @@ export default class Form extends React.Component {
             { this.files() }
             { this.checkBoxAndRadio() }
             { this.hyperlink() }
-            { this.selects() }            
-            <Button type="submit" bsStyle="primary">
-              Submit
-            </Button>
+            { this.selects() }         
+            { this.buttons() }
           </form>  
         </CardContent>
       </Card>

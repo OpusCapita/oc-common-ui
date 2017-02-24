@@ -1,6 +1,6 @@
 import React from 'react';
 import Buttons from './buttons/buttons.component.jsx';
-import Typography from './typography.component.jsx';
+import Typography from './typography/typography.component.jsx';
 import Form from './form/form.component.jsx';
 import Tooltips from './tooltips/tooltips.component.jsx';
 

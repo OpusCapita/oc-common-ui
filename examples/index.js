@@ -48,7 +48,7 @@ render((
           <Route path="/layout" component={Layout}/>
           <Route path="/patterns" component={Patterns}/>
           <Route path="/style" component={StyleView}/>
-          <Route path="/bootstrap" component={BootstrapView}/>
+          <Route path="/css" component={BootstrapView}/>
           <Route path="/alerts" component={AlertsView}/>
           <Route path="/cards" component={CardsView}/>
           <Route path="/spinner" component={SpinnerView}/>

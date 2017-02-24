@@ -2,7 +2,7 @@ export const CONTENT = {
   header: 'Form',  
   text: {
     title: 'Text input',
-    empty: 'Does not contain instruction/placeholder/watermark -text when empty.',
+    empty: 'Does not contain instruction/placeholder/watermark -text when input label is defined.',
     difficult: { 
       content: 'Give instructions of requested input value only in difficult places e.g.', 
       example: 'Give your phone number in the format +358400098272'},
@@ -22,4 +22,8 @@ export const CONTENT = {
     title: 'Mandatory field indication',
     content: 'Indicate a mandatory field is using an asterisk ( * ) after the label.',
   },
+  buttons: {
+    title: 'Order of primary and secondary buttons in forms.',
+    content: 'Primary button is first and secondary buttons come after that. Buttons are aligned to the right.'
+  }
 };

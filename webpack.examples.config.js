@@ -4,14 +4,18 @@ const precss = require('precss');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const pkg = require('./package.json');
+
 // const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const CONFIG = {
   root: __dirname,
   examplesBuildPath: 'examples-build',
+  examplesEntry: path.join(__dirname, '/examples/index.js'),
 };
 
 const plugins = [
+  new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.[hash].js'),
   new CleanWebpackPlugin([CONFIG.examplesBuildPath], {
     root: CONFIG.root,
     verbose: false,
@@ -44,11 +48,14 @@ const plugins = [
 const config = {
   debug: false,
   noInfo: true,
-  entry: path.join(__dirname, '/examples/index.js'),
+  entry: {
+    app: CONFIG.examplesEntry,
+    vendor: Object.keys(pkg.dependencies),
+  },
   // devtool: 'source-map',
   output: {
     path: path.join(__dirname, '/examples-build'),
-    filename: 'examples.js',
+    filename: 'examples.[hash].js',
   },
   module: {
     loaders: [

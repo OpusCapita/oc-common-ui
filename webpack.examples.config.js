@@ -5,8 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const pkg = require('./package.json');
-
-// const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const CONFIG = {
   root: __dirname,
@@ -15,7 +14,7 @@ const CONFIG = {
 };
 
 const plugins = [
-  new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.[hash].js'),
+  new webpack.optimize.CommonsChunkPlugin('vendor', 'js/vendor.bundle.[hash].js'),
   new CleanWebpackPlugin([CONFIG.examplesBuildPath], {
     root: CONFIG.root,
     verbose: false,
@@ -30,9 +29,9 @@ const plugins = [
       NODE_ENV: JSON.stringify('production'),
     },
   }),
-  // new ExtractTextPlugin('styles/[name].[contenthash].css', {
-  //   allChunks: true,
-  // }),
+  new ExtractTextPlugin('styles/[name].[contenthash].css', {
+    allChunks: true,
+  }),
   new webpack.optimize.DedupePlugin(),
   new webpack.optimize.UglifyJsPlugin({
     compress: {
@@ -55,7 +54,7 @@ const config = {
   // devtool: 'source-map',
   output: {
     path: path.join(__dirname, '/examples-build'),
-    filename: 'examples.[hash].js',
+    filename: 'js/examples.[hash].js',
   },
   module: {
     loaders: [
@@ -66,15 +65,15 @@ const config = {
       },
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=100&mimetype=application/font-woff&name=[hash].[ext]',
+        loader: 'url?limit=100&mimetype=application/font-woff&name=fonts/lato/[name].[ext]',
       },
       {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=100&mimetype=application/octet-stream&name=[hash].[ext]',
+        loader: 'url?limit=100&mimetype=application/octet-stream&name=fonts/lato/[name].[ext]',
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file',
+        loader: 'file?name=fonts/lato/[name].[ext]',
       },
       {
         test: /\.ejs$/,
@@ -82,7 +81,7 @@ const config = {
       },
       {
         test: /\.scss$/,
-        loader: 'style!css!postcss!sass',
+        loader: ExtractTextPlugin.extract('style', 'css!postcss!sass', { publicPath: '../' }),
       },
       {
         test: /\.svg($|\?)/,

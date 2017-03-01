@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default class Render {
-  static topics = (topics, level = 1) => {    
+  static topics = (topics, level = 1) => {
     let getHeading = function(level, heading) {
       switch(level) {
         case 1:
@@ -20,26 +20,26 @@ export default class Render {
           return <h5>{ heading}</h5>
         break;
         default:
-          return <h3>{ heading}</h3>          
+          return <h3>{ heading}</h3>
         break
       }
     }
-    
+
     let getUnordredLists = function(topic) {
       if(!topic.unordereds) return null;
 
       return topic.unordereds.map((list, index) => {
         return <div key={index}>
-        <strong>{list.heading}</strong> 
-        <ul>        
+        <strong>{list.heading}</strong>
+        <ul>
           { list.items.map((item, index) => {
             return <li key={index}>{item}</li>
-            }) 
+            })
           }
         </ul>
-      </div> 
+      </div>
       })
-      
+
     }
 
     let getTopics = function(level, topics) {
@@ -49,7 +49,7 @@ export default class Render {
           { getHeading(level, topic.heading) }
           <p>{ topic.content }</p>
           { getUnordredLists(topic) }
-            { topic.topics ? getTopics(level, topic.topics) : null }        
+            { topic.topics ? getTopics(level, topic.topics) : null }
         </div>
       });
     };

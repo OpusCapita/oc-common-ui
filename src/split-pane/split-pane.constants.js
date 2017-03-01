@@ -1,3 +1,5 @@
 import { Map } from 'immutable';
 
-export const INITIAL_STATE = Map();
+const INITIAL_STATE = Map();
+
+export default INITIAL_STATE;

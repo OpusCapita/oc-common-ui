@@ -1,6 +1,6 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 
-import { Icon } from '../icons/icon.component.jsx';
+import { Icon } from '../icons/index';
 
 import './card-header.scss';
 
@@ -14,18 +14,27 @@ export class CardHeader extends React.Component {
 
     return (
       this.props.expanded ?
-      <button onClick={() => {
-        this.props.setExpanded(this.props.id, false);
-      }}>
-        <Icon type="indicator"
-              name="minus"/>
-      </button> :
-      <button onClick={() => {
-        this.props.setExpanded(this.props.id, true);
-      }}>
-        <Icon type="indicator"
-              name="plus"/>
-      </button>);
+        <button
+          onClick={() => {
+            this.props.setExpanded(this.props.id, false);
+          }}
+        >
+          <Icon
+            type="indicator"
+            name="minus"
+          />
+        </button> :
+        <button
+          onClick={() => {
+            this.props.setExpanded(this.props.id, true);
+          }}
+        >
+          <Icon
+            type="indicator"
+            name="plus"
+          />
+        </button>
+    );
   }
 
   render() {
@@ -43,6 +52,14 @@ export class CardHeader extends React.Component {
     );
   }
 }
+
+CardHeader.defaultProps = {
+  id: null,
+  children: [],
+  onlyChild: false,
+  expanded: false,
+  setExpanded: null,
+};
 
 CardHeader.propTypes = {
   id: PropTypes.string,

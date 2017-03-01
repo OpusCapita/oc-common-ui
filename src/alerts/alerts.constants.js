@@ -1,3 +1,5 @@
-export const INITIAL_STATE = {
+const INITIAL_STATE = {
   alerts: [],
 };
+
+export default INITIAL_STATE;

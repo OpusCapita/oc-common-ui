@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-expressions */
+/* eslint-disable prefer-arrow-callback */
 
 import React from 'react';
 import { expect } from 'chai';
@@ -6,13 +7,12 @@ import { mount } from 'enzyme';
 import configureMockStore from 'redux-mock-store';
 import { Provider } from 'react-intl-redux';
 
-import { OCAlerts } from '../../src/index.js';
-import { OCAlert } from '../../src/alerts/alert.component.jsx';
+import { OCAlerts } from '../../src/index';
+import { OCAlert } from '../../src/alerts/alert.component';
 
 
-describe('Alerts component', function() {
-
-  before(function() {
+describe('Alerts component', function describe() {
+  before(function before() {
     const mockStore = configureMockStore();
     this.store = mockStore({
       intl: {
@@ -28,14 +28,13 @@ describe('Alerts component', function() {
     });
   });
 
-  it('should render correctly', function() {
-
-    let wrapper = mount(
+  it('should render correctly', function it() {
+    const wrapper = mount(
       <Provider store={this.store}>
         <OCAlerts />
-      </Provider>
+      </Provider>,
     );
-    let alert = wrapper.find(OCAlert);
+    const alert = wrapper.find(OCAlert);
     expect(alert.props()).to.eql({
       id: 'alert_1',
       type: 'success',
@@ -44,5 +43,4 @@ describe('Alerts component', function() {
       values: null,
     });
   });
-
 });

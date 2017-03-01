@@ -1,3 +1,5 @@
+/* eslint-disable prefer-arrow-callback */
+
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
@@ -6,12 +8,11 @@ import ReactDOM from 'react-dom';
 import sinon from 'sinon';
 
 import { ResponsiveNavbar } from
-  '../../src/responsive-navbar/responsive-navbar.component.jsx';
+  '../../src/responsive-navbar/responsive-navbar.component';
 
 
-describe('Responsive navbar component', function() {
-
-  before(function() {
+describe('Responsive navbar component', function describe() {
+  before(function before() {
     this.list = [
       { name: 'Style', href: '/style' },
       { name: 'Item 2 longer and longer', href: '/style' },
@@ -20,11 +21,15 @@ describe('Responsive navbar component', function() {
     ];
   });
 
-  it('should render navbar correctly', function() {
+  it('should render navbar correctly', function it() {
     const activeKey = 2;
 
-    let wrapper = mount(
-      <ResponsiveNavbar activeKey={activeKey} list={this.list} />
+    const wrapper = mount(
+      <ResponsiveNavbar
+        activeKey={activeKey}
+        list={this.list}
+        router={[]}
+      />,
     );
 
     expect(wrapper.find(NavItem).at(0).props().href).to.eql('#/style');
@@ -34,23 +39,26 @@ describe('Responsive navbar component', function() {
     expect(wrapper.get(0).state).to.eql({ wrapping: false, lastWidth: 0 });
   });
 
-  it('should render combobox correctly', function() {
+  it('should render combobox correctly', function it() {
     const activeKey = 2;
 
-    let findDOMNode = sinon.stub(ReactDOM, 'findDOMNode', (ref) => {
+    const findDOMNode = sinon.stub(ReactDOM, 'findDOMNode', (ref) => {
       if (ref._reactInternalInstance._currentElement.ref === 'navitemref0') {
         return {
           offsetTop: 1,
         };
-      } else {
-        return {
-          offsetTop: 2,
-        };
       }
+      return {
+        offsetTop: 2,
+      };
     });
 
-    let wrapper = mount(
-      <ResponsiveNavbar activeKey={activeKey} list={this.list} />
+    const wrapper = mount(
+      <ResponsiveNavbar
+        activeKey={activeKey}
+        list={this.list}
+        router={[]}
+      />,
     );
 
     expect(wrapper.find('option').length).to.eql(4);
@@ -64,12 +72,12 @@ describe('Responsive navbar component', function() {
     findDOMNode.restore();
   });
 
-  it('updates state correctly', function() {
-    let activeKey = 1;
+  it('updates state correctly', function it() {
+    const activeKey = 1;
 
-    let navbar = new ResponsiveNavbar({
+    const navbar = new ResponsiveNavbar({
       list: this.list,
-      activeKey: activeKey,
+      activeKey,
     });
 
     navbar.refs = {
@@ -79,7 +87,7 @@ describe('Responsive navbar component', function() {
       navitemref3: 'ref3',
     };
 
-    let refUIData = {
+    const refUIData = {
       ref0: 10,
       ref1: 10,
       ref2: 10,
@@ -92,13 +100,11 @@ describe('Responsive navbar component', function() {
       lastWidth: 0,
     });
 
-    let findDOMNode = sinon.stub(ReactDOM, 'findDOMNode', (ref) => {
-      return {
-        offsetTop: refUIData[ref],
-      };
-    });
+    const findDOMNode = sinon.stub(ReactDOM, 'findDOMNode', ref =>
+      ({ offsetTop: refUIData[ref] }),
+    );
 
-    let navbarStub = sinon.stub(navbar, 'setState', (state) => {
+    const navbarStub = sinon.stub(navbar, 'setState', (state) => {
       navbar.state = state;
     });
 
@@ -118,7 +124,5 @@ describe('Responsive navbar component', function() {
 
     findDOMNode.restore();
     navbarStub.restore();
-
   });
-
 });

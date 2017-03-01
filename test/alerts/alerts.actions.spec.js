@@ -1,26 +1,26 @@
 /* eslint-disable no-unused-expressions */
+/* eslint-disable prefer-arrow-callback */
 
 import { expect } from 'chai';
 import configureStore from 'redux-mock-store';
 
-import { OCAlert } from '../../src/index.js';
+import { OCAlert } from '../../src/index';
 
 
-describe('Alert component', function() {
-
+describe('Alert component', function describe() {
   const middlewares = [];
   const mockStore = configureStore(middlewares);
 
-  before(function() {
+  before(function before() {
     this.store = mockStore();
     OCAlert.setStore(this.store);
   });
 
-  afterEach(function() {
+  afterEach(function afterEach() {
     this.store.clearActions();
   });
 
-  it('send alertSuccess action', function() {
+  it('send alertSuccess action', function it() {
     OCAlert.alertSuccess('my success');
 
     const expectedAction = {
@@ -35,7 +35,7 @@ describe('Alert component', function() {
     expect(this.store.getActions()[0]).to.eql(expectedAction);
   });
 
-  it('send alertInfo action', function() {
+  it('send alertInfo action', function it() {
     OCAlert.alertInfo('my info');
 
     const expectedAction = {
@@ -50,7 +50,7 @@ describe('Alert component', function() {
     expect(this.store.getActions()[0]).to.eql(expectedAction);
   });
 
-  it('send alertWarning action', function() {
+  it('send alertWarning action', function it() {
     OCAlert.alertWarning('my warning');
 
     const expectedAction = {
@@ -65,7 +65,7 @@ describe('Alert component', function() {
     expect(this.store.getActions()[0]).to.eql(expectedAction);
   });
 
-  it('send alertError action', function() {
+  it('send alertError action', function it() {
     OCAlert.alertError('my error');
 
     const expectedAction = {
@@ -80,7 +80,7 @@ describe('Alert component', function() {
     expect(this.store.getActions()[0]).to.eql(expectedAction);
   });
 
-  it('send closeAlert action', function() {
+  it('send closeAlert action', function it() {
     OCAlert.closeAlert('alert_1');
 
     const expectedAction = {
@@ -91,7 +91,7 @@ describe('Alert component', function() {
     expect(this.store.getActions()[0]).to.eql(expectedAction);
   });
 
-  it('send closeAlerts action', function() {
+  it('send closeAlerts action', function it() {
     OCAlert.closeAlerts();
 
     const expectedAction = {

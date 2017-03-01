@@ -26,13 +26,13 @@ const plugins = [
   }),
   new webpack.DefinePlugin({
     'process.env': {
-      NODE_ENV: JSON.stringify('production'),
+      NODE_ENV: JSON.stringify('development'),
     },
   }),
   new ExtractTextPlugin('styles/[name].[contenthash].css', {
     allChunks: true,
   }),
-  new webpack.optimize.DedupePlugin(),
+  /* new webpack.optimize.DedupePlugin(),
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false,
@@ -41,7 +41,7 @@ const plugins = [
       comments: false,
     },
     mangle: true,
-  }),
+  }),*/
 ];
 
 const config = {

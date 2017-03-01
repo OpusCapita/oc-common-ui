@@ -1,4 +1,5 @@
 /* eslint-disable no-unused-expressions */
+/* eslint-disable prefer-arrow-callback */
 
 import React from 'react';
 import { expect } from 'chai';
@@ -6,13 +7,11 @@ import { mount } from 'enzyme';
 import { DropdownButton, MenuItem } from 'react-bootstrap';
 import sinon from 'sinon';
 
-import { DropdownMenu } from '../../src/index.js';
+import { DropdownMenu } from '../../src/index';
 
 
-describe('Dropdown-menu component', function() {
-
-  before(function() {
-
+describe('Dropdown-menu component', function describe() {
+  before(function before() {
     this.menuItems = [{
       id: 'item_id_1',
       title: 'Item 1, dont\'t close',
@@ -31,10 +30,9 @@ describe('Dropdown-menu component', function() {
     }];
   });
 
-  it('should render correctly', function() {
-
-    let wrapper = mount(
-        <DropdownMenu id="example" menuItems={this.menuItems} />
+  it('should render correctly', function it() {
+    const wrapper = mount(
+      <DropdownMenu id="example" menuItems={this.menuItems} />,
     );
     expect(wrapper.find(DropdownButton).props().noCaret).to.eql(true);
 
@@ -51,5 +49,4 @@ describe('Dropdown-menu component', function() {
     wrapper.find('#item_id_3').simulate('click');
     expect(this.menuItems[3].onClick.called).to.be.false;
   });
-
 });

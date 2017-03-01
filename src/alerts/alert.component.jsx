@@ -1,40 +1,43 @@
+/* eslint-disable import/prefer-default-export */
+
 import React, { PropTypes } from 'react';
 import { Alert } from 'react-bootstrap';
 import { FormattedMessage as M } from 'react-intl';
-import { OCAlert as alertAction } from './alerts.actions.js';
+import { OCAlert as alertAction } from './alerts.actions';
 import { Icon } from '../icons';
 
 export class OCAlert extends React.Component {
-  handleAlertDismiss = () => {
-    alertAction.closeAlert(this.props.id);
-  }
 
   getMessage() {
+    const elements = [];
     if (typeof this.props.message === 'object') {
       if (this.props.translate) {
-        let elements = [];
         this.props.message.map((item, i) => {
           elements.push(
-            <div key={i}><M id={item} /></div>
+            <div key={i}><M id={item} /></div>,
           );
+          return elements;
         });
-        return elements;
       } else {
-        let elements = [];
         this.props.message.map((item, i) => {
           elements.push(
-            <div key={i}>{item}</div>
+            <div key={i}>{item}</div>,
           );
+          return elements;
         });
-        return elements;
       }
+    } else if (this.props.translate) {
+      elements.push(
+        <M
+          key={this.props.id}
+          id={this.props.message}
+          values={this.props.values || {}}
+        />,
+      );
     } else {
-      if (this.props.translate) {
-        return <M id={this.props.message} values={this.props.values || {}} />;
-      } else {
-        return this.props.message;
-      }
+      return this.props.message;
     }
+    return elements;
   }
 
   getIcon() {
@@ -54,6 +57,10 @@ export class OCAlert extends React.Component {
     );
   }
 
+  handleAlertDismiss = () => {
+    alertAction.closeAlert(this.props.id);
+  }
+
   render() {
     return (
       <Alert bsStyle={this.props.type} onDismiss={this.handleAlertDismiss}>
@@ -65,10 +72,20 @@ export class OCAlert extends React.Component {
   }
 }
 
+OCAlert.defaultProps = {
+  values: {},
+};
+
 OCAlert.propTypes = {
   id: PropTypes.string.isRequired,
   type: PropTypes.oneOf(['success', 'info', 'warning', 'danger']).isRequired,
-  message: PropTypes.any.isRequired,
+  message: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]).isRequired,
   translate: PropTypes.bool.isRequired,
-  values: PropTypes.object,
+  values: PropTypes.objectOf(PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.number,
+  ])),
 };

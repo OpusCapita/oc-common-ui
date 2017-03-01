@@ -1,4 +1,4 @@
-import React, {PropTypes} from 'react';
+import React, { PropTypes } from 'react';
 
 import IndicatorRemove from
   '../../images/indicators/Remove.svg';
@@ -89,7 +89,7 @@ import InvoicesGeneric from
 import InvoicesPdf from
   '../../images/invoices/document/pdf.svg';
 import InvoicesPng from
-  '../../images/invoices/document/Png.svg';
+  '../../images/invoices/document/png.svg';
 import InvoicesPpt from
   '../../images/invoices/document/ppt.svg';
 import InvoicesWord from
@@ -102,7 +102,7 @@ import OCLong from
 import OCShort from
   '../../images/logo/oc-logo-short.svg';
 
-var components = {
+const components = {
   indicator: {
     burgerClose: React.createFactory(IndicatorBurgerClose),
     remove: React.createFactory(IndicatorRemove),
@@ -163,7 +163,7 @@ var components = {
   },
 };
 
-export class Icon extends React.Component {
+export default class Icon extends React.Component {
 
   constructor(props) {
     super(props);
@@ -190,13 +190,17 @@ export class Icon extends React.Component {
       height: height || this.defaultHeight,
       ...otherProps,
     };
-    if (typeof IndicatorLogout === 'function')
+    if (typeof IndicatorLogout === 'function') {
       return component(properties);
-    else {
-      return <span className="icon" {...this.props} />;
     }
+    return <span className="icon" {...this.props} />;
   }
 }
+
+Icon.defaultProps = {
+  width: 40,
+  height: 40,
+};
 
 Icon.propTypes = {
   type: PropTypes.string.isRequired,

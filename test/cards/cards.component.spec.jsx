@@ -1,17 +1,17 @@
 /* eslint-disable no-unused-expressions */
+/* eslint-disable prefer-arrow-callback */
 
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 import sinon from 'sinon';
 
-import { Cards, Card, CardContent } from '../../src/index.js';
+import { Cards, Card, CardContent } from '../../src/index';
 
 
-describe('Cards component', function() {
-
+describe('Cards component', function describe() {
   it('should render correctly', () => {
-    let props = {
+    const props = {
       setExpanded: sinon.spy(),
       showOnlyCard: '',
     };
@@ -19,13 +19,13 @@ describe('Cards component', function() {
     // Show all cards
     let wrapper = mount(
       <Cards {...props}>
-        <Card id="card1" expanded={true}>
+        <Card id="card1" expanded>
           <CardContent />
         </Card>
-        <Card id="card2" expanded={true}>
+        <Card id="card2" expanded>
           <CardContent />
         </Card>
-      </Cards>
+      </Cards>,
     );
 
     expect(wrapper.find(Card).length).to.eql(2);
@@ -35,13 +35,13 @@ describe('Cards component', function() {
     props.showOnlyCard = 'card1';
     wrapper = mount(
       <Cards {...props}>
-        <Card id="card1" expanded={true}>
+        <Card id="card1" expanded>
           <CardContent />
         </Card>
-        <Card id="card2" expanded={true}>
+        <Card id="card2" expanded>
           <CardContent />
         </Card>
-      </Cards>
+      </Cards>,
     );
 
     expect(wrapper.find(Card).length).to.eql(1);

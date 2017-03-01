@@ -117,7 +117,7 @@ export default class App extends React.Component {
             <div className="oc-layout-content-left" hidden={!this.state.isSideMenuOpen && this.state.isNarrow}>
               {
                 this.state.isNarrow ? null :
-                <Logo containerStyle={{ display: 'flex', alignItems: 'center', height: 60, width: 200}} width={200} height={30}/>
+                <Logo containerStyle={{ display: 'flex', alignItems: 'center', height: 40, width: 200}} width={200} height={30}/>
               }
               <Menu items={ITEMS}/>
             </div>

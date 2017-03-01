@@ -1,11 +1,12 @@
-import { filter } from 'lodash';
-import { TYPES } from './alerts.actions.js';
-import { INITIAL_STATE } from './alerts.constants.js';
+/* eslint-disable import/prefer-default-export */
+
+import { TYPES } from './alerts.actions';
+import INITIAL_STATE from './alerts.constants';
 
 export function alertsReducer(state = INITIAL_STATE.alerts, action) {
   switch (action.type) {
     case TYPES.PLATFORM_ALERTS_SHOW: {
-      let newState = state;
+      const newState = state;
       newState.push({
         id: action.id,
         type: action.alertType,
@@ -16,9 +17,7 @@ export function alertsReducer(state = INITIAL_STATE.alerts, action) {
       return JSON.parse(JSON.stringify(newState));
     }
     case TYPES.PLATFORM_ALERTS_DISMISS_ALERT: {
-      return filter(state, (note) => {
-        return note.id !== action.id;
-      });
+      return state.filter(note => note.id !== action.id);
     }
     case TYPES.PLATFORM_ALERTS_DISMISS_ALL: {
       return [];

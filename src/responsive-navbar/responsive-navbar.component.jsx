@@ -20,9 +20,18 @@ export class ResponsiveNavbar extends React.Component {
     };
   }
 
+  componentDidMount() {
+    window.addEventListener('resize', this.updateDimensions);
+    this.updateDimensions();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateDimensions);
+  }
+
   updateDimensions = () => {
-    const firstRef = this.refs['navitemref' + String(0)];
-    const lastRef = this.refs['navitemref' + String(this.props.list.length - 1)];
+    const firstRef = this.refs[`navitemref${String(0)}`];
+    const lastRef = this.refs[`navitemref${String(this.props.list.length - 1)}`];
 
     const firstOffsetTop = ReactDOM.findDOMNode(firstRef).offsetTop;
     const lastOffsetTop = ReactDOM.findDOMNode(lastRef).offsetTop;
@@ -46,31 +55,24 @@ export class ResponsiveNavbar extends React.Component {
     this.props.router.push(event.target.value);
   }
 
-  componentDidMount() {
-    window.addEventListener('resize', this.updateDimensions);
-    this.updateDimensions();
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateDimensions);
-  }
-
   navbar = () => {
-    const items = this.props.list.map((item, index) => {
-      return (
-        <NavItem key={index}
-                 eventKey={index}
-                 ref={'navitemref' + String(index)}
-                 href={'#' + item.href}>
-          {item.name}
-        </NavItem>
-      );
-    });
+    const items = this.props.list.map((item, index) => (
+      <NavItem
+        key={index}
+        eventKey={index}
+        ref={`navitemref${String(index)}`}
+        href={`#${item.href}`}
+      >
+        {item.name}
+      </NavItem>
+    ));
     return (
-      <Navbar fluid={true} id="responsive-navbar">
-        <Nav id="responsive-navbar"
-             bsStyle="pills"
-             activeKey={this.props.activeKey}>
+      <Navbar fluid id="responsive-navbar">
+        <Nav
+          id="responsive-navbar"
+          bsStyle="pills"
+          activeKey={this.props.activeKey}
+        >
           {items}
         </Nav>
       </Navbar>
@@ -78,21 +80,23 @@ export class ResponsiveNavbar extends React.Component {
   }
 
   combobox = () => {
-    const items = this.props.list.map((item, index) => {
-      return (
-        <option key={index}
-                value={item.href}
-                ref={'navitemref' + String(index)}>
-          {item.name}
-        </option>
-      );
-    });
+    const items = this.props.list.map((item, index) => (
+      <option
+        key={index}
+        value={item.href}
+        ref={`navitemref${String(index)}`}
+      >
+        {item.name}
+      </option>
+    ));
     return (
       <FormGroup id="responsive-navbar-select" controlId="formControlsSelect">
-        <FormControl componentClass="select"
-                     placeholder="select"
-                     defaultValue={this.props.list[this.props.activeKey].href}
-                     onChange={this.selectionChanged}>
+        <FormControl
+          componentClass="select"
+          placeholder="select"
+          defaultValue={this.props.list[this.props.activeKey].href}
+          onChange={this.selectionChanged}
+        >
           {items}
         </FormControl>
       </FormGroup>
@@ -106,8 +110,11 @@ export class ResponsiveNavbar extends React.Component {
 }
 
 ResponsiveNavbar.propTypes = {
-  activeKey: PropTypes.number,
-  list: PropTypes.array.isRequired,
+  activeKey: PropTypes.number.isRequired,
+  list: PropTypes.arrayOf(PropTypes.shape({
+    name: PropTypes.string,
+    href: PropTypes.string,
+  })).isRequired,
 };
 
 export default withRouter(ResponsiveNavbar);

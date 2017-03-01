@@ -1,1 +1,1 @@
-export { DropdownMenu } from './dropdown-menu.component.jsx';
+export DropdownMenu from './dropdown-menu.component.jsx';

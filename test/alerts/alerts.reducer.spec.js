@@ -1,15 +1,15 @@
 /* eslint-disable no-unused-expressions */
+/* eslint-disable prefer-arrow-callback */
 
 import { expect } from 'chai';
 
-import { alertsReducer } from '../../src/index.js';
-import { TYPES } from '../../src/alerts/alerts.actions.js';
+import { alertsReducer } from '../../src/index';
+import { TYPES } from '../../src/alerts/alerts.actions';
 
 
-describe('alertsReducer', function() {
-
-  it('should handle show action', function() {
-    let action = {
+describe('alertsReducer', function describe() {
+  it('should handle show action', function it() {
+    const action = {
       id: 'alert_1',
       type: TYPES.PLATFORM_ALERTS_SHOW,
       alertType: 'success',
@@ -32,8 +32,8 @@ describe('alertsReducer', function() {
     expect(newState.length).to.eql(2);
   });
 
-  it('should handle dismiss alert action', function() {
-    let initialState = [{
+  it('should handle dismiss alert action', function it() {
+    const initialState = [{
       id: 'alert_1',
       type: TYPES.PLATFORM_ALERTS_SHOW,
       alertType: 'success',
@@ -42,17 +42,17 @@ describe('alertsReducer', function() {
       values: null,
     }];
 
-    let action = {
+    const action = {
       type: TYPES.PLATFORM_ALERTS_DISMISS_ALERT,
       id: 'alert_1',
     };
 
-    let newState = alertsReducer(initialState, action);
+    const newState = alertsReducer(initialState, action);
     expect(newState.length).to.eql(0);
   });
 
-  it('should handle dismiss all alerts action', function() {
-    let initialState = [{
+  it('should handle dismiss all alerts action', function it() {
+    const initialState = [{
       id: 'alert_1',
       type: TYPES.PLATFORM_ALERTS_SHOW,
       alertType: 'success',
@@ -68,12 +68,11 @@ describe('alertsReducer', function() {
       values: null,
     }];
 
-    let action = {
+    const action = {
       type: TYPES.PLATFORM_ALERTS_DISMISS_ALL,
     };
 
-    let newState = alertsReducer(initialState, action);
+    const newState = alertsReducer(initialState, action);
     expect(newState.length).to.eql(0);
   });
-
 });

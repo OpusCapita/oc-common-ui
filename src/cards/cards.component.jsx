@@ -1,4 +1,6 @@
-import React, {PropTypes } from 'react';
+/* eslint-disable import/prefer-default-export */
+
+import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 
@@ -35,6 +37,11 @@ export class Cards extends React.Component {
     );
   }
 }
+
+Cards.defaultProps = {
+  setExpanded: null,
+  showOnlyCard: '',
+};
 
 Cards.propTypes = {
   setExpanded: PropTypes.func,

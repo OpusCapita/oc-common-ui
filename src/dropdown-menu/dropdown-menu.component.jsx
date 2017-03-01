@@ -3,7 +3,7 @@ import { DropdownButton, MenuItem } from 'react-bootstrap';
 import { Icon } from '../icons';
 import './dropdown-menu.component.scss';
 
-export class DropdownMenu extends React.Component {
+export default class DropdownMenu extends React.Component {
 
   static propTypes = {
     id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
@@ -42,13 +42,43 @@ export class DropdownMenu extends React.Component {
   }
 
   dropdownToggle = (newValue) => {
-    if (this._dontCloseDropdownMenu) {
+    if (this.dontCloseDropdownMenu) {
       this.setState({ menuOpen: true });
-      this._dontCloseDropdownMenu = false;
+      this.dontCloseDropdownMenu = false;
     } else {
       this.setState({ menuOpen: newValue });
     }
   }
+
+  renderMenuItems = items =>
+    items.map((item, i) => {
+      if (item.type === 'divider') {
+        return (
+          <MenuItem
+            key={`menuItem${i}`}
+            divider
+          />
+        );
+      }
+      return (
+        <MenuItem
+          key={`menuItem${i}`}
+          id={item.id}
+          disabled={!!item.disabled}
+          onClick={(e) => {
+            if (item.disableClosing) {
+              this.dontCloseDropdownMenu = true;
+            }
+            if (!item.disabled && item.onClick) {
+              item.onClick(e);
+            }
+          }}
+        >
+          <span className="oc-dropdown-menu-icon">{item.icon}</span>
+          <span className="oc-dropdown-menu-title">{item.title}</span>
+        </MenuItem>
+      );
+    });
 
   render() {
     const { id, menuItems, caret, pullLeft, ...otherProps } = this.props;
@@ -69,35 +99,4 @@ export class DropdownMenu extends React.Component {
       </div>
     );
   }
-
-  renderMenuItems = (items) => {
-    return items.map((item, i) => {
-      if (item.type === 'divider') {
-        return (
-          <MenuItem
-            key={'menuItem'+i}
-            divider={true}
-          />
-        );
-      }
-      return (
-        <MenuItem
-          key={'menuItem'+i}
-          id={item.id}
-          disabled={!!item.disabled}
-          onClick={(e) => {
-            if (item.disableClosing) {
-              this._dontCloseDropdownMenu = true;
-            }
-            if (!item.disabled && item.onClick) {
-              item.onClick(e);
-            }
-          }}
-        >
-          <span className="oc-dropdown-menu-icon">{item.icon}</span>
-          <span className="oc-dropdown-menu-title">{item.title}</span>
-        </MenuItem>
-      );
-    });
-  };
 }

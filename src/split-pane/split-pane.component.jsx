@@ -1,37 +1,43 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { default as ReactSplitPane } from 'react-split-pane';
-import { resize } from './split-pane.actions.js';
+import ReactSplitPane from 'react-split-pane';
+
+import { resize } from './split-pane.actions';
+
 import './split-pane.component.scss';
 
 const getFromStorage = (id) => {
-  const item = sessionStorage.getItem('splitpane_'+id+'_size');
+  const item = sessionStorage.getItem(`splitpane_${id}_size`);
   if (item) {
     return parseInt(item, 10);
   }
   return undefined;
 };
 
-const mapStateToProps = (state, ownProps) => {
-  return {
+const mapStateToProps = (state, ownProps) => (
+  {
     size: state.splitpane ? state.splitpane.getIn([ownProps.id, 'size'],
                             getFromStorage(ownProps.id))
                           : getFromStorage(ownProps.id),
-  };
-};
+  }
+);
 
 const mapDispatchToProps = {
   resize,
 };
 
 @connect(mapStateToProps, mapDispatchToProps)
-export class SplitPane extends React.Component {
+export default class SplitPane extends React.Component {
 
   static propTypes = {
     id: React.PropTypes.string.isRequired,
     size: React.PropTypes.number,
     resize: React.PropTypes.func.isRequired,
   };
+
+  static defaultProps = {
+    size: null,
+  }
 
   onChange = (size) => {
     this.props.resize(this.props.id, size);

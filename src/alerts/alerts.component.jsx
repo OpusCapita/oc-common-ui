@@ -1,30 +1,41 @@
+/* eslint-disable import/prefer-default-export */
+
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
-import { OCAlert } from './alert.component.jsx';
+import { OCAlert } from './alert.component.jsx'; // eslint-disable-line import/extensions
 
 import './alerts.scss';
 
 
-class OCAlertsComponent extends React.Component {
-  render() {
-    return (
-      <div id="global-notification">
-        { this.props.alerts.map((alert, i) =>
-          <OCAlert key={i} { ...alert } />
-        )}
-      </div>);
-  }
-}
+const OCAlertsComponent = function OCAlertsComponent(props) {
+  return (
+    <div id="global-notification">
+      { props.alerts.map((alert, i) =>
+        <OCAlert key={i} {...alert} />,
+      )}
+    </div>
+  );
+};
 
 OCAlertsComponent.propTypes = {
-  alerts: PropTypes.array.isRequired,
+  alerts: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    type: PropTypes.oneOf(['success', 'info', 'warning', 'danger']).isRequired,
+    message: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.arrayOf(PropTypes.string),
+    ]).isRequired,
+    translate: PropTypes.bool.isRequired,
+    values: PropTypes.objectOf(PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.number,
+    ])),
+  })).isRequired,
 };
 
-const mapStateToProps = (state /*, props*/) => {
-  return {
-    alerts: state.alertsReducer,
-  };
-};
+const mapStateToProps = state => (
+  { alerts: state.alertsReducer }
+);
 
 export const OCAlerts = connect(
   mapStateToProps,

@@ -1,26 +1,32 @@
-import React, {PropTypes} from 'react';
+/* eslint-disable import/prefer-default-export */
+
+import React, { PropTypes } from 'react';
 
 import './card.scss';
 
 
-export class Card extends React.Component {
-
-  render() {
-    return (
-      <div className="oc-card"
-           disabled={this.props.disabled}>
-        { React.Children.map(this.props.children, (child) => {
-          return React.cloneElement(child, {
-            id: this.props.id,
-            onlyChild: React.Children.count(this.props.children) === 1,
-            expanded: this.props.expanded,
-            setExpanded: this.props.setExpanded,
-          });
-        }) }
-      </div>
-    );
-  }
+export function Card(props) {
+  return (
+    <div
+      className="oc-card"
+      disabled={props.disabled}
+    >
+      { React.Children.map(props.children, child =>
+        React.cloneElement(child, {
+          id: props.id,
+          onlyChild: React.Children.count(props.children) === 1,
+          expanded: props.expanded,
+          setExpanded: props.setExpanded,
+        }))
+      }
+    </div>
+  );
 }
+
+Card.defaultProps = {
+  setExpanded: null,
+  disabled: false,
+};
 
 Card.propTypes = {
   id: PropTypes.string.isRequired,

@@ -1,1 +1,1 @@
-export { Spinner } from './spinner.component.jsx';
+export Spinner from './spinner.component.jsx';

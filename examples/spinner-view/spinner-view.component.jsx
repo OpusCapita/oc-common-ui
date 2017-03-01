@@ -1,13 +1,11 @@
 import React from 'react';
+import { Spinner } from '../../src/index';
 
-import { Spinner } from '../../src/index.js';
-
-
-export default class SpinnerView extends React.Component {
-
-  render() {
-    return (
-      <Spinner />
-    );
-  }
+function SpinnerView() {
+  return (
+    <Spinner />
+  );
 }
+
+export default SpinnerView;
+

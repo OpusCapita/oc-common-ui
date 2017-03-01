@@ -1,19 +1,19 @@
 import React from 'react';
+import { ResponsiveNavbar } from '../../src/index';
 
-import { ResponsiveNavbar } from '../../src/index.js';
+function ResponsiveNavbarView() {
+  const list = [
+    { name: 'Style', href: '/style' },
+    { name: 'Item 2 longer and longer', href: '/style' },
+    { name: 'Item 3 even longer and longer', href: '/style' },
+    { name: 'Item 4', href: '/style' },
+  ];
 
-export default class ResponsiveNavbarView extends React.Component {
+  const activeKey = 2;
 
-  render() {
-    const list = [
-      { name: 'Style', href: '/style' },
-      { name: 'Item 2 longer and longer', href: '/style' },
-      { name: 'Item 3 even longer and longer', href: '/style' },
-      { name: 'Item 4', href: '/style' },
-    ];
-    const activeKey = 2;
-    return (
-      <ResponsiveNavbar activeKey={activeKey} list={list} />
-    );
-  }
+  return (
+    <ResponsiveNavbar activeKey={activeKey} list={list} />
+  );
 }
+
+export default ResponsiveNavbarView;

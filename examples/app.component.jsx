@@ -4,7 +4,7 @@ import Logo from './style-view/components/logos/logo.component.jsx';
 var Sidebar = require('react-sidebar').default;
 import './app.component.scss';
 import Menu from '../src/menu/menu.component.jsx';
-import { ITEMS } from './layout/menu.constants';
+import ITEMS from './layout/menu.constants';
 import { Icon } from '../src/index.js';
 
 export default class App extends React.Component {
@@ -38,7 +38,7 @@ export default class App extends React.Component {
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
               <ul className="nav navbar-nav">
                 <li><Link activeClassName="oc-link-active" to="/style">Style</Link></li>
-                <li><Link activeClassName="oc-link-active" to="/bootstrap">Bootstrap</Link></li>               
+                <li><Link activeClassName="oc-link-active" to="/bootstrap">Bootstrap</Link></li>
                 <li role="presentation" className="dropdown">
                   <a className="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                     Components <span className="caret"/>
@@ -101,31 +101,31 @@ export default class App extends React.Component {
         <div className="oc-layout-header">
           { this.getHeader() }
         </div>
-         <div className="oc-layout-content">        
-            {this.props.children}            
-        </div>       
+         <div className="oc-layout-content">
+            {this.props.children}
+        </div>
     </div>
      </Sidebar>
     )
   };
 
-  getWithoutSidebar = () => {   
+  getWithoutSidebar = () => {
     return (
-      <div className="oc-layout">        
-        { this.getHeader() }        
-         <div className="oc-layout-content">        
+      <div className="oc-layout">
+        { this.getHeader() }
+         <div className="oc-layout-content">
             <div className="oc-layout-content-left" hidden={!this.state.isSideMenuOpen && this.state.isNarrow}>
-              { 
-                this.state.isNarrow ? null : 
-                <Logo containerStyle={{ display: 'flex', alignItems: 'center', height: 40, width: 200}} width={200} height={30}/> 
+              {
+                this.state.isNarrow ? null :
+                <Logo containerStyle={{ display: 'flex', alignItems: 'center', height: 40, width: 200}} width={200} height={30}/>
               }
               <Menu items={ITEMS}/>
             </div>
           <div className="oc-layout-content-right">
             {this.props.children}
-          </div>            
-        </div>       
-    </div> 
+          </div>
+        </div>
+    </div>
     )
   };
 

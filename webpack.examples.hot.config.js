@@ -1,7 +1,6 @@
 const webpack = require('webpack');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
-
 const path = require('path');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
@@ -9,7 +8,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const configuration = {
   entry: {
-    app: './examples/index.jsx'
+    app: './examples/index.jsx',
   },
   devtool: 'source-map',
   output: {
@@ -26,7 +25,7 @@ const configuration = {
           cacheDirectory: true,
           plugins: [
           ],
-        }
+        },
       },
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
@@ -75,22 +74,22 @@ const configuration = {
   },
   plugins: [
     new HtmlWebpackPlugin({
-    filename: 'index.html',
-    template: 'examples/index.html',
-    })
+      filename: 'index.html',
+      template: 'examples/index.html',
+    }),
   ],
   postcss: function postcss() {
     return [precss, autoprefixer];
   },
 };
 
-var wdsEntries = [
+const wdsEntries = [
   'webpack-dev-server/client?http://localhost:5555',
   'webpack/hot/only-dev-server',
 ];
 
 // All entries must include webpack dev server entries
-Object.keys(configuration.entry).forEach(key => {
+Object.keys(configuration.entry).forEach((key) => {
   if (Array.isArray(configuration.entry[key])) {
     configuration.entry[key] = wdsEntries.concat(configuration.entry[key]);
   } else {
@@ -105,11 +104,11 @@ Object.keys(configuration.entry).forEach(key => {
 configuration.module.loaders.forEach((loader, index) => {
   if (/^babel/.test(loader.loader)) {
     const reactTransformPlugin = ['react-transform', {
-      'transforms': [
+      transforms: [
         {
-          'transform': 'react-transform-hmr',
-          'imports': ['react'],
-          'locals': ['module'],
+          transform: 'react-transform-hmr',
+          imports: ['react'],
+          locals: ['module'],
         },
       ],
     }];
@@ -118,7 +117,6 @@ configuration.module.loaders.forEach((loader, index) => {
     } else {
       configuration.module.loaders[index].query.plugins = [reactTransformPlugin];
     }
-
   }
 });
 

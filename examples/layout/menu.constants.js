@@ -1,58 +1,60 @@
-export const ITEMS = [
-   { 
+const ITEMS = [
+  {
     name: 'Introduction',
-    to: '/introduction'
-  },
-  { 
-    name: 'Style',
-    to: '/style'
+    to: '/introduction',
   },
   {
-   name: 'Technology',
-   to: '/technology',
-   items: [ 
-     { 
-      name: 'CSS',
-      to: '/css'
-      }
+    name: 'Style',
+    to: '/style',
+  },
+  {
+    name: 'Technology',
+    to: '/technology',
+    items: [
+      {
+        name: 'CSS',
+        to: '/css',
+      },
     ],
   },
-  { 
+  {
     name: 'Patterns',
-    to: '/patterns'
+    to: '/patterns',
   },
-  { 
+  {
     name: 'Layout',
-    to: '/layout'
+    to: '/layout',
   },
-  { 
+  {
     name: 'Components',
     to: '/components',
     items: [
       {
         name: 'Alerts',
-        to: '/alerts'
+        to: '/alerts',
       },
       {
         name: 'Cards',
-        to: '/cards'
+        to: '/cards',
       },
       {
         name: 'Spinner',
-        to: '/spinner'
+        to: '/spinner',
       },
       {
         name: 'Split Pane',
-        to: '/split-pane'
+        to: '/split-pane',
       },
       {
         name: 'Dropdown',
-        to: '/dropdown-menu'
+        to: '/dropdown-menu',
       },
       {
         name: 'Responsive navbar',
-        to: '/responsive-navbar'
+        to: '/responsive-navbar',
       },
-    ] 
+    ],
   },
 ];
+
+export default ITEMS;

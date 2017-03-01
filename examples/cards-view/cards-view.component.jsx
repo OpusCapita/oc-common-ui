@@ -1,12 +1,8 @@
 import React from 'react';
-
 import { Cards, Card, CardHeader, CardContent } from '../../src/index.js';
-
 import './cards-view.component.scss';
 
-
 export default class CardsView extends React.Component {
-
   constructor() {
     super();
     this.state = {

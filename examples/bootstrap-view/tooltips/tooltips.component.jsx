@@ -1,14 +1,14 @@
 import React from 'react';
 import { Card, CardHeader, CardContent } from '../../../src/index.js';
 import { Tooltip, ButtonToolbar, OverlayTrigger, Button} from 'react-bootstrap';
-import { CONTENT } from './tooltips.constants';
+import CONTENT from './tooltips.constants';
 
-export default class Tooltips extends React.Component {  
+export default class Tooltips extends React.Component {
   examples = () => {
     const tooltip = (
       <Tooltip id="tooltip"><strong>Holy guacamole!</strong> Check this info.</Tooltip>
     );
-    
+
     return (
       <div>
         <ButtonToolbar>
@@ -31,7 +31,7 @@ export default class Tooltips extends React.Component {
       </div>
     );
   }
-  
+
   guidelines = () => {
     return (
       <div>
@@ -49,14 +49,14 @@ export default class Tooltips extends React.Component {
     );
   }
 
-  render() {    
+  render() {
     return (
       <Card expanded={true} id="tooltips">
        <CardHeader>{ CONTENT.header }</CardHeader>
-       <CardContent>          
+       <CardContent>
           { this.examples() }
           { this.guidelines() }
-        </CardContent> 
+        </CardContent>
       </Card>
     );
   }

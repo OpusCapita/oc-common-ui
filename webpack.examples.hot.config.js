@@ -1,6 +1,6 @@
-var webpack = require('webpack');
-var WriteFilePlugin = require('write-file-webpack-plugin');
-var ProgressBarPlugin = require('progress-bar-webpack-plugin');
+const webpack = require('webpack');
+const WriteFilePlugin = require('write-file-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 const path = require('path');
 const autoprefixer = require('autoprefixer');
@@ -8,8 +8,8 @@ const precss = require('precss');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const configuration = {
-  entry: { 
-    app: './examples/index.js'
+  entry: {
+    app: './examples/index.jsx'
   },
   devtool: 'source-map',
   output: {
@@ -24,7 +24,7 @@ const configuration = {
         exclude: /(node_modules|bower_components)/,
         query: {
           cacheDirectory: true,
-          plugins: [           
+          plugins: [
           ],
         }
       },
@@ -96,7 +96,7 @@ Object.keys(configuration.entry).forEach(key => {
   } else {
     const originalEntry = configuration.entry[key];
     configuration.entry[key] = wdsEntries.slice(0);
-    configuration.entry[key].push(originalEntry);    
+    configuration.entry[key].push(originalEntry);
   }
 });
 
@@ -118,7 +118,7 @@ configuration.module.loaders.forEach((loader, index) => {
     } else {
       configuration.module.loaders[index].query.plugins = [reactTransformPlugin];
     }
-    
+
   }
 });
 
@@ -144,7 +144,7 @@ configuration.devServer = {
 };
 
 // Now React will be built in an optimized manner
-configuration.plugins.push(new webpack.DefinePlugin({    
+configuration.plugins.push(new webpack.DefinePlugin({
   'process.env': {
     NODE_ENV: JSON.stringify('development'),
   },

@@ -1,4 +1,6 @@
-export const CONTENT = {
-  header: 'CSS',  
-  information: ''  
+const CONTENT = {
+  header: 'CSS',
+  information: '',
 };
+
+export default CONTENT;

@@ -26,14 +26,12 @@ import ResponsiveNavbarView from
 
 require('../images/favicon.ico');
 
-let store = createStore(
+const store = createStore(
   combineReducers({
     alertsReducer,
     intl: intlReducer,
   }),
-  compose(
-    applyMiddleware(thunk)
-  )
+  compose(applyMiddleware(thunk)),
 );
 
 OCAlert.setStore(store);
@@ -44,18 +42,18 @@ render((
       <Router history={hashHistory}>
         <Route path="/" component={App} >
           <IndexRedirect to="/introduction" />
-          <Route path="/introduction" component={Introduction}/>
-          <Route path="/layout" component={Layout}/>
-          <Route path="/patterns" component={Patterns}/>
-          <Route path="/style" component={StyleView}/>
-          <Route path="/css" component={BootstrapView}/>
-          <Route path="/alerts" component={AlertsView}/>
-          <Route path="/cards" component={CardsView}/>
-          <Route path="/spinner" component={SpinnerView}/>
-          <Route path="/split-pane" component={SplitPaneView}/>
-          <Route path="/dropdown-menu" component={DropdownMenuView}/>
-          <Route path="/responsive-navbar" component={ResponsiveNavbarView}/>
-        </Route>        
+          <Route path="/introduction" component={Introduction} />
+          <Route path="/layout" component={Layout} />
+          <Route path="/patterns" component={Patterns} />
+          <Route path="/style" component={StyleView} />
+          <Route path="/css" component={BootstrapView} />
+          <Route path="/alerts" component={AlertsView} />
+          <Route path="/cards" component={CardsView} />
+          <Route path="/spinner" component={SpinnerView} />
+          <Route path="/split-pane" component={SplitPaneView} />
+          <Route path="/dropdown-menu" component={DropdownMenuView} />
+          <Route path="/responsive-navbar" component={ResponsiveNavbarView} />
+        </Route>
       </Router>
     </IntlProvider>
   </Provider>

@@ -1,7 +1,7 @@
 import React from 'react';
+import CONTENT from './buttons.constants';
 import { Card, CardHeader, CardContent } from '../../../src/index.js';
 import { ButtonToolbar, Button, Modal, OverlayTrigger } from 'react-bootstrap';
-import { CONTENT } from './buttons.constants';
 
 require('../../../styles/_table.scss');
 
@@ -34,7 +34,7 @@ export default class Buttons extends React.Component {
                 <Button bsStyle="danger">Danger</Button>
                 <Button bsStyle="link">Link</Button>
               </div>
-            </ButtonToolbar>   
+            </ButtonToolbar>
           </div>
           <div className="oc-margin-bottom">
             <h5>{ CONTENT.disabled }</h5>
@@ -48,7 +48,7 @@ export default class Buttons extends React.Component {
                 <Button bsStyle="danger" disabled={true}>Danger</Button>
                 <Button bsStyle="link" disabled={true}>Link</Button>
               </div>
-            </ButtonToolbar>  
+            </ButtonToolbar>
           </div>
       </div>
     );
@@ -85,12 +85,12 @@ export default class Buttons extends React.Component {
           <Modal.Header closeButton>
             <Modal.Title>{CONTENT.labels.topic}</Modal.Title>
           </Modal.Header>
-          <Modal.Body>       
+          <Modal.Body>
             <table className="oc-table">
               <thead>
                 <tr>
                   <th>{CONTENT.labels.headers.label}</th>
-                  <th>{CONTENT.labels.headers.for}</th>                 
+                  <th>{CONTENT.labels.headers.for}</th>
                 </tr>
               </thead>
               <tbody>

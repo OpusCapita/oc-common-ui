@@ -1,4 +1,4 @@
-export const CONTENT = {
+const CONTENT = {
   header: 'Buttons',
   topic: 'Guidelines for buttons',
   enabled: 'Enabled',
@@ -34,5 +34,7 @@ export const CONTENT = {
       { label: 'Approve', for: 'Approving an item in a workflow, task list, etc.' },
       { label: 'Reject', for: 'Rejecting an item in the workflow, task list, etc.' },
     ],
-  }
+  },
 };
+
+export default CONTENT;

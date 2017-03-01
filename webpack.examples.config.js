@@ -10,7 +10,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const CONFIG = {
   root: __dirname,
   examplesBuildPath: 'examples-build',
-  examplesEntry: path.join(__dirname, '/examples/index.js'),
+  examplesEntry: path.join(__dirname, '/examples/index.jsx'),
 };
 
 const plugins = [

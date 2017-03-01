@@ -1,10 +1,7 @@
 import React from 'react';
-
 import { DropdownMenu } from '../../src/index.js';
 
-
 export default class DropdownMenuView extends React.Component {
-
   render() {
 
     const containerStyle = {

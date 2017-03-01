@@ -1,4 +1,4 @@
-export const CONTENT = {
+const CONTENT = {
   header: 'Tooltips',
   topic: 'Guidelines for tooltips',
   guidelines: [
@@ -11,3 +11,5 @@ export const CONTENT = {
   top: 'Tooltip on top',
   bottom: 'Tooltip on bottom',
 };
+
+export default CONTENT;

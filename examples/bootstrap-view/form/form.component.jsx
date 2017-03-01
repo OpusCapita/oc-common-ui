@@ -4,7 +4,7 @@ import { Callout } from '../../style-view/components/callout/callout.component.j
 import { STATUS } from '../../style-view/components/callout/callout.constants';
 import { Card, CardHeader, CardContent } from '../../../src/index.js';
 import Select from 'react-select';
-import { CONTENT } from './form.constants';
+import CONTENT from './form.constants';
 
 export default class Form extends React.Component {
   FieldGroup = ({ id, label, help, ...props, validationState }) => {
@@ -34,7 +34,7 @@ export default class Form extends React.Component {
           label="Email address"
           placeholder=""
         />
-        
+
         <h4>{ CONTENT.mandatory.title }</h4>
         <p>{ CONTENT.mandatory.content }</p>
         <this.FieldGroup
@@ -42,7 +42,7 @@ export default class Form extends React.Component {
           label="Password *"
           type="password"
         />
-     
+
         <FormGroup controlId="formControlsError" validationState="error">
           <ControlLabel>Error</ControlLabel>
           <FormControl type="text" />
@@ -51,7 +51,7 @@ export default class Form extends React.Component {
         <FormGroup controlId="formControlsTextarea">
           <ControlLabel>Textarea</ControlLabel>
           <FormControl componentClass="textarea" placeholder="textarea" />
-        </FormGroup>        
+        </FormGroup>
         <FormGroup>
           <ControlLabel>Static text</ControlLabel>
           <FormControl.Static>
@@ -143,7 +143,7 @@ export default class Form extends React.Component {
         <p className="text-danger">
           Inconsistencies of the defined button order exist in current implementations.
         </p>
-        <ButtonToolbar className="pull-right">   
+        <ButtonToolbar className="pull-right">
           <Button type="submit" bsStyle="primary">
             Primary
           </Button>
@@ -157,9 +157,9 @@ export default class Form extends React.Component {
       </div>
     );
   }
-  render() {    
+  render() {
     return (
-      <Card expanded={true} id="form">    
+      <Card expanded={true} id="form">
         <CardHeader>{ CONTENT.header }</CardHeader>
         <CardContent>
           <form>
@@ -167,9 +167,9 @@ export default class Form extends React.Component {
             { this.files() }
             { this.checkBoxAndRadio() }
             { this.hyperlink() }
-            { this.selects() }         
+            { this.selects() }
             { this.buttons() }
-          </form>  
+          </form>
         </CardContent>
       </Card>
     );

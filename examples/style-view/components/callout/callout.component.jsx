@@ -1,5 +1,5 @@
 import React from 'react';
-import { STATUS } from './callout.constants';
+import STATUS from './callout.constants';
 
 require('./callout.scss');
 

@@ -2,14 +2,15 @@ import React from 'react';
 import { Card, CardHeader, CardContent } from '../../../../src/index.js';
 import Callout from '../callout/callout.component.jsx';
 import { CONTENT } from './rebranding.constants';
-import { STATUS } from '../callout/callout.constants';
-export default class Rebranding extends React.Component {  
+import STATUS from '../callout/callout.constants';
+
+export default class Rebranding extends React.Component {
   createUnorderedList = (items) => {
     let list = (
       <ul>
-        { 
+        {
           items.map((item) => {
-            return <li key={item.id}>{item.text}</li>;  
+            return <li key={item.id}>{item.text}</li>;
           })
         }
       </ul>
@@ -18,7 +19,7 @@ export default class Rebranding extends React.Component {
     return list;
   };
 
-  render() {          
+  render() {
     return (
       <Card expanded={true} id="Brand">
         <CardHeader>{CONTENT.topic}</CardHeader>
@@ -35,7 +36,7 @@ export default class Rebranding extends React.Component {
           <Callout header={CONTENT.adjusted.label} status={STATUS.SUCCESS}>
              { this.createUnorderedList(CONTENT.adjusted.content)}
           </Callout>
-        </CardContent> 
+        </CardContent>
       </Card>
     );
   }

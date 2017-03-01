@@ -10,7 +10,7 @@ function Information() {
         <a
           href="http://getbootstrap.com/"
           target="_blank" rel="noopener noreferrer"
-        >Twitter Bootstrap 3.3</a> for web-based HTML5 user interfaces.
+        > Twitter Bootstrap 3.3</a> for web-based HTML5 user interfaces.
         This guide describes all OpusCapita user interface extensions,
         and their correct, standardized usage.</p>
       </CardContent>

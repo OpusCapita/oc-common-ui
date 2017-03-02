@@ -18,7 +18,7 @@
 }
 
 .oc-logo-product-dark {
-  color: $oc-color-primary-azure;  
+  color: $oc-color-primary-azure;
   background-color: transparent;
   padding: 0 0.5rem;
   font-weight: 700;
@@ -44,11 +44,23 @@
 
 .oc-logo-inverted {
   .oc-icon-logo {
-    fill: $oc-color-white;    
+    fill: $oc-color-white;
   }
 
   .oc-logo-product {
     color: $oc-color-white;
     background-color: transparent;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  .oc-logo-horizontal {
+    flex-direction: column;
+    align-items: unset;
+  }
+
+  .oc-logo-product {
+    width: 275px;
+    justify-content: center;
   }
 }

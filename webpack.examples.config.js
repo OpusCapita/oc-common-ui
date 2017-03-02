@@ -32,7 +32,7 @@ const plugins = [
   new ExtractTextPlugin('styles/[name].[contenthash].css', {
     allChunks: true,
   }),
-  /* new webpack.optimize.DedupePlugin(),
+  new webpack.optimize.DedupePlugin(),
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: false,
@@ -41,7 +41,11 @@ const plugins = [
       comments: false,
     },
     mangle: true,
-  }),*/
+  }),
+  new webpack.ProvidePlugin({
+    $: 'jquery',
+    jQuery: 'jquery',
+  }),
 ];
 
 const config = {

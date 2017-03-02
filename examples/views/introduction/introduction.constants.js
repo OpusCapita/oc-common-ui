@@ -6,7 +6,7 @@ const CONTENT = {
       topics: [
         {
           heading: '',
-          content: 'Please note that this guideline is to be followed with new products and' +
+          content: 'Please note that this guideline is to be followed with new products and ' +
             'for existing or rebranded products common sense should be used in which level following of this guideline makes sense.',
         },
       ],

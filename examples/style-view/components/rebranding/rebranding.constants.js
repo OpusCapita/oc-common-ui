@@ -1,4 +1,4 @@
-export const CONTENT = {
+const CONTENT = {
   topic: 'Rebranding - things to consider',
   description: `To achieve the visual look and feel of belonging to the OC brand in your service,
     these matters should be taken into account`,
@@ -30,3 +30,5 @@ export const CONTENT = {
     ],
   },
 };
+
+export default CONTENT;

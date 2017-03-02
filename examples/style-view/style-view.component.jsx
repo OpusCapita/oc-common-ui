@@ -18,7 +18,12 @@ function StyleView() {
         <div className="oc-columns-item-container">
           <Brand />
         </div>
-
+        <div className="oc-columns-item-container">
+          <Logos />
+        </div>
+        <div className="oc-columns-item-container">
+          <Logos3rdParty />
+        </div>
         <div className="oc-columns-item-container">
           <Rebranding />
         </div>

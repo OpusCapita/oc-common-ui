@@ -110,7 +110,7 @@ const config = {
   },
   resolve: {
     root: path.resolve('./examples'),
-    extensions: ['', '.js', 'jsx'],
+    extensions: ['', '.js', '.jsx'],
   },
   plugins,
   postcss: function postcss() {

@@ -1,4 +1,4 @@
-export const CONTENT = {
+const CONTENT = {
   topic: 'OpusCapita logo usage',
   description: `The logo should be used in extended mode and only in case of too little space it can
     be used in minimised mode. White color is preferred when it is on top of the background color.
@@ -7,3 +7,5 @@ export const CONTENT = {
   minimised: 'Logo in minimised mode',
   favicon: 'Logo for favicon',
 };
+
+export default CONTENT;

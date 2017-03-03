@@ -1,5 +1,5 @@
 import React from 'react';
-import { Cards, Card, CardHeader, CardContent } from '../../src/index.js';
+import { Cards, Card, CardHeader, CardContent } from '../../src/index';
 import './cards-view.component.scss';
 
 export default class CardsView extends React.Component {

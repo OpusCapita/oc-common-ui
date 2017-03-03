@@ -1,6 +1,6 @@
 import React from 'react';
 import CONTENT from './buttons.constants';
-import { Card, CardHeader, CardContent } from '../../../src/index.js';
+import { Card, CardHeader, CardContent } from '../../../src/index';
 import { ButtonToolbar, Button, Modal, OverlayTrigger } from 'react-bootstrap';
 
 require('../../../styles/_table.scss');

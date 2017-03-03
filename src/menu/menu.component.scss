@@ -14,7 +14,7 @@ $oc-menu-item-border-width: 3px;
 
 .oc-menu-item {
   display: flex;
-  flex-direction: row;  
+  flex-direction: row;
   align-items: center;
   padding: 1rem;
   outline: none;
@@ -32,10 +32,10 @@ $oc-menu-item-border-width: 3px;
   white-space: nowrap;
 
   &:hover, &:focus, &.active {
-      background: lighten($oc-color-background-menu, 10%);
+      background: lighten($oc-color-background-menu, 20%);
       outline: 0;
-      text-decoration: none;    
-      color: $oc-sidemenu-color-text; 
+      text-decoration: none;
+      color: $oc-sidemenu-color-text;
   }
 
   .oc-submenu-item-content {
@@ -55,6 +55,8 @@ $oc-menu-item-border-width: 3px;
 
 .oc-submenu-item {
   font-size: 0.9em;
+  // padding-left: 2.5rem;
+  background: lighten($oc-color-background-menu, 10%);
 }
 
 .oc-menu-item-active {

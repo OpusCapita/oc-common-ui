@@ -1,7 +1,7 @@
 import React from 'react';
-import Logo from './logo.component.jsx';
-import { Card, CardHeader, CardContent } from '../../../../src/index.js';
-import CONTENT from './logos-3rdparty.constants.js';
+import Logo from './logo.component';
+import { Card, CardHeader, CardContent } from '../../../../src/index';
+import CONTENT from './logos-3rdparty.constants';
 
 require('./logos.scss');
 

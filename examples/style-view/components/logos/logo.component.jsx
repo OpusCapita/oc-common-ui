@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Icon } from '../../../../src/index.js';
+import { Icon } from '../../../../src/index';
 
 require('./logo.scss');
 
@@ -68,17 +68,24 @@ Logo.defaultProps = {
   text: null,
   dark: false,
   containerStyle: null,
+  height: undefined,
+  width: undefined,
 };
 
 Logo.propTypes = {
-  height: PropTypes.number.isRequired,
-  width: PropTypes.number.isRequired,
+  height: PropTypes.number,
+  width: PropTypes.number,
   minimised: PropTypes.bool,
   inverted: PropTypes.bool,
   horizontal: PropTypes.bool,
   text: PropTypes.string,
   dark: PropTypes.bool,
-  containerStyle: PropTypes.string,
+  containerStyle: PropTypes.shape({
+    display: PropTypes.string,
+    alignItems: PropTypes.string,
+    height: PropTypes.number,
+    width: PropTypes.number,
+  }),
 };
 
 export default Logo;

@@ -1,11 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Logo from './style-view/components/logos/logo.component.jsx';
+import Logo from './style-view/components/logos/logo.component';
 var Sidebar = require('react-sidebar').default;
 import './app.component.scss';
-import Menu from '../src/menu/menu.component.jsx';
+import Menu from '../src/menu/menu.component';
 import ITEMS from './layout/menu.constants';
-import { Icon } from '../src/index.js';
+import { Icon } from '../src/index';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -117,7 +117,7 @@ export default class App extends React.Component {
             <div className="oc-layout-content-left" hidden={!this.state.isSideMenuOpen && this.state.isNarrow}>
               {
                 this.state.isNarrow ? null :
-                <Logo containerStyle={{ display: 'flex', alignItems: 'center', height: 40, width: 200}} width={200} height={30}/>
+                <Logo containerStyle={{ display: 'flex', alignItems: 'center', height: 50, width: 200}} width={200} height={30}/>
               }
               <Menu items={ITEMS}/>
             </div>

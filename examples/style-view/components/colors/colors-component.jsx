@@ -1,6 +1,6 @@
 import React from 'react';
 import Color from '../color/color-component.jsx';
-import { Card, CardHeader, CardContent } from '../../../../src/index.js';
+import { Card, CardHeader, CardContent } from '../../../../src/index';
 
 require('./colors.scss');
 
@@ -12,7 +12,7 @@ export default class Colors extends React.Component {
       { name: 'Azure', hex: '#67707C', rgb: 'R103 G112 B124' },
       { name: 'Red', hex: '#DD2515', rgb: 'R221 G37 B21' },
       { name: 'Black', hex: '#000000', rgb: 'R0 G0 B0' },
-      { name: 'Petrol', hex: '#006070', rgb: 'R0 G96 B112' },      
+      { name: 'Petrol', hex: '#006070', rgb: 'R0 G96 B112' },
     ];
     return colors;
   };
@@ -24,7 +24,7 @@ export default class Colors extends React.Component {
       { name: 'Light Gray', hex: '#D3DADE', rgb: 'R211 G218 B222' },
       { name: 'Green', hex: '#3AA57B', rgb: 'R58 G165 B123' },
       { name: 'Blue', hex: '#16AED6', rgb: 'R22 G174 B214' },
-      { name: 'Violet', hex: '#943BA3', rgb: 'R148 G59 B163' },      
+      { name: 'Violet', hex: '#943BA3', rgb: 'R148 G59 B163' },
     ];
     return colors;
   };
@@ -49,7 +49,7 @@ export default class Colors extends React.Component {
               return <Color key={color.name} color={color}/>;
             })}
           </div>
-        </CardContent> 
+        </CardContent>
       </Card>
     );
   }

@@ -1,6 +1,6 @@
 import React from 'react';
-import Logo from './logo.component.jsx';
-import { Card, CardHeader, CardContent } from '../../../../src/index.js';
+import Logo from './logo.component';
+import { Card, CardHeader, CardContent } from '../../../../src/index';
 import CONTENT from './logos.constants';
 
 const favIcon = require('../../../../images/favicon.ico');
@@ -36,7 +36,7 @@ function Logos() {
           </div>
           <div className="oc-logos-item">
             <div><strong>{ CONTENT.favicon }</strong></div>
-            <div><img alt="OpusCapita favicon" src={favIcon}/></div>
+            <div><img alt="OpusCapita favicon" src={favIcon} /></div>
           </div>
         </div>
       </CardContent>

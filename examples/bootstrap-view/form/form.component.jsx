@@ -1,8 +1,8 @@
 import React from 'react';
 import { FormGroup, FormControl, ControlLabel, ButtonToolbar, HelpBlock, Checkbox, Button, Radio } from 'react-bootstrap';
-import { Callout } from '../../style-view/components/callout/callout.component.jsx';
+import { Callout } from '../../style-view/components/callout/callout.component';
 import STATUS from '../../style-view/components/callout/callout.constants';
-import { Card, CardHeader, CardContent } from '../../../src/index.js';
+import { Card, CardHeader, CardContent } from '../../../src/index';
 import Select from 'react-select';
 import CONTENT from './form.constants';
 

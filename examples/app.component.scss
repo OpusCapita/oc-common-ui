@@ -19,6 +19,8 @@ $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
 @import '../node_modules/react-select/scss/components.scss';
 @import '../styles/_app';
 
+svg{pointer-events:none;}
+
 .oc-layout {
     display: flex;
     flex-direction: column;

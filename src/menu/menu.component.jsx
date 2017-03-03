@@ -5,12 +5,21 @@ import './menu.component.scss';
 
 import { Icon } from '../index';
 
+const ENTER = 13;
+
 export default class Menu extends React.Component {
   constructor(props) {
     super(props);
     this.state = { openItems: {} };
   }
 
+  onKeyDown = (event, item) => {
+    if (event.keyCode ) {
+      if (event.keyCode === ENTER) {
+        this.onGroupItemClick(item);
+      }
+    }
+  }
   onGroupItemClick = (groupItem) => {
     if (this.state.openItems[groupItem.to]) {
       this.state.openItems[groupItem.to] = !this.state.openItems[groupItem.to];
@@ -31,12 +40,12 @@ export default class Menu extends React.Component {
     let element = null;
 
     element = (
-      <div
-        onClick={() => this.onGroupItemClick(item)}
+      <div tabIndex="0"
+        onClick={() => this.onGroupItemClick(item)} onKeyDown={(e) => {this.onKeyDown(e, item)}}
         className={className}
       >
-        <span className="oc-submenu-item-content">{item.name}</span>
-        <div className={'oc-submenu-item-extra' + (isOpen ? ' rotate90' : '')}>
+        <span tabIndex="-1" className="oc-submenu-item-content">{item.name}</span>
+        <div tabIndex="-1" className={'oc-submenu-item-extra' + (isOpen ? ' rotate90' : '')}>
           <Icon type="indicator" name="CaretRight" height={20} width={20} />
         </div>
       </div>
@@ -52,10 +61,12 @@ export default class Menu extends React.Component {
       const isOpen = this.state.openItems[item.to];
 
       if (item.items) {
-        return (<div key={item.to} >
-          { this.getMenuItem(item, subMenu, isOpen) }
-          { isOpen ? this.getMenuItems(item.items, true) : null }
-        </div>);
+        return (
+          <div key={item.to} tabIndex="-1">
+            { this.getMenuItem(item, subMenu, isOpen) }
+            { isOpen ? this.getMenuItems(item.items, true) : null }
+            </div>
+          );
       }
       return (
         <Link
@@ -71,9 +82,9 @@ export default class Menu extends React.Component {
 
   render() {
     return (
-      <div className="oc-layout-menu">
+      <nav className="oc-layout-menu">
         { this.getMenuItems(this.props.items, false) }
-      </div>
+      </nav>
     );
   }
 }

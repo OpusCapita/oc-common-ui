@@ -1,6 +1,6 @@
 import React from 'react';
-import { Card, CardHeader, CardContent } from '../../../../src/index.js';
-import Callout from '../callout/callout.component.jsx';
+import { Card, CardHeader, CardContent } from '../../../../src/index';
+import Callout from '../callout/callout.component';
 import CONTENT from './rebranding.constants';
 import STATUS from '../callout/callout.constants';
 

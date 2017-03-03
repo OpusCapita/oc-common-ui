@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardHeader, CardContent } from '../../../src/index.js';
+import { Card, CardHeader, CardContent } from '../../../src/index';
 import { Tooltip, ButtonToolbar, OverlayTrigger, Button} from 'react-bootstrap';
 import CONTENT from './tooltips.constants';
 

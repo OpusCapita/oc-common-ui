@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import Logo from './style-view/components/logos/logo.component';
+import Logo from './views/style/components/logos/logo.component';
 var Sidebar = require('react-sidebar').default;
 import './app.component.scss';
 import Menu from '../src/menu/menu.component';

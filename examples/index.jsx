@@ -8,21 +8,20 @@ import { createStore,
 import { Provider } from 'react-redux';
 import { IntlProvider, intlReducer } from 'react-intl-redux';
 import thunk from 'redux-thunk';
-import { alertsReducer, OCAlert } from '../src/index.js';
-import App from './app.component.jsx';
-import CardsView from './cards-view/cards-view.component.jsx';
-import SpinnerView from './spinner-view/spinner-view.component.jsx';
-import AlertsView from './alerts-view/alerts-view.component.jsx';
-import SplitPaneView from './split-pane-view/split-pane-view.component.jsx';
-import DropdownMenuView from './dropdown-menu-view/dropdown-menu-view.component.jsx';
-import BootstrapView from './bootstrap-view/bootstrap.component.jsx';
-import StyleView from './style-view/style-view.component.jsx';
-import Introduction from './views/introduction/introduction.component.jsx';
-import Patterns from './views/patterns/patterns.component.jsx';
-import Layout from './views/layout/layout.component.jsx';
-
+import { alertsReducer, OCAlert } from '../src/index';
+import App from './app.component';
+import CardsView from './components/cards-view/cards-view.component';
+import SpinnerView from './components/spinner-view/spinner-view.component';
+import AlertsView from './components/alerts-view/alerts-view.component';
+import SplitPaneView from './components/split-pane-view/split-pane-view.component';
+import DropdownMenuView from './components/dropdown-menu-view/dropdown-menu-view.component';
+import BootstrapView from './views/bootstrap/bootstrap.component';
+import StyleView from './views/style/style.component';
+import Introduction from './views/introduction/introduction.component';
+import Patterns from './views/patterns/patterns.component';
+import Layout from './views/layout/layout.component';
 import ResponsiveNavbarView from
-  './responsive-navbar-view/responsive-navbar-view.component.jsx';
+  './components/responsive-navbar-view/responsive-navbar-view.component';
 
 require('../images/favicon.ico');
 

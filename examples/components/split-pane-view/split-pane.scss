@@ -1,0 +1,40 @@
+@import '../../../styles/colors';
+
+$content-color-1: #383838;
+$content-color-2: #585858;
+$content-color-3: #787878;
+
+.oc-split-pane-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+  height: 100%;
+  width: 100%;
+  color: $oc-color-white;
+  font-size: 4rem;
+}
+
+.content1 {
+    background-color: $content-color-1;
+
+  &:hover {
+    background-color: lighten($content-color-1, 10);
+  }
+}
+
+.content2 {
+    background-color: $content-color-2;
+
+  &:hover {
+    background-color: lighten($content-color-2, 10);
+  }
+}
+
+.content3 {
+    background-color: $content-color-3;
+
+  &:hover {
+    background-color: lighten($content-color-3, 10);
+  }
+}

@@ -1,41 +1,41 @@
 import React from 'react';
+import { Button, ButtonToolbar } from 'react-bootstrap';
 import { OCAlerts, OCAlert } from '../../../src/index';
 
 function AlertsView() {
-  return (<div className="container">
-    <div className="row">
-      <div className="col-md-offset-3 col-md-6">
-        <h1>Alerts</h1>
-      </div>
+  return (
+    <div className="oc-content">
+      <h1>Alerts</h1>
+      <p>Use alerts from for showing semantic notifications to the end user.</p>
+      <h2>Usage</h2>
+      <p>
+        Include single OCAlert component in main container of the application.
+      </p>
+      <ButtonToolbar>
+        <Button
+          bsStyle="info" onClick={() => {
+            OCAlert.alertInfo('alert info!');
+          }}
+        >Info</Button>
+        <Button
+          bsStyle="success" onClick={() => {
+            OCAlert.alertSuccess('alert success!');
+          }}
+        >Success</Button>
+        <Button
+          bsStyle="warning" onClick={() => {
+            OCAlert.alertWarning('alert warning!');
+          }}
+        >Warning</Button>
+        <Button
+          bsStyle="danger" onClick={() => {
+            OCAlert.alertError('alert error!');
+          }}
+        >Error</Button>
+      </ButtonToolbar>
+      <OCAlerts />
     </div>
-    <div className="row">
-      <div className="col-md-offset-3 col-md-6">
-        <div className="btn-toolbar">
-          <button
-            type="button" className="btn btn-info" onClick={() => {
-              OCAlert.alertInfo('alert info!');
-            }}
-          >Info</button>
-          <button
-            type="button" className="btn btn-success" onClick={() => {
-              OCAlert.alertSuccess('alert success!');
-            }}
-          >Success</button>
-          <button
-            type="button" className="btn btn-warning" onClick={() => {
-              OCAlert.alertWarning('alert warning!');
-            }}
-          >Warning</button>
-          <button
-            type="button" className="btn btn-danger" onClick={() => {
-              OCAlert.alertError('alert error!');
-            }}
-          >Error</button>
-        </div>
-      </div>
-    </div>
-    <OCAlerts />
-  </div>);
+  );
 }
 
 export default AlertsView;

@@ -30,12 +30,24 @@ const ITEMS = [
     to: '/components',
     items: [
       {
+        name: 'Autocomplete',
+        to: '/autocomplete',
+      },
+      {
         name: 'Alerts',
         to: '/alerts',
       },
       {
+        name: 'Button',
+        to: '/button',
+      },
+      {
         name: 'Cards',
         to: '/cards',
+      },
+      {
+        name: 'Datagrid',
+        to: '/datagrid',
       },
       {
         name: 'Spinner',

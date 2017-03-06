@@ -12,11 +12,14 @@ import { alertsReducer, OCAlert } from '../src/index';
 import App from './app.component';
 import CardsView from './components/cards-view/cards-view.component';
 import SpinnerView from './components/spinner-view/spinner-view.component';
+import AutocompleteView from './components/autocomplete/autocomplete.component';
+import ButtonView from './components/button/button.component';
 import AlertsView from './components/alerts-view/alerts-view.component';
 import SplitPaneView from './components/split-pane-view/split-pane-view.component';
 import DropdownMenuView from './components/dropdown-menu-view/dropdown-menu-view.component';
 import BootstrapView from './views/bootstrap/bootstrap.component';
 import StyleView from './views/style/style.component';
+import DatagridView from './components/datagrid/datagrid.component';
 import Introduction from './views/introduction/introduction.component';
 import Patterns from './views/patterns/patterns.component';
 import Layout from './views/layout/layout.component';
@@ -44,6 +47,9 @@ render((
           <Route path="/introduction" component={Introduction} />
           <Route path="/layout" component={Layout} />
           <Route path="/patterns" component={Patterns} />
+          <Route path="/datagrid" component={DatagridView} />
+          <Route path="/button" component={ButtonView} />
+          <Route path="/autocomplete" component={AutocompleteView} />
           <Route path="/style" component={StyleView} />
           <Route path="/css" component={BootstrapView} />
           <Route path="/alerts" component={AlertsView} />

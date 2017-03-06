@@ -6,10 +6,10 @@ function AlertsView() {
   return (
     <div className="oc-content">
       <h1>Alerts</h1>
-      <p>Use alerts from for showing semantic notifications to the end user.</p>
+      <p>Use alerts for showing semantic notifications to the end user.</p>
       <h2>Usage</h2>
       <p>
-        Include single OCAlert component in main container of the application.
+        Include single OCAlerts component in main container of the application.
       </p>
       <ButtonToolbar>
         <Button

@@ -56,6 +56,10 @@ import IndicatorMore from
   '../../images/indicators/More.svg';
 import IndicatorSettings from
   '../../images/indicators/Settings.svg';
+import IndicatorSearch from
+  '../../images/indicators/Search.svg';
+import IndicatorPinned from
+  '../../images/indicators/Pinned.svg';
 
 import ProductInvoices from
   '../../images/products/Invoices.svg';
@@ -132,6 +136,8 @@ const components = {
     help: React.createFactory(IndicatorHelp),
     more: React.createFactory(IndicatorMore),
     settings: React.createFactory(IndicatorSettings),
+    search: React.createFactory(IndicatorSearch),
+    pinned: React.createFactory(IndicatorPinned),
   },
   product: {
     Invoices: React.createFactory(ProductInvoices),

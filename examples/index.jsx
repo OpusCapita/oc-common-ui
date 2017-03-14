@@ -27,6 +27,8 @@ import Patterns from './views/patterns/patterns.component';
 import Layout from './views/layout/layout.component';
 import ResponsiveNavbarView from
   './components/responsive-navbar-view/responsive-navbar-view.component';
+import WizardView from
+  './components/wizard-view/wizard-view.component';
 
 require('../images/favicon.ico');
 
@@ -62,6 +64,7 @@ render((
           <Route path="/split-pane" component={SplitPaneView} />
           <Route path="/dropdown-menu" component={DropdownMenuView} />
           <Route path="/responsive-navbar" component={ResponsiveNavbarView} />
+          <Route path="/wizard" component={WizardView} />
         </Route>
       </Router>
     </IntlProvider>

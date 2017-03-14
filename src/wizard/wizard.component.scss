@@ -1,0 +1,116 @@
+
+#wizard-pages {
+  display: flex;
+  flex-direction: column;
+  background-color: white;
+  height: 100%;
+
+  #wizard-header {
+    display: flex;
+    flex-direction: row;
+  }
+
+  .hidden-button {
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    margin-right: 10px;
+    margin-left: 10px;
+
+    &:focus {
+        box-shadow: 0px 0px 0 0px Transparent,
+          0 0 0 0px Transparent;
+    }
+  }
+
+  ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+  li {
+    flex: 0 0 auto;
+    text-align: center;
+    padding: 0 0.7rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    border-bottom: 4px solid #D3DADE;
+
+    &.doing {
+      border-bottom: 4px solid #EC6608;
+    }
+  }
+
+  li a {
+      display: block;
+      text-align: center;
+      padding: 16px;
+      text-decoration: none;
+      color: #67707c;
+  }
+
+  li a:hover {
+      background-color: #D3DADE;
+  }
+
+  #wizard-content {
+    display: flex;
+    flex: 1 1 auto;
+    margin-left: 40px;
+    margin-right: 40px;
+    margin-bottom: 20px;
+  }
+
+  #wizard-footer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+
+    #bottom-indicators {
+    display: flex;
+    flex-direction: row;
+    height: 35px;
+    }
+
+    #bottom-buttons {
+      display: flex;
+      flex-direction: row;
+
+      button {
+        height: 42px;
+        margin: 10px;
+
+        .oc-icon-indicator {
+          fill: white;
+        }
+      }
+    }
+
+    .tab-indicator {
+      width: 10px;
+      height: 10px;
+      background: gray;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      margin: 5px;
+    }
+
+    .tab-highlight {
+      background: #EC6608;
+    }
+  }
+}
+

@@ -69,6 +69,10 @@ const ITEMS = [
     name: 'Responsive navbar',
     to: '/responsive-navbar',
   },
+  {
+    name: 'Wizard',
+    to: '/wizard',
+  },
 ];
 
 export default ITEMS;

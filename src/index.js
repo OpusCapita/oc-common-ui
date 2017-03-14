@@ -10,3 +10,4 @@ export * from './searchbar/index.js';
 export * from './responsive-navbar/index.js';
 export * from './layouts/main/index.js';
 export * from './extended-search/index.js';
+export * from './wizard/index.js';

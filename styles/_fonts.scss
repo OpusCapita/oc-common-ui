@@ -6,6 +6,7 @@
         url('../fonts/lato/lato-bold.woff') format('woff'),
         url('../fonts/lato/lato-bold.ttf') format('truetype');
 }
+
 @font-face {
     font-family: 'Lato';
     font-weight: 400;
@@ -14,6 +15,7 @@
         url('../fonts/lato/lato-regular.woff') format('woff'),
         url('../fonts/lato/lato-regular.ttf') format('truetype');
 }
+
 @font-face {
     font-family: 'Lato';
     font-weight: 300;
@@ -21,4 +23,16 @@
     src: url('../fonts/lato/lato-light.woff2') format('woff2'),
         url('../fonts/lato/lato-light.woff') format('woff'),
         url('../fonts/lato/lato-light.ttf') format('truetype');
+}
+
+.oc-font-light {
+    font-weight: 300;
+}
+
+.oc-font-normal {
+    font-weight: 400;
+}
+
+.oc-font-bold {
+    font-weight: 700;
 }

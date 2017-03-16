@@ -1,133 +1,49 @@
 import React from 'react';
-import { Link } from 'react-router';
-import Logo from './views/style/components/logos/logo.component';
-var Sidebar = require('react-sidebar').default;
-import './app.component.scss';
 import Menu from '../src/menu/menu.component';
 import ITEMS from './layout/menu.constants';
-import { Icon } from '../src/index';
+import { mainLayout } from '../src/index';
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {sidebarOpen: true, isNarrow: false, isSideMenuOpen: false };
-  }
+import './app.component.scss';
 
-  onSetSideMenu = () => {
-    this.setState({isSideMenuOpen: !this.state.isSideMenuOpen});
-  }
-
-  getHeader2 = () => {
-    let burger = this.state.isNarrow ? <button type="button" className="btn btn-default navbar-btn" onClick={this.onSetSideMenu}>Burger</button> : null;
-    return (
-      <div className="oc-layout-header">
-        <nav className="navbar navbar-default">
-          <div className="container-fluid">
-            <div className="navbar-header">
-              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-                <span className="sr-only">Toggle navigation</span>
-                <span className="icon-bar"/>
-                <span className="icon-bar"/>
-                <span className="icon-bar"/>
-              </button>
-              <div className="oc-layout-header-inline">
-                { burger}
-                <Logo containerStyle={{ display: 'flex', alignItems: 'center', height: 40, width: 200}} width={200} height={30}/>
-              </div>
-            </div>
-            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-              <ul className="nav navbar-nav">
-                <li><Link activeClassName="oc-link-active" to="/style">Style</Link></li>
-                <li><Link activeClassName="oc-link-active" to="/bootstrap">Bootstrap</Link></li>
-                <li role="presentation" className="dropdown">
-                  <a className="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-                    Components <span className="caret"/>
-                  </a>
-                  <ul className="dropdown-menu">
-                    <li><Link activeClassName="oc-link-active" to="/alerts">Alerts</Link></li>
-                    <li><Link activeClassName="oc-link-active" to="/cards">Cards</Link></li>
-                    <li><Link activeClassName="oc-link-active" to="/spinner">Spinner</Link></li>
-                    <li><Link activeClassName="oc-link-active" to="/split-pane">Split Pane</Link></li>
-                    <li><Link activeClassName="oc-link-active" to="/dropdown-menu">Dropdown Menu</Link></li>
-                    <li><Link activeClassName="oc-link-active" to="/responsive-navbar">Responsive Navbar</Link></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-      </div>
+class Header extends React.Component {
+  render() { return  (
+    <div style={{ height: 40, width: '100%', backgroundColor: 'green'}}>HERE BE HEADER</div>
     );
   }
-
-  getHeader = () => {
-    if(!this.state.isNarrow) {
-      return null;
-    } else {
-      return (
-        <div className="oc-layout-header">
-          <div className="oc-layout-header-content">
-            <a className="oc-burger" onClick={this.onSetSideMenu}>
-              <Icon type="indicator" name={this.state.isSideMenuOpen ? 'burgerClose' : 'burger'} width={30} height={30}/>
-            </a>
-            <Logo containerStyle={{ display: 'flex', alignItems: 'center', height: 30, width: 200}} width={200} height={30}/>
-          </div>
-        </div>
-      );
-    }
-  }
-
-  onSetSidebarOpen = (open) => {
-    this.setState({sidebarOpen: open});
-  }
-
-  mediaQueryChanged = () => {
-    this.setState({isNarrow: this.state.mql.matches});
-  }
-
-  componentWillMount = () => {
-    var mql = window.matchMedia(`(max-width: 1279px)`);
-    mql.addListener(this.mediaQueryChanged);
-    this.setState({mql: mql, isNarrow: mql.matches});
-  }
-
-  getWithSidebar = () => {
-    var sidebarContent = <Menu/>;
-    return (
-       <Sidebar sidebar={sidebarContent}
-               docked={this.state.sidebarOpen}
-               onSetOpen={this.onSetSidebarOpen}>
-      <div className="oc-layout">
-        <div className="oc-layout-header">
-          { this.getHeader() }
-        </div>
-         <div className="oc-layout-content">
-            {this.props.children}
-        </div>
-    </div>
-     </Sidebar>
-    )
-  };
-
-  getWithoutSidebar = () => {
-    return (
-      <div className="oc-layout">
-        { this.getHeader() }
-         <div className="oc-layout-content">
-            <div className="oc-layout-content-left" hidden={!this.state.isSideMenuOpen && this.state.isNarrow}>
-              {
-                this.state.isNarrow ? null :
-                <Logo containerStyle={{ display: 'flex', alignItems: 'center', height: 50, width: 200}} width={200} height={30}/>
-              }
-              <Menu items={ITEMS}/>
-            </div>
-          <div className="oc-layout-content-right">
-            {this.props.children}
-          </div>
-        </div>
-    </div>
-    )
-  };
-
-  render() { return this.getWithoutSidebar(); }
 }
+
+class SideMenu extends React.Component {
+  render() { return  <Menu items={ITEMS}/> }
+}
+
+class TestMenu extends React.Component {
+  render() {
+    return <div style={{ width: 200, height: '100%', backgroundColor: 'blue'}}>HERE BE MENU</div>
+  }
+}
+
+class TestApp extends React.Component {
+  render() {
+    return <div style={{ height: '100%', backgroundColor: 'yellow'}}>HERE BE CONTENT</div>
+  }
+}
+
+class Footer extends React.Component {
+  render() { return  (
+    <div style={{ height: 40, backgroundColor: 'red'}}>HERE BE FOOTER</div>
+    );
+  }
+}
+
+class App extends React.Component {
+  getContent = () => {
+    return (
+      <div  style={{ height: '100%'}}>
+        { this.props.children }
+      </div>
+      )
+  };
+  render() { return this.getContent(); }
+}
+
+export default mainLayout(App, null, SideMenu, null, { closeMenuOutside: true, showHeader: true, breakPoint: 1279 });

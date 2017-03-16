@@ -36,3 +36,11 @@ Some components needs reducers to be loaded in the redux store, those are done i
 
 ### Trouble shooting
 * If you get any errors about running many instances of certain npm libraries eg. React, check that your project's webpack is configured to resolve those conflicting packages to your projects `node_modules` directory. [Docs](https://webpack.github.io/docs/configuration.html#resolve-alias)
+
+### Examples
+* Demo implementations of the components
+* Run `npm run examples` to create output to `examples-build` or `npm run hot` for using hot reload functionality
+
+## Links
+
+Cheatseet for [Markdown syntax](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).

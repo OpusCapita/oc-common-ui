@@ -50,6 +50,14 @@ const ITEMS = [
         to: '/datagrid',
       },
       {
+        name: 'Searchbar',
+        to: '/searchbar',
+      },
+      {
+        name: 'ExtendedSearch',
+        to: '/extendedsearch',
+      },
+      {
         name: 'Spinner',
         to: '/spinner',
       },

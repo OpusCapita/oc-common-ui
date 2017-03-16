@@ -6,4 +6,7 @@ export * from './spinner/index.js';
 export * from './alerts/index.js';
 export * from './dropdown-menu/index.js';
 export * from './split-pane/index.js';
+export * from './searchbar/index.js';
 export * from './responsive-navbar/index.js';
+export * from './layouts/main/index.js';
+export * from './extended-search/index.js';

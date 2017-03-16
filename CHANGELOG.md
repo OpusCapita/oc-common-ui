@@ -2,6 +2,10 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## 0.0.15
+
+* Add Wizard component
+
 ## 0.0.14
 
 * Add Pinned and Search icons

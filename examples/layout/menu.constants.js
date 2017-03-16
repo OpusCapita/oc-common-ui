@@ -1,79 +1,73 @@
 const ITEMS = [
+  // {
+  //   name: 'Introduction',
+  //   to: '/introduction',
+  // },
+  // {
+  //   name: 'Style',
+  //   to: '/style',
+  // },
+  // {
+  //   name: 'Technology',
+  //   to: '/technology',
+  //   items: [
+  //     {
+  //       name: 'CSS',
+  //       to: '/css',
+  //     },
+  //   ],
+  // },
+  // {
+  //   name: 'Patterns',
+  //   to: '/patterns',
+  // },
+  // {
+  //   name: 'Layout',
+  //   to: '/layout',
+  // },
   {
-    name: 'Introduction',
-    to: '/introduction',
+    name: 'Autocomplete',
+    to: '/autocomplete',
   },
   {
-    name: 'Style',
-    to: '/style',
+    name: 'Alerts',
+    to: '/alerts',
   },
   {
-    name: 'Technology',
-    to: '/technology',
-    items: [
-      {
-        name: 'CSS',
-        to: '/css',
-      },
-    ],
+    name: 'Button',
+    to: '/button',
   },
   {
-    name: 'Patterns',
-    to: '/patterns',
+    name: 'Cards',
+    to: '/cards',
   },
   {
-    name: 'Layout',
-    to: '/layout',
+    name: 'Datagrid',
+    to: '/datagrid',
   },
   {
-    name: 'Components',
-    to: '/components',
-    items: [
-      {
-        name: 'Autocomplete',
-        to: '/autocomplete',
-      },
-      {
-        name: 'Alerts',
-        to: '/alerts',
-      },
-      {
-        name: 'Button',
-        to: '/button',
-      },
-      {
-        name: 'Cards',
-        to: '/cards',
-      },
-      {
-        name: 'Datagrid',
-        to: '/datagrid',
-      },
-      {
-        name: 'Searchbar',
-        to: '/searchbar',
-      },
-      {
-        name: 'ExtendedSearch',
-        to: '/extendedsearch',
-      },
-      {
-        name: 'Spinner',
-        to: '/spinner',
-      },
-      {
-        name: 'Split Pane',
-        to: '/split-pane',
-      },
-      {
-        name: 'Dropdown',
-        to: '/dropdown-menu',
-      },
-      {
-        name: 'Responsive navbar',
-        to: '/responsive-navbar',
-      },
-    ],
+    name: 'Searchbar',
+    to: '/searchbar',
+  },
+  {
+    name: 'ExtendedSearch',
+    to: '/extendedsearch',
+  },
+  {
+    name: 'Spinner',
+    to: '/spinner',
+  },
+  {
+    name: 'Split Pane',
+    to: '/split-pane',
+  },
+  {
+    name: 'Dropdown',
+    to: '/dropdown-menu',
+  },
+  {
+    name: 'Responsive navbar',
+    to: '/responsive-navbar',
   },
 ];
 

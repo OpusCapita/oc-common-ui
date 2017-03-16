@@ -18,19 +18,30 @@ class ExtendedSearch extends React.Component {
     this.setState({ showModal: true });
   }
 
+  select = (selection) => {
+    this.setState({ showModal: false });
+    this.props.callback(selection);
+  }
+
   render() {
     return (
       <span>
         <SearchBar label={this.props.label} action={this.open} horizontal={this.props.horizontal} />
         <Modal show={this.state.showModal} onHide={this.close}>
           <Modal.Header closeButton>
-            <Modal.Title>Modal heading</Modal.Title>
+            <Modal.Title>{this.props.title}</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <h4>Text in a modal</h4>
+            {
+              React.Children.map(this.props.children,
+                (child) => React.cloneElement(child, {
+                  select: this.select
+                })
+              )
+            }
           </Modal.Body>
           <Modal.Footer>
-            <Button onClick={this.close}>Close</Button>
+            <Button bsStyle="primary" onClick={this.close}>Close</Button>
           </Modal.Footer>
         </Modal>
       </span>
@@ -40,11 +51,13 @@ class ExtendedSearch extends React.Component {
 
 ExtendedSearch.defaultProps = {
   placeholder: null,
+  title: null,
   horizontal: false,
 };
 
 ExtendedSearch.propTypes = {
   label: PropTypes.string.isRequired,
+  title: PropTypes.string,
   callback: PropTypes.func.isRequired,
   horizontal: PropTypes.bool,
 };

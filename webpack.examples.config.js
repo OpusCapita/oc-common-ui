@@ -53,7 +53,6 @@ const config = {
   noInfo: true,
   entry: {
     app: CONFIG.examplesEntry,
-    vendor: Object.keys(pkg.dependencies),
   },
   // devtool: 'source-map',
   output: {

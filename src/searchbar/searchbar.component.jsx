@@ -1,6 +1,13 @@
 import React, { PropTypes } from 'react';
-import { Col, FormGroup, Button, ControlLabel, InputGroup, FormControl } from 'react-bootstrap';
-import Icon from '../icons/icon.component';
+import {
+  Col,
+  FormGroup,
+  Button,
+  ControlLabel,
+  InputGroup,
+  FormControl,
+} from 'react-bootstrap';
+
 
 function SearchBar({ label, placeholder, action, horizontal }) {
   function getHorizontal() {

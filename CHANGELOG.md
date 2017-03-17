@@ -2,6 +2,10 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## 0.0.16
+
+* Move package.json dependencies to devDependencies (multiple react instances error)
+
 ## 0.0.15
 
 * Add Wizard component

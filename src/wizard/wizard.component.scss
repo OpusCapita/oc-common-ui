@@ -8,6 +8,7 @@
   #wizard-header {
     display: flex;
     flex-direction: row;
+    flex: 0 0 auto;
   }
 
   .hidden-button {
@@ -73,6 +74,7 @@
   #wizard-footer {
     display: flex;
     flex-direction: column;
+    flex: 0 0 auto;
     justify-content: center;
     align-items: center;
     background-color: white;

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Form } from 'react-bootstrap';
+import { Grid, Row, Col, Form, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
 import { ExtendedSearch } from '../../../src/index';
 
 class Content extends React.Component {
@@ -15,26 +15,52 @@ class Content extends React.Component {
   ]
   render() {
     return (
-      <table className="table table-hover">
-        <thead>
-          <tr>
-            <th><div>Name</div></th>
-            <th><div>Group</div></th>
-          </tr>
-        </thead>
-        <tbody>
-        {
-          this.items.map((item) => {
-            return (
-              <tr style={{cursor: 'pointer'}} key={item.id} onClick={() => this.props.select(item)}>
-                <td>{ item.name }</td>
-                <td>{ item.group }</td>
-              </tr>
-            );
-          })
-        }
-        </tbody>
-      </table>
+      <div>
+        <Form>
+          <div className="container-fluid">
+            <div className="row">
+              <div className="col-sm-12 col-md-4">
+                <FormGroup>
+                  <ControlLabel>ID</ControlLabel>
+                  <FormControl type="text" />
+                </FormGroup>
+              </div>
+              <div className="col-sm-12 col-md-4">
+                <FormGroup>
+                  <ControlLabel>Name</ControlLabel>
+                  <FormControl type="text" />
+                </FormGroup>
+              </div>
+               <div className="col-sm-12 col-md-4">
+                <FormGroup>
+                  <ControlLabel>Group</ControlLabel>
+                  <FormControl type="text" />
+                </FormGroup>
+              </div>
+            </div>
+          </div>
+        </Form>
+        <table className="table table-hover">
+          <thead>
+            <tr>
+              <th><div>Name</div></th>
+              <th><div>Group</div></th>
+            </tr>
+          </thead>
+          <tbody>
+          {
+            this.items.map((item) => {
+              return (
+                <tr style={{cursor: 'pointer'}} key={item.id} onClick={() => this.props.select(item)}>
+                  <td>{ item.name }</td>
+                  <td>{ item.group }</td>
+                </tr>
+              );
+            })
+          }
+          </tbody>
+        </table>
+      </div>
     );
   }
 }
@@ -47,11 +73,21 @@ function ExtendedSearchView() {
   return (
     <div className="oc-content">
       <h1>ExtendedSearch</h1>
-      <Form style={{ width: 450 }} horizontal>
-        <ExtendedSearch callback={callback} label="domain" title="Search for contracts" horizontal>
-          <Content />
-        </ExtendedSearch>
-      </Form>
+      <div className="container">
+        <div className="row">
+          <div className="col-xs-12 col-sm-8 col-md-6 col-lg-4">
+            <Form horizontal>
+              <ExtendedSearch
+                callback={callback} label="Supplier"
+                title="Search for contracts"
+                modal={ { bsSize: 'lg' } }
+                horizontal>
+                <Content />
+              </ExtendedSearch>
+            </Form>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

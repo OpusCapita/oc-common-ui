@@ -27,7 +27,7 @@ class ExtendedSearch extends React.Component {
     return (
       <span>
         <SearchBar label={this.props.label} action={this.open} horizontal={this.props.horizontal} />
-        <Modal show={this.state.showModal} onHide={this.close}>
+        <Modal show={this.state.showModal} onHide={this.close} {...this.props.modal}>
           <Modal.Header closeButton>
             <Modal.Title>{this.props.title}</Modal.Title>
           </Modal.Header>
@@ -53,6 +53,7 @@ ExtendedSearch.defaultProps = {
   placeholder: null,
   title: null,
   horizontal: false,
+  modal: null
 };
 
 ExtendedSearch.propTypes = {
@@ -60,6 +61,7 @@ ExtendedSearch.propTypes = {
   title: PropTypes.string,
   callback: PropTypes.func.isRequired,
   horizontal: PropTypes.bool,
+  modal: PropTypes.object,
 };
 
 export default ExtendedSearch;

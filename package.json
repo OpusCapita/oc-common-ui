@@ -1,4 +1,5 @@
 {
+  "author": "OpusCapita (www.opuscapita.com)",
   "name": "ocfrontend",
   "version": "0.0.16",
   "private": true,
@@ -16,11 +17,10 @@
     "lodash": "^4.17.4",
     "react": ">=0.15.4",
     "react-bootstrap": "^0.30.7",
-    "react-custom-scrollbars": "^4.0.2",
     "react-dom": ">=0.15.4",
     "react-immutable-proptypes": "^2.1.0",
-    "react-intl": "^2.2.2",
-    "react-intl-redux": "^0.3.0",
+    "react-intl": "^2.1.5",
+    "react-intl-redux": "^0.2.0",
     "react-perfect-scrollbar": "^0.1.1",
     "react-redux": "^5.0.2",
     "react-router": "^3.0.0",
@@ -75,11 +75,10 @@
     "react": ">=0.15.4",
     "react-addons-test-utils": "^15.4.2",
     "react-bootstrap": "^0.30.7",
-    "react-custom-scrollbars": "^4.0.2",
     "react-dom": ">=0.15.4",
     "react-immutable-proptypes": "^2.1.0",
-    "react-intl": "^2.2.2",
-    "react-intl-redux": "^0.3.0",
+    "react-intl": "^2.1.5",
+    "react-intl-redux": "^0.2.0",
     "react-perfect-scrollbar": "^0.1.1",
     "react-redux": "^5.0.2",
     "react-router": "^3.0.0",
@@ -108,6 +107,5 @@
   "repository": {
     "type": "git",
     "url": "http://tfssrv2:8080/tfs/DefaultCollection/OC3/_git/ocfrontend.git"
-  },
-  "author": "OpusCapita"
+  }
 }

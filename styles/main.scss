@@ -1,8 +1,17 @@
-@import "colors",
-        "mixins",
-        "fonts",
-        "icons",
-        "buttons",
-        // "links",
-        "inputs",
-        "variables";
+@import "colors";
+@import "mixins";
+@import "variables";
+@import "fonts";
+@import "icons";
+@import "buttons";
+@import "inputs";
+@import "table";
+@import "app";
+
+@import 'bootstrap_v3_custom';
+// $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
+// @import "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
+@import 'bootstrap_without_icons';
+@import 'bootstrap_v3_overrides';
+@import 'react_select_custom';
+@import '../node_modules/react-select/scss/components.scss';

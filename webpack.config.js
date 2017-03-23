@@ -6,14 +6,22 @@ const precss = require('precss');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const combineLoaders = require('webpack-combine-loaders');
 const nodeExternals = require('webpack-node-externals');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
-
+const buildPath = 'lib';
 const libraryName = 'ocfrontend';
 
-const plugins = [new ExtractTextPlugin('ocfrontend.css')];
-let outputFile;
+const plugins = [
+  new ExtractTextPlugin('ocfrontend.css'),
+  new CleanWebpackPlugin([buildPath], {
+    root: __dirname,
+    verbose: false,
+    dry: false,
+  }),
+];
 
+let outputFile;
 if (env === 'build') {
   plugins.push(new UglifyJsPlugin({ minimize: true }));
   outputFile = `${libraryName}.js`;
@@ -41,15 +49,15 @@ const config = {
       },
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=100&mimetype=application/font-woff',
+        loader: 'url?limit=100&mimetype=application/font-woff&name=[name].[ext]',
       },
       {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=100&mimetype=application/octet-stream',
+        loader: 'url?limit=100&mimetype=application/octet-stream&name=[name].[ext]',
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file',
+        loader: 'file?name=[name].[ext]',
       },
       {
         test: /\.scss$/,
@@ -65,7 +73,7 @@ const config = {
       {
         test: /\.svg$/,
         loaders: ['babel', 'react-svg'],
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
       },
     ],
   },

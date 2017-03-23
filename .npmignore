@@ -31,12 +31,10 @@ examples-build
 src
 test
 images
-fonts
-styles
 .babelrc
 .eslintrc
 .npmignore
-examples.html
 readme.md
 webpack.config.js
-webpack.examples.js
+webpack.examples.config.js
+webpack.examples.hot.config.js

@@ -31,6 +31,7 @@ Some components needs reducers to be loaded in the redux store, those are done i
 ### Creating a new release tag
 * Run `npm run build`
 * Commit changes
+* Push changes
 * Run `npm version 0.0.x` (use apropriate version number)
 * Run `git push origin v0.0.x` (again use the same version number)
 

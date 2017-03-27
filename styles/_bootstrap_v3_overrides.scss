@@ -1,6 +1,11 @@
 //== Navbars
 .navbar {
   border: none;
+
+  li > a {
+    user-select: none;
+    border-radius: 0;
+  }
 //   font-weight: normal;
 //   font-size: 18px;
 //   .navbar-nav {

@@ -20,6 +20,7 @@ export default class Menu extends React.Component {
       }
     }
   }
+
   onGroupItemClick = (groupItem) => {
     if (this.state.openItems[groupItem.to]) {
       this.state.openItems[groupItem.to] = !this.state.openItems[groupItem.to];

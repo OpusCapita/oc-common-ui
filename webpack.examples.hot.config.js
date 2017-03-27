@@ -5,10 +5,18 @@ const path = require('path');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const flexbugs = require('postcss-flexbugs-fixes');
+const CleanWebpackPlugin = require('clean-webpack-plugin');
+
+const CONFIG = {
+  root: __dirname,
+  examplesBuildPath: 'examples-build',
+  examplesEntry: path.join(__dirname, '/examples/index.jsx'),
+};
 
 const configuration = {
   entry: {
-    app: './examples/index.jsx',
+    app: CONFIG.examplesEntry,
   },
   devtool: 'source-map',
   output: {
@@ -77,9 +85,14 @@ const configuration = {
       filename: 'index.html',
       template: 'examples/index.html',
     }),
+    new CleanWebpackPlugin([CONFIG.examplesBuildPath], {
+      root: CONFIG.root,
+      verbose: false,
+      dry: false,
+    }),
   ],
   postcss: function postcss() {
-    return [precss, autoprefixer];
+    return [flexbugs, precss, autoprefixer];
   },
 };
 

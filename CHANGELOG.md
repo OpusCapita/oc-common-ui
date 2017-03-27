@@ -2,6 +2,17 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## 0.0.17
+* `fonts` and `styles` are included in the npm package as is.
+* updated `LICENSE-3RD-PARTY.md`
+* obsolete dependencies removed
+* unused `Lato` fonts removed
+* webpack cleans build path `lib`
+* fonts are included in [name].[ext] format instead of with hashes since they do not change often
+* `main.scss` does not import Glyphicons in order to have simpler configuration and due to reason that they will be dropped in Bootstrap v4
+* `mainLayout` component styles improved and card like look works with all major browsers: IE 11+, Opera, Firefox and Chrome
+
+
 ## 0.0.16
 
 * Move package.json dependencies to devDependencies (multiple react instances error)

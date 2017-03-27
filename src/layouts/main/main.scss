@@ -15,13 +15,20 @@
     box-shadow: 0px 2px 4px 0px rgba(0,0,0,0.15);
 }
 
+.oc-layout-footer {
+    margin: 0;
+}
+
 .oc-burger {
-    height: 30px;
-    width: 30px;
+    height: 40px;
+    width: 40px;
     cursor: pointer;
     outline: none;
     border: none;
     background-color: transparent;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .oc-layout-header-inline {
@@ -55,6 +62,6 @@
 .oc-layout-main-right {
     width: 100%;
     height: 100%;
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
+    // overflow-y: auto;
+    // -webkit-overflow-scrolling: touch;
 }

@@ -7,6 +7,7 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const combineLoaders = require('webpack-combine-loaders');
 const nodeExternals = require('webpack-node-externals');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const flexbugs = require('postcss-flexbugs-fixes');
 
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 const buildPath = 'lib';
@@ -83,7 +84,7 @@ const config = {
   },
   plugins,
   postcss: function postcss() {
-    return [precss, autoprefixer];
+    return [flexbugs, precss, autoprefixer];
   },
 };
 

@@ -4,15 +4,18 @@ var Sidebar = require('react-sidebar').default;
 
 require('./main.scss');
 
-// <Logo containerStyle={{ display: 'flex', alignItems: 'center', height: 30, width: 200}} width={200} height={30}/>
 
 export function mainLayout(Content, Header, Menu, Footer, options = {}) {
   const MENU_BREAK_POINT = options.breakPoint || 1279;
 
-  return class MainLayout extends React.Component {
+  return class MainLayout extends React.PureComponent {
      constructor(props) {
       super(props);
-      this.state = {sidebarOpen: true, isNarrow: false, isSideMenuOpen: false };
+      this.state = {
+        sidebarOpen: true,
+        isNarrow: window.innerWidth < MENU_BREAK_POINT ? true : false,
+        isSideMenuOpen: false
+      };
     }
 
     //Experimental technology: do not use in production
@@ -84,7 +87,9 @@ export function mainLayout(Content, Header, Menu, Footer, options = {}) {
         return null;
       }
 
-      return <div className="oc-layout-footer"><Footer /></div>;
+      return <div className="oc-layout-footer">
+        <Footer />
+      </div>;
     }
 
     onContentClick = (e) => {

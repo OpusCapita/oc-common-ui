@@ -6,6 +6,7 @@ const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const pkg = require('./package.json');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const flexbugs = require('postcss-flexbugs-fixes');
 
 const CONFIG = {
   root: __dirname,
@@ -113,7 +114,7 @@ const config = {
   },
   plugins,
   postcss: function postcss() {
-    return [precss, autoprefixer];
+    return [flexbugs, precss, autoprefixer];
   },
 };
 

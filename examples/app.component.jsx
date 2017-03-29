@@ -1,62 +1,63 @@
+/* eslint-disable react/no-multi-comp */
+/* eslint-disable no-unused-vars */
+
 import React from 'react';
 import Menu from '../src/menu/menu.component';
 import ITEMS from './layout/menu.constants';
-import { mainLayout } from '../src/index';
+import { applicationLayout } from '../src/index';
 
 import './app.component.scss';
 
 // const {whyDidYouUpdate} = require('why-did-you-update')
 // whyDidYouUpdate(React)
 
-const headerStyle = { height: 40, width: '100%', backgroundColor: 'green'};
-class Header extends React.Component {
-  render() { return  (
+const headerStyle = { height: 40, width: '100%', backgroundColor: 'green' };
+const Header = () => {
+  const content = (
     <div style={headerStyle}>HERE BE HEADER</div>
-    );
-  }
-}
+  );
 
-class SideMenu extends React.PureComponent {
-  render() { return  <Menu items={ITEMS}/> }
-}
+  return content;
+};
 
-const menuStyle = { width: 200, height: '100%', backgroundColor: 'blue'};
-class TestMenu extends React.Component {
-  render() {
-    return <div style={menuStyle}>HERE BE MENU</div>
-  }
-}
+const SideMenu = () => {
+  const content = <Menu items={ITEMS} />;
+  return content;
+};
 
-const appStyle = { height: '100%', backgroundColor: 'yellow'};
-class TestApp extends React.Component {
-  render() {
-    return <div style={appStyle}>HERE BE CONTENT</div>
-  }
-}
+const menuStyle = { width: 200, height: '100%', backgroundColor: 'blue' };
+const TestMenu = () => {
+  const content = <div style={menuStyle}>HERE BE MENU</div>;
+  return content;
+};
 
-const footerStyle = { height: 40, backgroundColor: 'red'};
-class Footer extends React.Component {
-  render() { return  (
-    <div style={footerStyle}>HERE BE FOOTER</div>
-    );
-  }
-}
+const appStyle = { height: '100%', backgroundColor: 'yellow' };
+const TestApp = () => {
+  const content = <div style={appStyle}>HERE BE CONTENT</div>;
+  return content;
+};
+
+const footerStyle = { height: 40, backgroundColor: 'red' };
+const Footer = () => {
+  const content = <div style={footerStyle}>HERE BE FOOTER</div>;
+  return content;
+};
 
 const layoutOptions = {
   closeMenuOutside: true,
   showHeader: true,
   breakPoint: 1279,
+  burgerClasses: ['oc-burger-orange'],
 };
 
-class App extends React.Component {
-  getContent = () => {
-    return (
-      <div className="oc-content-container">
-        { this.props.children }
-      </div>
-      )
-  };
-  render() { return this.getContent(); }
-}
+const Content = ({ children }) => {
+  const content = (
+    <div className="oc-content-container">
+      { children }
+    </div>
+  );
 
-export default mainLayout(App, null, SideMenu, null, layoutOptions);
+  return content;
+};
+
+export default applicationLayout(Content, null, SideMenu, null, layoutOptions);

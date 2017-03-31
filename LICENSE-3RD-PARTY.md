@@ -100,6 +100,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 * `chai`: Copyright (c) 2016 Chai.js Assertion Library
 * `chai-immutable`: Copyright (c) 2015 Jérémie Astori
 * `clean-webpack-plugin`: Copyright (c) 2015 John Agan
+* `cross-env`: Copyright (c) 2016 Kent C. Dodds
 * `enzyme`: Copyright (c) 2015 Airbnb, Inc.
 * `eslint-loader`: Copyright (c) 2015 Maxime Thirouin
 * `eslint-plugin-import`: Copyright (c) 2015 Ben Mosher
@@ -118,6 +119,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 * `webpack-node-externals`: Copyright (c) 2016 Liad Yosef
 * `react-split-pane`: Copyright (c) 2015 tomkp
 * `react-bootstrap`: Copyright (c) 2014-present Stephen J. Collings, Matthew Honnibal, Pieter Vanderwerff
+* `react-hot-loader`: Copyright (c) 2016 Dan Abramov
 * `react-immutable-proptypes`: Copyright (c) 2015 James Burnett
 * `react-perfect-scrollbar`: Copyright (c) 2016 Allen Yang
 * `react-redux`: Copyright (c) 2015-present Dan Abramov

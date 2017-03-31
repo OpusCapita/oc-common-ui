@@ -24,61 +24,91 @@ const configuration = {
     filename: 'examples.js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /(\.jsx|\.js)$/,
-        loader: 'babel',
+        use: [
+          'babel-loader',
+        ],
         exclude: /(node_modules|bower_components)/,
-        query: {
-          cacheDirectory: true,
-          plugins: [
-          ],
-        },
       },
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=100&mimetype=application/font-woff&name=[hash].[ext]',
+        use: [
+          'url-loader?limit=100&mimetype=application/font-woff&name=[hash].[ext]',
+        ],
       },
       {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=100&mimetype=application/octet-stream&name=[hash].[ext]',
+        use: [
+          'url-loader?limit=100&mimetype=application/octet-stream&name=[hash].[ext]',
+        ],
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file',
+        use: [
+          'file-loader',
+        ],
       },
       {
         test: /\.ejs$/,
-        loader: 'ejs-loader?variable=data',
+        use: [
+          'ejs-loader?variable=data',
+        ],
       },
       {
         test: /\.scss$/,
-        loader: 'style!css!postcss!sass',
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [flexbugs, precss, autoprefixer],
+            },
+          },
+          'sass-loader',
+        ],
       },
       {
         test: /\.svg($|\?)/,
-        loader: 'url-loader',
+        use: [
+          'url-loader',
+        ],
         include: /node_modules/,
       },
       {
         test: /\.svg$/,
-        loaders: ['babel', 'react-svg'],
+        use: ['babel-loader', 'react-svg-loader'],
         exclude: /node_modules/,
       },
       {
         test: /\.ico$/,
-        loader: 'file?name=[name].[ext]',
+        use: [
+          'file-loader?name=[name].[ext]',
+        ],
         include: /images/,
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader!postcss-loader',
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [flexbugs, precss, autoprefixer],
+            },
+          },
+        ],
       },
     ],
   },
   resolve: {
-    root: path.resolve('./examples'),
-    extensions: ['', '.js', 'jsx'],
+    modules: [
+      path.resolve('./examples'),
+    ],
+    extensions: ['.js', 'jsx'],
   },
   plugins: [
     new HtmlWebpackPlugin({
@@ -91,9 +121,6 @@ const configuration = {
       dry: false,
     }),
   ],
-  postcss: function postcss() {
-    return [flexbugs, precss, autoprefixer];
-  },
 };
 
 const wdsEntries = [
@@ -114,7 +141,7 @@ Object.keys(configuration.entry).forEach((key) => {
 
 // Add react transforms as babel plugin
 // https://github.com/gaearon/babel-plugin-react-transform
-configuration.module.loaders.forEach((loader, index) => {
+configuration.module.rules.forEach((loader, index) => {
   if (/^babel/.test(loader.loader)) {
     const reactTransformPlugin = ['react-transform', {
       transforms: [
@@ -125,10 +152,10 @@ configuration.module.loaders.forEach((loader, index) => {
         },
       ],
     }];
-    if (configuration.module.loaders[index].query.plugins) {
-      configuration.module.loaders[index].query.plugins.push(reactTransformPlugin);
+    if (configuration.module.rules[index].query.plugins) {
+      configuration.module.rules[index].query.plugins.push(reactTransformPlugin);
     } else {
-      configuration.module.loaders[index].query.plugins = [reactTransformPlugin];
+      configuration.module.rules[index].query.plugins = [reactTransformPlugin];
     }
   }
 });
@@ -140,14 +167,13 @@ configuration.plugins.push(new ProgressBarPlugin({ clear: false }));
 
 // Webpack dev server configuration
 configuration.resolve = {
-  extensions: ['', '.js', '.jsx', '.json', '.scss', '.css'],
+  extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
 };
 configuration.devServer = {
   noInfo: true,
   quiet: false,
   port: 5555,
   historyApiFallback: true,
-  outputPath: configuration.output.path, // for WriteFilePlugin
   clientLogLevel: 'error',
   hot: true,
   stats: { colors: true },

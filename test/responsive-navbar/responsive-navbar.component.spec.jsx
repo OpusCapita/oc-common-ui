@@ -42,7 +42,7 @@ describe('Responsive navbar component', function describe() {
   it('should render combobox correctly', function it() {
     const activeKey = 2;
 
-    const findDOMNode = sinon.stub(ReactDOM, 'findDOMNode', (ref) => {
+    const findDOMNode = sinon.stub(ReactDOM, 'findDOMNode').callsFake((ref) => {
       if (ref._reactInternalInstance._currentElement.ref === 'navitemref0') {
         return {
           offsetTop: 1,
@@ -100,11 +100,11 @@ describe('Responsive navbar component', function describe() {
       lastWidth: 0,
     });
 
-    const findDOMNode = sinon.stub(ReactDOM, 'findDOMNode', ref =>
+    const findDOMNode = sinon.stub(ReactDOM, 'findDOMNode').callsFake(ref =>
       ({ offsetTop: refUIData[ref] }),
     );
 
-    const navbarStub = sinon.stub(navbar, 'setState', (state) => {
+    const navbarStub = sinon.stub(navbar, 'setState').callsFake((state) => {
       navbar.state = state;
     });
 

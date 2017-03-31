@@ -4,7 +4,6 @@ const precss = require('precss');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
-const pkg = require('./package.json');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const flexbugs = require('postcss-flexbugs-fixes');
 
@@ -15,7 +14,14 @@ const CONFIG = {
 };
 
 const plugins = [
-  new webpack.optimize.CommonsChunkPlugin('vendor', 'js/vendor.bundle.[hash].js'),
+  new webpack.LoaderOptionsPlugin({
+    debug: false,
+    noInfo: true,
+  }),
+  new webpack.optimize.CommonsChunkPlugin({
+    name: 'vendor',
+    filename: 'js/vendor.bundle.[hash].js',
+  }),
   new CleanWebpackPlugin([CONFIG.examplesBuildPath], {
     root: CONFIG.root,
     verbose: false,
@@ -30,10 +36,10 @@ const plugins = [
       NODE_ENV: JSON.stringify('production'),
     },
   }),
-  new ExtractTextPlugin('styles/[name].[contenthash].css', {
+  new ExtractTextPlugin({
+    filename: 'styles/[name].[contenthash].css',
     allChunks: true,
   }),
-  new webpack.optimize.DedupePlugin(),
   new webpack.optimize.UglifyJsPlugin({
     compress: {
       warnings: true,
@@ -50,8 +56,6 @@ const plugins = [
 ];
 
 const config = {
-  debug: false,
-  noInfo: true,
   entry: {
     app: CONFIG.examplesEntry,
   },
@@ -61,61 +65,94 @@ const config = {
     filename: 'js/examples.[hash].js',
   },
   module: {
-    loaders: [
+    rules: [
       {
         test: /(\.jsx|\.js)$/,
-        loader: 'babel',
+        use: [
+          'babel-loader',
+        ],
         exclude: /(node_modules|bower_components)/,
       },
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=100&mimetype=application/font-woff&name=fonts/lato/[name].[ext]',
+        use: [
+          'url-loader?limit=100&mimetype=application/font-woff&name=[name].[ext]',
+        ],
       },
       {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=100&mimetype=application/octet-stream&name=fonts/lato/[name].[ext]',
+        use: [
+          'url-loader?limit=100&mimetype=application/octet-stream&name=[name].[ext]',
+        ],
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file?name=fonts/lato/[name].[ext]',
+        use: [
+          'file-loader?name=[name].[ext]',
+        ],
       },
       {
         test: /\.ejs$/,
-        loader: 'ejs-loader?variable=data',
+        use: [
+          'ejs-loader?variable=data',
+        ],
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract('style', 'css!postcss!sass', { publicPath: '../' }),
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [flexbugs, precss, autoprefixer],
+            },
+          },
+          'sass-loader',
+        ],
       },
       {
         test: /\.svg($|\?)/,
-        loader: 'url-loader',
+        use: [
+          'url-loader',
+        ],
         include: /node_modules/,
       },
       {
         test: /\.svg$/,
-        loaders: ['babel', 'react-svg'],
+        use: ['babel-loader', 'react-svg-loader'],
         exclude: /node_modules/,
       },
       {
         test: /\.ico$/,
-        loader: 'file?name=[name].[ext]',
+        use: [
+          'file-loader?name=[name].[ext]',
+        ],
         include: /images/,
       },
       {
         test: /\.css$/,
-        loader: 'style-loader!css-loader!postcss-loader',
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [flexbugs, precss, autoprefixer],
+            },
+          },
+        ],
       },
     ],
   },
   resolve: {
-    root: path.resolve('./examples'),
-    extensions: ['', '.js', '.jsx'],
+    modules: [
+      path.resolve('./examples'),
+      'node_modules',
+    ],
+    extensions: ['.js', '.jsx'],
   },
   plugins,
-  postcss: function postcss() {
-    return [flexbugs, precss, autoprefixer];
-  },
 };
 
 module.exports = config;

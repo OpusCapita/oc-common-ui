@@ -1,10 +1,8 @@
 const webpack = require('webpack');
 const path = require('path');
-const env = require('yargs').argv.mode;
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const combineLoaders = require('webpack-combine-loaders');
 const nodeExternals = require('webpack-node-externals');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
 const flexbugs = require('postcss-flexbugs-fixes');
@@ -12,9 +10,13 @@ const flexbugs = require('postcss-flexbugs-fixes');
 const UglifyJsPlugin = webpack.optimize.UglifyJsPlugin;
 const buildPath = 'lib';
 const libraryName = 'ocfrontend';
+const outputFile = `${libraryName}.js`;
+const isProduction = process.env.NODE_ENV === 'production';
 
 const plugins = [
-  new ExtractTextPlugin('ocfrontend.css'),
+  new ExtractTextPlugin({
+    filename: 'ocfrontend.css',
+  }),
   new CleanWebpackPlugin([buildPath], {
     root: __dirname,
     verbose: false,
@@ -22,13 +24,14 @@ const plugins = [
   }),
 ];
 
-let outputFile;
-if (env === 'build') {
-  plugins.push(new UglifyJsPlugin({ minimize: true }));
-  outputFile = `${libraryName}.js`;
-} else {
-  outputFile = `${libraryName}.js`;
-}
+// if (isProduction) {
+//   plugins.push(new UglifyJsPlugin({ minimize: true }));
+//   plugins.push(new webpack.DefinePlugin({
+//     'process.env': {
+//       NODE_ENV: JSON.stringify('production'),
+//     },
+//   }));
+// }
 
 const config = {
   entry: path.join(__dirname, '/src/index.js'),
@@ -42,50 +45,67 @@ const config = {
   },
   externals: [nodeExternals()],
   module: {
-    loaders: [
+    rules: [
       {
         test: /(\.jsx|\.js)$/,
-        loader: 'babel',
+        use: [
+          'babel-loader',
+        ],
         exclude: /(node_modules|bower_components)/,
       },
       {
         test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=100&mimetype=application/font-woff&name=[name].[ext]',
+        use: [
+          'url-loader?limit=100&mimetype=application/font-woff&name=[name].[ext]',
+        ],
       },
       {
         test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'url?limit=100&mimetype=application/octet-stream&name=[name].[ext]',
+        use: [
+          'url-loader?limit=100&mimetype=application/octet-stream&name=[name].[ext]',
+        ],
       },
       {
         test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        loader: 'file?name=[name].[ext]',
+        use: [
+          'file-loader?name=[name].[ext]',
+        ],
       },
       {
         test: /\.scss$/,
-        loader: ExtractTextPlugin.extract(
-            combineLoaders([{
-              loader: 'css-loader!postcss-loader!sass-loader',
-              query: {
-                modules: true,
-                localIdentName: '[name]__[local]___[hash:base64:5]',
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: process.env.NODE_ENV === 'production',
               },
-            }])),
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: () => [flexbugs, precss, autoprefixer],
+              },
+            },
+            'sass-loader',
+          ],
+        }),
       },
       {
         test: /\.svg$/,
-        loaders: ['babel', 'react-svg'],
-        // exclude: /node_modules/,
+        use: ['babel-loader', 'react-svg-loader'],
       },
     ],
   },
   resolve: {
-    root: path.resolve('./src'),
-    extensions: ['', '.js', '.jsx'],
+    modules: [
+      path.resolve('./src'),
+      'node_modules',
+    ],
+    extensions: ['.js', '.jsx'],
   },
   plugins,
-  postcss: function postcss() {
-    return [flexbugs, precss, autoprefixer];
-  },
 };
 
 module.exports = config;

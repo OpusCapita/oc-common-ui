@@ -92,6 +92,7 @@ export class ResponsiveNavbar extends React.Component {
           value={this.props.list[this.props.activeKey].href}
           options={items}
           onChange={this.selectionChanged}
+          inputProps={{ id: 'ocResponsiveNavbarSelect' }}
         />
       </div>
     );

@@ -61,14 +61,10 @@ describe('Responsive navbar component', function describe() {
       />,
     );
 
-    expect(wrapper.find('option').length).to.eql(4);
-    expect(wrapper.find('option').at(0).text()).to.eql('Style');
-    expect(wrapper.find('option').at(1).text()).to.eql(
-      'Item 2 longer and longer');
-    expect(wrapper.find('option').at(2).text()).to.eql(
-      'Item 3 even longer and longer');
-    expect(wrapper.find('option').at(3).text()).to.eql('Item 4');
+    // wrapper.find('#ocResponsiveNavbarSelect').simulate('click');
 
+    expect(wrapper.find('#ocResponsiveNavbarSelect').length).to.eql(1);
+    expect(wrapper.find('Select').length).to.eql(1);
     findDOMNode.restore();
   });
 

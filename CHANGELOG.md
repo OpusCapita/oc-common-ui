@@ -2,6 +2,15 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## 0.0.20
+
+* `dropdown-menu` icon size set explicitly.
+* [Webpack 2](https://webpack.js.org/) taken into use.
+
+## 0.0.19
+
+* `responsive-navbar` modified to render components as navItems.
+
 ## 0.0.18
 
 * `mainLayout` HoC renamed as `applicationLayout`.

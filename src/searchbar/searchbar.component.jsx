@@ -1,60 +1,75 @@
 import React, { PropTypes } from 'react';
 import {
-  Col,
-  FormGroup,
   Button,
-  ControlLabel,
   InputGroup,
   FormControl,
 } from 'react-bootstrap';
 
+const ENTER = 13;
 
-function SearchBar({ label, placeholder, action, horizontal }) {
-  function getHorizontal() {
-    return (
-      <FormGroup>
-        <Col componentClass={ControlLabel} sm={2}>
-          {label}
-        </Col>
-        <Col sm={10}>
-          <InputGroup>
-            <FormControl placeholder={placeholder} type="text" />
-            <InputGroup.Button>
-              <Button onClick={action}>Search</Button>
-            </InputGroup.Button>
-          </InputGroup>
-        </Col>
-      </FormGroup>
-    );
+class SearchBar extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: this.props.value };
   }
 
-  function getVertical() {
-    return (
-      <FormGroup>
-        <ControlLabel>{label}</ControlLabel>
-        <InputGroup>
-          <FormControl placeholder={placeholder} type="text" />
-          <InputGroup.Button>
-            <Button onClick={action}>Search</Button>
-          </InputGroup.Button>
-        </InputGroup>
-      </FormGroup>
-    );
+  shouldComponentUpdate(nextProps, nextState) {
+    if (this.state.value !== nextState.value) {
+      return true;
+    }
+    return false;
   }
 
-  return (horizontal ? getHorizontal() : getVertical());
+  handleChange = (e) => {
+    this.setState({ value: e.target.value });
+  }
+
+  handleOnKeyDown = (e) => {
+    if (e.keyCode && e.keyCode === ENTER && this.isValid()) {
+      this.handleSearch();
+    }
+  }
+
+  handleSearch = () => {
+    if (this.props.action) {
+      this.props.action(this.state.value);
+    }
+  }
+
+  isValid = () => {
+    const isValid = (this.state.value || '').length > 0;
+    return isValid;
+  }
+
+  render() {
+    const isValid = this.isValid();
+    return (
+      <InputGroup>
+        <FormControl
+          placeholder={this.props.placeholder}
+          type="text"
+          value={this.state.value}
+          onChange={this.handleChange}
+          onKeyDown={this.handleOnKeyDown}
+        />
+        <InputGroup.Button>
+          <Button onClick={this.handleSearch} disabled={!isValid}>Search</Button>
+        </InputGroup.Button>
+      </InputGroup>
+    );
+  }
 }
 
 SearchBar.defaultProps = {
   placeholder: null,
   horizontal: false,
+  value: '',
 };
 
 SearchBar.propTypes = {
-  label: PropTypes.string.isRequired,
   action: PropTypes.func.isRequired,
   placeholder: PropTypes.string,
-  horizontal: PropTypes.bool,
+  value: PropTypes.string,
 };
 
 export default SearchBar;

@@ -1,5 +1,5 @@
 import React, { PropTypes } from 'react';
-import { Modal, Button } from 'react-bootstrap';
+import { Modal, Button, ControlLabel, FormGroup, Col } from 'react-bootstrap';
 import SearchBar from '../searchbar/searchbar.component';
 
 class ExtendedSearch extends React.Component {
@@ -26,7 +26,15 @@ class ExtendedSearch extends React.Component {
   render() {
     return (
       <span>
-        <SearchBar label={this.props.label} action={this.open} horizontal={this.props.horizontal} />
+        <FormGroup>
+          <Col componentClass={ControlLabel} sm={2}>
+            {this.props.label}
+          </Col>
+          <Col sm={10}>
+            <SearchBar action={this.open} horizontal={this.props.horizontal} />
+          </Col>
+        </FormGroup>
+
         <Modal show={this.state.showModal} onHide={this.close} {...this.props.modal}>
           <Modal.Header closeButton>
             <Modal.Title>{this.props.title}</Modal.Title>
@@ -53,7 +61,7 @@ ExtendedSearch.defaultProps = {
   placeholder: null,
   title: null,
   horizontal: false,
-  modal: null
+  modal: null,
 };
 
 ExtendedSearch.propTypes = {

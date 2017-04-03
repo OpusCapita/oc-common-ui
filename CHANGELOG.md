@@ -2,6 +2,10 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## 0.1.1
+
+* `searchbar` empty value validation, local state for value and callback action gets value as parameter
+
 ## 0.1.0
 
 * `dropdown-menu` icon size set explicitly.

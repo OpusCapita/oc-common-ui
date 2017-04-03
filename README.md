@@ -29,11 +29,10 @@ Some components needs reducers to be loaded in the redux store, those are done i
 * Remember to update the CHANGELOG.md file with information about the changes to `src`
 
 ### Creating a new release tag
-* Run `npm run build`
-* Commit changes
+* Update `CHANGELOG.md` file
+* Commit changes (not `lib`)
 * Push changes
-* Run `npm version 0.0.x` (use apropriate version number)
-* Run `git push origin v0.0.x` (again use the same version number)
+* Run `npm version [major|minor|patch]` [Info](https://docs.npmjs.com/cli/version)
 
 ### Trouble shooting
 * If you get any errors about running many instances of certain npm libraries eg. React, check that your project's webpack is configured to resolve those conflicting packages to your projects `node_modules` directory. [Docs](https://webpack.github.io/docs/configuration.html#resolve-alias)

@@ -27,7 +27,7 @@ export default class DropdownMenu extends React.Component {
   };
 
   static defaultProps = {
-    title: <Icon type="indicator" name="more" />,
+    title: <Icon type="indicator" name="more" width={32} height={32} />,
     caret: false,
     disabled: false,
     dropup: false,

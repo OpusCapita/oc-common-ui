@@ -2,7 +2,7 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
-## 0.0.20
+## 0.1.19
 
 * `dropdown-menu` icon size set explicitly.
 * [Webpack 2](https://webpack.js.org/) taken into use.

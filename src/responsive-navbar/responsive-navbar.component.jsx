@@ -1,12 +1,12 @@
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
-import { FormGroup,
-         FormControl,
-         Navbar,
+import Select from 'react-select';
+import { Navbar,
          Nav,
          NavItem } from 'react-bootstrap';
 import { withRouter } from 'react-router';
 
+import 'react-select/dist/react-select.css';
 import './responsive-navbar.scss';
 
 
@@ -33,8 +33,8 @@ export class ResponsiveNavbar extends React.Component {
     const firstRef = this.refs[`navitemref${String(0)}`];
     const lastRef = this.refs[`navitemref${String(this.props.list.length - 1)}`];
 
-    const firstOffsetTop = ReactDOM.findDOMNode(firstRef).offsetTop;
-    const lastOffsetTop = ReactDOM.findDOMNode(lastRef).offsetTop;
+    const firstOffsetTop = ReactDOM.findDOMNode(firstRef) ? ReactDOM.findDOMNode(firstRef).offsetTop : 0;
+    const lastOffsetTop = ReactDOM.findDOMNode(lastRef) ? ReactDOM.findDOMNode(lastRef).offsetTop : 0;
 
     // Re-render Navbar to see if it fits if screen width increases
     // Do this once every 50 pixes.
@@ -51,8 +51,8 @@ export class ResponsiveNavbar extends React.Component {
     }
   }
 
-  selectionChanged = (event) => {
-    this.props.router.push(event.target.value);
+  selectionChanged = (item) => {
+    this.props.router.push(item.value);
   }
 
   navbar = () => {
@@ -80,26 +80,21 @@ export class ResponsiveNavbar extends React.Component {
   }
 
   combobox = () => {
-    const items = this.props.list.map((item, index) => (
-      <option
-        key={index}
-        value={item.href}
-        ref={`navitemref${String(index)}`}
-      >
-        {item.name}
-      </option>
-    ));
+    const items = this.props.list.map((item, index) =>
+      ({ value: item.href, label: item.name, id: index, ref: `navitemref${String(index)}` }),
+    );
     return (
-      <FormGroup id="responsive-navbar-select" controlId="formControlsSelect">
-        <FormControl
-          componentClass="select"
-          placeholder="select"
-          defaultValue={this.props.list[this.props.activeKey].href}
+      <div id="responsive-navbar-select">
+        <Select
+          name="responsiveNavbarSelect"
+          multi={false}
+          clearable={false}
+          value={this.props.list[this.props.activeKey].href}
+          options={items}
           onChange={this.selectionChanged}
-        >
-          {items}
-        </FormControl>
-      </FormGroup>
+          inputProps={{ id: 'ocResponsiveNavbarSelect' }}
+        />
+      </div>
     );
   }
 
@@ -112,7 +107,10 @@ export class ResponsiveNavbar extends React.Component {
 ResponsiveNavbar.propTypes = {
   activeKey: PropTypes.number.isRequired,
   list: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string,
+    name: PropTypes.oneOfType([
+      PropTypes.string,
+      PropTypes.node,
+    ]),
     href: PropTypes.string,
   })).isRequired,
 };

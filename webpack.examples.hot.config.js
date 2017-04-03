@@ -6,122 +6,75 @@ const autoprefixer = require('autoprefixer');
 const precss = require('precss');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const flexbugs = require('postcss-flexbugs-fixes');
-const CleanWebpackPlugin = require('clean-webpack-plugin');
 
-const CONFIG = {
+const params = {
   root: __dirname,
-  examplesBuildPath: 'examples-build',
-  examplesEntry: path.join(__dirname, '/examples/index.jsx'),
-};
-
-const configuration = {
-  entry: {
-    app: CONFIG.examplesEntry,
-  },
-  devtool: 'source-map',
+  buildPath: 'examples-build',
   output: {
     path: path.join(__dirname, '/examples-build'),
     filename: 'examples.js',
   },
-  module: {
-    rules: [
-      {
-        test: /(\.jsx|\.js)$/,
-        use: [
-          'babel-loader',
-        ],
-        exclude: /(node_modules|bower_components)/,
-      },
-      {
-        test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          'url-loader?limit=100&mimetype=application/font-woff&name=[hash].[ext]',
-        ],
-      },
-      {
-        test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          'url-loader?limit=100&mimetype=application/octet-stream&name=[hash].[ext]',
-        ],
-      },
-      {
-        test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
-        use: [
-          'file-loader',
-        ],
-      },
-      {
-        test: /\.ejs$/,
-        use: [
-          'ejs-loader?variable=data',
-        ],
-      },
-      {
-        test: /\.scss$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: () => [flexbugs, precss, autoprefixer],
-            },
-          },
-          'sass-loader',
-        ],
-      },
-      {
-        test: /\.svg($|\?)/,
-        use: [
-          'url-loader',
-        ],
-        include: /node_modules/,
-      },
-      {
-        test: /\.svg$/,
-        use: ['babel-loader', 'react-svg-loader'],
-        exclude: /node_modules/,
-      },
-      {
-        test: /\.ico$/,
-        use: [
-          'file-loader?name=[name].[ext]',
-        ],
-        include: /images/,
-      },
-      {
-        test: /\.css$/,
-        use: [
-          'style-loader',
-          'css-loader',
-          {
-            loader: 'postcss-loader',
-            options: {
-              plugins: () => [flexbugs, precss, autoprefixer],
-            },
-          },
-        ],
-      },
-    ],
+  entry: {
+    app: path.join(__dirname, '/examples/index.jsx'),
   },
-  resolve: {
-    modules: [
-      path.resolve('./examples'),
-    ],
-    extensions: ['.js', 'jsx'],
-  },
-  plugins: [
-    new HtmlWebpackPlugin({
-      filename: 'index.html',
-      template: 'examples/index.html',
-    }),
-    new CleanWebpackPlugin([CONFIG.examplesBuildPath], {
-      root: CONFIG.root,
-      verbose: false,
-      dry: false,
-    }),
-  ],
 };
+
+const getBaseConfiguration = require('./webpack/base.config.js');
+
+const plugins = [
+  new HtmlWebpackPlugin({ filename: 'index.html', template: 'examples/index.html' }),
+  new webpack.HotModuleReplacementPlugin(),
+  new WriteFilePlugin({ log: false }),
+  new ProgressBarPlugin({ clear: false }),
+];
+
+const rules = [
+  {
+    test: /\.ejs$/,
+    use: [
+      'ejs-loader?variable=data',
+    ],
+  },
+  {
+    test: /\.scss$/,
+    use: [
+      'style-loader',
+      'css-loader',
+      {
+        loader: 'postcss-loader',
+        options: {
+          plugins: () => [flexbugs, precss, autoprefixer],
+        },
+      },
+      'sass-loader',
+    ],
+  },
+  {
+    test: /\.ico$/,
+    use: [
+      'file-loader?name=[name].[ext]',
+    ],
+    include: /images/,
+  },
+  {
+    test: /\.css$/,
+    use: [
+      'style-loader',
+      'css-loader',
+      {
+        loader: 'postcss-loader',
+        options: {
+          plugins: () => [flexbugs, precss, autoprefixer],
+        },
+      },
+    ],
+  },
+];
+
+const config = getBaseConfiguration(params);
+config.devtool = 'source-map';
+config.plugins.push(...plugins);
+config.module.rules.push(...rules);
 
 const wdsEntries = [
   'webpack-dev-server/client?http://localhost:5555',
@@ -129,19 +82,19 @@ const wdsEntries = [
 ];
 
 // All entries must include webpack dev server entries
-Object.keys(configuration.entry).forEach((key) => {
-  if (Array.isArray(configuration.entry[key])) {
-    configuration.entry[key] = wdsEntries.concat(configuration.entry[key]);
+Object.keys(config.entry).forEach((key) => {
+  if (Array.isArray(config.entry[key])) {
+    config.entry[key] = wdsEntries.concat(config.entry[key]);
   } else {
-    const originalEntry = configuration.entry[key];
-    configuration.entry[key] = wdsEntries.slice(0);
-    configuration.entry[key].push(originalEntry);
+    const originalEntry = config.entry[key];
+    config.entry[key] = wdsEntries.slice(0);
+    config.entry[key].push(originalEntry);
   }
 });
 
 // Add react transforms as babel plugin
 // https://github.com/gaearon/babel-plugin-react-transform
-configuration.module.rules.forEach((loader, index) => {
+config.module.rules.forEach((loader, index) => {
   if (/^babel/.test(loader.loader)) {
     const reactTransformPlugin = ['react-transform', {
       transforms: [
@@ -152,24 +105,20 @@ configuration.module.rules.forEach((loader, index) => {
         },
       ],
     }];
-    if (configuration.module.rules[index].query.plugins) {
-      configuration.module.rules[index].query.plugins.push(reactTransformPlugin);
+    if (config.module.rules[index].query.plugins) {
+      config.module.rules[index].query.plugins.push(reactTransformPlugin);
     } else {
-      configuration.module.rules[index].query.plugins = [reactTransformPlugin];
+      config.module.rules[index].query.plugins = [reactTransformPlugin];
     }
   }
 });
 
-// Add webpack plugins
-configuration.plugins.push(new webpack.HotModuleReplacementPlugin());
-configuration.plugins.push(new WriteFilePlugin({ log: false }));
-configuration.plugins.push(new ProgressBarPlugin({ clear: false }));
-
 // Webpack dev server configuration
-configuration.resolve = {
-  extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
-};
-configuration.devServer = {
+// config.resolve = {
+//   extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
+// };
+
+config.devServer = {
   noInfo: true,
   quiet: false,
   port: 5555,
@@ -180,11 +129,4 @@ configuration.devServer = {
   // host: '192.168.0.101', // make dev server available on specific IP
 };
 
-// Now React will be built in an optimized manner
-configuration.plugins.push(new webpack.DefinePlugin({
-  'process.env': {
-    NODE_ENV: JSON.stringify('development'),
-  },
-}));
-
-module.exports = configuration;
+module.exports = config;

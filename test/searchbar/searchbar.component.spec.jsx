@@ -28,10 +28,10 @@ describe('SearchBar component', function describe() {
     return wrapper;
   }
 
-  it('should have correct title', function it() {
-    const wrapper = renderElement();
-    expect(wrapper.find(ControlLabel).text()).to.eql('My search');
-  });
+  // it('should have correct title', function it() {
+  //   const wrapper = renderElement();
+  //   expect(wrapper.find(ControlLabel).text()).to.eql('My search');
+  // });
 
   it('should set placeholder text', function it() {
     const wrapper = renderElement();
@@ -42,22 +42,11 @@ describe('SearchBar component', function describe() {
   it('should execute search', function it() {
     const props = {
       action: sinon.spy(),
+      value: 'Laptop',
     };
     const wrapper = renderElement(props);
     const searchButton = wrapper.find(Button);
     searchButton.simulate('click');
     expect(props.action.called).to.be.true;
-  });
-
-  it('should render horizontally', function it() {
-    const props = {
-      horizontal: true,
-    };
-    const wrapper = renderElement(props);
-    const cols = wrapper.find(Col);
-    expect(cols.length).to.eql(2);
-    expect(cols.get(0).props.sm).to.eql(2);
-    expect(cols.get(0).props.componentClass).to.eql(ControlLabel);
-    expect(cols.get(1).props.sm).to.eql(10);
   });
 });

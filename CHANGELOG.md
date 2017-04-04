@@ -2,6 +2,10 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## 0.1.2
+
+* `wizard` leaked ul and li style definitions to wizard content
+
 ## 0.1.1
 
 * `searchbar` empty value validation, local state for value and callback action gets value as parameter

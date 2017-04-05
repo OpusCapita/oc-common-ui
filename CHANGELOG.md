@@ -2,6 +2,10 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## <next>
+
+* `wizard` hide scroll arrows if there is nothing to scroll
+
 ## 0.1.2
 
 * `wizard` leaked ul and li style definitions to wizard content

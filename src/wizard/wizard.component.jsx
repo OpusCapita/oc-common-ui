@@ -14,7 +14,17 @@ export default class Wizard extends React.Component {
 
     this.state = {
       currentStep: 0,
+      showScroll: true,
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener('resize', this.updateScroll);
+    this.updateScroll();
+  }
+
+  componentWillUnmount() {
+    window.removeEventListener('resize', this.updateScroll);
   }
 
   getIndicators = () => (
@@ -25,6 +35,18 @@ export default class Wizard extends React.Component {
       return <span key={step.id} className="tab-indicator" />;
     })
   )
+
+  updateScroll = () => {
+    if (this.scrollbar.offsetWidth !== this.scrollbar.scrollWidth) {
+      this.setState({
+        showScroll: true,
+      });
+    } else {
+      this.setState({
+        showScroll: false,
+      });
+    }
+  }
 
   scrollLeft = () => {
     this.scrollbar.scrollLeft -= this.scrollStep;
@@ -46,9 +68,10 @@ export default class Wizard extends React.Component {
     return (
       <div id="wizard-pages">
         <div id="wizard-header">
-          <button className="hidden-button" onClick={this.scrollLeft}>
-            <Icon type="indicator" name="CaretLeft" height={30} width={30} />
-          </button>
+          { this.state.showScroll &&
+            <button className="hidden-button" onClick={this.scrollLeft}>
+              <Icon type="indicator" name="CaretLeft" height={30} width={30} />
+            </button> }
           <ul ref={(node) => { this.scrollbar = node; }}>
             {this.props.steps.map((step, i) => (
               <li
@@ -65,9 +88,10 @@ export default class Wizard extends React.Component {
               </li>
             ))}
           </ul>
-          <button className="hidden-button" onClick={this.scrollRight}>
-            <Icon type="indicator" name="CaretRight" height={30} width={30} />
-          </button>
+          { this.state.showScroll &&
+            <button className="hidden-button" onClick={this.scrollRight}>
+              <Icon type="indicator" name="CaretRight" height={30} width={30} />
+            </button> }
         </div>
         <div id="wizard-content">
           {this.props.steps[this.state.currentStep].component}

@@ -4,23 +4,34 @@ import React from 'react';
 import { Form } from 'react-bootstrap';
 import { SearchBar } from '../../../src/index';
 
-function SearchbarView() {
-  function action(value) {
+export default class SearchbarView extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = { value: '' };
+  }
+
+  handleSearch = (value) => {
     alert(value);
   }
 
-  return (
-    <div className="oc-content">
-      <h1>Searchbar</h1>
-      <Form style={{ maxWidth: 450 }}>
-        <SearchBar
-          action={action}
-          placeholder="Optional placeholder"
-        />
-      </Form>
-    </div>
-  );
-}
+  handleChange = (value) => {
+    this.setState({ value });
+  }
 
-export default SearchbarView;
+  render() {
+    return (
+      <div className="oc-content">
+        <h1>Searchbar</h1>
+        <Form style={{ maxWidth: 450 }}>
+          <SearchBar
+            value={this.state.value}
+            onSearch={this.handleSearch}
+            onChange={this.handleChange}
+            placeholder="Optional placeholder"
+          />
+        </Form>
+      </div>
+    );
+  }
+}
 

@@ -5,6 +5,7 @@
 ## <next>
 
 * `wizard` hide scroll arrows if there is nothing to scroll
+* `searchBar` is now stateless, has icon in button and has callback for value change
 
 ## 0.1.2
 

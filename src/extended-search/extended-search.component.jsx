@@ -7,6 +7,7 @@ class ExtendedSearch extends React.Component {
     super(props);
     this.state = {
       showModal: false,
+      value: '',
     };
   }
 
@@ -18,8 +19,12 @@ class ExtendedSearch extends React.Component {
     this.setState({ showModal: true });
   }
 
+  handleChange = (value) => {
+    this.setState({ value });
+  }
+
   select = (selection) => {
-    this.setState({ showModal: false });
+    this.setState({ showModal: false, value: selection.name });
     this.props.callback(selection);
   }
 
@@ -31,7 +36,7 @@ class ExtendedSearch extends React.Component {
             {this.props.label}
           </Col>
           <Col sm={10}>
-            <SearchBar action={this.open} horizontal={this.props.horizontal} />
+            <SearchBar onSearch={this.open} value={this.state.value} onChange={this.handleChange} />
           </Col>
         </FormGroup>
 

@@ -96,6 +96,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 * `babel-eslint`: Copyright (c) 2014-2016 Sebastian McKenzie <sebmck@gmail.com>
 * `babel-loader`: Copyright (c) 2014-2015 Luís Couto <hello@luiscouto.pt>
 * `babel-plugin-transform-decorators-legacy`: Copyright (c) 2015 Logan Smyth <loganfsmyth@gmail.com>
+* `bootstrap`: Copyright (c) 2011-2016 Twitter, Inc.
 * `bootstrap-sass`: Copyright (c) 2011-2016 Twitter, Inc, Copyright (c) 2011-2016 The Bootstrap Authors
 * `chai`: Copyright (c) 2016 Chai.js Assertion Library
 * `chai-immutable`: Copyright (c) 2015 Jérémie Astori

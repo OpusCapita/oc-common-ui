@@ -2,8 +2,9 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
-## <next>
+## 0.1.3
 
+* `wizard` scroll to selected tab when changing tabs with arrow buttons
 * `wizard` hide scroll arrows if there is nothing to scroll
 * `searchBar` is now stateless, has icon in button and has callback for value change
 

@@ -16,6 +16,8 @@ export default class Wizard extends React.Component {
       currentStep: 0,
       showScroll: true,
     };
+
+    this.tabElements = {};
   }
 
   componentDidMount() {
@@ -48,6 +50,15 @@ export default class Wizard extends React.Component {
     }
   }
 
+  centerSelectedTab = (tabIndex) => {
+    if (this.scrollbar.offsetWidth !== this.scrollbar.scrollWidth) {
+      const offsetLeft = tabIndex * this.tabElements[tabIndex].offsetWidth;
+      this.scrollbar.scrollLeft = (offsetLeft +
+        (this.tabElements[tabIndex].offsetWidth / 2)) -
+        (this.scrollbar.offsetWidth / 2);
+    }
+  }
+
   scrollLeft = () => {
     this.scrollbar.scrollLeft -= this.scrollStep;
   }
@@ -62,6 +73,7 @@ export default class Wizard extends React.Component {
     this.setState({
       currentStep: index,
     });
+    this.centerSelectedTab(index);
   }
 
   render() {
@@ -77,6 +89,7 @@ export default class Wizard extends React.Component {
               <li
                 key={step.id}
                 className={i === this.state.currentStep ? 'doing' : ''}
+                ref={(node) => { this.tabElements[i] = node; }}
               >
                 <a
                   id={step.id}

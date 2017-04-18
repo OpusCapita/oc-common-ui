@@ -2,6 +2,10 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## <next>
+
+* `wizard` fix horizontal auto scrolling
+
 ## 0.1.3
 
 * `wizard` scroll to selected tab when changing tabs with arrow buttons

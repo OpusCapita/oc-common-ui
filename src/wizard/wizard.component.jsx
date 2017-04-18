@@ -52,7 +52,10 @@ export default class Wizard extends React.Component {
 
   centerSelectedTab = (tabIndex) => {
     if (this.scrollbar.offsetWidth !== this.scrollbar.scrollWidth) {
-      const offsetLeft = tabIndex * this.tabElements[tabIndex].offsetWidth;
+      let offsetLeft = 0;
+      for (let i = 0; i < tabIndex; i += 1) {
+        offsetLeft += this.tabElements[i].offsetWidth;
+      }
       this.scrollbar.scrollLeft = (offsetLeft +
         (this.tabElements[tabIndex].offsetWidth / 2)) -
         (this.scrollbar.offsetWidth / 2);

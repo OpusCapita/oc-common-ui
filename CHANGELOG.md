@@ -2,7 +2,7 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
-## 0.2.3
+## 0.2.0
 
 * `wizard` fix horizontal auto scrolling
 * `styles` variables for configuring fonts

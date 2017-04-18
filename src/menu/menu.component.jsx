@@ -41,7 +41,7 @@ export default class Menu extends React.Component {
     const element = (
       <div
         tabIndex="0"
-        onClick={() => this.onGroupItemClick(item)} onKeyDown={(e) => { this.onKeyDown(e, item) }}
+        onClick={() => this.onGroupItemClick(item)} onKeyDown={(e) => { this.onKeyDown(e, item); }}
         className={classNameItem}
       >
         <span tabIndex="-1" className={classNameContent}>{item.name}</span>

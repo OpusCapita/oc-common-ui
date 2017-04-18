@@ -23,6 +23,7 @@ export default class Wizard extends React.Component {
   componentDidMount() {
     window.addEventListener('resize', this.updateScroll);
     this.updateScroll();
+    this.selectPage(undefined, this.props.activeStep);
   }
 
   componentWillUnmount() {
@@ -71,7 +72,9 @@ export default class Wizard extends React.Component {
   }
 
   selectPage = (event, index) => {
-    event.preventDefault();
+    if (event) {
+      event.preventDefault();
+    }
     if (index < 0 || index > this.props.steps.length - 1) return;
     this.setState({
       currentStep: index,
@@ -146,6 +149,10 @@ export default class Wizard extends React.Component {
   }
 }
 
+Wizard.defaultProps = {
+  activeStep: 0,
+};
+
 Wizard.propTypes = {
   save: PropTypes.func.isRequired,
   cancel: PropTypes.func.isRequired,
@@ -157,4 +164,5 @@ Wizard.propTypes = {
     save: PropTypes.string,
     cancel: PropTypes.cancel,
   }).isRequired,
+  activeStep: PropTypes.number,
 };

@@ -54,6 +54,14 @@ export default function applicationLayout(Content, Header, Menu, Footer, options
       this.setState({ sidebarOpen: open });
     }
 
+    onOutSideMenuClick = () => {
+      const isNarrow = window.innerWidth < MENU_BREAK_POINT;
+
+      if (options.closeMenuOutside && isNarrow && this.state.sidebarDocked) {
+        this.setState({ sidebarDocked: false });
+      }
+    }
+
     getHeader = () => {
       const burgerClasses = ['oc-burger', ...options.burgerClasses || []];
       if (this.state.isNarrow || options.showHeader) {
@@ -106,7 +114,8 @@ export default function applicationLayout(Content, Header, Menu, Footer, options
 
     render() {
       const content = (
-        <div className="oc-layout-application">
+        /* eslint-disable jsx-a11y/no-static-element-interactions */
+        <div className="oc-layout-application" onClick={this.onOutSideMenuClick}>
           { this.getHeader() }
           { this.getMain() }
           { this.getFooter() }

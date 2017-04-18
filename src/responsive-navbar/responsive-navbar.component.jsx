@@ -1,3 +1,8 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/no-string-refs */
+/* eslint-disable react/no-find-dom-node */
+/* eslint-disable react/prop-types */
+
 import React, { PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import Select from 'react-select';
@@ -33,8 +38,12 @@ export class ResponsiveNavbar extends React.Component {
     const firstRef = this.refs[`navitemref${String(0)}`];
     const lastRef = this.refs[`navitemref${String(this.props.list.length - 1)}`];
 
-    const firstOffsetTop = ReactDOM.findDOMNode(firstRef) ? ReactDOM.findDOMNode(firstRef).offsetTop : 0;
-    const lastOffsetTop = ReactDOM.findDOMNode(lastRef) ? ReactDOM.findDOMNode(lastRef).offsetTop : 0;
+    const firstOffsetTop = ReactDOM.findDOMNode(firstRef)
+    ? ReactDOM.findDOMNode(firstRef).offsetTop
+    : 0;
+    const lastOffsetTop = ReactDOM.findDOMNode(lastRef)
+    ? ReactDOM.findDOMNode(lastRef).offsetTop
+    : 0;
 
     // Re-render Navbar to see if it fits if screen width increases
     // Do this once every 50 pixes.

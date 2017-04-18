@@ -1,3 +1,4 @@
+/* eslint-disable react/forbid-prop-types */
 import React, { PropTypes } from 'react';
 import { Modal, Button, ControlLabel, FormGroup, Col } from 'react-bootstrap';
 import SearchBar from '../searchbar/searchbar.component';
@@ -47,9 +48,9 @@ class ExtendedSearch extends React.Component {
           <Modal.Body>
             {
               React.Children.map(this.props.children,
-                (child) => React.cloneElement(child, {
-                  select: this.select
-                })
+                (child) => {
+                  React.cloneElement(child, { select: this.select });
+                },
               )
             }
           </Modal.Body>
@@ -65,16 +66,19 @@ class ExtendedSearch extends React.Component {
 ExtendedSearch.defaultProps = {
   placeholder: null,
   title: null,
-  horizontal: false,
   modal: null,
+  children: null,
 };
 
 ExtendedSearch.propTypes = {
   label: PropTypes.string.isRequired,
   title: PropTypes.string,
   callback: PropTypes.func.isRequired,
-  horizontal: PropTypes.bool,
   modal: PropTypes.object,
+  children: React.PropTypes.oneOfType([
+    React.PropTypes.arrayOf(React.PropTypes.node),
+    React.PropTypes.node,
+  ]),
 };
 
 export default ExtendedSearch;

@@ -1,3 +1,4 @@
+/* eslint-disable import/no-duplicates */
 import React, { PropTypes } from 'react';
 
 import IndicatorRemove from

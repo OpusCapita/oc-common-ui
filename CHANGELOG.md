@@ -2,9 +2,12 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
-## <next>
+## 0.2.3
 
 * `wizard` fix horizontal auto scrolling
+* `styles` variables for configuring fonts
+* `eslint`either fixed or disabled temporarily
+* npm version promotion checks eslint rules
 
 ## 0.1.3
 

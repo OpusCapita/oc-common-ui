@@ -1,3 +1,4 @@
+/* eslint-disable import/prefer-default-export */
 import React, { PropTypes } from 'react';
 
 import { Icon } from '../icons/index';

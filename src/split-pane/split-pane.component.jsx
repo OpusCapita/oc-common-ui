@@ -30,13 +30,20 @@ const mapDispatchToProps = {
 export default class SplitPane extends React.Component {
 
   static propTypes = {
+    defaultSize: React.PropTypes.string,
     id: React.PropTypes.string.isRequired,
     size: React.PropTypes.number,
     resize: React.PropTypes.func.isRequired,
+    children: React.PropTypes.oneOfType([
+      React.PropTypes.arrayOf(React.PropTypes.node),
+      React.PropTypes.node,
+    ]),
   };
 
   static defaultProps = {
+    defaultSize: '50%',
     size: null,
+    children: null,
   }
 
   onChange = (size) => {

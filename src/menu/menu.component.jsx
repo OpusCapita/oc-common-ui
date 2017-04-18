@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
@@ -14,7 +16,7 @@ export default class Menu extends React.Component {
   }
 
   onKeyDown = (event, item) => {
-    if (event.keyCode ) {
+    if (event.keyCode) {
       if (event.keyCode === ENTER) {
         this.onGroupItemClick(item);
       }
@@ -32,21 +34,18 @@ export default class Menu extends React.Component {
   }
 
   getMenuItem = (item, subMenu, isOpen) => {
-    let className = 'oc-menu-item';
+    const classNameItem = `oc-menu-item ${subMenu ? 'oc-submenu-item' : ''}`;
+    const classNameContent = 'oc-submenu-item-content';
+    const classNameExtra = `oc-submenu-item-extra ${isOpen ? 'rotate90' : ''}`;
 
-    if (subMenu) {
-      className += ' oc-submenu-item';
-    }
-
-    let element = null;
-
-    element = (
-      <div tabIndex="0"
-        onClick={() => this.onGroupItemClick(item)} onKeyDown={(e) => {this.onKeyDown(e, item)}}
-        className={className}
+    const element = (
+      <div
+        tabIndex="0"
+        onClick={() => this.onGroupItemClick(item)} onKeyDown={(e) => { this.onKeyDown(e, item) }}
+        className={classNameItem}
       >
-        <span tabIndex="-1" className="oc-submenu-item-content">{item.name}</span>
-        <div tabIndex="-1" className={'oc-submenu-item-extra' + (isOpen ? ' rotate90' : '')}>
+        <span tabIndex="-1" className={classNameContent}>{item.name}</span>
+        <div tabIndex="-1" className={classNameExtra}>
           <Icon type="indicator" name="CaretRight" height={20} width={20} />
         </div>
       </div>
@@ -66,8 +65,8 @@ export default class Menu extends React.Component {
           <div key={item.to} tabIndex="-1">
             { this.getMenuItem(item, subMenu, isOpen) }
             { isOpen ? this.getMenuItems(item.items, true) : null }
-            </div>
-          );
+          </div>
+        );
       }
       return (
         <Link
@@ -90,6 +89,13 @@ export default class Menu extends React.Component {
   }
 }
 
+Menu.defaultProps = {
+  items: [],
+};
+
 Menu.propTypes = {
-  items: PropTypes.array,
+  items: PropTypes.arrayOf(PropTypes.shape({
+    to: PropTypes.string,
+    name: PropTypes.string,
+  })),
 };

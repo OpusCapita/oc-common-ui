@@ -1,6 +1,8 @@
-﻿@font-face {
+﻿@import 'variables';
+
+@font-face {
     font-family: 'Lato';
-    font-weight: 700;
+    font-weight: $oc-font-weight-bold;
     font-style: normal;
        src: url('../fonts/lato/lato-bold.woff2') format('woff2'),
         url('../fonts/lato/lato-bold.woff') format('woff'),
@@ -9,7 +11,7 @@
 
 @font-face {
     font-family: 'Lato';
-    font-weight: 400;
+    font-weight: $oc-font-weight-normal;
     font-style: normal;
        src: url('../fonts/lato/lato-regular.woff2') format('woff2'),
         url('../fonts/lato/lato-regular.woff') format('woff'),
@@ -18,7 +20,7 @@
 
 @font-face {
     font-family: 'Lato';
-    font-weight: 300;
+    font-weight: $oc-font-weight-light;
     font-style: normal;
     src: url('../fonts/lato/lato-light.woff2') format('woff2'),
         url('../fonts/lato/lato-light.woff') format('woff'),
@@ -26,13 +28,41 @@
 }
 
 .oc-font-light {
-    font-weight: 300;
+    font-weight: $oc-font-weight-light;
 }
 
 .oc-font-normal {
-    font-weight: 400;
+    font-weight: $oc-font-weight-normal;
 }
 
 .oc-font-bold {
-    font-weight: 700;
+    font-weight: $oc-font-weight-bold;
+}
+
+h1 {
+    font-size: $oc-font-size-h1;
+}
+
+h2 {
+    font-size: $oc-font-size-h2;
+}
+
+h3 {
+    font-size: $oc-font-size-h3;
+}
+
+.oc-font-large {
+    font-size: $oc-font-size-large;
+}
+
+.oc-font-medium {
+    font-size: $oc-font-size-medium;
+}
+
+.oc-font-normal {
+    font-size: $oc-font-size-normal;
+}
+
+.oc-font-small {
+    font-size: $oc-font-size-small;
 }

@@ -3,6 +3,17 @@ import { Button } from 'react-bootstrap';
 
 import { Wizard } from '../../../src/index';
 
+const contentStyle = {
+  display: 'flex',
+  backgroundColor: '#D3DADE',
+  justifyContent: 'center',
+  alignItems: 'center',
+  textTransform: 'uppercase',
+  minHeight: '100%',
+  width: '100%',
+  color: '#3B4A56',
+  fontSize: '4rem',
+};
 
 export default class WizardView extends React.Component {
   constructor() {
@@ -13,22 +24,33 @@ export default class WizardView extends React.Component {
 
     this.steps = [{
       id: '1',
-      name: 'Wizard page1',
-      component: <div>Page 1</div>,
+      name: 'Wizard page 1',
+      component: this.getContent('Page 1'),
     }, {
       id: '2',
-      name: 'Wizard page2',
-      component: <div>Page 2</div>,
+      name: 'Wizard page 2',
+      component: this.getContent('Page 2'),
     }, {
       id: '3',
-      name: 'Wizard page3',
-      component: <div>Page 3</div>,
+      name: 'Wizard page 3',
+      component: this.getContent('Page 3'),
     }, {
       id: '4',
-      name: 'Wizard page4',
-      component: <div>Page 4</div>,
+      name: 'Wizard page 4',
+      component: this.getContent('Page 4'),
     }];
   }
+
+  getContent = (text) => {
+    const content = (
+      <div style={contentStyle}>
+        { text }
+      </div>
+    );
+
+    return content;
+  }
+
 
   showWizard = () => {
     this.setState({

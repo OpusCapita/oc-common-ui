@@ -1,4 +1,5 @@
 /* eslint-disable import/prefer-default-export */
+/* eslint-disable react/no-array-index-key */
 
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';

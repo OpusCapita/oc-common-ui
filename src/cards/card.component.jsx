@@ -1,5 +1,5 @@
 /* eslint-disable import/prefer-default-export */
-
+/* eslint-disable react/no-unused-prop-types */
 import React, { PropTypes } from 'react';
 
 import './card.scss';

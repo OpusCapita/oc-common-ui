@@ -21,11 +21,12 @@ export default class DropdownMenu extends React.Component {
       icon: PropTypes.element,
       disabled: PropTypes.bool,
       disableClosing: PropTypes.bool,
-      onClick: PropTypes.func,
+      href: PropTypes.string,
+      onClick: PropTypes.func,      
     })).isRequired,
     disabled: PropTypes.bool,
     dropup: PropTypes.bool,
-    pullLeft: PropTypes.bool,
+    pullLeft: PropTypes.bool,    
   };
 
   static defaultProps = {
@@ -67,6 +68,7 @@ export default class DropdownMenu extends React.Component {
           key={`menuItem${i}`}
           id={item.id}
           disabled={!!item.disabled}
+          href={item.href}
           onClick={(e) => {
             if (item.disableClosing) {
               this.dontCloseDropdownMenu = true;

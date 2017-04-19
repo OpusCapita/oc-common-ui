@@ -2,6 +2,10 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## 1.0.0
+
+* Published to OpusCapita Github
+
 ## 0.2.0
 
 * `wizard` fix horizontal auto scrolling

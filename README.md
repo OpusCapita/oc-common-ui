@@ -1,13 +1,13 @@
-# ocfrontend
+# oc-common-ui
 * Run `npm install` to get the project's dependencies
 * Run `npm run build` to produce minified version of the library
 * Run `npm run dev` to produce development version of the library.
 * Run `npm run test` to run tests
 * Run `npm run examples` to run generate examples
 
-### To use ocfrontend
+### To use oc-common-ui
 ```javascript
-import { CardContent } from 'ocfrontend';
+import { CardContent } from 'oc-common-ui';
 ```
 Some components needs reducers to be loaded in the redux store, those are done in the main level and are usually already there. Same goes for ocfront styles.
 
@@ -17,13 +17,13 @@ Some components needs reducers to be loaded in the redux store, those are done i
 
 ### Development workflow with project using the package
 ##### Link local package to your project
-* Run `npm link` at `ocfrontend` root to make your local package linkable
-* Run `npm link ocfrontend` at project's dir that's using `ocfrontend` to use local package
+* Run `npm link` at `oc-common-ui` root to make your local package linkable
+* Run `npm link oc-common-ui` at project's dir that's using `oc-common-ui` to use local package
 ##### Build and watch the package
 * Run `npm run dev` to run webpack in watch mode
 ##### Unlink local package
-* Run `npm unlink ocfrontend` at project's dir that's using `ocfrontend`
-* Run `npm install` to install remote copy of the `ocfrontend` package
+* Run `npm unlink oc-common-ui` at project's dir that's using `oc-common-ui`
+* Run `npm install` to install remote copy of the `oc-common-ui` package
 
 ### Changelog
 * Remember to update the CHANGELOG.md file with information about the changes to `src`

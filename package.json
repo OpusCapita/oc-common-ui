@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "private": true,
   "description": "OpusCapita common UI components",
-  "main": "lib/ocfrontend.js",
+  "main": "lib/oc-common-ui.js",
   "scripts": {
     "lint": "node_modules/.bin/eslint --ext .jsx,.js src/",
     "build": "webpack -p --config webpack.config.js",

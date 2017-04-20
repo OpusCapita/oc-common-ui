@@ -10,10 +10,10 @@ const getBaseConfiguration = require('./webpack/base.config.js');
 
 const params = {
   root: __dirname,
-  buildPath: 'examples-build',
+  buildPath: 'docs',
   output: {
-    path: path.join(__dirname, '/examples-build'),
-    filename: 'js/examples.[hash].js',
+    path: path.join(__dirname, '/docs'),
+    filename: 'js/examples.js',
   },
   entry: {
     app: path.join(__dirname, '/examples/index.jsx'),
@@ -27,7 +27,7 @@ const plugins = [
   }),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
-    filename: 'js/vendor.bundle.[hash].js',
+    filename: 'js/vendor.bundle.js',
   }),
   new HtmlWebpackPlugin({
     filename: 'index.html',

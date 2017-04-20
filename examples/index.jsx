@@ -19,12 +19,7 @@ import ExtendedSearchView from './components/extended-search/extended-search.com
 import AlertsView from './components/alerts-view/alerts-view.component';
 import SplitPaneView from './components/split-pane-view/split-pane-view.component';
 import DropdownMenuView from './components/dropdown-menu-view/dropdown-menu-view.component';
-import BootstrapView from './views/bootstrap/bootstrap.component';
-import StyleView from './views/style/style.component';
 import DatagridView from './components/datagrid/datagrid.component';
-import Introduction from './views/introduction/introduction.component';
-import Patterns from './views/patterns/patterns.component';
-import Layout from './views/layout/layout.component';
 import ResponsiveNavbarView from
   './components/responsive-navbar-view/responsive-navbar-view.component';
 import WizardView from
@@ -47,17 +42,12 @@ render((
     <IntlProvider>
       <Router history={hashHistory}>
         <Route path="/" component={App} >
-          <IndexRedirect to="/introduction" />
-          <Route path="/introduction" component={Introduction} />
-          <Route path="/layout" component={Layout} />
-          <Route path="/patterns" component={Patterns} />
+          <IndexRedirect to="/autocomplete" />
           <Route path="/datagrid" component={DatagridView} />
           <Route path="/searchbar" component={SearchbarView} />
           <Route path="/extendedsearch" component={ExtendedSearchView} />
           <Route path="/button" component={ButtonView} />
           <Route path="/autocomplete" component={AutocompleteView} />
-          <Route path="/style" component={StyleView} />
-          <Route path="/css" component={BootstrapView} />
           <Route path="/alerts" component={AlertsView} />
           <Route path="/cards" component={CardsView} />
           <Route path="/spinner" component={SpinnerView} />

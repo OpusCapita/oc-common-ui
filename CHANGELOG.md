@@ -5,6 +5,10 @@
 ## <next>
 
 * Change package name from 'ocfrontend' to 'oc-common-ui'
+* Change lib style and js file names from 'ocfrontend' to 'oc-common-ui'
+* `npm run examples` outputs examples to docs folder that is used for Github pages
+* Removed unneeded code from examples
+* `docs` does not use hashes for `js`-files in order not to generate delete/add operations for commits
 
 ## 1.0.0
 

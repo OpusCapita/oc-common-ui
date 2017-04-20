@@ -22,11 +22,11 @@ export default class DropdownMenu extends React.Component {
       disabled: PropTypes.bool,
       disableClosing: PropTypes.bool,
       href: PropTypes.string,
-      onClick: PropTypes.func,      
+      onClick: PropTypes.func,
     })).isRequired,
     disabled: PropTypes.bool,
     dropup: PropTypes.bool,
-    pullLeft: PropTypes.bool,    
+    pullLeft: PropTypes.bool,
   };
 
   static defaultProps = {

@@ -29,6 +29,7 @@ node_modules
 # Webpack base configurations directory
 webpack
 
+docs
 examples
 examples-build
 src

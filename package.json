@@ -1,6 +1,6 @@
 {
   "author": "OpusCapita (www.opuscapita.com)",
-  "name": "ocfrontend",
+  "name": "oc-common-ui",
   "version": "1.0.0",
   "private": true,
   "description": "OpusCapita common UI components",
@@ -115,6 +115,6 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://tfssrv2:8080/tfs/DefaultCollection/OC3/_git/ocfrontend.git"
+    "url": "https://github.com/OpusCapita/oc-common-ui.git"
   }
 }

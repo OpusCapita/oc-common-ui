@@ -2,6 +2,10 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## <next>
+
+* Change package name from 'ocfrontend' to 'oc-common-ui'
+
 ## 1.0.0
 
 * Published to OpusCapita Github

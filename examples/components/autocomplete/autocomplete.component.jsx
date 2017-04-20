@@ -1,14 +1,15 @@
 import React from 'react';
 import Select from 'react-select';
-import { FormGroup, FormControl, ControlLabel } from 'react-bootstrap';
+import { FormGroup, ControlLabel } from 'react-bootstrap';
 
 export default class AutocompleteView extends React.Component {
   selects = () => {
     return (
       <div style={{ width: 250 }}>
         <FormGroup controlId="formControlsSelect">
-        <ControlLabel>Select</ControlLabel>
-          <Select clearable={false}
+          <ControlLabel>Select</ControlLabel>
+          <Select
+            clearable={false}
             name="formControlsSelect"
             value="one"
             options={[
@@ -17,8 +18,9 @@ export default class AutocompleteView extends React.Component {
               { value: 'three', label: 'Three' },
               { value: 'four', label: 'Four' },
               { value: 'five', label: 'Five' },
-            ]}/>
-          </FormGroup>
+            ]}
+          />
+        </FormGroup>
       </div>
     );
   }

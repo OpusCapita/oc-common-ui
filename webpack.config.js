@@ -5,8 +5,9 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 const flexbugs = require('postcss-flexbugs-fixes');
 
-const libraryName = 'ocfrontend';
-const outputFile = `${libraryName}.js`;
+const libraryName = 'oc-common-ui';
+const outputJsFile = `${libraryName}.js`;
+const outputStyleFile = `${libraryName}.css`;
 
 const getBaseConfiguration = require('./webpack/base.config.js');
 
@@ -15,7 +16,7 @@ const params = {
   buildPath: 'lib',
   output: {
     path: path.join(__dirname, '/lib'),
-    filename: outputFile,
+    filename: outputJsFile,
     library: libraryName,
     libraryTarget: 'umd',
     umdNamedDefine: true,
@@ -49,6 +50,6 @@ config.module.rules.push({
     ],
   }),
 });
-config.plugins.push(new ExtractTextPlugin({ filename: 'ocfrontend.css' }));
+config.plugins.push(new ExtractTextPlugin({ filename: outputStyleFile }));
 
 module.exports = config;

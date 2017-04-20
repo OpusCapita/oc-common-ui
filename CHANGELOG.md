@@ -2,7 +2,7 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
-## <next>
+## 2.0.0
 
 * Change package name from 'ocfrontend' to 'oc-common-ui'
 * Change lib style and js file names from 'ocfrontend' to 'oc-common-ui'

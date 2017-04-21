@@ -3,8 +3,6 @@
 
 @import '../styles/bootstrap_v3_custom';
 @import '../styles/bootstrap_v3_without_icons';
-// $icon-font-path: '~bootstrap-sass/assets/fonts/bootstrap/';
-// @import "../node_modules/bootstrap-sass/assets/stylesheets/_bootstrap.scss";
 
 @import "../styles/mixins",
         "../styles/fonts",
@@ -32,4 +30,8 @@
 
 .oc-burger-orange {
     background-color: $oc-color-primary-orange;
+
+    .oc-icon-burger {
+        fill: $oc-color-white;
+    }
 }

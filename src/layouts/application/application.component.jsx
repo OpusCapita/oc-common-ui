@@ -63,14 +63,21 @@ export default function applicationLayout(Content, Header, Menu, Footer, options
     }
 
     getHeader = () => {
-      const burgerClasses = ['oc-burger', ...options.burgerClasses || []];
+      const burgerClassNames = [
+        'oc-burger', ...options.burgerClasses || [],
+      ];
+
+      const burger = (
+        <button className={burgerClassNames.join(' ')} onClick={this.onSetSideMenu}>
+          <Icon type="indicator" name="burger" width={25} height={25} />
+        </button>
+      );
+
       if (this.state.isNarrow || options.showHeader) {
         return (
           <header className="oc-layout-application-header">
             <div className="oc-layout-application-header-content">
-              { (Menu && this.state.isNarrow) ? <button className={burgerClasses.join(' ')} onClick={this.onSetSideMenu}>
-                <Icon type="indicator" name="burger" width={25} height={25} />
-              </button> : null }
+              { (Menu && this.state.isNarrow) ? burger : null }
               { Header ? <Header /> : null }
             </div>
           </header>
@@ -126,6 +133,7 @@ export default function applicationLayout(Content, Header, Menu, Footer, options
         Menu ?
           <Sidebar
             sidebar={this.getAside()}
+            touch={false}
             open={this.state.sidebarOpen}
             docked={this.state.sidebarDocked}
             onSetOpen={this.onSetSidebarOpen}

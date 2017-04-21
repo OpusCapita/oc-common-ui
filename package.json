@@ -10,7 +10,7 @@
     "build": "webpack -p --config webpack.config.js",
     "dev": "webpack --progress --colors --watch",
     "test": "cross-env NODE_ENV=test mocha --require ignore-styles --compilers js:babel-core/register --colors test/test.setup.js test/**/*.spec.*",
-    "examples": "webpack --config webpack.examples.config.js",
+    "docs": "webpack --config webpack.docs.config.js",
     "hot": "webpack-dev-server --config webpack.examples.hot.config.js",
     "preversion": "npm run lint && npm test",
     "version": "npm run build && git add -A lib",

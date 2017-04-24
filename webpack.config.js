@@ -4,6 +4,7 @@ const precss = require('precss');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const nodeExternals = require('webpack-node-externals');
 const flexbugs = require('postcss-flexbugs-fixes');
+const merge = require('webpack-merge');
 
 const libraryName = 'oc-common-ui';
 const outputJsFile = `${libraryName}.js`;
@@ -26,30 +27,37 @@ const params = {
   },
 };
 
-const config = getBaseConfiguration(params);
-config.devtool = 'source-map';
-config.externals = [nodeExternals()];
-config.module.rules.push({
-  test: /\.scss$/,
-  use: ExtractTextPlugin.extract({
-    fallback: 'style-loader',
-    use: [
+const config = merge(getBaseConfiguration(params), {
+  devtool: 'source-map',
+  externals: [nodeExternals()],
+  module: {
+    rules: [
       {
-        loader: 'css-loader',
-        options: {
-          minimize: process.env.NODE_ENV === 'production',
-        },
+        test: /\.scss$/,
+        use: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: [
+            {
+              loader: 'css-loader',
+              options: {
+                minimize: process.env.NODE_ENV === 'production',
+              },
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                plugins: () => [flexbugs, precss, autoprefixer],
+              },
+            },
+            'sass-loader',
+          ],
+        }),
       },
-      {
-        loader: 'postcss-loader',
-        options: {
-          plugins: () => [flexbugs, precss, autoprefixer],
-        },
-      },
-      'sass-loader',
     ],
-  }),
+  },
+  plugins: [
+    new ExtractTextPlugin({ filename: outputStyleFile }),
+  ],
 });
-config.plugins.push(new ExtractTextPlugin({ filename: outputStyleFile }));
 
 module.exports = config;

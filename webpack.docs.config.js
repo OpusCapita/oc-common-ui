@@ -5,7 +5,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const webpack = require('webpack');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const flexbugs = require('postcss-flexbugs-fixes');
-
+const merge = require('webpack-merge');
 const getBaseConfiguration = require('./webpack/base.config.js');
 
 const params = {
@@ -100,10 +100,11 @@ const rules = [
   },
 ];
 
-const config = getBaseConfiguration(params);
-
-
-config.plugins.push(...plugins);
-config.module.rules.push(...rules);
+const config = merge(getBaseConfiguration(params), {
+  plugins,
+  module: {
+    rules,
+  },
+});
 
 module.exports = config;

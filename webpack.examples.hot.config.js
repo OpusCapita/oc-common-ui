@@ -6,6 +6,7 @@ const autoprefixer = require('autoprefixer');
 const precss = require('precss');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const flexbugs = require('postcss-flexbugs-fixes');
+const merge = require('webpack-merge');
 
 const params = {
   root: __dirname,
@@ -71,10 +72,13 @@ const rules = [
   },
 ];
 
-const config = getBaseConfiguration(params);
-config.devtool = 'source-map';
-config.plugins.push(...plugins);
-config.module.rules.push(...rules);
+const config = merge(getBaseConfiguration(params), {
+  devtool: 'source-map',
+  plugins,
+  module: {
+    rules,
+  },
+});
 
 const wdsEntries = [
   'webpack-dev-server/client?http://localhost:5555',
@@ -112,11 +116,6 @@ config.module.rules.forEach((loader, index) => {
     }
   }
 });
-
-// Webpack dev server configuration
-// config.resolve = {
-//   extensions: ['.js', '.jsx', '.json', '.scss', '.css'],
-// };
 
 config.devServer = {
   noInfo: true,

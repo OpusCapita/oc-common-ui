@@ -118,6 +118,7 @@ OTHER DEALINGS IN THE FONT SOFTWARE.
 * `progress-bar-webpack-plugin`: Copyright (c) 2015 Chris Gaudreau
 * `webpack-combine-loaders`: Copyright (c) 2015 James Friend
 * `webpack-node-externals`: Copyright (c) 2016 Liad Yosef
+* `webpack-merge`: Copyright (c) 2015 Juho Vepsalainen
 * `react-split-pane`: Copyright (c) 2015 tomkp
 * `react-bootstrap`: Copyright (c) 2014-present Stephen J. Collings, Matthew Honnibal, Pieter Vanderwerff
 * `react-hot-loader`: Copyright (c) 2016 Dan Abramov

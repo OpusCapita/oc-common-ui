@@ -1,0 +1,34 @@
+
+#bank-account-selector-view {
+  height: 100%;
+
+  #selected-bank-account {
+    width: 250px;
+    float: left;
+  }
+}
+
+.popover {
+  max-width: 300px;
+}
+
+.list-group-item {
+  border: none;
+  padding: 5px;
+
+  &.pinned {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .fill-empty-space {
+    flex: 2;
+  }
+}
+
+hr {
+  margin-bottom: 1px;
+  margin-top: 1px;
+  border-top: 1px dashed #000;
+}

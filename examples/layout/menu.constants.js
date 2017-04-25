@@ -73,6 +73,10 @@ const ITEMS = [
     name: 'Wizard',
     to: '/wizard',
   },
+  {
+    name: 'Bank account selector',
+    to: '/bank-account-selector',
+  },
 ];
 
 export default ITEMS;

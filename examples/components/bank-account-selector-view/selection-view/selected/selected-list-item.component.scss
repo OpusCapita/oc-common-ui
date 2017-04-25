@@ -1,0 +1,26 @@
+
+.selected-list-item-header {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
+.account-amount {
+  margin-right: 20px;
+}
+
+.bank-account {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  color: #000;
+  margin-left: 30px;
+}
+
+.fill-empty-space {
+  flex: 2;
+}
+
+.several-accounts {
+  margin-left: 20px;
+}

@@ -1,0 +1,105 @@
+
+#bank-account-selector-container {
+  display: flex;
+  height: 100%;
+  flex-direction: column;
+  background-color: #cccccc;
+}
+
+bank-account-selector-navbar {
+  display: flex;
+  height: 40px;
+}
+
+#bank-account-selector-content {
+  display: flex;
+  height: 100%;
+  flex: 1;
+  flex-direction: row;
+  background-color: rgb(204, 204, 204);
+  margin: 10px;
+}
+
+#bank-account-selector-content-left {
+  flex: 6;
+  width: 60%;
+}
+
+#bank-account-selector-content-right {
+  display: flex;
+  flex: 4;
+  flex-direction: column;
+  margin-left: 10px;
+}
+
+#bank-account-selector-tabs {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+#bank-account-tab-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+}
+
+#search-field {
+  display: flex;
+  width: 300px;
+  margin: 5px;
+}
+
+#my-lists {
+  display: flex;
+  flex: 2;
+  flex-direction: row;
+  width: 100%;
+  overflow-x: scroll;
+  overflow-y: hidden;
+}
+
+.warning {
+  color: red;
+  margin: 20px;
+}
+
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+  background-color: #FFF;
+
+  .tab-pane {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+.nav {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #FFF;
+
+  a {
+    color: #000;
+  }
+
+  .nav-divider-growing {
+    flex-grow: 1;
+  }
+
+  &.nav-tabs {
+    background-color: #cccccc;
+  }
+
+  button {
+    height: 70%;
+    margin: 5px;
+  }
+}

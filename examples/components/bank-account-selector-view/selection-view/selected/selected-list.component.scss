@@ -1,0 +1,36 @@
+
+#selected-list {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+#bank-account-group {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+
+  span {
+    flex: 2;
+  }
+}
+
+#selected-bank-accounts {
+  display: flex;
+  flex: 2;
+  height: 100%;
+  background-color: #FFF;
+  overflow-y: auto;
+
+  a {
+    color: #000;
+  }
+
+  .selected-bank-account-list-item {
+    width: 100%;
+  }
+}
+
+#new-group-field {
+  width: 100%;
+}

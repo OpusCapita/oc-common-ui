@@ -1,3 +1,5 @@
+/* eslint-disable no-multi-assign */
+/* eslint-disable no-unused-vars */
 
 import { values } from 'lodash';
 

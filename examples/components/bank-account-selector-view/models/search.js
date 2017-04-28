@@ -1,3 +1,5 @@
+/* eslint-disable no-param-reassign */
+
 export default class Search {
 
   static getMatches = (sourceData, searchString, match, path, data, results) => {

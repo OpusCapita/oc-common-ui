@@ -1,3 +1,6 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/no-unused-prop-types */
+
 import React, { PropTypes } from 'react';
 import {
   Button,

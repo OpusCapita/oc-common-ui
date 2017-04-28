@@ -1,3 +1,17 @@
+/* Fork of react-list-select https://github.com/hawkrives/react-list-select
+ * Modifications to deselect logic
+ */
+
+/* eslint-disable react/prefer-es6-class */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/sort-comp */
+/* eslint-disable func-names */
+/* eslint-disable object-shorthand */
+/* eslint-disable prefer-rest-params */
+/* eslint-disable prefer-arrow-callback */
+/* eslint-disable no-constant-condition */
+/* eslint-disable wrap-iife */
+
 import React from 'react';
 import {
   map,
@@ -10,6 +24,8 @@ import {
   uniq,
   values,
 } from 'lodash';
+
+import ListItem from './ListItem';
 
 const cx = require('classnames');
 
@@ -26,9 +42,6 @@ const KEY = {
 };
 
 const KEYS = values(KEY);
-
-import ListItem from './ListItem';
-
 
 const List = React.createClass({
   displayName: 'List',
@@ -208,7 +221,7 @@ const List = React.createClass({
     } else if (key === KEY.SPACE || key === KEY.ENTER) {
       this.toggleSelect({
         event,
-        index: this.state.focusedIndex ,
+        index: this.state.focusedIndex,
       });
     }
 

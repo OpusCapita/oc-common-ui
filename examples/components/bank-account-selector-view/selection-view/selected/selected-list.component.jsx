@@ -1,3 +1,5 @@
+/* eslint-disable react/no-array-index-key */
+
 import React, { PropTypes } from 'react';
 import {
   Checkbox,

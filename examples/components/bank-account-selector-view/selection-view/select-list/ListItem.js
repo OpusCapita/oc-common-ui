@@ -1,3 +1,8 @@
+/* eslint-disable react/prefer-es6-class */
+/* eslint-disable react/prop-types */
+/* eslint-disable func-names */
+/* eslint-disable object-shorthand */
+
 import React from 'react';
 
 const cx = require('classnames');

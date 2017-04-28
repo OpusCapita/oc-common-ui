@@ -3,7 +3,7 @@
 * Run `npm run build` to produce minified version of the library
 * Run `npm run dev` to produce development version of the library.
 * Run `npm run test` to run tests
-* Run `npm run examples` to run generate examples
+* Run `npm run docs` to run generate examples
 
 ### To use oc-common-ui
 ```javascript
@@ -12,8 +12,8 @@ import { CardContent } from 'oc-common-ui';
 Some components needs reducers to be loaded in the redux store, those are done in the main level and are usually already there. Same goes for ocfront styles.
 
 ### Development workflow
-* Run `npm run examples`
-* Open `examples.html`
+* Run `npm run docs`
+* Open `index.html`
 
 ### Development workflow with project using the package
 ##### Link local package to your project
@@ -39,7 +39,7 @@ Some components needs reducers to be loaded in the redux store, those are done i
 
 ### Examples
 * Demo implementations of the components
-* Run `npm run examples` to create output to `examples-build` or `npm run hot` for using hot reload functionality
+* Run `npm run docs` to create output to `examples-build` or `npm run hot` for using hot reload functionality
 
 ## Links
 

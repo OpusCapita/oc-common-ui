@@ -11,3 +11,5 @@ export * from './responsive-navbar/index.js';
 export * from './layouts/application/index.js';
 export * from './extended-search/index.js';
 export * from './wizard/index.js';
+export * from './multi-select/index.js';
+export * from './multi-select-item/index.js';

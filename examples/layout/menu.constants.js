@@ -73,6 +73,10 @@ const ITEMS = [
     name: 'Wizard',
     to: '/wizard',
   },
+  {
+    name: 'MultiSelect',
+    to: '/multi-select',
+  },
 ];
 
 export default ITEMS;

@@ -5,7 +5,7 @@ import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 
-import { MultiSelectItem } from '../../src/index';
+import { MultiSelectItem } from '../../../src/index';
 
 
 describe('MultiSelectItem component', function describe() {

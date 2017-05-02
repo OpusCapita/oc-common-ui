@@ -1,5 +1,8 @@
 import React, { PropTypes } from 'react';
-import MultiSelectItem from '../multi-select-item/multi-select-item.component';
+import { Map } from 'immutable';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
+import MultiSelectItem from './multi-select-item/multi-select-item.component';
 import './multi-select.component.scss';
 
 export default class MultiSelect extends React.PureComponent {
@@ -12,27 +15,23 @@ export default class MultiSelect extends React.PureComponent {
       ]).isRequired,
       text: PropTypes.string.isRequired,
     })).isRequired,
-    checkedItems: PropTypes.arrayOf(
-      PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]),
-    ).isRequired,
+    checkedItems: ImmutablePropTypes.map,
     onChange: PropTypes.func,
   };
 
   static defaultProps = {
+    checkedItems: Map(),
     onChange: () => {},
   };
 
   shouldComponentUpdate(nextProps) {
-    if (String(this.props.checkedItems) !== String(nextProps.checkedItems)) {
+    if (!this.props.checkedItems.equals(nextProps.checkedItems)) {
       return true;
     }
     return false;
   }
 
-  isChecked = (id, checkedItems) => checkedItems.indexOf(id) > -1;
+  isChecked = (id, checkedItems) => checkedItems.get(id) === true;
 
   render() {
     const { items, checkedItems, onChange } = this.props;

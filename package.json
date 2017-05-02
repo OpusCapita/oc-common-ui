@@ -1,7 +1,7 @@
 {
   "author": "OpusCapita (www.opuscapita.com)",
   "name": "oc-common-ui",
-  "version": "2.0.1",
+  "version": "2.0.0",
   "private": true,
   "description": "OpusCapita common UI components",
   "main": "lib/oc-common-ui.js",

@@ -3,6 +3,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
+import { Map } from 'immutable';
 
 import { MultiSelect } from '../../src/index';
 
@@ -10,7 +11,7 @@ import { MultiSelect } from '../../src/index';
 describe('MultiSelect component', function describe() {
   it('should render correctly', function it() {
     const props = {
-      checkedItems: [],
+      checkedItems: Map(),
       items: [
         {
           id: 1,

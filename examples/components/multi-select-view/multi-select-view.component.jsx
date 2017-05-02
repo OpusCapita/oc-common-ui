@@ -1,14 +1,15 @@
 /* eslint-disable no-console */
 
 import React from 'react';
-import { List } from 'immutable';
+import { Map } from 'immutable';
+
 import { MultiSelect } from '../../../src/index';
 
-export default class MultiSelectView extends React.Component {
+export default class MultiSelectView extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.state = { checkedItems: List() };
+    this.state = { checkedItems: Map() };
   }
 
   componentWillMount() {
@@ -16,15 +17,8 @@ export default class MultiSelectView extends React.Component {
   }
 
   onChange = (id, isChecked) => {
-    let checkedItems = this.state.checkedItems;
-    const index = checkedItems.findIndex(item => item === id);
-    if (!isChecked && index !== -1) {
-      checkedItems = checkedItems.splice(index, 1);
-      this.setState({ checkedItems });
-    } else if (isChecked && index === -1) {
-      checkedItems = checkedItems.push(id);
-      this.setState({ checkedItems });
-    }
+    const checkedItems = this.state.checkedItems;
+    this.setState({ checkedItems: checkedItems.set(id, isChecked) });
   }
 
   initializeItems = () => (
@@ -44,7 +38,7 @@ export default class MultiSelectView extends React.Component {
     ]);
 
   render() {
-    const checkedItems = this.state.checkedItems.toJS();
+    const checkedItems = this.state.checkedItems;
     return (
       <MultiSelect
         checkedItems={checkedItems}

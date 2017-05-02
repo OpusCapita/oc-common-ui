@@ -1,5 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Checkbox } from 'react-bootstrap';
+
 import './multi-select-item.component.scss';
 
 export default class MultiSelectItem extends React.PureComponent {

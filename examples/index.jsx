@@ -24,6 +24,7 @@ import ResponsiveNavbarView from
   './components/responsive-navbar-view/responsive-navbar-view.component';
 import WizardView from
   './components/wizard-view/wizard-view.component';
+import MultiSelectView from './components/multi-select-view/multi-select-view.component';
 
 require('../images/favicon.ico');
 
@@ -55,6 +56,7 @@ render((
           <Route path="/dropdown-menu" component={DropdownMenuView} />
           <Route path="/responsive-navbar" component={ResponsiveNavbarView} />
           <Route path="/wizard" component={WizardView} />
+          <Route path="/multi-select" component={MultiSelectView} />
         </Route>
       </Router>
     </IntlProvider>

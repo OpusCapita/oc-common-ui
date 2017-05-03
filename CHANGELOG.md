@@ -6,6 +6,7 @@
 
 * `ApplicationLayout` disabled touch for sidebar: drag area on left is reserved by browser e.g. in iPad, sidebar burger icon fill is white.
 * npm script `examples` is now `docs` and related files are renamed accordingly
+* `MultiSelect` and `MultiSelectItem` components
 
 ## 2.0.0
 

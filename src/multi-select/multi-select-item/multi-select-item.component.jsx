@@ -21,13 +21,6 @@ export default class MultiSelectItem extends React.PureComponent {
     onChange: () => {},
   };
 
-  shouldComponentUpdate(nextProps) {
-    if (this.props.isChecked !== nextProps.isChecked) {
-      return true;
-    }
-    return false;
-  }
-
   render() {
     const { id, text, ...otherProps } = this.props.item;
     const isChecked = this.props.isChecked;

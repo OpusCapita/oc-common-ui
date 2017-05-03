@@ -3,7 +3,7 @@
 import React from 'react';
 import { Map } from 'immutable';
 
-import { MultiSelect } from '../../../src/index';
+import { MultiSelect } from '../../../src/multi-select/index';
 
 export default class MultiSelectView extends React.PureComponent {
 

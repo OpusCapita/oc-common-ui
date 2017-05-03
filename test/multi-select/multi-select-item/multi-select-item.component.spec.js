@@ -1,11 +1,12 @@
 /* eslint-disable no-unused-expressions */
 /* eslint-disable prefer-arrow-callback */
+/* eslint-disable react/jsx-filename-extension */
 
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
 
-import { MultiSelectItem } from '../../../src/index';
+import MultiSelectItem from '../../../src/multi-select/multi-select-item/multi-select-item.component';
 
 
 describe('MultiSelectItem component', function describe() {

@@ -31,16 +31,13 @@ export default class MultiSelect extends React.PureComponent {
     return (
       <div className="oc-multi-select">
         {items.map((item) => {
-          const { id, text, ...otherProps } = item;
-          const childItem = { id, text };
-          const isChecked = this.isChecked(id, checkedItems);
+          const isChecked = this.isChecked(item.id, checkedItems);
           return (
             <MultiSelectItem
-              key={id}
+              key={item.id}
               isChecked={isChecked}
-              item={childItem}
+              item={item}
               onChange={onChange}
-              {...otherProps}
             />
           );
         })}

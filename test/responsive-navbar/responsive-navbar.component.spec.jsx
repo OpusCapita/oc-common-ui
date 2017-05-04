@@ -1,4 +1,5 @@
 /* eslint-disable prefer-arrow-callback */
+/* eslint-disable no-underscore-dangle */
 
 import React from 'react';
 import { expect } from 'chai';
@@ -61,7 +62,8 @@ describe('Responsive navbar component', function describe() {
       />,
     );
 
-    // wrapper.find('#ocResponsiveNavbarSelect').simulate('click');
+    // Make the call manually since there's is a timeout in componentDidMount
+    wrapper.get(0).updateDimensions();
 
     expect(wrapper.find('#ocResponsiveNavbarSelect').length).to.eql(1);
     expect(wrapper.find('Select').length).to.eql(1);

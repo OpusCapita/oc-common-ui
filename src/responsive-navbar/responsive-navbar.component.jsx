@@ -27,7 +27,10 @@ export class ResponsiveNavbar extends React.Component {
 
   componentDidMount() {
     window.addEventListener('resize', this.updateDimensions);
-    this.updateDimensions();
+    // Component is not rendered yet by browser when DidMount is called
+    setTimeout(() => {
+      this.updateDimensions();
+    }, 200);
   }
 
   componentWillUnmount() {
@@ -44,7 +47,6 @@ export class ResponsiveNavbar extends React.Component {
     const lastOffsetTop = ReactDOM.findDOMNode(lastRef)
     ? ReactDOM.findDOMNode(lastRef).offsetTop
     : 0;
-
     // Re-render Navbar to see if it fits if screen width increases
     // Do this once every 50 pixes.
     const difference = window.innerWidth - this.state.lastWidth;

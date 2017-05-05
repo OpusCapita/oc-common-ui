@@ -2,9 +2,10 @@
 /* eslint-disable no-unused-vars */
 
 import React from 'react';
+import PerfProfiler from './utils/perf-profiler/perf-profiler.component';
 import Menu from '../src/menu/menu.component';
 import ITEMS from './layout/menu.constants';
-import { applicationLayout } from '../src/index';
+import { applicationLayout, Icon } from '../src/index';
 
 import './app.component.scss';
 
@@ -20,8 +21,28 @@ const Header = () => {
   return content;
 };
 
+const getPrefix = (item) => {
+  const content = null;
+  //content = (<Icon type="product" name="Invoices" height={25} width={25} />);
+  // content = <span>Prefix </span>;
+  return content;
+};
+
+const onSelect = (item) => {
+
+};
+
 const SideMenu = () => {
-  const content = <Menu items={ITEMS} />;
+  const isNavigation = true;
+  const content = (
+    <Menu
+      items={ITEMS}
+      getContent={getPrefix}
+      isNavigation={isNavigation}
+      onSelect={onSelect}
+    />
+  );
+
   return content;
 };
 

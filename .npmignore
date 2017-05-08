@@ -40,5 +40,5 @@ images
 .npmignore
 readme.md
 webpack.config.js
-webpack.examples.config.js
+webpack.docs.config.js
 webpack.examples.hot.config.js

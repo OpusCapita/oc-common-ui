@@ -1,81 +1,73 @@
 const ITEMS = [
-  // {
-  //   name: 'Introduction',
-  //   to: '/introduction',
-  // },
-  // {
-  //   name: 'Style',
-  //   to: '/style',
-  // },
-  // {
-  //   name: 'Technology',
-  //   to: '/technology',
-  //   items: [
-  //     {
-  //       name: 'CSS',
-  //       to: '/css',
-  //     },
-  //   ],
-  // },
-  // {
-  //   name: 'Patterns',
-  //   to: '/patterns',
-  // },
-  // {
-  //   name: 'Layout',
-  //   to: '/layout',
-  // },
   {
-    name: 'Autocomplete',
+    id: 1,
+    text: 'Autocomplete',
     to: '/autocomplete',
   },
   {
-    name: 'Alerts',
+    id: 2,
+    text: 'Alerts',
     to: '/alerts',
   },
   {
-    name: 'Button',
+    id: 3,
+    text: 'Button',
     to: '/button',
   },
   {
-    name: 'Cards',
+    id: 4,
+    text: 'Cards',
     to: '/cards',
   },
   {
-    name: 'Datagrid',
+    id: 5,
+    text: 'Datagrid',
     to: '/datagrid',
   },
   {
-    name: 'Searchbar',
+    id: 6,
+    text: 'Searchbar',
     to: '/searchbar',
   },
   {
-    name: 'ExtendedSearch',
+    id: 7,
+    text: 'ExtendedSearch',
     to: '/extendedsearch',
   },
   {
-    name: 'Spinner',
+    id: 8,
+    text: 'Spinner',
     to: '/spinner',
   },
   {
-    name: 'Split Pane',
+    id: 9,
+    text: 'Split Pane',
     to: '/split-pane',
   },
   {
-    name: 'Dropdown',
+    id: 10,
+    text: 'Dropdown',
     to: '/dropdown-menu',
   },
   {
-    name: 'Responsive navbar',
+    id: 11,
+    text: 'Responsive navbar',
     to: '/responsive-navbar',
   },
   {
-    name: 'Wizard',
+    id: 12,
+    text: 'Wizard',
     to: '/wizard',
   },
   {
-    name: 'MultiSelect',
+    id: 13,
+    text: 'MultiSelect',
     to: '/multi-select',
+  },
+  {
+    id: 14,
+    text: 'Menu',
+    to: '/menu',
   },
 ];
 

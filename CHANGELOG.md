@@ -2,6 +2,10 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## <next>
+
+* `Cards` fix collapse/expand icon container placement
+
 ## 2.0.1
 
 * `ResponsiveNavbar` add timeout to componentDidMount to wait for real rendering

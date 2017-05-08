@@ -13,12 +13,24 @@
   }
 
   .collapse-expand {
-    height: 30px;
-    align-self: center;
+    display: flex;
+    align-items: center;
+    align-content: center;
   }
 
   button {
-    border: 0;
-    background-color: #fff;
+    display: flex;
+    align-items: center;
+    background-color: Transparent;
+    background-repeat:no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+
+    &:focus {
+        box-shadow: 0px 0px 0 0px Transparent,
+          0 0 0 0px Transparent;
+    }
   }
 }

@@ -2,8 +2,9 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
-## <vnext>
+## <next>
 
+* `Cards` fix collapse/expand icon container placement
 * `Menu` component added
 * `KEY_CODES` constant added
 * `PerfProfiler` utility component added

@@ -1,20 +1,4 @@
 const ITEMS = [
-  // {
-  //   id: 100,
-  //   text: 'Test 100',
-  //   items: [
-  //     {
-  //       id: 200,
-  //       text: 'Test 200',
-  //       items: [
-  //         {
-  //           id: 300,
-  //           text: 'Test 300',
-  //         },
-  //       ],
-  //     },
-  //   ],
-  // },
   {
     id: 1,
     text: 'Autocomplete',

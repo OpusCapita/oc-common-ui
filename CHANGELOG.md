@@ -5,6 +5,7 @@
 ## <vnext>
 
 * `Menu` component added
+* `KEY_CODES` constant added
 * `PerfProfiler` utility component added
 
 ## 2.0.1

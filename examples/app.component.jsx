@@ -9,9 +9,6 @@ import { applicationLayout, Icon } from '../src/index';
 
 import './app.component.scss';
 
-// const {whyDidYouUpdate} = require('why-did-you-update')
-// whyDidYouUpdate(React)
-
 const headerStyle = { height: 40, width: '100%', backgroundColor: 'green' };
 const Header = () => {
   const content = (
@@ -23,8 +20,6 @@ const Header = () => {
 
 const getPrefix = (item) => {
   const content = null;
-  //content = (<Icon type="product" name="Invoices" height={25} width={25} />);
-  // content = <span>Prefix </span>;
   return content;
 };
 

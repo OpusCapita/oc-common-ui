@@ -11,6 +11,7 @@ import {
 } from 'react-bootstrap';
 
 import { SearchBar } from '../../src/index';
+import KEY_CODES from '../../src/constants/key-codes.constant';
 
 describe('SearchBar component', function describe() {
   function renderElement(props) {
@@ -68,11 +69,10 @@ describe('SearchBar component', function describe() {
       onSearch: sinon.spy(),
       value,
     };
-    const ENTER = 13;
 
     const wrapper = renderElement(props);
     const formControl = wrapper.find(FormControl);
-    formControl.simulate('keyDown', { keyCode: ENTER });
+    formControl.simulate('keyDown', { keyCode: KEY_CODES.ENTER });
     expect(props.onSearch.called).to.eql(result);
   }
 

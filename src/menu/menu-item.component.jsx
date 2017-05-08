@@ -1,6 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
-import KEY_CODES from './key-codes.constant';
+import KEY_CODES from '../constants/key-codes.constant';
 
 import './menu-item.component.scss';
 

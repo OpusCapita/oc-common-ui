@@ -3,8 +3,7 @@ import { Menu } from '../../../src/index';
 
 function range(start, end) {
   const list = [];
-  /* eslint-disable no-plusplus  */
-  for (let i = start; i <= end; i++) {
+  for (let i = start; i <= end; i += 1) {
     list.push(i);
   }
   return list;
@@ -13,25 +12,24 @@ function range(start, end) {
 const getItems = () => {
   const label = 'Menu Item';
 
-  /* eslint-disable arrow-body-style */
-  const items = range(1, 50).map((e, i) => {
-    return {
+  const items = range(1, 50).map((e, i) => (
+    {
       id: i,
       text: `${label} ${i}`,
-      items: range(1, 10).map((a, b) => {
-        return {
+      items: range(1, 10).map((a, b) => (
+        {
           id: `${i}.${b}`,
           text: `${label} ${i}.${b}`,
-          items: range(1, 5).map((c, d) => {
-            return {
+          items: range(1, 5).map((c, d) => (
+            {
               id: `${i}.${b}.${d}`,
               text: `${label} ${i}.${b}.${d}`,
-            };
-          }),
-        };
-      }),
-    };
-  });
+            }
+          )),
+        }
+      )),
+    }),
+  );
 
   return items;
 };

@@ -5,7 +5,7 @@ import {
   FormControl,
 } from 'react-bootstrap';
 
-const ENTER = 13;
+import KEY_CODES from '../constants/key-codes.constant';
 
 class SearchBar extends React.Component {
   shouldComponentUpdate(nextProps) {
@@ -20,7 +20,7 @@ class SearchBar extends React.Component {
   }
 
   handleOnKeyDown = (e) => {
-    if (e.keyCode && e.keyCode === ENTER && this.isValid()) {
+    if (e.keyCode && e.keyCode === KEY_CODES.ENTER && this.isValid()) {
       this.handleSearch();
     }
   }

@@ -24,7 +24,9 @@ import ResponsiveNavbarView from
   './components/responsive-navbar-view/responsive-navbar-view.component';
 import WizardView from
   './components/wizard-view/wizard-view.component';
-import MultiSelectView from './components/multi-select-view/multi-select-view.component';
+import MultiSelectView from
+  './components/multi-select-view/multi-select-view.component';
+import MenuView from './components/menu-view/menu-view.component';
 
 require('../images/favicon.ico');
 
@@ -52,6 +54,7 @@ render((
           <Route path="/alerts" component={AlertsView} />
           <Route path="/cards" component={CardsView} />
           <Route path="/spinner" component={SpinnerView} />
+          <Route path="/menu" component={MenuView} />
           <Route path="/split-pane" component={SplitPaneView} />
           <Route path="/dropdown-menu" component={DropdownMenuView} />
           <Route path="/responsive-navbar" component={ResponsiveNavbarView} />

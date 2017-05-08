@@ -2,14 +2,12 @@
 /* eslint-disable no-unused-vars */
 
 import React from 'react';
+import PerfProfiler from './utils/perf-profiler/perf-profiler.component';
 import Menu from '../src/menu/menu.component';
 import ITEMS from './layout/menu.constants';
-import { applicationLayout } from '../src/index';
+import { applicationLayout, Icon } from '../src/index';
 
 import './app.component.scss';
-
-// const {whyDidYouUpdate} = require('why-did-you-update')
-// whyDidYouUpdate(React)
 
 const headerStyle = { height: 40, width: '100%', backgroundColor: 'green' };
 const Header = () => {
@@ -20,8 +18,26 @@ const Header = () => {
   return content;
 };
 
+const getPrefix = (item) => {
+  const content = null;
+  return content;
+};
+
+const onSelect = (item) => {
+
+};
+
 const SideMenu = () => {
-  const content = <Menu items={ITEMS} />;
+  const isNavigation = true;
+  const content = (
+    <Menu
+      items={ITEMS}
+      getContent={getPrefix}
+      isNavigation={isNavigation}
+      onSelect={onSelect}
+    />
+  );
+
   return content;
 };
 

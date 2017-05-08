@@ -2,6 +2,12 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## <vnext>
+
+* `Menu` component added
+* `KEY_CODES` constant added
+* `PerfProfiler` utility component added
+
 ## 2.0.1
 
 * `ResponsiveNavbar` add timeout to componentDidMount to wait for real rendering

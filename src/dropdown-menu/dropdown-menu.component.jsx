@@ -1,40 +1,37 @@
 /* eslint-disable react/no-array-index-key */
 
 import React, { PropTypes } from 'react';
-import { DropdownButton, MenuItem } from 'react-bootstrap';
+import { MenuItem } from 'react-bootstrap';
+import { Dropdown } from '../dropdown/index';
 import { Icon } from '../icons';
 import './dropdown-menu.component.scss';
 
-export default class DropdownMenu extends React.Component {
+export default class DropdownMenu extends React.PureComponent {
 
   static propTypes = {
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    title: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.number]),
-    caret: PropTypes.bool,
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     menuItems: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.element,
-        PropTypes.number,
-      ]),
-      type: PropTypes.oneOf(['item', 'divider']),
-      icon: PropTypes.element,
       disabled: PropTypes.bool,
       disableClosing: PropTypes.bool,
       href: PropTypes.string,
+      icon: PropTypes.element,
       onClick: PropTypes.func,
+      title: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.element]),
+      type: PropTypes.oneOf(['item', 'divider']),
     })).isRequired,
+    caret: PropTypes.bool,
     disabled: PropTypes.bool,
     dropup: PropTypes.bool,
     pullLeft: PropTypes.bool,
+    title: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.element]),
   };
 
   static defaultProps = {
-    title: <Icon type="indicator" name="more" width={32} height={32} />,
     caret: false,
     disabled: false,
     dropup: false,
     pullLeft: false,
+    title: <Icon type="indicator" name="more" width={32} height={32} />,
   };
 
   constructor(props) {
@@ -86,20 +83,20 @@ export default class DropdownMenu extends React.Component {
 
   render() {
     const { id, menuItems, caret, pullLeft, ...otherProps } = this.props;
+    const style = { bsSize: 'xs', bsStyle: 'info' };
+    const child = this.renderMenuItems(menuItems);
     return (
       <div className="oc-dropdown-menu">
-        <DropdownButton
+        <Dropdown
+          child={child}
           id={id}
-          bsStyle="info"
-          bsSize="xs"
           noCaret={!caret}
           pullRight={!pullLeft}
-          {...otherProps}
-          open={this.state.menuOpen}
+          isOpen={this.state.menuOpen}
           onToggle={this.dropdownToggle}
-        >
-          {this.renderMenuItems(menuItems)}
-        </DropdownButton>
+          style={style}
+          {...otherProps}
+        />
       </div>
     );
   }

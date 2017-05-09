@@ -19,6 +19,8 @@ import ExtendedSearchView from './components/extended-search/extended-search.com
 import AlertsView from './components/alerts-view/alerts-view.component';
 import SplitPaneView from './components/split-pane-view/split-pane-view.component';
 import DropdownMenuView from './components/dropdown-menu-view/dropdown-menu-view.component';
+import DropdownMultiSelectView from
+  './components/dropdown-multi-select-view/dropdown-multi-select-view.component';
 import DatagridView from './components/datagrid/datagrid.component';
 import ResponsiveNavbarView from
   './components/responsive-navbar-view/responsive-navbar-view.component';
@@ -57,6 +59,7 @@ render((
           <Route path="/menu" component={MenuView} />
           <Route path="/split-pane" component={SplitPaneView} />
           <Route path="/dropdown-menu" component={DropdownMenuView} />
+          <Route path="/dropdown-multi-select" component={DropdownMultiSelectView} />
           <Route path="/responsive-navbar" component={ResponsiveNavbarView} />
           <Route path="/wizard" component={WizardView} />
           <Route path="/multi-select" component={MultiSelectView} />

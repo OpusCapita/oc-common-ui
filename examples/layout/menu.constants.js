@@ -46,7 +46,7 @@ const ITEMS = [
   },
   {
     id: 10,
-    text: 'Dropdown',
+    text: 'DropdownMenu',
     to: '/dropdown-menu',
   },
   {
@@ -66,6 +66,11 @@ const ITEMS = [
   },
   {
     id: 14,
+    text: 'DropdownMultiSelect',
+    to: '/dropdown-multi-select',
+  },
+  {
+    id: 15,
     text: 'Menu',
     to: '/menu',
   },

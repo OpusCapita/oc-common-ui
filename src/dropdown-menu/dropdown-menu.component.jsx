@@ -2,6 +2,7 @@
 
 import React, { PropTypes } from 'react';
 import { MenuItem } from 'react-bootstrap';
+
 import { Dropdown } from '../dropdown/index';
 import { Icon } from '../icons';
 import './dropdown-menu.component.scss';
@@ -15,6 +16,7 @@ export default class DropdownMenu extends React.PureComponent {
       disableClosing: PropTypes.bool,
       href: PropTypes.string,
       icon: PropTypes.element,
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
       onClick: PropTypes.func,
       title: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.element]),
       type: PropTypes.oneOf(['item', 'divider']),
@@ -36,12 +38,10 @@ export default class DropdownMenu extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.state = {
-      menuOpen: false,
-    };
+    this.state = { menuOpen: false };
   }
 
-  dropdownToggle = (newValue) => {
+  handleToggle = (newValue) => {
     if (this.dontCloseDropdownMenu) {
       this.setState({ menuOpen: true });
       this.dontCloseDropdownMenu = false;
@@ -50,30 +50,33 @@ export default class DropdownMenu extends React.PureComponent {
     }
   }
 
+  handleClick = (event, item) => {
+    if (item.disableClosing) {
+      this.dontCloseDropdownMenu = true;
+    }
+    if (!item.disabled && item.onClick !== undefined) {
+      item.onClick(event);
+    }
+  }
+
   renderMenuItems = items =>
     items.map((item, i) => {
+      const id = item.id !== undefined ? item.id : `item${i}`;
       if (item.type === 'divider') {
         return (
           <MenuItem
-            key={`menuItem${i}`}
+            key={id}
             divider
           />
         );
       }
       return (
         <MenuItem
-          key={`menuItem${i}`}
-          id={item.id}
+          key={id}
+          id={id}
           disabled={!!item.disabled}
           href={item.href}
-          onClick={(e) => {
-            if (item.disableClosing) {
-              this.dontCloseDropdownMenu = true;
-            }
-            if (!item.disabled && item.onClick) {
-              item.onClick(e);
-            }
-          }}
+          onClick={e => this.handleClick(e, item)}
         >
           <span className="oc-dropdown-menu-icon">{item.icon}</span>
           <span className="oc-dropdown-menu-title">{item.title}</span>
@@ -82,19 +85,16 @@ export default class DropdownMenu extends React.PureComponent {
     });
 
   render() {
-    const { id, menuItems, caret, pullLeft, ...otherProps } = this.props;
-    const style = { bsSize: 'xs', bsStyle: 'info' };
-    const child = this.renderMenuItems(menuItems);
+    const { menuItems, caret, pullLeft, ...otherProps } = this.props;
+    const content = this.renderMenuItems(menuItems);
     return (
       <div className="oc-dropdown-menu">
         <Dropdown
-          child={child}
-          id={id}
+          content={content}
           noCaret={!caret}
           pullRight={!pullLeft}
           isOpen={this.state.menuOpen}
-          onToggle={this.dropdownToggle}
-          style={style}
+          onToggle={this.handleToggle}
           {...otherProps}
         />
       </div>

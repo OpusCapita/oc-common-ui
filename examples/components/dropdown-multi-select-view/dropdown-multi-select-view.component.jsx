@@ -1,19 +1,13 @@
-/* eslint-disable no-console */
-
 import React from 'react';
 import { Map } from 'immutable';
 
-import { MultiSelect } from '../../../src/multi-select/index';
+import { DropdownMultiSelect } from '../../../src/index';
 
-export default class MultiSelectView extends React.PureComponent {
+export default class DropdownMultiSelectView extends React.PureComponent {
 
   constructor(props) {
     super(props);
     this.state = { checkedItems: Map() };
-  }
-
-  componentWillMount() {
-    this.items = this.initializeItems();
   }
 
   onChange = (id, isChecked) => {
@@ -25,8 +19,14 @@ export default class MultiSelectView extends React.PureComponent {
     }
   }
 
-  initializeItems = () => (
-    [
+  render() {
+    const containerStyle = {
+      width: '400px',
+      padding: '10px',
+      margin: '10px',
+      background: 'white',
+    };
+    const multiSelectItems = [
       {
         id: 1,
         text: 'Item 1',
@@ -39,16 +39,20 @@ export default class MultiSelectView extends React.PureComponent {
         id: 3,
         text: 'EUR FI00 3333 3333 1111 11 Account ABCDEF',
       },
-    ]);
-
-  render() {
+    ];
     const checkedItems = this.state.checkedItems;
     return (
-      <MultiSelect
-        checkedItems={checkedItems}
-        items={this.items}
-        onChange={this.onChange}
-      />
+      <div>
+        <div style={containerStyle}>
+          <DropdownMultiSelect
+            checkedItems={checkedItems}
+            id="example3"
+            items={multiSelectItems}
+            onChange={this.onChange}
+            titleDefault="{N} kpl"
+          />
+        </div>
+      </div>
     );
   }
 }

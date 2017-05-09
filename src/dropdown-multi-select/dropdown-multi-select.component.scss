@@ -1,0 +1,19 @@
+.oc-dropdown-multi-select {
+  width: 100%;
+
+  .dropdown-toggle {
+    border: 0!important;
+    padding: 0!important;
+    box-shadow: none!important;
+    background-color: inherit!important;
+    color: inherit!important;
+  }
+
+  .dropdown {
+    width: 100%;
+
+    .dropdown-menu {
+      width: 100%;
+    }
+  }
+}

@@ -1,10 +1,13 @@
 import React, { PropTypes } from 'react';
 import { DropdownButton } from 'react-bootstrap';
+//import { whyDidYouUpdate } from '../../node_modules/why-did-you-update/lib';
+
+//whyDidYouUpdate(React, { include: /^Dropdown/, exclude: /DropdownButton|DropdownToggle/ });
 
 export default class Dropdown extends React.PureComponent {
 
   static propTypes = {
-    child: PropTypes.oneOfType([
+    content: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.element,
       PropTypes.arrayOf(PropTypes.element),
@@ -37,17 +40,14 @@ export default class Dropdown extends React.PureComponent {
   };
 
   render() {
-    const { child, isOpen, style, ...otherProps } = this.props;
+    const { content, isOpen, ...otherProps } = this.props;
     return (
-      <div className="oc-dropdown-menu">
-        <DropdownButton
-          open={isOpen}
-          {...style}
-          {...otherProps}
-        >
-          {child}
-        </DropdownButton>
-      </div>
+      <DropdownButton
+        open={isOpen}
+        {...otherProps}
+      >
+        {content}
+      </DropdownButton>
     );
   }
 }

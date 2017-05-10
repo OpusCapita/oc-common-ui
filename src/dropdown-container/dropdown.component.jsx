@@ -46,7 +46,7 @@ export default class Dropdown extends React.PureComponent {
         open={isOpen}
         {...otherProps}
       >
-        {content}
+        {/*content*/}
       </DropdownButton>
     );
   }

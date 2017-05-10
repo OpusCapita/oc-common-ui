@@ -3,8 +3,9 @@
 import React, { PropTypes } from 'react';
 import { Map } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { FormControl } from 'react-bootstrap';
 
-import { Dropdown } from '../dropdown/index';
+import { DropdownContainer } from '../dropdown-container/index';
 import { MultiSelect } from '../multi-select/index';
 import './dropdown-multi-select.component.scss';
 
@@ -30,6 +31,11 @@ export default class DropdownMultiSelect extends React.PureComponent {
     titleDefault: '{N} items selected',
   };
 
+  constructor(props) {
+    super(props);
+    this.state = { isOpen: false, filterValue: '' };
+  }
+
   getTitle = (checkedItems, items, title) => {
     if (checkedItems.size === 0 || checkedItems.size > 1) {
       return title.replace('{N}', checkedItems.size);
@@ -44,24 +50,52 @@ export default class DropdownMultiSelect extends React.PureComponent {
     return '';
   }
 
+  setFilter = (e) => {
+    this.setState({ filterValue: e.target.value });
+  }
+
+  filterItems = (items) => {
+    const searchValue = this.state.filterValue.replace(/\s/g, '').toLowerCase();
+    const filteredItems = items.filter(i => i.text.replace(/\s/g, '').toLowerCase().includes(searchValue));
+    return filteredItems;
+  }
+
+  handleToggle = (newValue) => {
+    if (newValue && this.state.filterValue !== '') {
+      this.setState({ isOpen: true });
+    } else if (!newValue && this.state.filterValue !== '') {
+      this.setState({ isOpen: newValue, filterValue: '' });
+    } else {
+      this.setState({ isOpen: newValue });
+    }
+  }
+
   render() {
     const { items, checkedItems, onChange, titleDefault, ...otherProps } = this.props;
-    const content = (
-      <MultiSelect
-        items={items}
-        checkedItems={checkedItems}
-        onChange={onChange}
+    const title = (
+      <FormControl
+        type="text"
+        placeholder={this.getTitle(checkedItems, items, titleDefault)}
+        onChange={this.setFilter}
+        value={this.state.filterValue}
       />
     );
-    const title = this.getTitle(checkedItems, items, titleDefault);
+    const filteredItems = this.state.filterValue === '' ? items : this.filterItems(items);
     return (
       <div className="oc-dropdown-multi-select">
-        <Dropdown
-          content={content}
-          isOpen
+        <DropdownContainer
+          isOpen={this.state.isOpen}
+          noCaret
+          onToggle={this.handleToggle}
           title={title}
           {...otherProps}
-        />
+        >
+          <MultiSelect
+            items={filteredItems}
+            checkedItems={checkedItems}
+            onChange={onChange}
+          />
+        </DropdownContainer>
       </div>
     );
   }

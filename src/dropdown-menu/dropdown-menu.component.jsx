@@ -3,7 +3,7 @@
 import React, { PropTypes } from 'react';
 import { MenuItem } from 'react-bootstrap';
 
-import { Dropdown } from '../dropdown/index';
+import { DropdownContainer } from '../dropdown-container/index';
 import { Icon } from '../icons';
 import './dropdown-menu.component.scss';
 
@@ -38,15 +38,15 @@ export default class DropdownMenu extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.state = { menuOpen: false };
+    this.state = { isOpen: false };
   }
 
   handleToggle = (newValue) => {
     if (this.dontCloseDropdownMenu) {
-      this.setState({ menuOpen: true });
+      this.setState({ isOpen: true });
       this.dontCloseDropdownMenu = false;
     } else {
-      this.setState({ menuOpen: newValue });
+      this.setState({ isOpen: newValue });
     }
   }
 
@@ -89,14 +89,15 @@ export default class DropdownMenu extends React.PureComponent {
     const content = this.renderMenuItems(menuItems);
     return (
       <div className="oc-dropdown-menu">
-        <Dropdown
-          content={content}
+        <DropdownContainer
           noCaret={!caret}
           pullRight={!pullLeft}
-          isOpen={this.state.menuOpen}
+          isOpen={this.state.isOpen}
           onToggle={this.handleToggle}
           {...otherProps}
-        />
+        >
+          {content}
+        </DropdownContainer>
       </div>
     );
   }

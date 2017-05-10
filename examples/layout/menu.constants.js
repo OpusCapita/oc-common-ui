@@ -46,28 +46,28 @@ const ITEMS = [
   },
   {
     id: 10,
-    text: 'DropdownMenu',
-    to: '/dropdown-menu',
-  },
-  {
-    id: 11,
     text: 'Responsive navbar',
     to: '/responsive-navbar',
   },
   {
-    id: 12,
+    id: 11,
     text: 'Wizard',
     to: '/wizard',
   },
   {
-    id: 13,
+    id: 12,
     text: 'MultiSelect',
     to: '/multi-select',
   },
   {
-    id: 14,
+    id: 13,
     text: 'DropdownMultiSelect',
     to: '/dropdown-multi-select',
+  },
+  {
+    id: 14,
+    text: 'DropdownMenu',
+    to: '/dropdown-menu',
   },
   {
     id: 15,

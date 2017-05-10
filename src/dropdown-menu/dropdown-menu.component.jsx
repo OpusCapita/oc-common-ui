@@ -1,5 +1,3 @@
-/* eslint-disable react/no-array-index-key */
-
 import React, { PropTypes } from 'react';
 import { MenuItem } from 'react-bootstrap';
 
@@ -16,7 +14,7 @@ export default class DropdownMenu extends React.PureComponent {
       disableClosing: PropTypes.bool,
       href: PropTypes.string,
       icon: PropTypes.element,
-      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]), // serves as a key
       onClick: PropTypes.func,
       title: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.element]),
       type: PropTypes.oneOf(['item', 'divider']),
@@ -50,12 +48,12 @@ export default class DropdownMenu extends React.PureComponent {
     }
   }
 
-  handleClick = (event, item) => {
+  handleClick = (e, item) => {
     if (item.disableClosing) {
       this.dontCloseDropdownMenu = true;
     }
     if (!item.disabled && item.onClick !== undefined) {
-      item.onClick(event);
+      item.onClick(e);
     }
   }
 
@@ -86,7 +84,6 @@ export default class DropdownMenu extends React.PureComponent {
 
   render() {
     const { menuItems, caret, pullLeft, ...otherProps } = this.props;
-    const content = this.renderMenuItems(menuItems);
     return (
       <div className="oc-dropdown-menu">
         <DropdownContainer
@@ -96,7 +93,7 @@ export default class DropdownMenu extends React.PureComponent {
           onToggle={this.handleToggle}
           {...otherProps}
         >
-          {content}
+          {this.renderMenuItems(menuItems)}
         </DropdownContainer>
       </div>
     );

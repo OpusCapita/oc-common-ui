@@ -1,8 +1,5 @@
 import React, { PropTypes } from 'react';
 import { Dropdown } from 'react-bootstrap';
-// import { whyDidYouUpdate } from '../../node_modules/why-did-you-update/lib';
-
-// whyDidYouUpdate(React, { include: /^Dropdown/, exclude: /DropdownButton|DropdownToggle/ });
 
 export default class DropdownContainer extends React.PureComponent {
 

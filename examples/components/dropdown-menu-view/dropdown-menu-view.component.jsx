@@ -3,6 +3,7 @@
 import React from 'react';
 
 import { DropdownMenu } from '../../../src/index';
+import { Icon } from '../../../src/icons';
 
 function DropdownMenuView() {
   const containerStyle = {
@@ -24,13 +25,14 @@ function DropdownMenuView() {
     {
       id: 'item_id_11',
       title: 'Item 1, dont\'t close',
-      disableClosing: true,
       onClick: () => console.log('Item 1 clicked'),
+      disableClosing: true,
     },
     {
       id: 'item_id_12',
-      title: 'Item 2',
+      title: 'Item 2, with the icon',
       onClick: () => console.log('Item 2 clicked'),
+      icon: <Icon type="indicator" name="ok" width={25} height={25} />,
     },
     {
       id: 'item_id_d1',
@@ -39,8 +41,8 @@ function DropdownMenuView() {
     {
       id: 'item_id_13',
       title: 'Item 3',
-      disabled: true,
       onClick: () => console.log('Item 3 clicked'),
+      disabled: true,
     },
   ];
 
@@ -62,8 +64,8 @@ function DropdownMenuView() {
     {
       id: 'item_id_23',
       title: 'Item 3',
-      disabled: true,
       onClick: () => console.log('Item 3 clicked'),
+      disableClosing: true,
     },
   ];
 

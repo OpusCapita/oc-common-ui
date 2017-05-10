@@ -1,7 +1,13 @@
+@import '../../../styles/colors';
+
 .oc-multi-select-item {
   margin-left: 3px;
   
   .oc-multi-select-item-checkbox > label {
     width: 100%;
+
+    input[type=checkbox]:hover {
+      outline: 1px auto $oc-color-primary-yellow !important;      
+    }
   }  
 }

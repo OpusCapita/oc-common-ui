@@ -38,6 +38,7 @@ export default class DropdownMultiSelectView extends React.PureComponent {
       {
         id: 3,
         text: 'EUR FI00 3333 3333 1111 11 Account ABCDEF',
+        textSelected: 'FI00 3333 3333 1111 11',
       },
     ];
     const checkedItems = this.state.checkedItems;
@@ -48,7 +49,7 @@ export default class DropdownMultiSelectView extends React.PureComponent {
           id="exampleDropdownMultiSelect"
           items={multiSelectItems}
           onChange={this.onChange}
-          titleDefault="{N} kpl"
+          defaultPlaceholder="{N} kpl"
         />
       </div>
     );

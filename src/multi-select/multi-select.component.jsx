@@ -35,9 +35,8 @@ export default class MultiSelect extends React.PureComponent {
     const ITEM_MARGIN = 10;
     const itemListHeight = (ITEM_HEIGHT * items.length) + ITEM_MARGIN;
     const height = itemListHeight < maxHeight ? itemListHeight : maxHeight;
-    const style = { height, maxHeight };
     return (
-      <div className="oc-multi-select" style={style}>
+      <div className="oc-multi-select" style={{ height, maxHeight }}>
         <PerfectScrollbar>
           {items.map((item) => {
             const isChecked = this.isChecked(item.id, checkedItems);

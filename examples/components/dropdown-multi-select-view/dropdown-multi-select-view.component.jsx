@@ -10,23 +10,16 @@ export default class DropdownMultiSelectView extends React.PureComponent {
     this.state = { checkedItems: Map() };
   }
 
-  onChange = (id, isChecked) => {
-    const checkedItems = this.state.checkedItems;
-    if (isChecked) {
-      this.setState({ checkedItems: checkedItems.set(id, isChecked) });
-    } else {
-      this.setState({ checkedItems: checkedItems.delete(id) });
-    }
+  componentWillMount() {
+    this.items = this.initializeItems();
   }
 
-  render() {
-    const containerStyle = {
-      width: '400px',
-      padding: '10px',
-      margin: '10px',
-      background: 'white',
-    };
-    const multiSelectItems = [
+  onChange = (checkedItems) => {
+    this.setState({ checkedItems });
+  }
+
+  initializeItems = () => (
+    [
       {
         id: 1,
         text: 'Item 1',
@@ -40,14 +33,22 @@ export default class DropdownMultiSelectView extends React.PureComponent {
         text: 'EUR FI00 3333 3333 1111 11 Account ABCDEF',
         textSelected: 'FI00 3333 3333 1111 11',
       },
-    ];
+    ]);
+
+  render() {
+    const containerStyle = {
+      width: '400px',
+      padding: '10px',
+      margin: '10px',
+      background: 'white',
+    };
     const checkedItems = this.state.checkedItems;
     return (
       <div style={containerStyle}>
         <DropdownMultiSelect
           checkedItems={checkedItems}
           id="exampleDropdownMultiSelect"
-          items={multiSelectItems}
+          items={this.items}
           onChange={this.onChange}
           defaultPlaceholder="{N} kpl"
         />

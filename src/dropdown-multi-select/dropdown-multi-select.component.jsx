@@ -1,10 +1,11 @@
 import React, { PropTypes } from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Map } from 'immutable';
-import { Button, FormControl, InputGroup } from 'react-bootstrap';
+import { FormControl, InputGroup } from 'react-bootstrap';
 
 import { DropdownContainer } from '../dropdown-container/index';
 import { MultiSelect } from '../multi-select/index';
+import { Icon } from '../icons';
 import './dropdown-multi-select.component.scss';
 
 export default class DropdownMultiSelect extends React.PureComponent {
@@ -33,6 +34,7 @@ export default class DropdownMultiSelect extends React.PureComponent {
   constructor(props) {
     super(props);
     this.state = { isOpen: false, filterValue: '' };
+    this.preventToggle = false;
   }
 
   getPlaceholder = (checkedItems, items, defaultPlaceholder) => {
@@ -51,22 +53,29 @@ export default class DropdownMultiSelect extends React.PureComponent {
   }
 
   setFilter = (e) => {
-    this.setState({ filterValue: e.target.value });
+    const filterValue = e.target.value;
+    if (filterValue !== '' && !this.state.isOpen) {
+      this.setState({ filterValue, isOpen: true });
+    } else {
+      this.setState({ filterValue });
+    }
   }
 
   filterItems = (items) => {
-    const searchValue = this.state.filterValue.replace(/\s/g, '').toLowerCase();
-    const filteredItems = items.filter(i => i.text.replace(/\s/g, '').toLowerCase().includes(searchValue));
-    return filteredItems;
+    const filterValue = this.state.filterValue.replace(/\s/g, '').toLowerCase();
+    return items.filter(i => i.text.replace(/\s/g, '').toLowerCase().match(filterValue) !== null);
   }
 
   handleClear = () => {
-    console.log('handle clear');
+    this.preventToggle = true;
+    if (this.props.checkedItems.size > 0) {
+      this.props.onChange(Map());
+    }
   }
 
   handleToggle = (newValue) => {
-    if (newValue && this.state.filterValue !== '') {
-      this.setState({ isOpen: true });
+    if (this.preventToggle) {
+      this.preventToggle = false;
     } else if (!newValue && this.state.filterValue !== '') {
       this.setState({ isOpen: newValue, filterValue: '' });
     } else {
@@ -84,21 +93,17 @@ export default class DropdownMultiSelect extends React.PureComponent {
           onChange={this.setFilter}
           value={this.state.filterValue}
         />
-        <InputGroup.Button>
-          <Button onClick={this.handleClear}>
-            <svg
-              viewBox="0 0 16.83 16.46" width="14" height="14"
-            ><defs>
-              <style>
-                { `.oc-searchbar-icon
-                  {
-                    fill:#FFFFFF;
-                  }`
-                }
-              </style></defs><title>Search</title><path className="oc-searchbar-icon" d="M16.19,14.38,11.85,10A6.21,6.21,0,0,0,2.42,2,6.22,6.22,0,0,0,6.81,12.62a6.16,6.16,0,0,0,3.63-1.18l4.34,4.34a1,1,0,0,0,1.41-1.41Zm-12.36-5a4.21,4.21,0,1,1,3,1.24A4.19,4.19,0,0,1,3.83,9.39Z" />
-            </svg>
-          </Button>
-        </InputGroup.Button>
+        <InputGroup.Addon
+          className="oc-input-group-icon-remove"
+          onClick={this.handleClear}
+        >
+          <Icon
+            type="indicator"
+            name="remove"
+            width={17}
+            height={17}
+          />
+        </InputGroup.Addon>
       </InputGroup>
     );
     const filteredItems = this.state.filterValue === '' ? items : this.filterItems(items);

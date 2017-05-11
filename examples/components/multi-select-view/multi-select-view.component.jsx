@@ -15,13 +15,8 @@ export default class MultiSelectView extends React.PureComponent {
     this.items = this.initializeItems();
   }
 
-  onChange = (id, isChecked) => {
-    const checkedItems = this.state.checkedItems;
-    if (isChecked) {
-      this.setState({ checkedItems: checkedItems.set(id, isChecked) });
-    } else {
-      this.setState({ checkedItems: checkedItems.delete(id) });
-    }
+  onChange = (checkedItems) => {
+    this.setState({ checkedItems });
   }
 
   initializeItems = () => (

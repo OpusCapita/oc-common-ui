@@ -27,14 +27,22 @@ export default class MultiSelect extends React.PureComponent {
     onChange: () => {},
   };
 
+  handleChange = (id, isChecked) => {
+    const { checkedItems, onChange } = this.props;
+    if (isChecked) {
+      onChange(checkedItems.set(id, isChecked));
+    } else {
+      onChange(checkedItems.delete(id));
+    }
+  }
+
   isChecked = (id, checkedItems) => checkedItems.get(id) === true;
 
   render() {
-    const { items, checkedItems, maxHeight, onChange } = this.props;
+    const { items, checkedItems, maxHeight } = this.props;
     const ITEM_HEIGHT = 30;
     const ITEM_MARGIN = 10;
-    const itemListHeight = (ITEM_HEIGHT * items.length) + ITEM_MARGIN;
-    const height = itemListHeight < maxHeight ? itemListHeight : maxHeight;
+    const height = (ITEM_HEIGHT * items.length) + ITEM_MARGIN;
     return (
       <div className="oc-multi-select" style={{ height, maxHeight }}>
         <PerfectScrollbar>
@@ -45,7 +53,7 @@ export default class MultiSelect extends React.PureComponent {
                 key={item.id}
                 isChecked={isChecked}
                 item={item}
-                onChange={onChange}
+                onChange={this.handleChange}
               />
             );
           })}

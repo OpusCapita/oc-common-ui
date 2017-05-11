@@ -73,13 +73,13 @@ export default class DropdownMultiSelect extends React.PureComponent {
     }
   }
 
-  handleToggle = (newValue) => {
+  handleToggle = (isOpen) => {
     if (this.preventToggle) {
       this.preventToggle = false;
-    } else if (!newValue && this.state.filterValue !== '') {
-      this.setState({ isOpen: newValue, filterValue: '' });
+    } else if (!isOpen && this.state.filterValue !== '') {
+      this.setState({ isOpen, filterValue: '' });
     } else {
-      this.setState({ isOpen: newValue });
+      this.setState({ isOpen });
     }
   }
 
@@ -114,6 +114,7 @@ export default class DropdownMultiSelect extends React.PureComponent {
           noCaret
           onToggle={this.handleToggle}
           title={title}
+          useAnchor
           {...otherProps}
         >
           <MultiSelect

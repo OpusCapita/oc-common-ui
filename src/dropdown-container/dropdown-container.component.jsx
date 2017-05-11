@@ -3,6 +3,10 @@ import { Dropdown } from 'react-bootstrap';
 
 export default class DropdownContainer extends React.PureComponent {
 
+  /** Note: 'useAnchor' prop makes dropdown.toggle render as a link rather than
+   * a button with onClick issue when it wraps an input
+   */
+
   static propTypes = {
     id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     title: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.element]).isRequired,
@@ -21,6 +25,7 @@ export default class DropdownContainer extends React.PureComponent {
       bsSize: PropTypes.string,
       bsStyle: PropTypes.string,
     }),
+    useAnchor: PropTypes.bool,
   };
 
   static defaultProps = {
@@ -35,10 +40,11 @@ export default class DropdownContainer extends React.PureComponent {
       bsSize: 'xs',
       bsStyle: 'info',
     },
+    useAnchor: false,
   };
 
   render() {
-    const { children, id, isOpen, noCaret, title, ...otherProps } = this.props;
+    const { children, id, isOpen, noCaret, title, useAnchor, ...otherProps } = this.props;
     return (
       <Dropdown
         id={id}
@@ -48,6 +54,7 @@ export default class DropdownContainer extends React.PureComponent {
         <Dropdown.Toggle
           noCaret={noCaret}
           open={isOpen}
+          useAnchor={useAnchor}
         >
           {title}
         </Dropdown.Toggle>

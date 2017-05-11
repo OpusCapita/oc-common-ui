@@ -39,21 +39,21 @@ export default class DropdownMenu extends React.PureComponent {
     this.state = { isOpen: false };
   }
 
-  handleToggle = (newValue) => {
-    if (this.dontCloseDropdownMenu) {
-      this.setState({ isOpen: true });
-      this.dontCloseDropdownMenu = false;
-    } else {
-      this.setState({ isOpen: newValue });
-    }
-  }
-
   handleClick = (e, item) => {
     if (item.disableClosing) {
       this.dontCloseDropdownMenu = true;
     }
     if (!item.disabled && item.onClick !== undefined) {
       item.onClick(e);
+    }
+  }
+
+  handleToggle = (isOpen) => {
+    if (this.dontCloseDropdownMenu) {
+      this.setState({ isOpen: true });
+      this.dontCloseDropdownMenu = false;
+    } else {
+      this.setState({ isOpen });
     }
   }
 

@@ -8,13 +8,15 @@
 * `Menu` component added
 * `KEY_CODES` constant added
 * `PerfProfiler` utility component added
+* `DropdownMenu`, `MultiSelect`, and `MultiSelectItem` components refactored
+* `DropdownContainer`, `DropdownMultiSelect` components added
 
 ## 2.0.1
 
 * `ResponsiveNavbar` add timeout to componentDidMount to wait for real rendering
 * `ApplicationLayout` disabled touch for sidebar: drag area on left is reserved by browser e.g. in iPad, sidebar burger icon fill is white.
 * npm script `examples` is now `docs` and related files are renamed accordingly
-* `MultiSelect` and `MultiSelectItem` components
+* `MultiSelect` and `MultiSelectItem` components added
 
 ## 2.0.0
 

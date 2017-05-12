@@ -19,6 +19,8 @@
 
     .dropdown-menu {
       width: 100%;
-    }
+      overflow-y: auto;
+      max-height: 242px; // 240 = 29px * 8items + 10px
+    }  
   }
 }

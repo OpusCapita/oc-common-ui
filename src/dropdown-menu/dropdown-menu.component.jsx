@@ -39,15 +39,6 @@ export default class DropdownMenu extends React.PureComponent {
     this.state = { isOpen: false };
   }
 
-  handleClick = (e, item) => {
-    if (item.disableClosing) {
-      this.dontCloseDropdownMenu = true;
-    }
-    if (!item.disabled && item.onClick !== undefined) {
-      item.onClick(e);
-    }
-  }
-
   handleToggle = (isOpen) => {
     if (this.dontCloseDropdownMenu) {
       this.setState({ isOpen: true });
@@ -74,7 +65,14 @@ export default class DropdownMenu extends React.PureComponent {
           id={id}
           disabled={!!item.disabled}
           href={item.href}
-          onClick={e => this.handleClick(e, item)}
+          onClick={(e) => {
+            if (item.disableClosing) {
+              this.dontCloseDropdownMenu = true;
+            }
+            if (!item.disabled && item.onClick) {
+              item.onClick(e);
+            }
+          }}
         >
           <span className="oc-dropdown-menu-icon">{item.icon}</span>
           <span className="oc-dropdown-menu-title">{item.title}</span>

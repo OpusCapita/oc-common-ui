@@ -18,22 +18,13 @@ export default class DropdownMultiSelectView extends React.PureComponent {
     this.setState({ checkedItems });
   }
 
-  initializeItems = () => (
-    [
-      {
-        id: 1,
-        text: 'Item 1',
-      },
-      {
-        id: 2,
-        text: 'Item 2',
-      },
-      {
-        id: 3,
-        text: 'EUR FI00 3333 3333 1111 11 Account ABCDEF',
-        textSelected: 'FI00 3333 3333 1111 11',
-      },
-    ]);
+  initializeItems = () => {
+    const items = [];
+    for (let i = 0; i < 300; i += 1) {
+      items.push({ id: i, text: `Item ${i}` });
+    }
+    return items;
+  };
 
   render() {
     const containerStyle = {

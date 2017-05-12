@@ -1,7 +1,6 @@
 import React, { PropTypes } from 'react';
 import { Map } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import PerfectScrollbar from 'react-perfect-scrollbar';
 
 import MultiSelectItem from './multi-select-item/multi-select-item.component';
 import './multi-select.component.scss';
@@ -17,13 +16,11 @@ export default class MultiSelect extends React.PureComponent {
       text: PropTypes.string.isRequired,
     })).isRequired,
     checkedItems: ImmutablePropTypes.map,
-    maxHeight: PropTypes.number,
     onChange: PropTypes.func,
   };
 
   static defaultProps = {
     checkedItems: Map(),
-    maxHeight: 400,
     onChange: () => {},
   };
 
@@ -39,25 +36,20 @@ export default class MultiSelect extends React.PureComponent {
   isChecked = (id, checkedItems) => checkedItems.get(id) === true;
 
   render() {
-    const { items, checkedItems, maxHeight } = this.props;
-    const ITEM_HEIGHT = 30;
-    const ITEM_MARGIN = 10;
-    const height = (ITEM_HEIGHT * items.length) + ITEM_MARGIN;
+    const { items, checkedItems } = this.props;
     return (
-      <div className="oc-multi-select" style={{ height, maxHeight }}>
-        <PerfectScrollbar>
-          {items.map((item) => {
-            const isChecked = this.isChecked(item.id, checkedItems);
-            return (
-              <MultiSelectItem
-                key={item.id}
-                isChecked={isChecked}
-                item={item}
-                onChange={this.handleChange}
-              />
-            );
-          })}
-        </PerfectScrollbar>
+      <div className="oc-multi-select">
+        {items.map((item) => {
+          const isChecked = this.isChecked(item.id, checkedItems);
+          return (
+            <MultiSelectItem
+              key={item.id}
+              isChecked={isChecked}
+              item={item}
+              onChange={this.handleChange}
+            />
+          );
+        })}
       </div>
     );
   }

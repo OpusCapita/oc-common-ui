@@ -1,72 +1,68 @@
-/* eslint-disable react/no-array-index-key */
-
 import React, { PropTypes } from 'react';
-import { DropdownButton, MenuItem } from 'react-bootstrap';
+import { MenuItem } from 'react-bootstrap';
+
+import { DropdownContainer } from '../dropdown-container/index';
 import { Icon } from '../icons';
 import './dropdown-menu.component.scss';
 
-export default class DropdownMenu extends React.Component {
+export default class DropdownMenu extends React.PureComponent {
 
   static propTypes = {
-    id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]).isRequired,
-    title: PropTypes.oneOfType([PropTypes.string, PropTypes.element, PropTypes.number]),
-    caret: PropTypes.bool,
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     menuItems: PropTypes.arrayOf(PropTypes.shape({
-      title: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.element,
-        PropTypes.number,
-      ]),
-      type: PropTypes.oneOf(['item', 'divider']),
-      icon: PropTypes.element,
       disabled: PropTypes.bool,
       disableClosing: PropTypes.bool,
       href: PropTypes.string,
+      icon: PropTypes.element,
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]), // serves as a key
       onClick: PropTypes.func,
+      title: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.element]),
+      type: PropTypes.oneOf(['item', 'divider']),
     })).isRequired,
+    caret: PropTypes.bool,
     disabled: PropTypes.bool,
     dropup: PropTypes.bool,
     pullLeft: PropTypes.bool,
+    title: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.element]),
   };
 
   static defaultProps = {
-    title: <Icon type="indicator" name="more" width={32} height={32} />,
     caret: false,
     disabled: false,
     dropup: false,
     pullLeft: false,
+    title: <Icon type="indicator" name="more" width={32} height={32} />,
   };
 
   constructor(props) {
     super(props);
-    this.state = {
-      menuOpen: false,
-    };
+    this.state = { isOpen: false };
   }
 
-  dropdownToggle = (newValue) => {
+  handleToggle = (isOpen) => {
     if (this.dontCloseDropdownMenu) {
-      this.setState({ menuOpen: true });
+      this.setState({ isOpen: true });
       this.dontCloseDropdownMenu = false;
     } else {
-      this.setState({ menuOpen: newValue });
+      this.setState({ isOpen });
     }
   }
 
   renderMenuItems = items =>
     items.map((item, i) => {
+      const id = item.id !== undefined ? item.id : `item${i}`;
       if (item.type === 'divider') {
         return (
           <MenuItem
-            key={`menuItem${i}`}
+            key={id}
             divider
           />
         );
       }
       return (
         <MenuItem
-          key={`menuItem${i}`}
-          id={item.id}
+          key={id}
+          id={id}
           disabled={!!item.disabled}
           href={item.href}
           onClick={(e) => {
@@ -85,21 +81,18 @@ export default class DropdownMenu extends React.Component {
     });
 
   render() {
-    const { id, menuItems, caret, pullLeft, ...otherProps } = this.props;
+    const { menuItems, caret, pullLeft, ...otherProps } = this.props;
     return (
       <div className="oc-dropdown-menu">
-        <DropdownButton
-          id={id}
-          bsStyle="info"
-          bsSize="xs"
+        <DropdownContainer
           noCaret={!caret}
           pullRight={!pullLeft}
+          isOpen={this.state.isOpen}
+          onToggle={this.handleToggle}
           {...otherProps}
-          open={this.state.menuOpen}
-          onToggle={this.dropdownToggle}
         >
           {this.renderMenuItems(menuItems)}
-        </DropdownButton>
+        </DropdownContainer>
       </div>
     );
   }

@@ -1,9 +1,8 @@
-/* eslint-disable no-console */
-
 import React from 'react';
 import { Map } from 'immutable';
 
 import { MultiSelect } from '../../../src/multi-select/index';
+import './multi-select-view.component.scss';
 
 export default class MultiSelectView extends React.PureComponent {
 
@@ -16,9 +15,8 @@ export default class MultiSelectView extends React.PureComponent {
     this.items = this.initializeItems();
   }
 
-  onChange = (id, isChecked) => {
-    const checkedItems = this.state.checkedItems;
-    this.setState({ checkedItems: checkedItems.set(id, isChecked) });
+  onChange = (checkedItems) => {
+    this.setState({ checkedItems });
   }
 
   initializeItems = () => (
@@ -40,11 +38,13 @@ export default class MultiSelectView extends React.PureComponent {
   render() {
     const checkedItems = this.state.checkedItems;
     return (
-      <MultiSelect
-        checkedItems={checkedItems}
-        items={this.items}
-        onChange={this.onChange}
-      />
+      <div className="oc-multi-select-view">
+        <MultiSelect
+          checkedItems={checkedItems}
+          items={this.items}
+          onChange={this.onChange}
+        />
+      </div>
     );
   }
 }

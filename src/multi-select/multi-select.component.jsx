@@ -24,10 +24,19 @@ export default class MultiSelect extends React.PureComponent {
     onChange: () => {},
   };
 
+  handleChange = (id, isChecked) => {
+    const { checkedItems, onChange } = this.props;
+    if (isChecked) {
+      onChange(checkedItems.set(id, isChecked));
+    } else {
+      onChange(checkedItems.delete(id));
+    }
+  }
+
   isChecked = (id, checkedItems) => checkedItems.get(id) === true;
 
   render() {
-    const { items, checkedItems, onChange } = this.props;
+    const { items, checkedItems } = this.props;
     return (
       <div className="oc-multi-select">
         {items.map((item) => {
@@ -37,7 +46,7 @@ export default class MultiSelect extends React.PureComponent {
               key={item.id}
               isChecked={isChecked}
               item={item}
-              onChange={onChange}
+              onChange={this.handleChange}
             />
           );
         })}

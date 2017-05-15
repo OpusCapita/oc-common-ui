@@ -22,7 +22,7 @@ export default class MultiSelectItem extends React.PureComponent {
   };
 
   render() {
-    const { id, text, ...otherProps } = this.props.item;
+    const { id, text } = this.props.item;
     const isChecked = this.props.isChecked;
     const onChange = this.props.onChange;
     return (
@@ -32,7 +32,6 @@ export default class MultiSelectItem extends React.PureComponent {
           checked={isChecked}
           id={id}
           onChange={() => onChange(id, !isChecked)}
-          {...otherProps}
         >
           <span className="oc-multi-select-item-text">
             {text}

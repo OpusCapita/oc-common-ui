@@ -1,0 +1,26 @@
+.oc-dropdown-multi-select {
+  width: 100%;
+
+  .dropdown {
+    width: 100%;
+
+    .dropdown-toggle {
+      background-color: inherit!important;
+      border: 0!important;
+      box-shadow: none!important;
+      color: inherit!important;
+      padding: 0!important;
+      width: 100%;
+
+      .oc-input-group-icon-remove {
+        height: 34px;
+      }
+    }  
+
+    .dropdown-menu {
+      width: 100%;
+      overflow-y: auto;
+      max-height: 242px; // 240 = 29px * 8items + 10px
+    }  
+  }
+}

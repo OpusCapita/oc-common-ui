@@ -1,7 +1,16 @@
+@import '../../../styles/colors';
+
 .oc-multi-select-item {
-  margin-left: 3px;
-  
-  .oc-multi-select-item-checkbox > label {
-    width: 100%;
-  }  
+  .oc-multi-select-item-checkbox {
+    margin: 0 !important;
+
+    & > label {
+      width: 100%;
+      padding: 5px 5px 5px 30px;
+
+      &:hover {
+        background-color: $oc-color-support-lightgray;
+      }
+    }
+  }
 }

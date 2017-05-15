@@ -1,13 +1,13 @@
-oc-flex-row {
+.oc-flex-row {
   display: flex;
   flex-direction: row;
 }
 
-oc-flex-column {
+.oc-flex-column {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 
-oc-flex-wrap {
+.oc-flex-wrap {
   flex-wrap: wrap;
 }

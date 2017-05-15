@@ -2,8 +2,10 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
-## <next>
+## 3.0.0
 
+* [npm scope](https://docs.npmjs.com/misc/scope) `@opuscapita` added to the package name
+* Package set to public
 * `Cards` fix collapse/expand icon container placement
 * `Menu` component added
 * `KEY_CODES` constant added

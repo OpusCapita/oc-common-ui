@@ -39,9 +39,9 @@ export default class DatagridView extends React.Component {
 Name | Type | Default | Description
 --- | --- | --- | ---
 id | string | required | ID of the datagrid
-rowsCount | number | required | Number of rows in the grid
 columns | array | required | Array of column configuration objects
-idKeyPath | array of strings | | Key path to the ID attribute in the data
+rowsCount | number |  | Override rows count otherwise calculated from data
+idKeyPath | array of strings | | Key path to unique ID value in the grid data, used in many features like row selecting and inline editing
 gridHeader | element | | Grid header displayed on top of grid
 actionBar | element | | Action bar element displayed at top right
 actionBarLeft | element | | Action bar element displayed at top left
@@ -64,7 +64,7 @@ onAddClick | function | | Callback that is called when add is clicked
 tabIndex | number | | tabIndex start value, needed when multiple grids on same page
 headerHeight | number | | Pixel height of the header row
 rowHeight | number | | Pixel height of rows
-containerStyle | Object | | Additional styles to be set on the container div
+containerStyle | object | | Additional styles to be set on the container div
 scrollToColumn | number | | Index of column to scroll to
 scrollTop | number | | Value of vertical scroll
 scrollToRow | number | | Index of row to scroll to
@@ -82,7 +82,7 @@ onContentHeightChange | function | | Callback that is called when rowHeightGette
 ## column configuration object attributes
 Name | Type | Default | Description
 --- | --- | --- | ---
-header | node | | Column header content
+header | element | | Column header content
 columnKey | string | | Column identifier key (Use if no valueKeyPath)
 valueKeyPath | string | | Column content value key path
 valueType | string | | Value type [text/number/float/boolean/date]
@@ -114,6 +114,8 @@ onValueMatchChangeValue | object | | Change other column value if own value matc
 disableEditingOnValueMatch | object | | Disable input element of this column when value at keyPath matches
 onEditValueChange | function | | Called on edit value change, called with (value, valueKeyPath, rowIndex, dataId)
 onCreateValueChange | function | | Called on create value change, called with (value, valueKeyPath, rowIndex)
+onCreateBlur | function | | Called on create cell input blur, called with (value, rowIndex)
+onEditBlur | function | | Called on edit cell input blur, called with (value, rowIndex, dataId)
 
 ## onValueMatchChangeValue attributes
 Name | Type | Default | Description

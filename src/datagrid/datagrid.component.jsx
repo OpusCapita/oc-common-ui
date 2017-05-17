@@ -115,7 +115,6 @@ const mapDispatchToProps = {
  * @memberof Platform.Components.DataGrid
  * @prop {Object} propTypes - The props passed to this component
  * @prop {string} propTypes.id - Unique identifier for the data grid
- * @prop {number} propTypes.rowsCount - Override rows count otherwise calculated from data
 
  * @prop {array} propTypes.columns - Column object array
  * @prop {element} propTypes.columns.header - Column header content
@@ -155,7 +154,10 @@ const mapDispatchToProps = {
  * @prop {object} propTypes.columns.disableEditingOnValueMatch.matchValue - The value to be matched
  * @prop {function} propTypes.columns.onEditValueChange - Called on edit value change, called with (value, valueKeyPath, rowIndex, dataId)
  * @prop {function} propTypes.columns.onCreateValueChange - Called on create value change, called with (value, valueKeyPath, rowIndex)
+ * @prop {function} propTypes.columns.onCreateBlur - Called on create cell input blur, called with (value, rowIndex)
+ * @prop {function} propTypes.columns.onEditBlur - Called on edit cell input blur, called with (value, rowIndex, dataId)
 
+ * @prop {number} propTypes.rowsCount - Override rows count otherwise calculated from data
  * @prop {array} propTypes.idKeyPath - Key path to ID data
  * @prop {element} propTypes.gridHeader - Grid header displayed on top of grid
  * @prop {element} propTypes.actionBar - Action bar element displayed at top right
@@ -249,7 +251,6 @@ export default class DataGrid extends React.PureComponent {
     allDataSize: PropTypes.number.isRequired,
     // Required component properties
     id: PropTypes.string.isRequired,
-    rowsCount: PropTypes.number,
     columns: PropTypes.arrayOf(
       PropTypes.shape({
         header: PropTypes.element,
@@ -291,9 +292,12 @@ export default class DataGrid extends React.PureComponent {
         defaultValue: PropTypes.any,              // default value for the column when creating new item
         onEditValueChange: PropTypes.func,        // callback with (value, valueKeyPath, rowIndex, dataId)
         onCreateValueChange: PropTypes.func,      // callbac with (value, valueKeyPath, rowIndex)
+        onCreateBlur: PropTypes.func,             // callback with (value, rowIndex)
+        onEditBlur: PropTypes.func,               // callback with (value, rowIndex, dataId)
       }).isRequired,
     ).isRequired,
     // Optional component properties
+    rowsCount: PropTypes.number,
     idKeyPath: PropTypes.arrayOf(PropTypes.string), // keyPath to id data
     gridHeader: PropTypes.element,
     actionBar: PropTypes.element,
@@ -426,6 +430,23 @@ export default class DataGrid extends React.PureComponent {
         this.props.idKeyPath,
       );
     }
+  }
+
+  onCreateCellBlur = (rowIndex, col, value) => {
+    if (col.onCreateBlur) {
+      col.onCreateBlur(value, rowIndex);
+    }
+  }
+
+  onEditCellBlur = (rowIndex, col, value) => {
+    if (col.onEditBlur) {
+      const dataId = this.getDataIdByRowIndex(rowIndex);
+      col.onEditBlur(value, rowIndex, dataId);
+    }
+  }
+
+  onCellFocus = (e) => {
+    e.target.select();
   }
 
   getDataIdByRowIndex = rowIndex =>
@@ -695,6 +716,11 @@ export default class DataGrid extends React.PureComponent {
                       col,
                       editValueParser(e.target.value))
                     }
+                    onBlur={e => this.onEditCellBlur(
+                      rowIndex,
+                      col,
+                      e.target.value,
+                    )}
                     id={`ocDatagridEditInput-${this.props.id}-${column.columnKey}-${rowIndex}`}
                     {...col.editComponentProps}
                     disabled={this.getComponentDisabledState(rowIndex, col, 'edit')}
@@ -711,6 +737,11 @@ export default class DataGrid extends React.PureComponent {
                       rowIndex,
                       col,
                       editValueParser(e.target.value),
+                    )}
+                    onBlur={e => this.onCreateCellBlur(
+                      rowIndex,
+                      col,
+                      e.target.value,
                     )}
                     onKeyDown={this.onCreateCellKeyDown}
                     id={`ocDatagridCreateInput-${this.props.id}-${column.columnKey}-${rowIndex}`}
@@ -758,6 +789,12 @@ export default class DataGrid extends React.PureComponent {
                       col,
                       e.target.value,
                     )}
+                    onBlur={e => this.onEditCellBlur(
+                      rowIndex,
+                      col,
+                      e.target.value,
+                    )}
+                    onFocus={this.onCellFocus}
                     id={`ocDatagridEditInput-${this.props.id}-${column.columnKey}-${rowIndex}`}
                     {...col.editComponentProps}
                     disabled={this.getComponentDisabledState(rowIndex, col, 'edit')}
@@ -775,6 +812,12 @@ export default class DataGrid extends React.PureComponent {
                       col,
                       e.target.value,
                     )}
+                    onBlur={e => this.onCreateCellBlur(
+                      rowIndex,
+                      col,
+                      e.target.value,
+                    )}
+                    onFocus={this.onCellFocus}
                     onKeyDown={this.onCreateCellKeyDown}
                     id={`ocDatagridCreateInput-${this.props.id}-${column.columnKey}-${rowIndex}`}
                     {...col.createComponentProps}
@@ -829,6 +872,11 @@ export default class DataGrid extends React.PureComponent {
                       col,
                       editValueParser(e.target.value),
                     )}
+                    onBlur={e => this.onEditCellBlur(
+                      rowIndex,
+                      col,
+                      editValueParser(e.target.value),
+                    )}
                     id={`ocDatagridEditInput-${this.props.id}-${column.columnKey}-${rowIndex}`}
                     {...col.editComponentProps}
                     disabled={this.getComponentDisabledState(rowIndex, col, 'edit')}
@@ -842,6 +890,11 @@ export default class DataGrid extends React.PureComponent {
                     type="text"
                     value={this.getCreateItemValue(rowIndex, col)}
                     onChange={e => this.onCreateCellValueChange(
+                      rowIndex,
+                      col,
+                      editValueParser(e.target.value),
+                    )}
+                    onBlur={e => this.onCreateCellBlur(
                       rowIndex,
                       col,
                       editValueParser(e.target.value),
@@ -889,6 +942,11 @@ export default class DataGrid extends React.PureComponent {
                       col,
                       selectedData && editValueParser(selectedData.value),
                     )}
+                    onBlur={() => this.onEditCellBlur(
+                      rowIndex,
+                      col,
+                      this.getEditItemValue(rowIndex, col),
+                    )}
                     searchable={selectOptions && (selectOptions.length > 9)}
                     clearable={false}
                     backspaceRemoves={false}
@@ -914,6 +972,11 @@ export default class DataGrid extends React.PureComponent {
                       rowIndex,
                       col,
                       selectedData && editValueParser(selectedData.value),
+                    )}
+                    onBlur={() => this.onCreateCellBlur(
+                      rowIndex,
+                      col,
+                      this.getEditItemValue(rowIndex, col),
                     )}
                     searchable={selectOptions && (selectOptions.length > 9)}
                     clearable={false}
@@ -1038,6 +1101,11 @@ export default class DataGrid extends React.PureComponent {
                       col,
                       selectedData && editValueParser(selectedData.value),
                     )}
+                    onBlur={() => this.onEditCellBlur(
+                      rowIndex,
+                      col,
+                      this.getEditItemValue(rowIndex, col),
+                    )}
                     searchable={false}
                     clearable={false}
                     backspaceRemoves={false}
@@ -1060,6 +1128,11 @@ export default class DataGrid extends React.PureComponent {
                       rowIndex,
                       col,
                       selectedData && editValueParser(selectedData.value),
+                    )}
+                    onBlur={() => this.onCreateCellBlur(
+                      rowIndex,
+                      col,
+                      this.getEditItemValue(rowIndex, col),
                     )}
                     searchable={false}
                     clearable={false}

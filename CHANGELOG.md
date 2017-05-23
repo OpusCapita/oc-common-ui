@@ -2,6 +2,9 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## <v.next>
+* Case sensitive fix for `Lato` font family urls in styles
+
 ## 3.0.0
 
 * [npm scope](https://docs.npmjs.com/misc/scope) `@opuscapita` added to the package name

@@ -1,9 +1,18 @@
 @import 'colors';
 
+//Currently we do not use roundings, but the variables have been added for Bootstrap compatibility
+$oc-border-radius-base:        0;
+$oc-border-radius-large:       0;
+$oc-border-radius-small:       0;
+
 $oc-height-navbar: 40px;
+//Margin or padding of a content
 $oc-space-content: 1rem;
 $oc-radius-content: 0.5rem;
+
+//Deprecated: use $oc-border-radius-base
 $oc-border-radius-navbar: 0;
+
 $oc-sidemenu-color-text: $oc-color-white;
 
 $oc-font-weight-light: 300;

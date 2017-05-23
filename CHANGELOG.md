@@ -2,7 +2,7 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
-## <v.next>
+## 3.1.0
 * Variables `$oc-border-radius-base|small|large` added
 * Rounded corners removed from `Bootstrap` framework and `react-select` component
 * Case sensitive fix for `Lato` font family urls in styles

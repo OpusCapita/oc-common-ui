@@ -4,6 +4,7 @@
 
 ## next
 
+* Add initial documentation to alerts, cards, responsive-navbar, spinner, and wizard
 * Add examples directory to ESLint
 * Fix ESLint errors in examples
 * Remove unneeded packages

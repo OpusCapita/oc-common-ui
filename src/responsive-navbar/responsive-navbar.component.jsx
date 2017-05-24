@@ -3,7 +3,8 @@
 /* eslint-disable react/no-find-dom-node */
 /* eslint-disable react/prop-types */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Select from 'react-select';
 import { Navbar,

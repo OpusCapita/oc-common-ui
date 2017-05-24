@@ -2,6 +2,12 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## next
+
+* Add examples directory to ESLint
+* Fix ESLint errors in examples
+* Remove unneeded packages
+
 ## 3.1.0
 * Variables `$oc-border-radius-base|small|large` added
 * Rounded corners removed from `Bootstrap` framework and `react-select` component

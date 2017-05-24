@@ -1,7 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable react/no-array-index-key */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { OCAlert } from './alert.component.jsx'; // eslint-disable-line import/extensions
 

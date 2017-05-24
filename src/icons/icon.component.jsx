@@ -1,5 +1,6 @@
 /* eslint-disable import/no-duplicates */
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import IndicatorRemove from
   '../../images/indicators/Remove.svg';

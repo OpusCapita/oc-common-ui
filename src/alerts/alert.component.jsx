@@ -1,7 +1,8 @@
 /* eslint-disable import/prefer-default-export */
 /* eslint-disable react/no-array-index-key */
 
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Alert } from 'react-bootstrap';
 import { FormattedMessage as M } from 'react-intl';
 import { OCAlert as alertAction } from './alerts.actions';

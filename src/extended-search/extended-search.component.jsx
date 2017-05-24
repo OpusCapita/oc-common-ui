@@ -1,5 +1,6 @@
 /* eslint-disable react/forbid-prop-types */
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Modal, Button, ControlLabel, FormGroup, Col } from 'react-bootstrap';
 import SearchBar from '../searchbar/searchbar.component';
 

@@ -1,8 +1,19 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
 import React from 'react';
-import { Grid, Row, Col, Form, FormGroup, ControlLabel, FormControl } from 'react-bootstrap';
+import PropTypes from 'prop-types';
+import {
+  Form,
+  FormGroup,
+  ControlLabel,
+  FormControl,
+} from 'react-bootstrap';
 import { ExtendedSearch } from '../../../src/index';
 
 class Content extends React.Component {
+  static propTypes = {
+    select: PropTypes.func.isRequired,
+  };
   items = [
     { id: 1, name: 'name 1', group: 'group 1' },
     { id: 2, name: 'name 2', group: 'group 2' },
@@ -31,7 +42,7 @@ class Content extends React.Component {
                   <FormControl type="text" />
                 </FormGroup>
               </div>
-               <div className="col-sm-12 col-md-4">
+              <div className="col-sm-12 col-md-4">
                 <FormGroup>
                   <ControlLabel>Group</ControlLabel>
                   <FormControl type="text" />
@@ -48,16 +59,19 @@ class Content extends React.Component {
             </tr>
           </thead>
           <tbody>
-          {
-            this.items.map((item) => {
-              return (
-                <tr style={{cursor: 'pointer'}} key={item.id} onClick={() => this.props.select(item)}>
+            {
+              this.items.map(item => (
+                <tr
+                  style={{ cursor: 'pointer' }}
+                  key={item.id} onClick={
+                    () => this.props.select(item)}
+                >
                   <td>{ item.name }</td>
                   <td>{ item.group }</td>
                 </tr>
-              );
-            })
-          }
+                ),
+              )
+            }
           </tbody>
         </table>
       </div>
@@ -67,7 +81,7 @@ class Content extends React.Component {
 
 function ExtendedSearchView() {
   function callback(item) {
-     alert(JSON.stringify(item, null, 4));
+    alert(JSON.stringify(item, null, 4)); // eslint-disable-line no-alert
   }
 
   return (
@@ -80,8 +94,9 @@ function ExtendedSearchView() {
               <ExtendedSearch
                 callback={callback} label="Supplier"
                 title="Search for contracts"
-                modal={ { bsSize: 'lg' } }
-                horizontal>
+                modal={{ bsSize: 'lg' }}
+                horizontal
+              >
                 <Content />
               </ExtendedSearch>
             </Form>

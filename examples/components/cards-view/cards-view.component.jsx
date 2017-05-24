@@ -11,7 +11,7 @@ export default class CardsView extends React.Component {
   }
 
   setExpanded = (cardId, status) => {
-    let state = this.state;
+    const state = this.state;
     state.expanded = status;
     this.setState(state);
   }
@@ -20,11 +20,13 @@ export default class CardsView extends React.Component {
     return (
       <div id="oc-cards-view">
         <Cards>
-          <Card id="example"
-                expanded={this.state.expanded}
-                setExpanded={ this.setExpanded }>
-            <CardHeader>I'm card header</CardHeader>
-            <CardContent>I'm card content</CardContent>
+          <Card
+            id="example"
+            expanded={this.state.expanded}
+            setExpanded={this.setExpanded}
+          >
+            <CardHeader>I&#39;m card header</CardHeader>
+            <CardContent>I&#39;m card content</CardContent>
           </Card>
         </Cards>
       </div>

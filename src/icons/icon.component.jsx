@@ -88,7 +88,7 @@ import ProductTools from
 import ProductUsers from
   '../../images/products/Users.svg';
 import ProductMatching from
-  '../../images/products/Info.svg'; // temporaily, until there is no specific icon
+  '../../images/products/Matching.svg';
 
 import InvoicesGeneric from
   '../../images/invoices/document/generic.svg';

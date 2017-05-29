@@ -41,6 +41,14 @@ Some components needs reducers to be loaded in the redux store, those are done i
 * Demo implementations of the components
 * Run `npm run docs` to create output to `examples-build` or `npm run hot` for using hot reload functionality
 
+### Component descriptions
+
+- [Alerts](./src/alerts/README.md)
+- [Cards](./src/cards/README.md)
+- [ResponsiveNavbar](./src/responsive-navbar/README.md)
+- [Spinner](./src/spinner/README.md)
+- [Wizard](./src/wizard/README.md)
+
 ## Links
 
 Cheatseet for [Markdown syntax](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet).

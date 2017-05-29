@@ -253,7 +253,7 @@ export default class DataGrid extends React.PureComponent {
     id: PropTypes.string.isRequired,
     columns: PropTypes.arrayOf(
       PropTypes.shape({
-        header: PropTypes.element,
+        header: PropTypes.node,
         columnKey: PropTypes.string,              // Use valueKeyPath if possible, this is calculated from there
         valueKeyPath: PropTypes.array,            // key path for the cell data value, required if no columnKey is given
         valueType: PropTypes.string,              // data value type [text/number/float/boolean/date]
@@ -299,9 +299,9 @@ export default class DataGrid extends React.PureComponent {
     // Optional component properties
     rowsCount: PropTypes.number,
     idKeyPath: PropTypes.arrayOf(PropTypes.string), // keyPath to id data
-    gridHeader: PropTypes.element,
-    actionBar: PropTypes.element,
-    actionBarLeft: PropTypes.element,
+    gridHeader: PropTypes.node,
+    actionBar: PropTypes.node,
+    actionBarLeft: PropTypes.node,
     disableDropdown: PropTypes.bool,              // Don't use dropdown menu in the action bar
     dropdownMenuItems: PropTypes.array,
     inlineEdit: PropTypes.bool,

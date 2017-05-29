@@ -1,42 +1,23 @@
-# Datagrid component
-Uses facebook's [fixed-data-table](https://github.com/facebook/fixed-data-table).
+Back to [oc-common-ui](../../README.md)
 
-## Requirements
+# Datagrid
+
+### Description
+
+Contains **Datagrid** component that can be used to present data in table. Datagrid supports inline edit, action bar and lot more. Component is highly customizable to meet different use cases.
+
+Underneath it uses Facebook's [fixed-data-table](https://github.com/facebook/fixed-data-table) react component, which is designed to handle large amounts amounts of data without sacraficing performance.
+
+### Dependencies
+
 - [redux](http://redux.js.org/)
 - [react-intl](https://github.com/yahoo/react-intl)
 
-### Example usage
-```javascript
-import React from 'react';
-import { Datagrid } from 'oc-common-ui';
+### API
 
-export default class DatagridView extends React.Component {
-  render() {
-    const columns = [
-      {
-        header: 'Account Name',
-        valueKeyPath: ['name'],
-        valueType: 'text',
-        width: 200,
-      },
-      {
-        header: 'Account number',
-        valueKeyPath: ['accountNumber'],
-        valueType: 'text',
-        width: 200,
-      },
-    ];
-    return (
-      <Datagrid
-        id="accounts"
-        columns={columns}
-    );
-  }
-}
-```
+#### Datagrid
 
-## props
-Name | Type | Default | Description
+Prop name | Type | Default | Description
 --- | --- | --- | ---
 id | string | required | ID of the datagrid
 columns | array | required | Array of column configuration objects
@@ -79,7 +60,8 @@ rowClassNameGetter | function | | To get any additional CSS classes that should 
 rowHeightGetter | function | | If specified, rowHeightGetter(index) is called for each row and the returned value overrides rowHeight for particular row
 onContentHeightChange | function | | Callback that is called when rowHeightGetter returns a different height for a row than the rowHeight prop. This is necessary because initially table estimates heights of some parts of the content
 
-## column configuration object attributes
+#### Datagrid - column prop attributes
+
 Name | Type | Default | Description
 --- | --- | --- | ---
 header | node | | Column header content
@@ -117,15 +99,47 @@ onCreateValueChange | function | | Called on create value change, called with (v
 onCreateBlur | function | | Called on create cell input blur, called with (value, rowIndex)
 onEditBlur | function | | Called on edit cell input blur, called with (value, rowIndex, dataId)
 
-## onValueMatchChangeValue attributes
+#### Datagrid - onValueMatchChangeValue prop attributes
 Name | Type | Default | Description
 --- | --- | --- | ---
 matchValue | any | | When this columns data match to this
 newValueKeyPath | array of strings | | Change value at this keyPath
 newValue | any | | The new value to be inserted
 
-## disableEditingOnValueMatch attributes
+#### Datagrid - disableEditingOnValueMatch prop attributes
+
 Name | Type | Default | Description
 --- | --- | --- | ---
 matchValueKeyPath | array of strings | | Keypath of the value to be matched
 matchValue | any | | The value to be matched
+
+### Code example
+
+```jsx
+import React from 'react';
+import { Datagrid } from 'oc-common-ui';
+
+export default class DatagridView extends React.Component {
+  render() {
+    const columns = [
+      {
+        header: 'Account Name',
+        valueKeyPath: ['name'],
+        valueType: 'text',
+        width: 200,
+      },
+      {
+        header: 'Account number',
+        valueKeyPath: ['accountNumber'],
+        valueType: 'text',
+        width: 200,
+      },
+    ];
+    return (
+      <Datagrid
+        id="accounts"
+        columns={columns}
+    );
+  }
+}
+```

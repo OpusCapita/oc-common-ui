@@ -7,12 +7,12 @@ import { injectIntl,
          FormattedMessage as M,
          FormattedDate as D,
          FormattedNumber as N } from 'react-intl';
-import { Column, Cell } from 'fixed-data-table';
+import { Column, Cell } from 'fixed-data-table-2';
 import { Checkbox, FormControl } from 'react-bootstrap';
 import classNames from 'classnames';
 import isNaN from 'lodash/isNaN';
 import moment from 'moment';
-import 'fixed-data-table/dist/fixed-data-table.css';
+import 'fixed-data-table-2/dist/fixed-data-table.css';
 
 import { Spinner } from '../spinner';
 

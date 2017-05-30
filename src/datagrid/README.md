@@ -10,8 +10,7 @@ Underneath it uses Facebook's [fixed-data-table](https://github.com/facebook/fix
 
 ### Dependencies
 
-- [redux](http://redux.js.org/)
-- [react-intl](https://github.com/yahoo/react-intl)
+- classnames, fixed-data-table-2, immutable, lodash, moment, react-bootstrap, react-day-picker, react-immutable-proptypes, react-intl, react-tether, redux, tether
 
 ### API
 

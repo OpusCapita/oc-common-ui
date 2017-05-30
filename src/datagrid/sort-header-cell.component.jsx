@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Cell } from 'fixed-data-table-2';
 
 export default class SortHeaderCell extends React.PureComponent {

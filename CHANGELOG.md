@@ -4,14 +4,13 @@
 
 ## next
 
+## 3.2.0
+* `Datagrid` component added
 * Add Matching icon
 * Add initial documentation to alerts, cards, responsive-navbar, spinner, and wizard
 * Add examples directory to ESLint
 * Fix ESLint errors in examples
 * Remove unneeded packages
-
-## 3.2.0
-- `Datagrid` component added
 
 ## 3.1.0
 * Variables `$oc-border-radius-base|small|large` added

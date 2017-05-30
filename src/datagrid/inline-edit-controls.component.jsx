@@ -1,5 +1,6 @@
 /* eslint-disable react/forbid-prop-types */
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 import { FormattedMessage as M } from 'react-intl';
 import CellToolTip from './cell-tooltip.component';

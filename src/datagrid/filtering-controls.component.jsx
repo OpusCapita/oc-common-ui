@@ -1,4 +1,5 @@
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Checkbox } from 'react-bootstrap';
 import { FormattedMessage as M } from 'react-intl';
 import './filtering-controls.component.scss';

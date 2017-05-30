@@ -1,5 +1,6 @@
-/* eslint-disable react/forbid-prop-types, prefer-template */
-import React, { PropTypes } from 'react';
+/* eslint-disable react/forbid-prop-types */
+import React from 'react';
+import PropTypes from 'prop-types';
 import { Tooltip, OverlayTrigger } from 'react-bootstrap';
 import { FormattedMessage as M } from 'react-intl';
 import classNames from 'classnames';
@@ -48,7 +49,7 @@ export default class DatagridTooltip extends React.Component {
       warningMessageValues,
     } = this.props;
     let overlayAttrs = {
-      overlay: <Tooltip id={'Tooltip_' + id} style={{ display: 'none' }} />,
+      overlay: <Tooltip id={`Tooltip_${id}`} style={{ display: 'none' }} />,
     };
     const message = {
       id: errorMessageId || warningMessageId || messageId || false,
@@ -65,7 +66,7 @@ export default class DatagridTooltip extends React.Component {
       overlayAttrs = {
         placement: 'bottom',
         overlay: (
-          <Tooltip id={'Tooltip_' + id} bsClass={tooltipClassName}>
+          <Tooltip id={`Tooltip_${id}`} bsClass={tooltipClassName}>
             <M id={message.id} values={message.values} />
           </Tooltip>
         ),

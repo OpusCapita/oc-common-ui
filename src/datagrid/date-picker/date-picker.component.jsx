@@ -46,16 +46,15 @@ export default class DatePicker extends React.Component {
       LocaleUtils,
       { getFirstDayOfWeek: () => moment.localeData().firstDayOfWeek() },
     );
+    this.input = null;
+    this.daypicker = null;
+    this.clickedInside = false;
+    this.clickTimeout = null;
   }
 
   componentWillUnmount() {
     clearTimeout(this.clickTimeout);
   }
-
-  input = null;
-  daypicker = null;
-  clickedInside = false;
-  clickTimeout = null;
 
   handleContainerMouseDown = () => {
     this.clickedInside = true;

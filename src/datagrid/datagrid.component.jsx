@@ -1,5 +1,6 @@
 /* eslint-disable no-lonely-if, no-nested-ternary, prefer-template, react/require-default-props */
-import React, { PropTypes } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Map, List } from 'immutable';
 import { connect } from 'react-redux';
@@ -14,36 +15,20 @@ import isNaN from 'lodash/isNaN';
 import moment from 'moment';
 import 'fixed-data-table-2/dist/fixed-data-table.css';
 
-import { Spinner } from '../spinner';
-
 import ResponsiveFixedDataTable from './responsive-fixed-data-table.component';
 import SortHeaderCell from './sort-header-cell.component';
 import ActionBar from './action-bar.component';
 import InlineEditControls from './inline-edit-controls.component';
 import FilteringControls from './filtering-controls.component';
 import DropdownControls from './dropdown-controls.component';
-import { addNewItem,
-         create,
-         edit,
-         remove,
-         save,
-         cancel,
-         sort,
-         resizeColumn,
-         invalidate,
-         itemSelectionChange,
-         toggleFiltering,
-         editCellValueChange,
-         createCellValueChange,
-         filterCellValueChange,
-         editCellValueValidate,
-         createCellValueValidate,
-         validateEditedRows,
-         validateCreatedRows } from './datagrid.actions';
+import * as datagridActions from './datagrid.actions';
 import FloatingSelect from './floating-select/floating-select.component';
 import DateInput from './date-picker/date-picker.component';
 import CellTooltip from './cell-tooltip.component';
 import './datagrid.component.scss';
+
+import { Spinner } from '../spinner';
+import KEY_CODES from '../constants/key-codes.constant';
 
 const mapStateToProps = (state, ownProps) => {
   const locale = {};
@@ -81,26 +66,7 @@ const mapStateToProps = (state, ownProps) => {
   };
 };
 
-const mapDispatchToProps = {
-  addNewItem,
-  create,
-  edit,
-  remove,
-  save,
-  cancel,
-  sort,
-  resizeColumn,
-  invalidate,
-  itemSelectionChange,
-  toggleFiltering,
-  editCellValueChange,
-  createCellValueChange,
-  filterCellValueChange,
-  editCellValueValidate,
-  createCellValueValidate,
-  validateEditedRows,
-  validateCreatedRows,
-};
+const mapDispatchToProps = datagridActions;
 
 /**
  * DataGrid component.
@@ -370,7 +336,7 @@ export default class DataGrid extends React.PureComponent {
   }
 
   onCreateCellKeyDown = (e) => {
-    if (e.keyCode === 13) {
+    if (e.keyCode === KEY_CODES.ENTER) {
       this.props.addNewItem(this.props.id, this.columnDefaultValues);
     }
   }

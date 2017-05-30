@@ -1,8 +1,10 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
 import { Datagrid, DatagridActions } from '../../../src/index';
-import { bankAccountData, currencyOptions } from './data';
+import { bankAccountData } from './data';
 import './datagrid.component.scss';
+
+// TODO: Expand example to have inline edit etc..
 
 const GRID_ID = 'accounts-grid-example';
 
@@ -10,7 +12,7 @@ const mapDispatchToProps = {
   datagridSetData: DatagridActions.setData,
 };
 
-const mapStateToProps = state => ({});
+const mapStateToProps = () => ({});
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class DatagridView extends React.Component {

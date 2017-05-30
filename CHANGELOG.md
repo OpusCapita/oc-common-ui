@@ -10,6 +10,9 @@
 * Fix ESLint errors in examples
 * Remove unneeded packages
 
+## 3.2.0
+- `Datagrid` component added
+
 ## 3.1.0
 * Variables `$oc-border-radius-base|small|large` added
 * Rounded corners removed from `Bootstrap` framework and `react-select` component

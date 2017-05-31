@@ -23,9 +23,9 @@ N/A
 | activeKey | number                          | required | Navbar item to be active initially |
 | list      | list [{name: name, href: href}] | required |                                    |
 
-| Function | Parameters | Returns      | Description                |
-| -------- | ---------- | ------------ | -------------------------- |
-| onSelect |            | href: string | HREF for the selected item |
+| Function | Parameters   | Returns | Description                              |
+| -------- | ------------ | ------- | ---------------------------------------- |
+| onSelect | href: string |         | Callback fired when the active item changes |
 
 ### Code example
 

@@ -2,9 +2,12 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
-## next
+## <next (4.x.x)>
+
+* Remove react-router dependency from responsive-navbar and menu
 
 ## 3.2.0
+
 * `Datagrid` component added
 * Add Matching icon
 * Add initial documentation to alerts, cards, responsive-navbar, spinner, and wizard
@@ -13,6 +16,7 @@
 * Remove unneeded packages
 
 ## 3.1.0
+
 * Variables `$oc-border-radius-base|small|large` added
 * Rounded corners removed from `Bootstrap` framework and `react-select` component
 * Case sensitive fix for `Lato` font family urls in styles

@@ -25,27 +25,25 @@ const getPrefix = (item) => {
   return content;
 };
 
-class SideMenu extends React.Component {
-  static propTypes = {
-    router: routerShape.isRequired,
-  }
-  render() {
-    const isNavigation = true;
-    const content = (
-      <Menu
-        items={ITEMS}
-        getContent={getPrefix}
-        isNavigation={isNavigation}
-        onSelect={(item) => {
-          if ('to' in item) {
-            this.props.router.push(item.to);
-          }
-        }}
-      />
-    );
-    return content;
-  }
-}
+const SideMenu = (props) => {
+  const isNavigation = true;
+  return (
+    <Menu
+      items={ITEMS}
+      getContent={getPrefix}
+      isNavigation={isNavigation}
+      onSelect={(item) => {
+        if ('to' in item) {
+          props.router.push(item.to);
+        }
+      }}
+    />
+  );
+};
+
+SideMenu.propTypes = {
+  router: routerShape.isRequired,
+};
 
 const menuStyle = { width: 200, height: '100%', backgroundColor: 'blue' };
 const TestMenu = () => {

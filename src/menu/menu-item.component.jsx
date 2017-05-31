@@ -73,7 +73,6 @@ export default class MenuItem extends React.PureComponent {
 
 MenuItem.defaultProps = {
   onSelect: null,
-  navigateTo: null,
   isLink: false,
   isSub: false,
   isOpen: false,
@@ -87,7 +86,6 @@ MenuItem.propTypes = {
     text: PropTypes.string,
   }).isRequired,
   onSelect: PropTypes.func,
-  navigateTo: PropTypes.func,
   isLink: PropTypes.bool,
   isSub: PropTypes.bool,
   isOpen: PropTypes.bool,

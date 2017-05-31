@@ -50,6 +50,7 @@ export default class MenuItems extends React.PureComponent {
             ? (
               <MenuItems
                 items={item.items}
+                onSelect={this.onSelect}
                 subMenu
                 isNavigation={isNavigation}
                 getContent={getContent}

@@ -1,5 +1,8 @@
 import React from 'react';
+import { withRouter, routerShape } from 'react-router';
+
 import { Menu } from '../../../src/index';
+
 
 function range(start, end) {
   const list = [];
@@ -24,6 +27,7 @@ const getItems = () => {
             {
               id: `${i}.${b}.${d}`,
               text: `${label} ${i}.${b}.${d}`,
+              to: '/menu',
             }
           )),
         }
@@ -34,7 +38,11 @@ const getItems = () => {
   return items;
 };
 
-export default class MenuView extends React.Component {
+class MenuView extends React.Component {
+  static propTypes = {
+    router: routerShape.isRequired,
+  }
+
   constructor(props) {
     super(props);
     this.items = getItems();
@@ -50,9 +58,19 @@ export default class MenuView extends React.Component {
     return (
       <div className="oc-content">
         <div style={style}>
-          <Menu items={this.items} isNavigation={false} />
+          <Menu
+            items={this.items}
+            isNavigation
+            onSelect={(item) => {
+              if ('to' in item) {
+                this.props.router.push(item.to);
+              }
+            }}
+          />
         </div>
       </div>
     );
   }
 }
+
+export default withRouter(MenuView);

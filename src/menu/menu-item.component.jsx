@@ -1,3 +1,5 @@
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router';
@@ -34,19 +36,17 @@ export default class MenuItem extends React.PureComponent {
 
     if (this.props.isLink) {
       return (
-        <Link
-          to={this.props.item.to}
-          activeClassName="oc-menu-item-active"
+        <div
+          onClick={this.onClick}
           className={classNameMenuItem}
         >
           { this.props.prefix }
           { this.props.item.text }
-        </Link>
+        </div>
       );
     }
 
     return (
-      /* eslint-disable jsx-a11y/no-static-element-interactions */
       <a
         tabIndex="0"
         onClick={this.onClick}
@@ -74,6 +74,7 @@ export default class MenuItem extends React.PureComponent {
 
 MenuItem.defaultProps = {
   onSelect: null,
+  navigateTo: null,
   isLink: false,
   isSub: false,
   isOpen: false,
@@ -87,6 +88,7 @@ MenuItem.propTypes = {
     text: PropTypes.string,
   }).isRequired,
   onSelect: PropTypes.func,
+  navigateTo: PropTypes.func,
   isLink: PropTypes.bool,
   isSub: PropTypes.bool,
   isOpen: PropTypes.bool,

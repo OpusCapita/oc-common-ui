@@ -13,7 +13,7 @@ const params = {
   buildPath: 'docs',
   output: {
     path: path.join(__dirname, '/docs'),
-    filename: 'js/examples.js',
+    filename: 'examples.js',
   },
   entry: {
     app: path.join(__dirname, '/examples/index.jsx'),
@@ -27,7 +27,7 @@ const plugins = [
   }),
   new webpack.optimize.CommonsChunkPlugin({
     name: 'vendor',
-    filename: 'js/vendor.bundle.js',
+    filename: 'vendor.bundle.js',
   }),
   new HtmlWebpackPlugin({
     filename: 'index.html',

@@ -14,4 +14,5 @@ export * from './layouts/application/index.js';
 export * from './extended-search/index.js';
 export * from './wizard/index.js';
 export * from './menu/index.js';
+export * from './datagrid/index.js';
 export * from './constants/index.js';

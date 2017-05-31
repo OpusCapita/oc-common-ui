@@ -28,10 +28,15 @@ Some components needs reducers to be loaded in the redux store, those are done i
 ### Changelog
 * Remember to update the CHANGELOG.md file with information about the changes to `src`
 
-### Creating a new release tag
+### Contributing
+* Make new branch for the changes
 * Update `CHANGELOG.md` file
+* Update `LICENSE-3RD-PARTY.md` in case lib changes
 * Commit changes (not `lib`)
 * Push changes
+* Make a pull request
+
+### Creating a new release tag
 * Run `npm version [major|minor|patch]` [Info](https://docs.npmjs.com/cli/version)
 
 ### Trouble shooting
@@ -45,6 +50,7 @@ Some components needs reducers to be loaded in the redux store, those are done i
 
 - [Alerts](./src/alerts/README.md)
 - [Cards](./src/cards/README.md)
+- [Datagrid](./src/datagrid/README.md)
 - [ResponsiveNavbar](./src/responsive-navbar/README.md)
 - [Spinner](./src/spinner/README.md)
 - [Wizard](./src/wizard/README.md)

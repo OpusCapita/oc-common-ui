@@ -4,6 +4,8 @@
 
 ## next
 
+## 3.2.0
+* `Datagrid` component added
 * Add Matching icon
 * Add initial documentation to alerts, cards, responsive-navbar, spinner, and wizard
 * Add examples directory to ESLint

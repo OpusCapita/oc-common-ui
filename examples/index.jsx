@@ -1,3 +1,4 @@
+/* eslint-disable no-underscore-dangle */
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, hashHistory, IndexRedirect } from 'react-router';
@@ -8,7 +9,7 @@ import { createStore,
 import { Provider } from 'react-redux';
 import { IntlProvider, intlReducer } from 'react-intl-redux';
 import thunk from 'redux-thunk';
-import { alertsReducer, OCAlert } from '../src/index';
+import { alertsReducer, OCAlert, datagridReducer } from '../src/index';
 import App from './app.component';
 import CardsView from './components/cards-view/cards-view.component';
 import SpinnerView from './components/spinner-view/spinner-view.component';
@@ -31,12 +32,15 @@ import MenuView from './components/menu-view/menu-view.component';
 
 require('../images/favicon.ico');
 
+const composeEnhancers = process.env.NODE_ENV !== 'production' ? window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ : compose;
+
 const store = createStore(
   combineReducers({
     alertsReducer,
     intl: intlReducer,
+    datagrid: datagridReducer,
   }),
-  compose(applyMiddleware(thunk)),
+  composeEnhancers(applyMiddleware(thunk)),
 );
 
 OCAlert.setStore(store);

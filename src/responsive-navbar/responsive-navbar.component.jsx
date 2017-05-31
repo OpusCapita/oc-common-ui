@@ -10,7 +10,6 @@ import Select from 'react-select';
 import { Navbar,
          Nav,
          NavItem } from 'react-bootstrap';
-import { withRouter } from 'react-router';
 
 import 'react-select/dist/react-select.css';
 import './responsive-navbar.scss';
@@ -132,4 +131,4 @@ ResponsiveNavbar.propTypes = {
   onSelect: PropTypes.func,
 };
 
-export default withRouter(ResponsiveNavbar);
+export default ResponsiveNavbar;

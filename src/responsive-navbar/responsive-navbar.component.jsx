@@ -73,7 +73,7 @@ export class ResponsiveNavbar extends React.Component {
         key={index}
         eventKey={index}
         ref={`navitemref${String(index)}`}
-        href={`#${item.href}`}
+        onClick={() => { this.props.onSelect(item.href); }}
       >
         {item.name}
       </NavItem>
@@ -103,7 +103,7 @@ export class ResponsiveNavbar extends React.Component {
           clearable={false}
           value={this.props.list[this.props.activeKey].href}
           options={items}
-          onChange={this.selectionChanged}
+          onChange={(item) => { this.props.onSelect(item.value); }}
           inputProps={{ id: 'ocResponsiveNavbarSelect' }}
         />
       </div>
@@ -116,6 +116,10 @@ export class ResponsiveNavbar extends React.Component {
 
 }
 
+ResponsiveNavbar.defaultProps = {
+  onSelect: null,
+};
+
 ResponsiveNavbar.propTypes = {
   activeKey: PropTypes.number.isRequired,
   list: PropTypes.arrayOf(PropTypes.shape({
@@ -125,6 +129,7 @@ ResponsiveNavbar.propTypes = {
     ]),
     href: PropTypes.string,
   })).isRequired,
+  onSelect: PropTypes.func,
 };
 
 export default withRouter(ResponsiveNavbar);

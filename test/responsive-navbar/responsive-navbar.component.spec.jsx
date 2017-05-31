@@ -15,10 +15,10 @@ import { ResponsiveNavbar } from
 describe('Responsive navbar component', function describe() {
   before(function before() {
     this.list = [
-      { name: 'Style', href: '/style' },
-      { name: 'Item 2 longer and longer', href: '/style' },
-      { name: 'Item 3 even longer and longer', href: '/style' },
-      { name: 'Item 4', href: '/style' },
+      { name: 'Style', href: '/autocomplete' },
+      { name: 'Item 2 longer and longer', href: '/autocomplete' },
+      { name: 'Item 3 even longer and longer', href: '/autocomplete' },
+      { name: 'Item 4', href: '/autocomplete' },
     ];
   });
 
@@ -33,7 +33,6 @@ describe('Responsive navbar component', function describe() {
       />,
     );
 
-    expect(wrapper.find(NavItem).at(0).props().href).to.eql('#/style');
     expect(wrapper.find(NavItem).at(0).props().activeKey).to.eql(2);
     expect(wrapper.find(NavItem).at(0).text()).to.eql('Style');
 

@@ -4,6 +4,9 @@
 
 ## next
 
+## 3.2.1
+* Fix dropdown menu button background color in IE
+
 ## 3.2.0
 * `Datagrid` component added
 * Add Matching icon

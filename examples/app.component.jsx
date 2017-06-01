@@ -2,6 +2,8 @@
 /* eslint-disable no-unused-vars */
 
 import React from 'react';
+import { withRouter, routerShape } from 'react-router';
+
 import PerfProfiler from './utils/perf-profiler/perf-profiler.component';
 import Menu from '../src/menu/menu.component';
 import ITEMS from './layout/menu.constants';
@@ -23,22 +25,24 @@ const getPrefix = (item) => {
   return content;
 };
 
-const onSelect = (item) => {
-
-};
-
-const SideMenu = () => {
+const SideMenu = (props) => {
   const isNavigation = true;
-  const content = (
+  return (
     <Menu
       items={ITEMS}
       getContent={getPrefix}
       isNavigation={isNavigation}
-      onSelect={onSelect}
+      onSelect={(item) => {
+        if ('to' in item) {
+          props.router.push(item.to);
+        }
+      }}
     />
   );
+};
 
-  return content;
+SideMenu.propTypes = {
+  router: routerShape.isRequired,
 };
 
 const menuStyle = { width: 200, height: '100%', backgroundColor: 'blue' };
@@ -76,4 +80,6 @@ const Content = ({ children }) => {
   return content;
 };
 
-export default applicationLayout(Content, null, SideMenu, null, layoutOptions);
+export default applicationLayout(
+  Content, null, withRouter(SideMenu), null, layoutOptions,
+);

@@ -2,7 +2,7 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
-## <next (4.x.x)>
+## 4.0.0
 
 * Remove react-router dependency from responsive-navbar and menu
 * Fix dropdown menu button background color in IE

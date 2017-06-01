@@ -5,6 +5,8 @@
 ## <next (4.x.x)>
 
 * Remove react-router dependency from responsive-navbar and menu
+* Fix dropdown menu button background color in IE
+* Fix error in examples dev mode if there's no redux dev tools installed
 
 ## 3.2.0
 

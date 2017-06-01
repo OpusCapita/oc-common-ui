@@ -2,6 +2,7 @@
 
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 import KEY_CODES from '../constants/key-codes.constant';
 
 import './menu-item.component.scss';
@@ -17,7 +18,7 @@ const caretIcon = (
 
 export default class MenuItem extends React.PureComponent {
   onClick = () => {
-    if (this.props.onSelect) {
+    if (this.props.onSelect && typeof this.props.onSelect === 'function') {
       this.props.onSelect(this.props.item, this.props.isGroup);
     }
   }
@@ -29,21 +30,19 @@ export default class MenuItem extends React.PureComponent {
   }
 
   getMenuItem = () => {
-    const classNameMenuItem = `oc-menu-item ${this.props.isSub ? 'oc-menu-sub-item' : ''}`;
-    const classNameContent = 'oc-menu-sub-item-content';
-    const classNameExtra = `oc-menu-sub-item-extra ${this.props.isOpen ? 'rotate90-back' : 'rotate90'}`;
+    const classNameMenuItem = classNames({
+      'oc-menu-item': true,
+      'oc-menu-item-active': this.props.isActive,
+      'oc-menu-sub-item': this.props.isSub,
+    });
 
-    if (this.props.isLink) {
-      return (
-        <div
-          onClick={this.onClick}
-          className={classNameMenuItem}
-        >
-          { this.props.prefix }
-          { this.props.item.text }
-        </div>
-      );
-    }
+    const classNameContent = 'oc-menu-sub-item-content';
+
+    const classNameExtra = classNames({
+      'oc-menu-sub-item-extra': true,
+      'rotate90-back': this.props.isOpen,
+      rotate90: !this.props.isOpen,
+    });
 
     return (
       <a
@@ -73,7 +72,7 @@ export default class MenuItem extends React.PureComponent {
 
 MenuItem.defaultProps = {
   onSelect: null,
-  isLink: false,
+  isActive: false,
   isSub: false,
   isOpen: false,
   isGroup: false,
@@ -86,7 +85,7 @@ MenuItem.propTypes = {
     text: PropTypes.string,
   }).isRequired,
   onSelect: PropTypes.func,
-  isLink: PropTypes.bool,
+  isActive: PropTypes.bool,
   isSub: PropTypes.bool,
   isOpen: PropTypes.bool,
   isGroup: PropTypes.bool,

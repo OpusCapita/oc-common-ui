@@ -81,5 +81,5 @@ const Content = ({ children }) => {
 };
 
 export default applicationLayout(
-  Content, null, withRouter(SideMenu), null, layoutOptions
+  Content, null, withRouter(SideMenu), null, layoutOptions,
 );

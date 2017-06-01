@@ -60,7 +60,6 @@ class MenuView extends React.Component {
         <div style={style}>
           <Menu
             items={this.items}
-            isNavigation
             onSelect={(item) => {
               if ('to' in item) {
                 this.props.router.push(item.to);

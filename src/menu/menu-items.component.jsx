@@ -7,7 +7,10 @@ import './menu.component.scss';
 export default class MenuItems extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = { openItems: {} };
+    this.state = {
+      openItems: {},
+      activeItems: this.props.activeItems,
+    };
   }
 
   onSelect = (item, isGroup) => {
@@ -18,6 +21,9 @@ export default class MenuItems extends React.PureComponent {
 
       this.setState({ openItems: state });
     } else if (this.props.onSelect) {
+      const state = { };
+      state[item.id] = state[item.id] ? !state[item.id] : true;
+      this.setState({ activeItems: state });
       this.props.onSelect(item);
     }
   }
@@ -25,6 +31,7 @@ export default class MenuItems extends React.PureComponent {
   getMenuItems = (items, subMenu, isNavigation, getContent, depth) => {
     const content = items.map((item) => {
       const isOpen = this.state.openItems[item.id];
+      const isActive = isNavigation && this.state.activeItems[item.id];
       const isGroup = (item.items || []).length > 0;
       const prefix = (
         getContent
@@ -38,6 +45,7 @@ export default class MenuItems extends React.PureComponent {
             prefix={prefix}
             item={item}
             onSelect={this.onSelect}
+            isActive={isActive}
             isSub={subMenu}
             isLink={!isGroup && isNavigation}
             isOpen={isOpen}
@@ -79,6 +87,7 @@ export default class MenuItems extends React.PureComponent {
 
 MenuItems.defaultProps = {
   items: [],
+  activeItems: {},
   onSelect: null,
   isNavigation: false,
   getContent: null,
@@ -95,6 +104,7 @@ MenuItems.propTypes = {
     to: PropTypes.string,
     text: PropTypes.string,
   })),
+  activeItems: PropTypes.objectOf(PropTypes.number),
   isNavigation: PropTypes.bool,
   onSelect: PropTypes.func,
   getContent: PropTypes.func,

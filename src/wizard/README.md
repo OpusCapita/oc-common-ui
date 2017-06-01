@@ -24,6 +24,7 @@ N/A
 | cancel            | function                                 | false   | Callback function called, when the wizard is cancelled |
 | steps             | list, [{id: id, name: name: component: component}] | false   | List of wizard pages (components)        |
 | localizationTexts | map, { save: 'save', cancel: 'cancel'}   | false   | Localization texts                       |
+| showPageIndicator | boolean   | true   | Show page indicator element                       |
 
 ### Code example
 
@@ -50,6 +51,7 @@ class WizardView extends React.Component {
         cancel={this.cancelWizard}
         steps={this.steps}
         localizationTexts={{ save: 'Save', cancel: 'Cancel' }}
+        showPageIndicator={false}
       />
     );
   }

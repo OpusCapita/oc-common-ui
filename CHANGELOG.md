@@ -2,6 +2,10 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## <next>
+
+* Update Wizard styles and add possibility to hide page indicator
+
 ## 4.0.0
 
 * Remove react-router dependency from responsive-navbar and menu

@@ -38,6 +38,7 @@ export default class WizardView extends React.Component {
       id: '4',
       name: 'Wizard page 4',
       component: this.getContent('Page 4'),
+      isValid: false,
     }];
   }
 
@@ -80,6 +81,7 @@ export default class WizardView extends React.Component {
               cancel={this.cancelWizard}
               steps={this.steps}
               localizationTexts={{ save: 'Save', cancel: 'Cancel' }}
+              showPageIndicator={false}
             />
           : <Button onClick={this.showWizard}>
               Start wizard...

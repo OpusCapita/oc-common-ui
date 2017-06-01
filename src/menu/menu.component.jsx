@@ -4,46 +4,39 @@ import MenuItems from './menu-items.component';
 
 import './menu.component.scss';
 
-export default class Menu extends React.PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = { openItems: {} };
-  }
-
-  render() {
-    const { items, isNavigation, getContent, onSelect } = this.props;
-
-    const content = (
+const Menu = ({ items, activeItems, isNavigation, getContent, onSelect }) => {
+  const content = (
       /* By using recursive component clicking a group item does not re-render the whole menu */
-      <MenuItems
-        onSelect={onSelect}
-        items={items}
-        subMenu={false}
-        isNavigation={isNavigation}
-        getContent={getContent}
-        depth={0}
-      />);
+    <MenuItems
+      onSelect={onSelect}
+      items={items}
+      activeItems={activeItems}
+      subMenu={false}
+      isNavigation={isNavigation}
+      getContent={getContent}
+      depth={0}
+    />);
 
-    return (
-      isNavigation
-      ? (
-        <nav className="oc-menu" role="navigation">
-          { content }
-        </nav>
-      )
-      :
-        <div className="oc-menu">
-          { content }
-        </div>
-    );
-  }
-}
+  return (
+    isNavigation
+    ? (
+      <nav className="oc-menu" role="navigation">
+        { content }
+      </nav>
+    )
+    :
+      <div className="oc-menu">
+        { content }
+      </div>
+  );
+};
 
 Menu.defaultProps = {
   items: [],
   onSelect: null,
   isNavigation: false,
   getContent: null,
+  activeItems: {},
 };
 
 Menu.propTypes = {
@@ -55,7 +48,10 @@ Menu.propTypes = {
     to: PropTypes.string,
     text: PropTypes.string,
   })),
+  activeItems: PropTypes.objectOf(PropTypes.number),
   isNavigation: PropTypes.bool,
   onSelect: PropTypes.func,
   getContent: PropTypes.func,
 };
+
+export default Menu;

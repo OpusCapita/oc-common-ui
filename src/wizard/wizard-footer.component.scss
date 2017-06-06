@@ -1,0 +1,62 @@
+#wizard-footer {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 auto;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    width: 100%;
+
+    #bottom-indicators {
+      display: flex;
+      flex-direction: row;
+      height: 35px;
+    }
+
+    #bottom-buttons {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-content: space-around;
+      height: 33px;
+      flex-wrap: wrap;
+
+      .divider {
+        width: 50px;
+        flex: 4;
+      }
+
+      .divider-small {
+        flex: 1;
+      }
+
+      button {
+        display: flex;
+        flex: 1;
+        flex-grow: 0;
+        justify-content: center;
+
+        svg {
+          margin-top: -5px;
+        }
+
+        .oc-icon-indicator {
+          fill: white;
+        }
+      }
+    }
+
+    .tab-indicator {
+      width: 10px;
+      height: 10px;
+      background: gray;
+      -moz-border-radius: 5px;
+      -webkit-border-radius: 5px;
+      border-radius: 5px;
+      margin: 5px;
+    }
+
+    .tab-highlight {
+      background: #EC6608;
+    }
+  }

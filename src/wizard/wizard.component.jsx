@@ -1,8 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'react-bootstrap';
 
-import { Icon } from '../icons/index';
+import WizardHeader from './wizard-header.component';
+import WizardFooter from './wizard-footer.component';
 
 import './wizard.component.scss';
 
@@ -11,65 +11,13 @@ export default class Wizard extends React.Component {
   constructor() {
     super();
 
-    this.scrollStep = 50;
-
     this.state = {
       currentStep: 0,
-      showScroll: true,
     };
-
-    this.tabElements = {};
   }
 
   componentDidMount() {
-    window.addEventListener('resize', this.updateScroll);
-    this.updateScroll();
     this.selectPage(undefined, this.props.activeStep);
-  }
-
-  componentWillUnmount() {
-    window.removeEventListener('resize', this.updateScroll);
-  }
-
-  getIndicators = () => (
-    this.props.steps.map((step, i) => {
-      if (i === this.state.currentStep) {
-        return <span key={step.id} className="tab-indicator tab-highlight" />;
-      }
-      return <span key={step.id} className="tab-indicator" />;
-    })
-  )
-
-  updateScroll = () => {
-    if (this.scrollbar.offsetWidth !== this.scrollbar.scrollWidth) {
-      this.setState({
-        showScroll: true,
-      });
-    } else {
-      this.setState({
-        showScroll: false,
-      });
-    }
-  }
-
-  centerSelectedTab = (tabIndex) => {
-    if (this.scrollbar.offsetWidth !== this.scrollbar.scrollWidth) {
-      let offsetLeft = 0;
-      for (let i = 0; i < tabIndex; i += 1) {
-        offsetLeft += this.tabElements[i].offsetWidth;
-      }
-      this.scrollbar.scrollLeft = (offsetLeft +
-        (this.tabElements[tabIndex].offsetWidth / 2)) -
-        (this.scrollbar.offsetWidth / 2);
-    }
-  }
-
-  scrollLeft = () => {
-    this.scrollbar.scrollLeft -= this.scrollStep;
-  }
-
-  scrollRight = () => {
-    this.scrollbar.scrollLeft += this.scrollStep;
   }
 
   selectPage = (event, index) => {
@@ -80,71 +28,28 @@ export default class Wizard extends React.Component {
     this.setState({
       currentStep: index,
     });
-    this.centerSelectedTab(index);
   }
 
   render() {
     return (
       <div id="wizard-pages">
-        <div id="wizard-header">
-          { this.state.showScroll &&
-            <button className="hidden-button" onClick={this.scrollLeft}>
-              <Icon type="indicator" name="CaretLeft" height={30} width={30} />
-            </button> }
-          <ul ref={(node) => { this.scrollbar = node; }}>
-            {this.props.steps.map((step, i) => (
-              <li
-                key={step.id}
-                className={i === this.state.currentStep ? 'doing' : ''}
-                ref={(node) => { this.tabElements[i] = node; }}
-              >
-                <a
-                  id={step.id}
-                  href="#/"
-                  onClick={(event) => { this.selectPage(event, i); }}
-                >
-                  {step.name}
-                </a>
-              </li>
-            ))}
-          </ul>
-          { this.state.showScroll &&
-            <button className="hidden-button" onClick={this.scrollRight}>
-              <Icon type="indicator" name="CaretRight" height={30} width={30} />
-            </button> }
-        </div>
+        <WizardHeader
+          steps={this.props.steps}
+          currentStep={this.state.currentStep}
+          selectPage={this.selectPage}
+        />
         <div id="wizard-content">
           {this.props.steps[this.state.currentStep].component}
         </div>
-        <div id="wizard-footer">
-          <div id="bottom-indicators">
-            {this.getIndicators()}
-          </div>
-          <div id="bottom-buttons">
-            <Button
-              id="previous-step"
-              onClick={(event) => {
-                this.selectPage(event, this.state.currentStep - 1);
-              }}
-            >
-              <Icon type="indicator" name="CaretLeft" height={30} width={30} />
-            </Button>
-            <Button id="save-button" onClick={this.props.save}>
-              {this.props.localizationTexts.save}
-            </Button>
-            <Button id="cancel-button" onClick={this.props.cancel}>
-              {this.props.localizationTexts.cancel}
-            </Button>
-            <Button
-              id="next-step"
-              onClick={(event) => {
-                this.selectPage(event, this.state.currentStep + 1);
-              }}
-            >
-              <Icon type="indicator" name="CaretRight" height={30} width={30} />
-            </Button>
-          </div>
-        </div>
+        <WizardFooter
+          steps={this.props.steps}
+          currentStep={this.state.currentStep}
+          selectPage={this.selectPage}
+          save={this.props.save}
+          cancel={this.props.cancel}
+          localizationTexts={this.props.localizationTexts}
+          showPageIndicator={this.props.showPageIndicator}
+        />
       </div>
     );
   }
@@ -152,6 +57,7 @@ export default class Wizard extends React.Component {
 
 Wizard.defaultProps = {
   activeStep: 0,
+  showPageIndicator: true,
 };
 
 Wizard.propTypes = {
@@ -166,4 +72,5 @@ Wizard.propTypes = {
     cancel: PropTypes.cancel,
   }).isRequired,
   activeStep: PropTypes.number,
+  showPageIndicator: PropTypes.bool,
 };

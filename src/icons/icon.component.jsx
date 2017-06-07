@@ -89,6 +89,8 @@ import ProductUsers from
   '../../images/products/Users.svg';
 import ProductMatching from
   '../../images/products/Matching.svg';
+import ProductInspector from
+    '../../images/products/Inspector.svg';
 
 import InvoicesGeneric from
   '../../images/invoices/document/generic.svg';
@@ -156,6 +158,7 @@ const components = {
     Users: React.createFactory(ProductUsers),
     Examples: React.createFactory(ProductInfo),
     Matching: React.createFactory(ProductMatching),
+    Inspector: React.createFactory(ProductInspector),
   },
   invoices: {
     generic: React.createFactory(InvoicesGeneric),

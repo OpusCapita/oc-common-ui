@@ -5,6 +5,7 @@
 ## <next>
 
 * Update Wizard styles and add possibility to hide page indicator
+* Add Inspector icon
 
 ## 4.0.0
 

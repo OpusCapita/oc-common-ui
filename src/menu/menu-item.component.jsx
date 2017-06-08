@@ -32,11 +32,18 @@ export default class MenuItem extends React.PureComponent {
   getMenuItem = () => {
     const classNameMenuItem = classNames({
       'oc-menu-item': true,
+      'oc-menu-item-uppercase': this.props.uppercase,
       'oc-menu-item-active': this.props.isActive,
       'oc-menu-sub-item': this.props.isSub,
     });
 
     const classNameContent = 'oc-menu-sub-item-content';
+
+    const indentationStyle = {};
+    if (this.props.depth) {
+      const padding = (this.props.depth) * 1;
+      indentationStyle.paddingLeft = `${padding}rem`;
+    }
 
     const classNameExtra = classNames({
       'oc-menu-sub-item-extra': true,
@@ -51,6 +58,7 @@ export default class MenuItem extends React.PureComponent {
         onKeyDown={this.onKeyDown}
         className={classNameMenuItem}
       >
+        <span style={indentationStyle} />
         { this.props.prefix }
         <span className={classNameContent}>{this.props.item.text}</span>
 
@@ -77,6 +85,8 @@ MenuItem.defaultProps = {
   isOpen: false,
   isGroup: false,
   prefix: null,
+  depth: 0,
+  uppercase: false,
 };
 
 MenuItem.propTypes = {
@@ -90,4 +100,6 @@ MenuItem.propTypes = {
   isOpen: PropTypes.bool,
   isGroup: PropTypes.bool,
   prefix: PropTypes.element,
+  depth: PropTypes.number,
+  uppercase: PropTypes.bool,
 };

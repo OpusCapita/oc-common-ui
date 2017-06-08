@@ -15,21 +15,27 @@ function range(start, end) {
 const getItems = () => {
   const label = 'Menu Item';
 
-  const items = range(1, 50).map((e, i) => (
+  const items = range(1, 50).map((number, i) => (
     {
       id: i,
       text: `${label} ${i}`,
-      items: range(1, 10).map((a, b) => (
+      items: range(1, 5).map((a, b) => (
         {
           id: `${i}.${b}`,
           text: `${label} ${i}.${b}`,
-          items: range(1, 5).map((c, d) => (
-            {
-              id: `${i}.${b}.${d}`,
-              text: `${label} ${i}.${b}.${d}`,
-              to: '/menu',
-            }
-          )),
+          // items: range(1, 5).map((c, d) => (
+          //   {
+          //     id: `${i}.${b}.${d}`,
+          //     text: `${label} ${i}.${b}.${d}`,
+          //     items: range(1, 5).map((e, f) => (
+          //       {
+          //         id: `${i}.${b}.${d}.${f}`,
+          //         text: `${label} ${i}.${b}.${d}.${f}`,
+          //         to: '/menu',
+          //       }
+          //     )),
+          //   }
+          // )),
         }
       )),
     }),
@@ -60,6 +66,7 @@ class MenuView extends React.Component {
         <div style={style}>
           <Menu
             items={this.items}
+            uppercase
             onSelect={(item) => {
               if ('to' in item) {
                 this.props.router.push(item.to);

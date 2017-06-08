@@ -28,11 +28,13 @@ export default class MenuItems extends React.PureComponent {
     }
   }
 
-  getMenuItems = (items, subMenu, isNavigation, getContent, depth) => {
+  getMenuItems = (items, subMenu, isNavigation, getContent, depth, uppercase) => {
     const content = items.map((item) => {
       const isOpen = this.state.openItems[item.id];
       const isActive = isNavigation && this.state.activeItems[item.id];
       const isGroup = (item.items || []).length > 0;
+      const isUppercase = uppercase && depth === 0;
+
       const prefix = (
         getContent
         ? <span className="oc-menu-item-prefix">{ getContent(item) }</span>
@@ -40,8 +42,9 @@ export default class MenuItems extends React.PureComponent {
       );
 
       return (
-        <div key={item.id} tabIndex="-1">
+        <li key={item.id} tabIndex="-1">
           <MenuItem
+            depth={depth}
             prefix={prefix}
             item={item}
             onSelect={this.onSelect}
@@ -50,6 +53,7 @@ export default class MenuItems extends React.PureComponent {
             isLink={!isGroup && isNavigation}
             isOpen={isOpen}
             isGroup={isGroup}
+            uppercase={isUppercase}
           />
 
           {
@@ -63,11 +67,12 @@ export default class MenuItems extends React.PureComponent {
                 isNavigation={isNavigation}
                 getContent={getContent}
                 depth={depth + 1}
+                uppercase={uppercase}
               />
               )
             : null
           }
-        </div>
+        </li>
       );
     });
 
@@ -75,12 +80,12 @@ export default class MenuItems extends React.PureComponent {
   }
 
   render() {
-    const { items, subMenu, isNavigation, getContent, depth } = this.props;
+    const { items, subMenu, isNavigation, getContent, depth, uppercase } = this.props;
 
     return (
-      <div>
-        { this.getMenuItems(items, subMenu, isNavigation, getContent, depth) }
-      </div>
+      <ul>
+        { this.getMenuItems(items, subMenu, isNavigation, getContent, depth, uppercase) }
+      </ul>
     );
   }
 }
@@ -91,8 +96,9 @@ MenuItems.defaultProps = {
   onSelect: null,
   isNavigation: false,
   getContent: null,
-  depth: null,
+  depth: 0,
   subMenu: false,
+  uppercase: false,
 };
 
 MenuItems.propTypes = {
@@ -110,4 +116,5 @@ MenuItems.propTypes = {
   getContent: PropTypes.func,
   depth: PropTypes.number,
   subMenu: PropTypes.bool,
+  uppercase: PropTypes.bool,
 };

@@ -6,6 +6,7 @@
 
 * Update Wizard styles and add possibility to hide page indicator
 * Add Inspector icon
+* `Menu` component accepts addiotional properties from outside via spread operator, nested levels have indentation and has `uppercase` boolean property for setting 1st level text in upper case.
 
 ## 4.0.0
 

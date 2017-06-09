@@ -7,6 +7,11 @@
 * Update Wizard styles and add possibility to hide page indicator
 * Add Inspector icon
 
+## 4.0.1
+
+* DropdownControls component exported from the datagrid
+* README.md modified
+
 ## 4.0.0
 
 * Remove react-router dependency from responsive-navbar and menu

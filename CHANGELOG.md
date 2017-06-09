@@ -6,7 +6,7 @@
 
 * Update Wizard styles and add possibility to hide page indicator
 * Add Inspector icon
-* Remove margin-left for `DropdownMultiSelect`
+* Remove margin-left for `DropdownMultiSelect` and set default text color for `MultiSelectItem` to override bootstrap validation inheritance
 
 ## 4.0.0
 

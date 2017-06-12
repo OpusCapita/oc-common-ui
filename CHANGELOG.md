@@ -8,6 +8,11 @@
 * Add Inspector icon
 * Remove margin-left for `DropdownMultiSelect` and set default text color for `MultiSelectItem` to override bootstrap validation inheritance
 
+## 4.0.1
+
+* DropdownControls component exported from the datagrid
+* README.md modified
+
 ## 4.0.0
 
 * Remove react-router dependency from responsive-navbar and menu

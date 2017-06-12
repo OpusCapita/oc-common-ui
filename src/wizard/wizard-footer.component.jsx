@@ -25,6 +25,10 @@ export default class WizardFooter extends React.Component {
     showPageIndicator: PropTypes.bool,
   }
 
+  static defaultProps = {
+    showPageIndicator: false,
+  }
+
   getIndicators = () => (
     this.props.steps.map((step, i) => {
       if (i === this.props.currentStep) {

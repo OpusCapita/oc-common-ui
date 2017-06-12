@@ -85,7 +85,12 @@ export default class DatePicker extends React.Component {
   }
 
   handleInputChange = (e) => {
-    const { value } = e.target;
+    let { value } = e.target;
+
+    // Remove invisble LRM chars from datestring
+    if (value.replace) {
+      value = value.replace(/\u200E/g, '');
+    }
 
     if (value === '') {
       this.setState({
@@ -115,7 +120,10 @@ export default class DatePicker extends React.Component {
       selectedDay: day,
       showOverlay: false,
     });
-    this.props.onChange(this.props.intl.formatDate(moment.utc(day).format()));
+    // Remove invisble LRM chars from datestring
+    this.props.onChange(
+      this.props.intl.formatDate(moment.utc(day).format()).replace(/\u200E/g, ''),
+    );
     this.input.blur();
   }
 

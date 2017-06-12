@@ -4,6 +4,19 @@
 $oc-menu-item-border-width: 3px;
 $oc-menu-font-color: $oc-sidemenu-color-text;
 
+.oc-menu {
+  ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+
+  li {
+    display: block;
+    text-decoration: none;
+  }
+}
+
 .oc-menu-item {
   display: flex;
   flex-direction: row;
@@ -41,6 +54,10 @@ $oc-menu-font-color: $oc-sidemenu-color-text;
 
 .oc-menu-item-prefix {
   margin-right: 0.5rem;
+}
+
+.oc-menu-item-uppercase {
+  text-transform: uppercase;
 }
 
 .oc-menu-item-active {

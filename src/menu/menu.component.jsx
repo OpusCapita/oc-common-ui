@@ -4,7 +4,7 @@ import MenuItems from './menu-items.component';
 
 import './menu.component.scss';
 
-const Menu = ({ items, activeItems, isNavigation, getContent, onSelect }) => {
+const Menu = ({ items, activeItems, isNavigation, onSelect, getContent, uppercase, ...other }) => {
   const content = (
       /* By using recursive component clicking a group item does not re-render the whole menu */
     <MenuItems
@@ -14,18 +14,19 @@ const Menu = ({ items, activeItems, isNavigation, getContent, onSelect }) => {
       subMenu={false}
       isNavigation={isNavigation}
       getContent={getContent}
+      uppercase={uppercase}
       depth={0}
     />);
 
   return (
     isNavigation
     ? (
-      <nav className="oc-menu" role="navigation">
+      <nav className="oc-menu" role="navigation" {...other}>
         { content }
       </nav>
     )
     :
-      <div className="oc-menu">
+      <div className="oc-menu" {...other}>
         { content }
       </div>
   );
@@ -37,6 +38,7 @@ Menu.defaultProps = {
   isNavigation: false,
   getContent: null,
   activeItems: {},
+  uppercase: false,
 };
 
 Menu.propTypes = {
@@ -52,6 +54,7 @@ Menu.propTypes = {
   isNavigation: PropTypes.bool,
   onSelect: PropTypes.func,
   getContent: PropTypes.func,
+  uppercase: PropTypes.bool,
 };
 
 export default Menu;

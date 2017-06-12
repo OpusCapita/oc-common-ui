@@ -26,7 +26,7 @@ export default class WizardFooter extends React.Component {
     })).isRequired,
     selectPage: PropTypes.func.isRequired,
     currentStep: PropTypes.number.isRequired,
-    showPageIndicator: PropTypes.bool,
+    showPageIndicator: PropTypes.bool.isRequired,
   }
 
   static defaultProps = {

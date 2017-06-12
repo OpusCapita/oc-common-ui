@@ -25,10 +25,12 @@ const getPrefix = (item) => {
   return content;
 };
 
+const sideMenuContainerStyle = { width: '20rem' };
 const SideMenu = (props) => {
   const isNavigation = true;
   return (
     <Menu
+      style={sideMenuContainerStyle}
       items={ITEMS}
       getContent={getPrefix}
       isNavigation={isNavigation}

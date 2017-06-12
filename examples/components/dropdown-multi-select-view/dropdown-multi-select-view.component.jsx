@@ -28,21 +28,28 @@ export default class DropdownMultiSelectView extends React.PureComponent {
 
   render() {
     const containerStyle = {
-      width: '400px',
       padding: '10px',
       margin: '10px',
       background: 'white',
     };
+    const componentStyle = {
+      width: '16rem',
+    };
     const checkedItems = this.state.checkedItems;
     return (
       <div style={containerStyle}>
-        <DropdownMultiSelect
-          checkedItems={checkedItems}
-          id="exampleDropdownMultiSelect"
-          items={this.items}
-          onChange={this.onChange}
-          defaultPlaceholder="{N} kpl"
-        />
+        <div style={componentStyle}>
+          <div>
+            Select items
+          </div>
+          <DropdownMultiSelect
+            checkedItems={checkedItems}
+            id="exampleDropdownMultiSelect"
+            items={this.items}
+            onChange={this.onChange}
+            defaultPlaceholder="{N} kpl"
+          />
+        </div>
       </div>
     );
   }

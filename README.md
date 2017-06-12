@@ -18,11 +18,11 @@ Some components needs reducers to be loaded in the redux store, those are done i
 ### Development workflow with project using the package
 ##### Link local package to your project
 * Run `npm link` at `oc-common-ui` root to make your local package linkable
-* Run `npm link oc-common-ui` at project's dir that's using `oc-common-ui` to use local package
+* Run `npm link @opuscapita/oc-common-ui` at project's dir that's using `oc-common-ui` to use local package
 ##### Build and watch the package
 * Run `npm run dev` to run webpack in watch mode
 ##### Unlink local package
-* Run `npm unlink oc-common-ui` at project's dir that's using `oc-common-ui`
+* Run `npm unlink @opuscapita/oc-common-ui` at project's dir that's using `oc-common-ui`
 * Run `npm install` to install remote copy of the `oc-common-ui` package
 
 ### Changelog

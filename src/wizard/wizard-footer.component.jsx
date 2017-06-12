@@ -9,6 +9,10 @@ import './wizard-footer.component.scss';
 
 export default class WizardFooter extends React.Component {
 
+  static defaultProps = {
+    showPageIndicator: false,
+  }
+
   static propTypes = {
     save: PropTypes.func.isRequired,
     cancel: PropTypes.func.isRequired,
@@ -23,6 +27,10 @@ export default class WizardFooter extends React.Component {
     selectPage: PropTypes.func.isRequired,
     currentStep: PropTypes.number.isRequired,
     showPageIndicator: PropTypes.bool.isRequired,
+  }
+
+  static defaultProps = {
+    showPageIndicator: false,
   }
 
   getIndicators = () => (

@@ -418,6 +418,11 @@ export default class DataGrid extends React.PureComponent {
   getDataIdByRowIndex = rowIndex =>
     this.props.data.getIn([rowIndex, ...this.props.idKeyPath]);
 
+  getSelectedItemIndex = (id) => {
+    const index = this.props.data.findIndex(v => v.getIn(this.props.idKeyPath) === id);
+    return index === -1 ? undefined : index;
+  }
+
   getEditItemValue = (rowIndex, col) => {
     // Get the value to display in edit cell
     const id = this.getDataIdByRowIndex(rowIndex);
@@ -1369,7 +1374,8 @@ export default class DataGrid extends React.PureComponent {
           }}
           scrollToColumn={this.props.scrollToColumn}
           scrollTop={this.props.scrollTop}
-          scrollToRow={this.props.scrollToRow}
+          scrollToRow={this.props.scrollToRow ||
+            this.getSelectedItemIndex(this.props.selectedItems.first())}
           onRowDoubleClick={this.props.onRowDoubleClick}
           onRowMouseDown={this.props.onRowMouseDown}
           onRowMouseEnter={this.props.onRowMouseEnter}

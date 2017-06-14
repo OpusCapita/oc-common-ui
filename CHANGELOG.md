@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Changed datagrid to scroll to first selected item
+* Fixed datagrid number filtering
 
 * Changed datagrid to scroll to first selected item
 * fix to wizard component button layout (issues with IE11 and Firefox)

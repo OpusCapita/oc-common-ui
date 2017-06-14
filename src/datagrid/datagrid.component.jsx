@@ -567,6 +567,7 @@ export default class DataGrid extends React.PureComponent {
           const selected = this.props.selectedItems.includes(itemId);
           return (
             <Checkbox
+              className="oc-datagrid-row-checkbox"
               checked={selected}
               onClick={() => {
                 this.props.itemSelectionChange(

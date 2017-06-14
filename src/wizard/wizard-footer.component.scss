@@ -23,16 +23,17 @@
 
       .divider {
         width: 50px;
-        flex: 4;
+        flex: 4 0 auto;
       }
 
       .divider-small {
-        flex: 1;
+        min-width: 10px;
+        flex: 1 0 auto;
       }
 
       button {
         display: flex;
-        flex: 1;
+        flex: 1 0 auto;
         flex-grow: 0;
         justify-content: center;
 

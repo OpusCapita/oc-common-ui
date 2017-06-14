@@ -80,6 +80,7 @@ export default class DatagridView extends React.Component {
           columns={columns}
           rowSelect
           filtering
+          rowSelectCheckboxColumn
         />
       </div>
     );

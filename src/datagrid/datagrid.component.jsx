@@ -1185,10 +1185,16 @@ export default class DataGrid extends React.PureComponent {
     return columns;
   }
 
+  // checker for selectionCheckbox
+  isSelectionCheckbox(cellProps) {
+    return (this.props.rowSelectCheckboxColumn && cellProps.columnKey === 'selectionCheckbox');
+  }
+
   renderCell(col, cellProps) {
     const { isCreating, isEditing, isFiltering, createData } = this.props;
     const { rowIndex, ...props } = cellProps;
     const style = {};
+    const isCheckbox = this.isSelectionCheckbox(cellProps);
     let cell;
     let cellType = 'view';
     let extraRowCount = 0; // how many rows to ignore from top, new + filter rows
@@ -1219,7 +1225,7 @@ export default class DataGrid extends React.PureComponent {
         cell = col.cell(rowIndex - extraRowCount);
       }
     }
-    if (cellType === 'view' || cellType === 'edit' || cellType === 'create') {
+    if ((cellType === 'view' || cellType === 'edit' || cellType === 'create') && !isCheckbox) {
       const getRowIndex = (cellType === 'create') ? rowIndex : (rowIndex - extraRowCount);
       const messageData = this.getCellMessages(getRowIndex, col, cellType);
       return (

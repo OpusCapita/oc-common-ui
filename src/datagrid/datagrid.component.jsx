@@ -567,7 +567,7 @@ export default class DataGrid extends React.PureComponent {
           const selected = this.props.selectedItems.includes(itemId);
           return (
             <Checkbox
-              className="oc-datagrid-row-checkbox"
+              className="oc-row-select-checkbox"
               checked={selected}
               onClick={() => {
                 this.props.itemSelectionChange(
@@ -1365,6 +1365,9 @@ export default class DataGrid extends React.PureComponent {
               if (e.ctrlKey || e.shiftKey) {
                 document.getSelection().removeAllRanges();
               }
+              // Accessing to the checkbox
+              // e.target.parentElement.parentElement.className !== 'oc-row-select-checkbox checkbox'
+
               // don't trigger selection change if it's checkbox column that is clicked.
               if (!this.props.rowSelectCheckboxColumn || e.target.type !== 'checkbox') {
                 this.props.itemSelectionChange(

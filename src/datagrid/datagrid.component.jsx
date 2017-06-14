@@ -748,7 +748,8 @@ export default class DataGrid extends React.PureComponent {
               val === null ||
               val === undefined
             );
-            columnFilterFunction.filterMatcher = (val, filterVal) => val === filterVal;
+            columnFilterFunction.filterMatcher = (val, filterVal) =>
+                parseInt(val, 10) === parseInt(filterVal, 10);
             if (this.props.inlineEdit) {
               if (!column.cellEdit) {
                 column.cellEdit = rowIndex => (

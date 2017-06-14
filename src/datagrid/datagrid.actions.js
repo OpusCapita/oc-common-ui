@@ -512,7 +512,7 @@ export const filterCellValueChange = (id, keyPath, value, columnFilterFunctions)
         let hits = 0;
         filterData.forEach((filterValue, filterKey) => {
           const rowData = row.getIn(filterKey.split('/'));
-          if (rowData || rowData === 0) {
+          if (rowData || rowData === 0 || rowData === false) {
             if (
               columnFilterFunctions[filterKey] &&
               columnFilterFunctions[filterKey].filterMatcher(rowData, filterValue)

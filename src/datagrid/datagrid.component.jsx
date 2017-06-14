@@ -1210,7 +1210,8 @@ export default class DataGrid extends React.PureComponent {
       if (isCreating) {
         if (rowIndex <= (extraRowCount - 1)) {
           if (col.cellCreate) {
-            cell = col.cellCreate(rowIndex);
+            const realIndex = isFiltering ? rowIndex - 1 : rowIndex;
+            cell = col.cellCreate(realIndex);
             cellType = 'create';
           } else {
             cell = null;
@@ -1220,7 +1221,7 @@ export default class DataGrid extends React.PureComponent {
           cell = col.cell(rowIndex - extraRowCount);
         }
       } else if (isEditing && col.cellEdit) {
-        cell = col.cellEdit(rowIndex);
+        cell = col.cellEdit(rowIndex - extraRowCount);
         cellType = 'edit';
       } else {
         cell = col.cell(rowIndex - extraRowCount);

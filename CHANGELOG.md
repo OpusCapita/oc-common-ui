@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Changed datagrid to scroll to first selected item
+* Fixed datagrid number filtering
 
 ## 4.1.0
 
@@ -12,7 +14,6 @@
 * Remove margin-left for `DropdownMultiSelect` and set default text color for `MultiSelectItem` to override bootstrap validation inheritance
 * Fix datagrid datepicker validation errors in IE11
 * DropdownControls component exported from the datagrid
-* Changed datagrid to scroll to first selected item
 
 ## 4.0.0
 

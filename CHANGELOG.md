@@ -6,6 +6,7 @@
 
 * Changed datagrid to scroll to first selected item
 * fix to wizard component button layout (issues with IE11 and Firefox)
+* fix for datagrid checkbox alignments. Do not render tooltip if cell is checkbox type.
 
 ## 4.1.0
 

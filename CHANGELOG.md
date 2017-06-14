@@ -4,11 +4,10 @@
 
 ## <next>
 * Changed datagrid to scroll to first selected item
-* Fixed datagrid number filtering
-
-* Changed datagrid to scroll to first selected item
-* fix to wizard component button layout (issues with IE11 and Firefox)
-* fix for datagrid checkbox alignments. Do not render tooltip if cell is checkbox type.
+* Fix filtering in datagrid with number and boolean values
+* Fix datagrid inline-edit while filtering enabled
+* Fix to wizard component button layout (issues with IE11 and Firefox)
+* Fix for datagrid checkbox alignments. Do not render tooltip if cell is checkbox type.
 
 ## 4.1.0
 

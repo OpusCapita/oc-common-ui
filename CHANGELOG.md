@@ -4,6 +4,9 @@
 
 ## <next>
 
+* Changed datagrid to scroll to first selected item
+* fix to wizard component button layout (issues with IE11 and Firefox)
+
 ## 4.1.0
 
 * Update Wizard styles and add possibility to hide page indicator
@@ -12,7 +15,6 @@
 * Remove margin-left for `DropdownMultiSelect` and set default text color for `MultiSelectItem` to override bootstrap validation inheritance
 * Fix datagrid datepicker validation errors in IE11
 * DropdownControls component exported from the datagrid
-* Changed datagrid to scroll to first selected item
 
 ## 4.0.0
 

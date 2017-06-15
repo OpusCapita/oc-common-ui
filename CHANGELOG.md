@@ -3,11 +3,14 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 4.1.1
 * Changed datagrid to scroll to first selected item
 * Fix filtering in datagrid with number and boolean values
 * Fix datagrid inline-edit while filtering enabled
 * Fix to wizard component button layout (issues with IE11 and Firefox)
 * Fix for datagrid checkbox alignments. Do not render tooltip if cell is checkbox type.
+* Fix for datagrid row select checkbox. Checkbox doesn't affect to row selection.
 
 ## 4.1.0
 

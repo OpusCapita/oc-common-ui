@@ -79,6 +79,7 @@ export default class DatagridView extends React.Component {
           idKeyPath={['accountId']}
           columns={columns}
           rowSelect
+          multiSelect
           filtering
           rowSelectCheckboxColumn
         />

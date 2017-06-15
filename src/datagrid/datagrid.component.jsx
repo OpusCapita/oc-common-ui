@@ -567,6 +567,7 @@ export default class DataGrid extends React.PureComponent {
           const selected = this.props.selectedItems.includes(itemId);
           return (
             <Checkbox
+              className="oc-row-select-checkbox"
               checked={selected}
               onClick={() => {
                 this.props.itemSelectionChange(
@@ -1188,7 +1189,8 @@ export default class DataGrid extends React.PureComponent {
 
   // checker for selectionCheckbox
   isSelectionCheckbox(cellProps) {
-    return (this.props.rowSelectCheckboxColumn && cellProps.columnKey === 'selectionCheckbox');
+    const expectedColumnKey = 'selectionCheckbox';
+    return (this.props.rowSelectCheckboxColumn && cellProps.columnKey === expectedColumnKey);
   }
 
   renderCell(col, cellProps) {
@@ -1227,6 +1229,7 @@ export default class DataGrid extends React.PureComponent {
         cell = col.cell(rowIndex - extraRowCount);
       }
     }
+
     if ((cellType === 'view' || cellType === 'edit' || cellType === 'create') && !isCheckbox) {
       const getRowIndex = (cellType === 'create') ? rowIndex : (rowIndex - extraRowCount);
       const messageData = this.getCellMessages(getRowIndex, col, cellType);
@@ -1364,8 +1367,9 @@ export default class DataGrid extends React.PureComponent {
               if (e.ctrlKey || e.shiftKey) {
                 document.getSelection().removeAllRanges();
               }
+
               // don't trigger selection change if it's checkbox column that is clicked.
-              if (!this.props.rowSelectCheckboxColumn || e.target.type !== 'checkbox') {
+              if (e.target.type !== 'checkbox') {
                 this.props.itemSelectionChange(
                   this.props.id,
                   realRowIndex,

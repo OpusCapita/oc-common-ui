@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Add `disableActionsMessage` prop to `Datagrid`
 
 ## 4.1.3
 * fix to datagrid's scroll to row functionality

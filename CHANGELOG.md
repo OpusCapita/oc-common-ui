@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* fix to datagrid's scroll to row functionality
 
 ## 4.1.2
 * Changed datagrid to scroll to first selected item

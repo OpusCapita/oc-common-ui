@@ -19,7 +19,7 @@ export default class DropdownMultiSelect extends React.PureComponent {
         PropTypes.number,
       ]).isRequired,
       text: PropTypes.string.isRequired,
-      textSelected: PropTypes.string,
+      textPlaceholder: PropTypes.string,
     })).isRequired,
     checkedItems: ImmutablePropTypes.map,
     defaultPlaceholder: PropTypes.string,
@@ -46,8 +46,8 @@ export default class DropdownMultiSelect extends React.PureComponent {
       const [...keys] = checkedItems.keys();
       const index = items.findIndex(i => i.id === keys[0]);
       if (index > -1) {
-        return items[index].textSelected !== undefined ?
-          items[index].textSelected : items[index].text;
+        return items[index].textPlaceholder !== undefined ?
+          items[index].textPlaceholder : items[index].text;
       }
     }
     return defaultPlaceholder.replace('{N}', '1');

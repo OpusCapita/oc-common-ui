@@ -419,6 +419,7 @@ export default class DataGrid extends React.PureComponent {
     this.props.data.getIn([rowIndex, ...this.props.idKeyPath]);
 
   getSelectedItemIndex = (id) => {
+    if (!id) return undefined;
     const index = this.props.data.findIndex(v => v.getIn(this.props.idKeyPath) === id);
     return index === -1 ? undefined : index;
   }

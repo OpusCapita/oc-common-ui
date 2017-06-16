@@ -93,6 +93,7 @@ export default class InlineEditControls extends React.PureComponent {
             disabled={this.props.isBusy || this.props.disableActions}
             onClick={this.handleSaveButtonClick}
             tabIndex={this.props.tabIndex + 1}
+            id={`oc-datagrid-controls-save-${this.props.id}`}
           >
             <M id="Save" />
           </Button>
@@ -100,6 +101,7 @@ export default class InlineEditControls extends React.PureComponent {
             disabled={this.props.isBusy || this.props.disableActions}
             onClick={this.handleCancelButtonClick}
             tabIndex={this.props.tabIndex + 2}
+            id={`oc-datagrid-controls-cancel-${this.props.id}`}
           >
             <M id="Cancel" />
           </Button>
@@ -108,6 +110,7 @@ export default class InlineEditControls extends React.PureComponent {
               disabled={this.props.isBusy || this.props.disableActions}
               onClick={this.handleAddButtonClick}
               tabIndex={this.props.tabIndex + 3}
+              id={`oc-datagrid-controls-add-${this.props.id}`}
             >
               <M id="Add" />
             </Button>
@@ -124,6 +127,7 @@ export default class InlineEditControls extends React.PureComponent {
           <Button
             disabled={this.props.isBusy}
             onClick={this.handleEditButtonClick}
+            id={`oc-datagrid-controls-edit-${this.props.id}`}
           >
             <M id="Edit" />
           </Button>
@@ -131,6 +135,7 @@ export default class InlineEditControls extends React.PureComponent {
             <Button
               disabled={this.props.isBusy}
               onClick={this.handleCreateButtonClick}
+              id={`oc-datagrid-controls-create-${this.props.id}`}
             >
               <M id="Add" />
             </Button>

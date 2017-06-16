@@ -34,6 +34,7 @@ textPlaceholder | string | | Item label to be displayed as a placeholder when ch
 
 ```jsx
 import React from 'react';
+import { Map } from 'immutable';
 import { DropdownMultiSelect } from '@opuscapita/oc-common-ui';
 
 export default class DropdownMultiSelectView extends React.Component {

@@ -31,6 +31,7 @@ text | string | | Item label
 
 ```jsx
 import React from 'react';
+import { Map } from 'immutable';
 import { MultiSelect } from '@opuscapita/oc-common-ui';
 
 export default class MultiSelectView extends React.Component {

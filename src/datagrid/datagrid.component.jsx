@@ -139,6 +139,7 @@ const mapDispatchToProps = datagridActions;
  * @prop {boolean} propTypes.multiSelect - Enable multi selecting on row selecting
  * @prop {Immutable.Map} propTypes.selectComponentOptions - Options data for the react-select components
  * @prop {boolean} propTypes.disableActions - Disable action bar actions, eg. when other grid busy
+ * @prop {string} propTypes.disableActionsMessage - Message about the reason of disabled action bar actions
  * @prop {boolean} propTypes.disableActionBar - Disable action bar rendering
  * @prop {function} propTypes.onSave - Callback that is called when save button is clicked
  * @prop {function} propTypes.onRemove - Callback that is called when delete is clicked
@@ -284,6 +285,7 @@ export default class DataGrid extends React.PureComponent {
       })),
     ),
     disableActions: PropTypes.bool,               // Disable actions in the action bar
+    disableActionsMessage: PropTypes.string,
     disableActionBar: PropTypes.bool,
     onSave: PropTypes.func,
     onRemove: PropTypes.func,

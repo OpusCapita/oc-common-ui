@@ -36,6 +36,7 @@ rowSelectCheckboxColumn | boolean | false | Enable additional checkbox column fo
 multiSelect | boolean | false | Enable multi selecting on row selecting
 selectComponentOptions | Immutable.Map | | Options data for the react-select components
 disableActions | boolean | false | Disable action bar actions, eg. when other grid busy
+disableActionsMessage | string | 'GridActionsDisabledOtherGridBusy' | Message about the reason of disabled action bar actions
 disableActionBar | boolean | false | Disable action bar rendering
 onSave | function | | Callback that is called when save button is clicked
 onRemove | function | | Callback that is called when delete is clicked

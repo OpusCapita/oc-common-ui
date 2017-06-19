@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Add `disableActionsMessage` prop to `Datagrid`
 * Fix datagrid filtering when component type is select, show exact matches only.
 * Increase Alert component z-index value to keep it at top of other elements like scrollbars.
 

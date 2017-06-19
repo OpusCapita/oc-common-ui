@@ -598,6 +598,9 @@ export default class DataGrid extends React.PureComponent {
         valueEmptyChecker: val => val === '' || val === null || val === undefined,
         filterMatcher: (val, filterVal) => (new RegExp(filterVal, 'i')).test(val),
       };
+      if (col.componentType === 'select') {
+        columnFilterFunction.filterMatcher = (val, filterVal) => val === filterVal;
+      }
       if (col.defaultValue !== undefined) {
         this.columnDefaultValues[column.columnKey] = col.defaultValue;
       }

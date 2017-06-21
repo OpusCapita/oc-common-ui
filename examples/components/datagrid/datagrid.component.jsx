@@ -1,27 +1,39 @@
 import React, { PropTypes } from 'react';
 import { connect } from 'react-redux';
+import { List } from 'immutable';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
 import { Datagrid, DatagridActions } from '../../../src/index';
 import { bankAccountData } from './data';
 import './datagrid.component.scss';
 
-// TODO: Expand example to have inline edit etc..
-
 const GRID_ID = 'accounts-grid-example';
 
 const mapDispatchToProps = {
+  datagridCellShowMessage: DatagridActions.cellShowMessage,
   datagridSetData: DatagridActions.setData,
 };
 
-const mapStateToProps = () => ({});
+const mapStateToProps = state => ({
+  data: state.datagrid.getIn([GRID_ID, 'data'], List()),
+});
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class DatagridView extends React.Component {
   static propTypes = {
+    data: ImmutablePropTypes.list.isRequired,
+    datagridCellShowMessage: PropTypes.func.isRequired,
     datagridSetData: PropTypes.func.isRequired,
   };
 
   componentWillMount() {
     this.props.datagridSetData(GRID_ID, bankAccountData);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.data.size !== this.props.data.size) {
+      this.props.datagridCellShowMessage(GRID_ID, 'warning', 1, ['name'], 'WarningExample');
+    }
   }
 
   render() {
@@ -31,6 +43,9 @@ export default class DatagridView extends React.Component {
         valueKeyPath: ['name'],
         valueType: 'text',
         componentType: 'text',
+        validators: [
+          { unique: true },
+        ],
         width: 200,
       },
       {
@@ -82,6 +97,7 @@ export default class DatagridView extends React.Component {
           multiSelect
           filtering
           rowSelectCheckboxColumn
+          inlineEdit
         />
       </div>
     );

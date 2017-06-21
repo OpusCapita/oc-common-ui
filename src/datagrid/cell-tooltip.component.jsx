@@ -59,8 +59,7 @@ export default class DatagridTooltip extends React.Component {
       let tooltipClassName = 'tooltip';
       if (isError) {
         tooltipClassName = 'error tooltip';
-      }
-      if (isWarning) {
+      } else if (isWarning) {
         tooltipClassName = 'warning tooltip';
       }
       overlayAttrs = {
@@ -75,7 +74,7 @@ export default class DatagridTooltip extends React.Component {
     const wrapperClassName = classNames({
       'oc-datagrid-tooltip': true,
       error: isError,
-      warning: isWarning,
+      warning: isWarning && !isError,
     });
     return (
       <OverlayTrigger {...overlayAttrs}>

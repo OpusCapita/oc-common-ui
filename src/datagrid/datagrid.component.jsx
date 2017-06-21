@@ -141,6 +141,7 @@ const mapDispatchToProps = datagridActions;
  * @prop {boolean} propTypes.disableActions - Disable action bar actions, eg. when other grid busy
  * @prop {string} propTypes.disableActionsMessage - Message about the reason of disabled action bar actions
  * @prop {boolean} propTypes.disableActionBar - Disable action bar rendering
+ * @prop {boolean} propTypes.disableActionSave - Disable Save action of action bar
  * @prop {function} propTypes.onSave - Callback that is called when save button is clicked
  * @prop {function} propTypes.onRemove - Callback that is called when delete is clicked
  * @prop {function} propTypes.onCancel - Callback that is called when cancel is clicked
@@ -287,6 +288,7 @@ export default class DataGrid extends React.PureComponent {
     disableActions: PropTypes.bool,               // Disable actions in the action bar
     disableActionsMessage: PropTypes.string,
     disableActionBar: PropTypes.bool,
+    disableActionSave: PropTypes.bool,
     onSave: PropTypes.func,
     onRemove: PropTypes.func,
     onCancel: PropTypes.func,
@@ -316,6 +318,7 @@ export default class DataGrid extends React.PureComponent {
   static defaultProps = {
     children: undefined,
     containerStyle: {},
+    disableActionSave: false,
     headerHeight: 40,
     rowHeight: 40,
     onSave: () => {},

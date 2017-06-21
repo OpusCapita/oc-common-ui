@@ -38,6 +38,7 @@ selectComponentOptions | Immutable.Map | | Options data for the react-select com
 disableActions | boolean | false | Disable action bar actions, eg. when other grid busy
 disableActionsMessage | string | 'GridActionsDisabledOtherGridBusy' | Message about the reason of disabled action bar actions
 disableActionBar | boolean | false | Disable action bar rendering
+disableActionSave | boolean | false | Disable Save action button
 onSave | function | | Callback that is called when save button is clicked
 onRemove | function | | Callback that is called when delete is clicked
 onCancel | function | | Callback that is called when cancel is clicked

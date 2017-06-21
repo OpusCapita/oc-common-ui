@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { List } from 'immutable';
+import { List, Map } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { Datagrid, DatagridActions } from '../../../src/index';
@@ -17,14 +17,18 @@ const mapDispatchToProps = {
 
 const mapStateToProps = state => ({
   data: state.datagrid.getIn([GRID_ID, 'data'], List()),
+  dataEdited: state.datagrid.getIn([GRID_ID, 'editData'], Map()),
+  isEditing: state.datagrid.getIn([GRID_ID, 'session', 'isEditing'], false),
 });
 
 @connect(mapStateToProps, mapDispatchToProps)
 export default class DatagridView extends React.Component {
   static propTypes = {
     data: ImmutablePropTypes.list.isRequired,
+    dataEdited: ImmutablePropTypes.map.isRequired,
     datagridCellShowMessage: PropTypes.func.isRequired,
     datagridSetData: PropTypes.func.isRequired,
+    isEditing: PropTypes.bool.isRequired,
   };
 
   componentWillMount() {
@@ -94,11 +98,12 @@ export default class DatagridView extends React.Component {
           id={GRID_ID}
           idKeyPath={['accountId']}
           columns={columns}
+          disableActionSave={this.props.isEditing && this.props.dataEdited.size === 0}
+          inlineEdit
           rowSelect
           multiSelect
           filtering
           rowSelectCheckboxColumn
-          inlineEdit
         />
       </div>
     );

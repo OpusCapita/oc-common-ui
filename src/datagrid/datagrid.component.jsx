@@ -1193,6 +1193,17 @@ export default class DataGrid extends React.PureComponent {
     return columns;
   }
 
+  isCellEdited = (rowIndex, col, cellType) => {
+    if (cellType !== 'edit') {
+      return false;
+    }
+    const id = this.getDataIdByRowIndex(rowIndex);
+    if (this.props.editData.getIn([id, ...col.valueKeyPath])) {
+      return true;
+    }
+    return false;
+  }
+
   // checker for selectionCheckbox
   isSelectionCheckbox(cellProps) {
     const expectedColumnKey = 'selectionCheckbox';
@@ -1239,10 +1250,12 @@ export default class DataGrid extends React.PureComponent {
     if ((cellType === 'view' || cellType === 'edit' || cellType === 'create') && !isCheckbox) {
       const getRowIndex = (cellType === 'create') ? rowIndex : (rowIndex - extraRowCount);
       const messageData = this.getCellMessages(getRowIndex, col, cellType);
+      const isEdited = this.isCellEdited(getRowIndex, col, cellType);
       return (
         <Cell {...props} className="oc-datagrid-cell" style={style}>
           <CellTooltip
             id={cellType + col.columnKey + (rowIndex - extraRowCount)}
+            isEdited={isEdited}
             isError={!!messageData.errorMessageId}
             isWarning={!!messageData.warningMessageId}
             errorMessageId={messageData.errorMessageId}

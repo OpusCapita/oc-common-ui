@@ -13,6 +13,7 @@ export default class DatagridTooltip extends React.Component {
       PropTypes.number,
     ]).isRequired,
     children: PropTypes.node,
+    isEdited: PropTypes.bool,
     isError: PropTypes.bool,
     isWarning: PropTypes.bool,
     messageId: PropTypes.string,
@@ -25,6 +26,7 @@ export default class DatagridTooltip extends React.Component {
 
   static defaultProps = {
     children: null,
+    isEdited: false,
     isError: false,
     isWarning: false,
     messageId: null,
@@ -39,6 +41,7 @@ export default class DatagridTooltip extends React.Component {
     const {
       children,
       id,
+      isEdited,
       isError,
       isWarning,
       messageId,
@@ -73,6 +76,7 @@ export default class DatagridTooltip extends React.Component {
     }
     const wrapperClassName = classNames({
       'oc-datagrid-tooltip': true,
+      edited: isEdited,
       error: isError,
       warning: isWarning && !isError,
     });

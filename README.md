@@ -7,7 +7,7 @@
 
 ### To use oc-common-ui
 ```javascript
-import { CardContent } from 'oc-common-ui';
+import { CardContent } from '@opuscapita/oc-common-ui';
 ```
 Some components needs reducers to be loaded in the redux store, those are done in the main level and are usually already there. Same goes for ocfront styles.
 
@@ -44,7 +44,7 @@ Some components needs reducers to be loaded in the redux store, those are done i
 * If you get any errors about running many instances of certain npm libraries eg. React, check that your project's webpack is configured to resolve those conflicting packages to your projects `node_modules` directory. [Docs](https://webpack.github.io/docs/configuration.html#resolve-alias)
 
 ### Examples
-* Demo implementations of the components
+* [Demo](https://opuscapita.github.io/oc-common-ui) implementations of the components
 * Run `npm run docs` to create output to `examples-build` or `npm run hot` for using hot reload functionality
 
 ### Component descriptions

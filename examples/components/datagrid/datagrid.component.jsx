@@ -97,12 +97,13 @@ export default class DatagridView extends React.Component {
         <Datagrid
           id={GRID_ID}
           idKeyPath={['accountId']}
+          allowArrowNavigationEdit
           columns={columns}
           disableActionSave={this.props.isEditing && this.props.dataEdited.size === 0}
-          inlineEdit
-          rowSelect
-          multiSelect
           filtering
+          inlineEdit
+          multiSelect
+          rowSelect
           rowSelectCheckboxColumn
         />
       </div>

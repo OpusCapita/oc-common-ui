@@ -138,6 +138,7 @@ const mapDispatchToProps = datagridActions;
  * @prop {boolean} propTypes.rowSelectCheckboxColumn - Enable additional checkbox column for row selecting
  * @prop {boolean} propTypes.multiSelect - Enable multi selecting on row selecting
  * @prop {Immutable.Map} propTypes.selectComponentOptions - Options data for the react-select components
+ * @prop {boolean} propTypes.allowArrowNavigationEdit - Allow navigation by arrow keys in the editing mode (only for text and number inputs)
  * @prop {boolean} propTypes.disableActions - Disable action bar actions, eg. when other grid busy
  * @prop {string} propTypes.disableActionsMessage - Message about the reason of disabled action bar actions
  * @prop {boolean} propTypes.disableActionBar - Disable action bar rendering
@@ -285,6 +286,7 @@ export default class DataGrid extends React.PureComponent {
         label: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
       })),
     ),
+    allowArrowNavigationEdit: PropTypes.bool,
     disableActions: PropTypes.bool,               // Disable actions in the action bar
     disableActionsMessage: PropTypes.string,
     disableActionBar: PropTypes.bool,
@@ -316,6 +318,7 @@ export default class DataGrid extends React.PureComponent {
   /* eslint-enable max-len, prefer-template, react/no-unused-prop-types, react/forbid-prop-types */
 
   static defaultProps = {
+    allowArrowNavigationEdit: false,
     children: undefined,
     containerStyle: {},
     disableActionSave: false,
@@ -330,6 +333,7 @@ export default class DataGrid extends React.PureComponent {
   componentWillMount() {
     this.columnFilterFunctions = {};
     this.columnDefaultValues = {};        // Used when creating new items
+    this.cellRefs = {};
   }
 
   componentWillUnmount() {
@@ -343,6 +347,15 @@ export default class DataGrid extends React.PureComponent {
   onCreateCellKeyDown = (e) => {
     if (e.keyCode === KEY_CODES.ENTER) {
       this.props.addNewItem(this.props.id, this.columnDefaultValues);
+    }
+  }
+
+  onEditCellKeyDown = (keyCode, columnKey, rowIndex) => {
+    if (this.props.allowArrowNavigationEdit) {
+      const nextElement = this.getNextElement(keyCode, columnKey, rowIndex);
+      if (nextElement && nextElement.type === 'text') {
+        setTimeout(() => nextElement.select(), 50);
+      }
     }
   }
 
@@ -558,6 +571,34 @@ export default class DataGrid extends React.PureComponent {
     return returnData;
   }
 
+  getNextElement = (keyCode, columnKey, rowIndex) => {
+    const columns = this.props.columns;
+    switch (keyCode) {
+      case KEY_CODES.DOWN:
+        return this.cellRefs[`${this.props.id}_${columnKey}_${rowIndex + 1}`];
+      case KEY_CODES.UP:
+        return this.cellRefs[`${this.props.id}_${columnKey}_${rowIndex - 1}`];
+      case KEY_CODES.RIGHT: {
+        const columnIndex = columns.findIndex(c => c.valueKeyPath.join('_') === columnKey);
+        if (columnIndex === -1 || columnIndex + 1 > columns.length) {
+          return null;
+        }
+        const nextColumnKey = columns[columnIndex + 1].valueKeyPath.join('_');
+        return this.cellRefs[`${this.props.id}_${nextColumnKey}_${rowIndex}`];
+      }
+      case KEY_CODES.LEFT: {
+        const columnIndex = columns.findIndex(c => c.valueKeyPath.join('_') === columnKey);
+        if (columnIndex - 1 < 0) {
+          return null;
+        }
+        const nextColumnKey = columns[columnIndex - 1].valueKeyPath.join('_');
+        return this.cellRefs[`${this.props.id}_${nextColumnKey}_${rowIndex}`];
+      }
+      default:
+        return null;
+    }
+  }
+
   generateColumns = () => {
     delete this.refFirstInvalidInput;
     const columns = [];
@@ -702,6 +743,16 @@ export default class DataGrid extends React.PureComponent {
                       col,
                       e.target.value,
                     )}
+                    onKeyDown={e => this.onEditCellKeyDown(
+                      e.keyCode,
+                      column.columnKey,
+                      rowIndex,
+                    )}
+                    inputRef={(input) => {
+                      if (this.props.allowArrowNavigationEdit) {
+                        this.cellRefs[`${this.props.id}_${column.columnKey}_${rowIndex}`] = input;
+                      }
+                    }}
                     id={`ocDatagridEditInput-${this.props.id}-${column.columnKey}-${rowIndex}`}
                     {...col.editComponentProps}
                     disabled={this.getComponentDisabledState(rowIndex, col, 'edit')}
@@ -777,6 +828,16 @@ export default class DataGrid extends React.PureComponent {
                       e.target.value,
                     )}
                     onFocus={this.onCellFocus}
+                    onKeyDown={e => this.onEditCellKeyDown(
+                      e.keyCode,
+                      column.columnKey,
+                      rowIndex,
+                    )}
+                    inputRef={(input) => {
+                      if (this.props.allowArrowNavigationEdit) {
+                        this.cellRefs[`${this.props.id}_${column.columnKey}_${rowIndex}`] = input;
+                      }
+                    }}
                     id={`ocDatagridEditInput-${this.props.id}-${column.columnKey}-${rowIndex}`}
                     {...col.editComponentProps}
                     disabled={this.getComponentDisabledState(rowIndex, col, 'edit')}
@@ -859,6 +920,16 @@ export default class DataGrid extends React.PureComponent {
                       col,
                       editValueParser(e.target.value),
                     )}
+                    onKeyDown={e => this.onEditCellKeyDown(
+                      e.keyCode,
+                      column.columnKey,
+                      rowIndex,
+                    )}
+                    inputRef={(input) => {
+                      if (this.props.allowArrowNavigationEdit) {
+                        this.cellRefs[`${this.props.id}_${column.columnKey}_${rowIndex}`] = input;
+                      }
+                    }}
                     id={`ocDatagridEditInput-${this.props.id}-${column.columnKey}-${rowIndex}`}
                     {...col.editComponentProps}
                     disabled={this.getComponentDisabledState(rowIndex, col, 'edit')}
@@ -1017,6 +1088,16 @@ export default class DataGrid extends React.PureComponent {
                     inputProps={{
                       tabIndex,
                       id: `ocDatagridEditInput-${this.props.id}-${column.columnKey}-${rowIndex}`,
+                      onKeyDown: e => this.onEditCellKeyDown(
+                        e.keyCode,
+                        column.columnKey,
+                        rowIndex,
+                      ),
+                      inputRef: (input) => {
+                        if (this.props.allowArrowNavigationEdit) {
+                          this.cellRefs[`${this.props.id}_${column.columnKey}_${rowIndex}`] = input;
+                        }
+                      },
                     }}
                     {...col.editComponentProps}
                     disabled={this.getComponentDisabledState(rowIndex, col, 'edit')}

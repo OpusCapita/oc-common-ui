@@ -332,7 +332,7 @@ export default class DataGrid extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.state = { scrollToRow: 0, scrollToColumn: 0 };
+    this.state = { currentRow: 0, currentColumn: 0 };
   }
 
   componentWillMount() {
@@ -607,13 +607,13 @@ export default class DataGrid extends React.PureComponent {
 
   moveCellFocus = (nextElement, rowIndex, columnIndex) => {
     if (nextElement && nextElement.type === 'text') {
-      setTimeout(() => nextElement.select(), 50);
       if (rowIndex !== -1) {
-        this.setState({ scrollToRow: rowIndex });
+        this.setState({ currentRow: rowIndex });
       }
       if (columnIndex !== -1) {
-        this.setState({ scrollToColumn: columnIndex });
+        this.setState({ currentColumn: columnIndex + 1 });
       }
+      setTimeout(() => nextElement.select(), 50);
     }
   }
 
@@ -1465,10 +1465,8 @@ export default class DataGrid extends React.PureComponent {
                     this.props.data.size;
     if (this.props.isCreating) rowsCount += this.props.createData.size;
     if (this.props.isFiltering) rowsCount += 1;
-    let scrollToRow = this.props.scrollToRow;
-    if (!scrollToRow && this.state.scrollToRow > 0) {
-      scrollToRow = this.state.scrollToRow;
-    } else if (!scrollToRow && this.props.selectedItems.size > 0) {
+    let scrollToRow = this.props.scrollToRow || this.state.currentRow;
+    if (!scrollToRow && this.props.selectedItems.size > 0) {
       scrollToRow = this.getSelectedItemIndex(this.props.selectedItems.first());
     }
     return (
@@ -1511,7 +1509,7 @@ export default class DataGrid extends React.PureComponent {
             }
             return true;
           }}
-          scrollToColumn={this.props.scrollToColumn || this.state.scrollToColumn}
+          scrollToColumn={this.props.scrollToColumn || this.state.currentColumn}
           scrollTop={this.props.scrollTop}
           scrollToRow={scrollToRow}
           onRowDoubleClick={this.props.onRowDoubleClick}

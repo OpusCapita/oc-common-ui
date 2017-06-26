@@ -35,11 +35,11 @@ rowSelect | boolean | false | Enable row selecting
 rowSelectCheckboxColumn | boolean | false | Enable additional checkbox column for row selecting
 multiSelect | boolean | false | Enable multi selecting on row selecting
 selectComponentOptions | Immutable.Map | | Options data for the react-select components
-allowArrowNavigationEdit | boolean | false | Allow navigation with arrow keys in editing mode
 disableActions | boolean | false | Disable action bar actions, eg. when other grid busy
 disableActionsMessage | string | 'GridActionsDisabledOtherGridBusy' | Message about the reason of disabled action bar actions
 disableActionBar | boolean | false | Disable action bar rendering
 disableActionSave | boolean | false | Disable Save action button
+enableArrowNavigation | boolean | false | Allow navigation with arrow keys in editing mode
 onSave | function | | Callback that is called when save button is clicked
 onRemove | function | | Callback that is called when delete is clicked
 onCancel | function | | Callback that is called when cancel is clicked

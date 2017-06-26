@@ -138,11 +138,11 @@ const mapDispatchToProps = datagridActions;
  * @prop {boolean} propTypes.rowSelectCheckboxColumn - Enable additional checkbox column for row selecting
  * @prop {boolean} propTypes.multiSelect - Enable multi selecting on row selecting
  * @prop {Immutable.Map} propTypes.selectComponentOptions - Options data for the react-select components
- * @prop {boolean} propTypes.allowArrowNavigationEdit - Allow navigation by arrow keys in the editing mode (only for text and number inputs)
  * @prop {boolean} propTypes.disableActions - Disable action bar actions, eg. when other grid busy
  * @prop {string} propTypes.disableActionsMessage - Message about the reason of disabled action bar actions
  * @prop {boolean} propTypes.disableActionBar - Disable action bar rendering
  * @prop {boolean} propTypes.disableActionSave - Disable Save action of action bar
+ * @prop {boolean} propTypes.enableArrowNavigation - Enable navigation by arrow keys in the editing mode (only for text and number inputs)
  * @prop {function} propTypes.onSave - Callback that is called when save button is clicked
  * @prop {function} propTypes.onRemove - Callback that is called when delete is clicked
  * @prop {function} propTypes.onCancel - Callback that is called when cancel is clicked
@@ -286,11 +286,11 @@ export default class DataGrid extends React.PureComponent {
         label: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
       })),
     ),
-    allowArrowNavigationEdit: PropTypes.bool,
     disableActions: PropTypes.bool,               // Disable actions in the action bar
     disableActionsMessage: PropTypes.string,
     disableActionBar: PropTypes.bool,
     disableActionSave: PropTypes.bool,
+    enableArrowNavigation: PropTypes.bool,
     onSave: PropTypes.func,
     onRemove: PropTypes.func,
     onCancel: PropTypes.func,
@@ -318,16 +318,21 @@ export default class DataGrid extends React.PureComponent {
   /* eslint-enable max-len, prefer-template, react/no-unused-prop-types, react/forbid-prop-types */
 
   static defaultProps = {
-    allowArrowNavigationEdit: false,
     children: undefined,
     containerStyle: {},
     disableActionSave: false,
+    enableArrowNavigation: false,
     headerHeight: 40,
     rowHeight: 40,
     onSave: () => {},
     onRemove: () => {},
     onCancel: () => {},
     tabIndex: 1,
+  }
+
+  constructor(props) {
+    super(props);
+    this.state = { scrollToRow: 0, scrollToColumn: 0 };
   }
 
   componentWillMount() {
@@ -351,10 +356,39 @@ export default class DataGrid extends React.PureComponent {
   }
 
   onEditCellKeyDown = (keyCode, columnKey, rowIndex) => {
-    if (this.props.allowArrowNavigationEdit) {
-      const nextElement = this.getNextElement(keyCode, columnKey, rowIndex);
-      if (nextElement && nextElement.type === 'text') {
-        setTimeout(() => nextElement.select(), 50);
+    if (this.props.enableArrowNavigation) {
+      const columns = this.props.columns;
+      switch (keyCode) {
+        case KEY_CODES.DOWN: {
+          const nextElement = this.cellRefs[`${this.props.id}_${columnKey}_${rowIndex + 1}`];
+          this.moveCellFocus(nextElement, rowIndex + 1, -1);
+          break;
+        }
+        case KEY_CODES.UP: {
+          const nextElement = this.cellRefs[`${this.props.id}_${columnKey}_${rowIndex - 1}`];
+          this.moveCellFocus(nextElement, rowIndex - 1, -1);
+          break;
+        }
+        case KEY_CODES.RIGHT: {
+          const columnIndex = columns.findIndex(c => c.valueKeyPath.join('_') === columnKey);
+          if (columnIndex !== -1 && columnIndex + 1 < columns.length) {
+            const nextColumnKey = columns[columnIndex + 1].valueKeyPath.join('_');
+            const nextElement = this.cellRefs[`${this.props.id}_${nextColumnKey}_${rowIndex}`];
+            this.moveCellFocus(nextElement, -1, columnIndex + 1);
+          }
+          break;
+        }
+        case KEY_CODES.LEFT: {
+          const columnIndex = columns.findIndex(c => c.valueKeyPath.join('_') === columnKey);
+          if (columnIndex - 1 >= 0) {
+            const nextColumnKey = columns[columnIndex - 1].valueKeyPath.join('_');
+            const nextElement = this.cellRefs[`${this.props.id}_${nextColumnKey}_${rowIndex}`];
+            this.moveCellFocus(nextElement, -1, columnIndex - 1);
+          }
+          break;
+        }
+        default:
+          break;
       }
     }
   }
@@ -571,31 +605,15 @@ export default class DataGrid extends React.PureComponent {
     return returnData;
   }
 
-  getNextElement = (keyCode, columnKey, rowIndex) => {
-    const columns = this.props.columns;
-    switch (keyCode) {
-      case KEY_CODES.DOWN:
-        return this.cellRefs[`${this.props.id}_${columnKey}_${rowIndex + 1}`];
-      case KEY_CODES.UP:
-        return this.cellRefs[`${this.props.id}_${columnKey}_${rowIndex - 1}`];
-      case KEY_CODES.RIGHT: {
-        const columnIndex = columns.findIndex(c => c.valueKeyPath.join('_') === columnKey);
-        if (columnIndex === -1 || columnIndex + 1 > columns.length) {
-          return null;
-        }
-        const nextColumnKey = columns[columnIndex + 1].valueKeyPath.join('_');
-        return this.cellRefs[`${this.props.id}_${nextColumnKey}_${rowIndex}`];
+  moveCellFocus = (nextElement, rowIndex, columnIndex) => {
+    if (nextElement && nextElement.type === 'text') {
+      setTimeout(() => nextElement.select(), 50);
+      if (rowIndex !== -1) {
+        this.setState({ scrollToRow: rowIndex });
       }
-      case KEY_CODES.LEFT: {
-        const columnIndex = columns.findIndex(c => c.valueKeyPath.join('_') === columnKey);
-        if (columnIndex - 1 < 0) {
-          return null;
-        }
-        const nextColumnKey = columns[columnIndex - 1].valueKeyPath.join('_');
-        return this.cellRefs[`${this.props.id}_${nextColumnKey}_${rowIndex}`];
+      if (columnIndex !== -1) {
+        this.setState({ scrollToColumn: columnIndex });
       }
-      default:
-        return null;
     }
   }
 
@@ -749,7 +767,7 @@ export default class DataGrid extends React.PureComponent {
                       rowIndex,
                     )}
                     inputRef={(input) => {
-                      if (this.props.allowArrowNavigationEdit) {
+                      if (this.props.enableArrowNavigation) {
                         this.cellRefs[`${this.props.id}_${column.columnKey}_${rowIndex}`] = input;
                       }
                     }}
@@ -834,7 +852,7 @@ export default class DataGrid extends React.PureComponent {
                       rowIndex,
                     )}
                     inputRef={(input) => {
-                      if (this.props.allowArrowNavigationEdit) {
+                      if (this.props.enableArrowNavigation) {
                         this.cellRefs[`${this.props.id}_${column.columnKey}_${rowIndex}`] = input;
                       }
                     }}
@@ -926,7 +944,7 @@ export default class DataGrid extends React.PureComponent {
                       rowIndex,
                     )}
                     inputRef={(input) => {
-                      if (this.props.allowArrowNavigationEdit) {
+                      if (this.props.enableArrowNavigation) {
                         this.cellRefs[`${this.props.id}_${column.columnKey}_${rowIndex}`] = input;
                       }
                     }}
@@ -1094,7 +1112,7 @@ export default class DataGrid extends React.PureComponent {
                         rowIndex,
                       ),
                       inputRef: (input) => {
-                        if (this.props.allowArrowNavigationEdit) {
+                        if (this.props.enableArrowNavigation) {
                           this.cellRefs[`${this.props.id}_${column.columnKey}_${rowIndex}`] = input;
                         }
                       },
@@ -1447,6 +1465,12 @@ export default class DataGrid extends React.PureComponent {
                     this.props.data.size;
     if (this.props.isCreating) rowsCount += this.props.createData.size;
     if (this.props.isFiltering) rowsCount += 1;
+    let scrollToRow = this.props.scrollToRow;
+    if (!scrollToRow && this.state.scrollToRow > 0) {
+      scrollToRow = this.state.scrollToRow;
+    } else if (!scrollToRow && this.props.selectedItems.size > 0) {
+      scrollToRow = this.getSelectedItemIndex(this.props.selectedItems.first());
+    }
     return (
       <div className={gridClassName} style={this.props.containerStyle}>
         { this.props.isBusy && <Spinner /> }
@@ -1487,10 +1511,9 @@ export default class DataGrid extends React.PureComponent {
             }
             return true;
           }}
-          scrollToColumn={this.props.scrollToColumn}
+          scrollToColumn={this.props.scrollToColumn || this.state.scrollToColumn}
           scrollTop={this.props.scrollTop}
-          scrollToRow={this.props.scrollToRow ||
-            this.getSelectedItemIndex(this.props.selectedItems.first())}
+          scrollToRow={scrollToRow}
           onRowDoubleClick={this.props.onRowDoubleClick}
           onRowMouseDown={this.props.onRowMouseDown}
           onRowMouseEnter={this.props.onRowMouseEnter}

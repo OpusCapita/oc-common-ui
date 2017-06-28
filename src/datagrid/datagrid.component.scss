@@ -175,6 +175,21 @@ $oc-color-grid-warning: $oc-color-yellow;
       }
     }
     &.warning {
+      &:before {
+        display: block;
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 0;
+        border-color: transparent;
+        border-style: solid;
+        border-width: 7px;
+        border-right-color: $oc-color-grid-warning;
+        border-top-color: $oc-color-grid-warning;
+        z-index: 100000;
+      }
+    }
+    &.edited {
       &:after {
         display: block;
         content: "";
@@ -184,8 +199,8 @@ $oc-color-grid-warning: $oc-color-yellow;
         border-color: transparent;
         border-style: solid;
         border-width: 7px;
-        border-right-color: $oc-color-grid-warning;
-        border-bottom-color: $oc-color-grid-warning;
+        border-right-color: $oc-color-support-gray;
+        border-bottom-color: $oc-color-support-gray;
         z-index: 100000;
       }
     }

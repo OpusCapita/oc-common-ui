@@ -29,6 +29,7 @@ export default class InlineEditControls extends React.PureComponent {
     onAddClick: PropTypes.func,
     disableActions: PropTypes.bool,
     disableActionsMessage: PropTypes.string,
+    disableActionSave: PropTypes.bool,
     inlineAdd: PropTypes.bool,
     tabIndex: PropTypes.number,
   };
@@ -36,6 +37,7 @@ export default class InlineEditControls extends React.PureComponent {
   static defaultProps = {
     disableActions: false,
     disableActionsMessage: 'GridActionsDisabledOtherGridBusy',
+    disableActionSave: false,
     inlineAdd: true,
     idKeyPath: [],
     firstInvalidInput: null,
@@ -88,31 +90,42 @@ export default class InlineEditControls extends React.PureComponent {
   }
 
   render() {
-    if (this.props.isCreating || this.props.isEditing) {
+    const {
+      disableActions,
+      disableActionsMessage,
+      disableActionSave,
+      id,
+      inlineAdd,
+      isBusy,
+      isCreating,
+      isEditing,
+      tabIndex,
+    } = this.props;
+    if (isCreating || isEditing) {
       return (
         <div className="oc-datagrid-inline-edit-controls">
           <Button
-            disabled={this.props.isBusy || this.props.disableActions}
+            disabled={isBusy || disableActions || disableActionSave}
             onClick={this.handleSaveButtonClick}
-            tabIndex={this.props.tabIndex + 1}
-            id={`oc-datagrid-controls-save-${this.props.id}`}
+            tabIndex={tabIndex + 1}
+            id={`oc-datagrid-controls-save-${id}`}
           >
             <M id="Save" />
           </Button>
           <Button
-            disabled={this.props.isBusy || this.props.disableActions}
+            disabled={isBusy || disableActions}
             onClick={this.handleCancelButtonClick}
-            tabIndex={this.props.tabIndex + 2}
-            id={`oc-datagrid-controls-cancel-${this.props.id}`}
+            tabIndex={tabIndex + 2}
+            id={`oc-datagrid-controls-cancel-${id}`}
           >
             <M id="Cancel" />
           </Button>
-          { this.props.isCreating &&
+          {isCreating &&
             <Button
-              disabled={this.props.isBusy || this.props.disableActions}
+              disabled={isBusy || disableActions}
               onClick={this.handleAddButtonClick}
-              tabIndex={this.props.tabIndex + 3}
-              id={`oc-datagrid-controls-add-${this.props.id}`}
+              tabIndex={tabIndex + 3}
+              id={`oc-datagrid-controls-add-${id}`}
             >
               <M id="Add" />
             </Button>
@@ -123,21 +136,21 @@ export default class InlineEditControls extends React.PureComponent {
     return (
       <div className="oc-datagrid-inline-edit-controls">
         <CellToolTip
-          id={`oc-datagrid-controls-tooltip-${this.props.id}`}
-          messageId={this.props.disableActions ? this.props.disableActionsMessage : undefined}
+          id={`oc-datagrid-controls-tooltip-${id}`}
+          messageId={disableActions ? disableActionsMessage : undefined}
         >
           <Button
-            disabled={this.props.isBusy}
+            disabled={isBusy}
             onClick={this.handleEditButtonClick}
-            id={`oc-datagrid-controls-edit-${this.props.id}`}
+            id={`oc-datagrid-controls-edit-${id}`}
           >
             <M id="Edit" />
           </Button>
-          { this.props.inlineAdd &&
+          {inlineAdd &&
             <Button
-              disabled={this.props.isBusy}
+              disabled={isBusy}
               onClick={this.handleCreateButtonClick}
-              id={`oc-datagrid-controls-create-${this.props.id}`}
+              id={`oc-datagrid-controls-create-${id}`}
             >
               <M id="Add" />
             </Button>

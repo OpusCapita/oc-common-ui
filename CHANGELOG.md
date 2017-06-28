@@ -3,9 +3,13 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
-* Add `disableActionsMessage` prop to `Datagrid`
-* Fix datagrid filtering when component type is select, show exact matches only.
-* Increase Alert component z-index value to keep it at top of other elements like scrollbars.
+* Add `disableActionsMessage` prop to `Datagrid` to display over disabled actions
+* Fix datagrid filtering when component type is select, show exact matches only
+* Increase Alert component z-index value to keep it at top of other elements like scrollbars
+* Add `disableActionSave` prop to `Datagrid`
+* Combine error and warning status for cells with 'error' type prioritized in `Datagrid`
+* Add grey corner to edited cells of `Datagrid`
+* Add navigation between cells of `Datagrid` with arrow keys in editing mode
 
 ## 4.1.3
 * fix to datagrid's scroll to row functionality

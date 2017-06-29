@@ -28,7 +28,10 @@ export default class InlineEditControls extends React.PureComponent {
     firstInvalidInput: PropTypes.object,
     onAddClick: PropTypes.func,
     disableActions: PropTypes.bool,
-    disableActionsMessage: PropTypes.string,
+    disableActionsMessage: PropTypes.shape({
+      messageId: PropTypes.string,
+      messageValues: PropTypes.shape({}),
+    }),
     disableActionSave: PropTypes.bool,
     inlineAdd: PropTypes.bool,
     tabIndex: PropTypes.number,
@@ -36,7 +39,7 @@ export default class InlineEditControls extends React.PureComponent {
 
   static defaultProps = {
     disableActions: false,
-    disableActionsMessage: 'GridActionsDisabledOtherGridBusy',
+    disableActionsMessage: { messageId: 'GridActionsDisabledOtherGridBusy' },
     disableActionSave: false,
     inlineAdd: true,
     idKeyPath: [],
@@ -133,11 +136,18 @@ export default class InlineEditControls extends React.PureComponent {
         </div>
       );
     }
+    let message = {};
+    if (disableActions && disableActionsMessage) {
+      message = {
+        messageId: disableActionsMessage.messageId,
+        messageValues: disableActionsMessage.messageValues,
+      };
+    }
     return (
       <div className="oc-datagrid-inline-edit-controls">
         <CellToolTip
           id={`oc-datagrid-controls-tooltip-${id}`}
-          messageId={disableActions ? disableActionsMessage : undefined}
+          {...message}
         >
           <Button
             disabled={isBusy}

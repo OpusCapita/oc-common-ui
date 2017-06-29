@@ -139,7 +139,7 @@ const mapDispatchToProps = datagridActions;
  * @prop {boolean} propTypes.multiSelect - Enable multi selecting on row selecting
  * @prop {Immutable.Map} propTypes.selectComponentOptions - Options data for the react-select components
  * @prop {boolean} propTypes.disableActions - Disable action bar actions, eg. when other grid busy
- * @prop {string} propTypes.disableActionsMessage - Message about the reason of disabled action bar actions
+ * @prop {object} propTypes.disableActionsMessage - Message about the reason of disabled action bar actions
  * @prop {boolean} propTypes.disableActionBar - Disable action bar rendering
  * @prop {boolean} propTypes.disableActionSave - Disable Save action of action bar
  * @prop {boolean} propTypes.enableArrowNavigation - Enable navigation by arrow keys in the editing mode (only for text and number inputs)
@@ -287,7 +287,10 @@ export default class DataGrid extends React.PureComponent {
       })),
     ),
     disableActions: PropTypes.bool,               // Disable actions in the action bar
-    disableActionsMessage: PropTypes.string,
+    disableActionsMessage: PropTypes.shape({
+      messageId: PropTypes.string,
+      messageValues: PropTypes.shape({}),
+    }),
     disableActionBar: PropTypes.bool,
     disableActionSave: PropTypes.bool,
     enableArrowNavigation: PropTypes.bool,

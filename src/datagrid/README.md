@@ -44,6 +44,7 @@ onSave | function | | Callback that is called when save button is clicked
 onRemove | function | | Callback that is called when delete is clicked
 onCancel | function | | Callback that is called when cancel is clicked
 onAddClick | function | | Callback that is called when add is clicked
+onEditClick | function | | Callback that is called when edit is clicked
 tabIndex | number | 1 | tabIndex start value, needed when multiple grids on same page
 headerHeight | number | 40 | Pixel height of the header row
 rowHeight | number | 40 | Pixel height of rows

@@ -147,6 +147,7 @@ const mapDispatchToProps = datagridActions;
  * @prop {function} propTypes.onRemove - Callback that is called when delete is clicked
  * @prop {function} propTypes.onCancel - Callback that is called when cancel is clicked
  * @prop {function} propTypes.onAddClick - Callback that is called when add is clicked
+ * @prop {function} propTypes.onEditClick - Callback that is called when edit is clicked
  * @prop {number} propTypes.tabIndex - tabIndex start value, needed when multiple grids on same page
 
  * @prop {number} propTypes.headerHeight - Pixel height of the header row
@@ -298,6 +299,7 @@ export default class DataGrid extends React.PureComponent {
     onRemove: PropTypes.func,
     onCancel: PropTypes.func,
     onAddClick: PropTypes.func,
+    onEditClick: PropTypes.func,
     tabIndex: PropTypes.number,                   // tabIndex value for inputs in cells
     // Fixed data table built-in features
     headerHeight: PropTypes.number,

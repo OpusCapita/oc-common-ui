@@ -23,10 +23,11 @@ export default class InlineEditControls extends React.PureComponent {
     isCreating: PropTypes.bool.isRequired,
     onSave: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
+    onAddClick: PropTypes.func,
+    onEditClick: PropTypes.func,
     columns: PropTypes.array.isRequired,
     columnDefaultValues: PropTypes.object.isRequired,
     firstInvalidInput: PropTypes.object,
-    onAddClick: PropTypes.func,
     disableActions: PropTypes.bool,
     disableActionsMessage: PropTypes.shape({
       messageId: PropTypes.string,
@@ -45,6 +46,7 @@ export default class InlineEditControls extends React.PureComponent {
     idKeyPath: [],
     firstInvalidInput: null,
     onAddClick: null,
+    onEditClick: null,
     tabIndex: 1,
   };
 
@@ -79,6 +81,9 @@ export default class InlineEditControls extends React.PureComponent {
   handleEditButtonClick = () => {
     if (!this.props.disableActions) {
       this.props.edit(this.props.id);
+      if (this.props.onEditClick) {
+        this.props.onEditClick();
+      }
     }
   }
 

@@ -3,7 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
-* Fix of message with values for datagrid tooltip
+* Fix message with values for datagrid tooltip
 
 ## 4.2.0
 * Add `disableActionsMessage` prop to `Datagrid` to display over disabled actions

@@ -10,6 +10,7 @@
 * Combine error and warning status for cells with 'error' type prioritized in `Datagrid`
 * Add grey corner to edited cells of `Datagrid`
 * Add navigation between cells of `Datagrid` with arrow keys in editing mode
+* Add `onEditClick` callback to `Datagrid`
 
 ## 4.1.3
 * fix to datagrid's scroll to row functionality

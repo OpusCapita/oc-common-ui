@@ -139,7 +139,7 @@ const mapDispatchToProps = datagridActions;
  * @prop {boolean} propTypes.multiSelect - Enable multi selecting on row selecting
  * @prop {Immutable.Map} propTypes.selectComponentOptions - Options data for the react-select components
  * @prop {boolean} propTypes.disableActions - Disable action bar actions, eg. when other grid busy
- * @prop {string} propTypes.disableActionsMessage - Message about the reason of disabled action bar actions
+ * @prop {object} propTypes.disableActionsMessage - Message about the reason of disabled action bar actions
  * @prop {boolean} propTypes.disableActionBar - Disable action bar rendering
  * @prop {boolean} propTypes.disableActionSave - Disable Save action of action bar
  * @prop {boolean} propTypes.enableArrowNavigation - Enable navigation by arrow keys in the editing mode (only for text and number inputs)
@@ -147,6 +147,7 @@ const mapDispatchToProps = datagridActions;
  * @prop {function} propTypes.onRemove - Callback that is called when delete is clicked
  * @prop {function} propTypes.onCancel - Callback that is called when cancel is clicked
  * @prop {function} propTypes.onAddClick - Callback that is called when add is clicked
+ * @prop {function} propTypes.onEditClick - Callback that is called when edit is clicked
  * @prop {number} propTypes.tabIndex - tabIndex start value, needed when multiple grids on same page
 
  * @prop {number} propTypes.headerHeight - Pixel height of the header row
@@ -287,7 +288,10 @@ export default class DataGrid extends React.PureComponent {
       })),
     ),
     disableActions: PropTypes.bool,               // Disable actions in the action bar
-    disableActionsMessage: PropTypes.string,
+    disableActionsMessage: PropTypes.shape({
+      messageId: PropTypes.string,
+      messageValues: PropTypes.shape({}),
+    }),
     disableActionBar: PropTypes.bool,
     disableActionSave: PropTypes.bool,
     enableArrowNavigation: PropTypes.bool,
@@ -295,6 +299,7 @@ export default class DataGrid extends React.PureComponent {
     onRemove: PropTypes.func,
     onCancel: PropTypes.func,
     onAddClick: PropTypes.func,
+    onEditClick: PropTypes.func,
     tabIndex: PropTypes.number,                   // tabIndex value for inputs in cells
     // Fixed data table built-in features
     headerHeight: PropTypes.number,

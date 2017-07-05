@@ -23,12 +23,16 @@ export default class InlineEditControls extends React.PureComponent {
     isCreating: PropTypes.bool.isRequired,
     onSave: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired,
+    onAddClick: PropTypes.func,
+    onEditClick: PropTypes.func,
     columns: PropTypes.array.isRequired,
     columnDefaultValues: PropTypes.object.isRequired,
     firstInvalidInput: PropTypes.object,
-    onAddClick: PropTypes.func,
     disableActions: PropTypes.bool,
-    disableActionsMessage: PropTypes.string,
+    disableActionsMessage: PropTypes.shape({
+      messageId: PropTypes.string,
+      messageValues: PropTypes.shape({}),
+    }),
     disableActionSave: PropTypes.bool,
     inlineAdd: PropTypes.bool,
     tabIndex: PropTypes.number,
@@ -36,12 +40,13 @@ export default class InlineEditControls extends React.PureComponent {
 
   static defaultProps = {
     disableActions: false,
-    disableActionsMessage: 'GridActionsDisabledOtherGridBusy',
+    disableActionsMessage: { messageId: 'GridActionsDisabledOtherGridBusy' },
     disableActionSave: false,
     inlineAdd: true,
     idKeyPath: [],
     firstInvalidInput: null,
     onAddClick: null,
+    onEditClick: null,
     tabIndex: 1,
   };
 
@@ -76,6 +81,9 @@ export default class InlineEditControls extends React.PureComponent {
   handleEditButtonClick = () => {
     if (!this.props.disableActions) {
       this.props.edit(this.props.id);
+      if (this.props.onEditClick) {
+        this.props.onEditClick();
+      }
     }
   }
 
@@ -133,11 +141,18 @@ export default class InlineEditControls extends React.PureComponent {
         </div>
       );
     }
+    let message = {};
+    if (disableActions && disableActionsMessage) {
+      message = {
+        messageId: disableActionsMessage.messageId,
+        messageValues: disableActionsMessage.messageValues,
+      };
+    }
     return (
       <div className="oc-datagrid-inline-edit-controls">
         <CellToolTip
           id={`oc-datagrid-controls-tooltip-${id}`}
-          messageId={disableActions ? disableActionsMessage : undefined}
+          {...message}
         >
           <Button
             disabled={isBusy}

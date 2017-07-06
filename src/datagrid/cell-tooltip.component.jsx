@@ -30,11 +30,11 @@ export default class DatagridTooltip extends React.Component {
     isError: false,
     isWarning: false,
     messageId: null,
-    messageValues: {},
+    messageValues: null,
     errorMessageId: null,
-    errorMessageValues: {},
+    errorMessageValues: null,
     warningMessageId: null,
-    warningMessageValues: {},
+    warningMessageValues: null,
   };
 
   render() {

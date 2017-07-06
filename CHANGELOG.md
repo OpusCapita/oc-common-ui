@@ -3,6 +3,9 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Fix message with values for datagrid tooltip
+
+## 4.2.0
 * Add `disableActionsMessage` prop to `Datagrid` to display over disabled actions
 * Fix datagrid filtering when component type is select, show exact matches only
 * Increase Alert component z-index value to keep it at top of other elements like scrollbars

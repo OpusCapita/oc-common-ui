@@ -129,6 +129,7 @@ const mapDispatchToProps = datagridActions;
  * @prop {element} propTypes.actionBar - Action bar element displayed at top right
  * @prop {element} propTypes.actionBarLeft - Action bar element displayed at top left
  * @prop {boolean} propTypes.disableDropdown - Don't use dropdown menu in the action bar
+ * @prop {boolean} propTypes.disableFilteringControls - Don't display the filtering controls (only used if disableDropdown is true). Default is false.
  * @prop {array} propTypes.dropdownMenuItems - Additional dropdown menu items
  * @prop {boolean} propTypes.inlineEdit - Enable inline editing
  * @prop {boolean} propTypes.inlineAdd - Enable inline adding (defaults to true if inlineEdit is enabled)
@@ -273,6 +274,7 @@ export default class DataGrid extends React.PureComponent {
     actionBar: PropTypes.node,
     actionBarLeft: PropTypes.node,
     disableDropdown: PropTypes.bool,              // Don't use dropdown menu in the action bar
+    disableFilteringControls: PropTypes.bool,     // Don't display the filtering controls (only valid if disableDropdown is true)
     dropdownMenuItems: PropTypes.array,
     inlineEdit: PropTypes.bool,
     inlineAdd: PropTypes.bool,
@@ -333,6 +335,7 @@ export default class DataGrid extends React.PureComponent {
     onRemove: () => {},
     onCancel: () => {},
     tabIndex: 1,
+    disableFilteringControls: false,
   }
 
   constructor(props) {
@@ -1431,7 +1434,7 @@ export default class DataGrid extends React.PureComponent {
       actionBarRight = (
         <ActionBar position="right">
           <div className="oc-datagrid-actionbar-right">{ this.props.actionBar }</div>
-          { (this.props.filtering && this.props.disableDropdown) &&
+          { (this.props.filtering && this.props.disableDropdown && !this.props.disableFilteringControls) &&
             <FilteringControls {...this.props} />
           }
           { this.props.inlineEdit &&

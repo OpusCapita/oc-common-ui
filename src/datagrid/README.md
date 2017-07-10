@@ -26,6 +26,7 @@ gridHeader | node | | Grid header displayed on top of grid
 actionBar | node | | Action bar element displayed at top right
 actionBarLeft | node | | Action bar element displayed at top left
 disableDropdown | boolean | false | Don't use dropdown menu in the action bar
+disableFilteringControls | boolean | false | Don't display the filtering controls (only used if disableDropdown is true)
 dropdownMenuItems | array | | Additional dropdown menu items
 inlineEdit | boolean | false | Enable inline editing
 inlineAdd | boolean | true | Enable inline adding (defaults to true if inlineEdit is enabled)

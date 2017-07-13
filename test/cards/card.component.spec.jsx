@@ -41,6 +41,8 @@ describe('Card component', function describe() {
       onlyChild: false,
       expanded: true,
       setExpanded: null,
+      collapseBtnTooltip: 'collapse',
+      expandBtnTooltip: 'expand',
     });
   });
 });

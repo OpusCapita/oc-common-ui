@@ -17,6 +17,7 @@ export class CardHeader extends React.Component {
     return (
       this.props.expanded ?
         <button
+          title={this.props.collapseBtnTooltip}
           onClick={() => {
             this.props.setExpanded(this.props.id, false);
           }}
@@ -27,6 +28,7 @@ export class CardHeader extends React.Component {
           />
         </button> :
         <button
+          title={this.props.expandBtnTooltip}
           onClick={() => {
             this.props.setExpanded(this.props.id, true);
           }}
@@ -47,7 +49,7 @@ export class CardHeader extends React.Component {
             {this.props.children}
           </div>
           <div className="collapse-expand">
-            { this.props.onlyChild ? '' : this.getExpandCollapse() }
+            {this.props.onlyChild ? '' : this.getExpandCollapse()}
           </div>
         </div>
       </div>
@@ -61,6 +63,8 @@ CardHeader.defaultProps = {
   onlyChild: false,
   expanded: false,
   setExpanded: null,
+  expandBtnTooltip: 'expand',
+  collapseBtnTooltip: 'collapse',
 };
 
 CardHeader.propTypes = {
@@ -69,4 +73,6 @@ CardHeader.propTypes = {
   onlyChild: PropTypes.bool,
   expanded: PropTypes.bool,
   setExpanded: PropTypes.func,
+  expandBtnTooltip: PropTypes.string,
+  collapseBtnTooltip: PropTypes.string,
 };

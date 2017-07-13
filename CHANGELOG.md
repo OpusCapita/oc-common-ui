@@ -4,6 +4,7 @@
 
 ## <next>
 * Fix message with values for datagrid tooltip
+* Added tooltip props for expand and collapse buttons in card component header
 * Added 'disableFilteringControls' prop to the Datagrid
 
 ## 4.2.0

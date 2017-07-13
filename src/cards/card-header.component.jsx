@@ -17,7 +17,7 @@ export class CardHeader extends React.Component {
     return (
       this.props.expanded ?
         <button
-          title={this.props.expandBtnTooltip}
+          title={this.props.collapseBtnTooltip}
           onClick={() => {
             this.props.setExpanded(this.props.id, false);
           }}
@@ -28,7 +28,7 @@ export class CardHeader extends React.Component {
           />
         </button> :
         <button
-          title={this.props.collapseBtnTooltip}
+          title={this.props.expandBtnTooltip}
           onClick={() => {
             this.props.setExpanded(this.props.id, true);
           }}

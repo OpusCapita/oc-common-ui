@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 4.2.1
 * Fix message with values for datagrid tooltip
 * Added tooltip props for expand and collapse buttons in card component header
 * Added 'disableFilteringControls' prop to the Datagrid

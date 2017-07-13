@@ -4,6 +4,7 @@
 
 ## <next>
 * Fix message with values for datagrid tooltip
+* Added 'disableFilteringControls' prop to the Datagrid
 
 ## 4.2.0
 * Add `disableActionsMessage` prop to `Datagrid` to display over disabled actions

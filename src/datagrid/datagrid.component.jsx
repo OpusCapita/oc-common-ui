@@ -1434,7 +1434,8 @@ export default class DataGrid extends React.PureComponent {
       actionBarRight = (
         <ActionBar position="right">
           <div className="oc-datagrid-actionbar-right">{ this.props.actionBar }</div>
-          { (this.props.filtering && this.props.disableDropdown && !this.props.disableFilteringControls) &&
+          { (this.props.filtering && this.props.disableDropdown
+            && !this.props.disableFilteringControls) &&
             <FilteringControls {...this.props} />
           }
           { this.props.inlineEdit &&

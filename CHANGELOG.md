@@ -4,6 +4,9 @@
 
 ## <next>
 
+## 4.2.2
+* recompiled package
+
 ## 4.2.1
 * Fix message with values for datagrid tooltip
 * Added tooltip props for expand and collapse buttons in card component header

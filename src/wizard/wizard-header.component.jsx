@@ -6,11 +6,11 @@ import { Icon } from '../icons/index';
 import './wizard-header.component.scss';
 
 
-export default class WizardHeader extends React.Component {
+export default class WizardHeader extends React.PureComponent {
 
   static propTypes = {
     steps: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.string.isRequired,
+      name: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
       component: PropTypes.node.isRequired,
     })).isRequired,
     selectPage: PropTypes.func.isRequired,

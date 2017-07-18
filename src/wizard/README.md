@@ -22,7 +22,7 @@ N/A
 | ----------------- | -------------------------------------------------- | ------- | ------------------------------------------------------ |
 | save              | function                                           |         | Callback function called, when the wizard is saved     |
 | cancel            | function                                           |         | Callback function called, when the wizard is cancelled |
-| steps             | list, [{id: id, name: name: component: component}] |         | List of wizard pages (components)                      |
+| steps             | list, [{id: id, name: name, component: component}] |         | List of wizard pages (components)                      |
 | localizationTexts | map, { save: 'save', cancel: 'cancel'}             |         | Localization texts                                     |
 | showPageIndicator | boolean                                            | true    | Show page indicator element                            |
 

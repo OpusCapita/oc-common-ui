@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Change `string` type to one of `element` and `string` type to `Wizard`'s `localizationTexts` and step `name` props
+* Add disabled property to navigation buttons of `Wizard`
 
 ## 4.2.2
 * recompiled package

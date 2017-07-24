@@ -7,7 +7,7 @@ import WizardFooter from './wizard-footer.component';
 import './wizard.component.scss';
 
 
-export default class Wizard extends React.Component {
+export default class Wizard extends React.PureComponent {
   constructor() {
     super();
 
@@ -64,12 +64,12 @@ Wizard.propTypes = {
   save: PropTypes.func.isRequired,
   cancel: PropTypes.func.isRequired,
   steps: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
+    name: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     component: PropTypes.node.isRequired,
   })).isRequired,
   localizationTexts: PropTypes.shape({
-    save: PropTypes.string,
-    cancel: PropTypes.cancel,
+    save: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    cancel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   }).isRequired,
   activeStep: PropTypes.number,
   showPageIndicator: PropTypes.bool,

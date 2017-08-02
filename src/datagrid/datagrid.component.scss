@@ -28,7 +28,7 @@ $oc-color-grid-warning: $oc-color-yellow;
     .public_fixedDataTableCell_cellContent {
       padding: 0;
       .oc-datagrid-tooltip {
-        padding: 12px 8px 11px 8px;
+        padding: 0px 8px 0px 8px;
       }
     }
   }
@@ -75,6 +75,7 @@ $oc-color-grid-warning: $oc-color-yellow;
     background: $oc-color-grid-background;
     color: $oc-color-grid-text;
     font-size: 1.2rem;
+    line-height: 100%;
 
     &[type="text"], &[type="email"], &[type="password"] {
       width: 100%;

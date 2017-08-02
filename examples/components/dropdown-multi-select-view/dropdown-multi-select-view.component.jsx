@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map } from 'immutable';
+import { List } from 'immutable';
 
 import { DropdownMultiSelect } from '../../../src/index';
 
@@ -7,7 +7,7 @@ export default class DropdownMultiSelectView extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.state = { checkedItems: Map() };
+    this.state = { checkedItems: List() };
   }
 
   componentWillMount() {
@@ -21,7 +21,7 @@ export default class DropdownMultiSelectView extends React.PureComponent {
   initializeItems = () => {
     const items = [];
     for (let i = 0; i < 300; i += 1) {
-      items.push({ id: i, text: `Item ${i}` });
+      items.push({ value: i, label: `Item ${i}` });
     }
     return items;
   };

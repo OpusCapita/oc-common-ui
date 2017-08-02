@@ -13,8 +13,8 @@ describe('MultiSelectItem component', function describe() {
   it('should render correctly', function it() {
     const props = {
       item: {
-        id: 1,
-        text: 'Item 1',
+        value: 1,
+        label: 'Item 1',
       },
       isChecked: true,
     };
@@ -23,7 +23,7 @@ describe('MultiSelectItem component', function describe() {
       <MultiSelectItem {...props} />,
     );
 
-    expect(wrapper.find('.oc-multi-select-item-text').at(0).text()).to.eql('Item 1');
+    expect(wrapper.find('.oc-multi-select-item-label').at(0).text()).to.eql('Item 1');
     expect(wrapper.find('#1').props().checked).to.be.true;
   });
 });

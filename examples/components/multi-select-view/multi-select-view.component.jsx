@@ -1,5 +1,5 @@
 import React from 'react';
-import { Map } from 'immutable';
+import { List } from 'immutable';
 
 import { MultiSelect } from '../../../src/multi-select/index';
 import './multi-select-view.component.scss';
@@ -8,7 +8,7 @@ export default class MultiSelectView extends React.PureComponent {
 
   constructor(props) {
     super(props);
-    this.state = { checkedItems: Map() };
+    this.state = { checkedItems: List() };
   }
 
   componentWillMount() {
@@ -22,16 +22,16 @@ export default class MultiSelectView extends React.PureComponent {
   initializeItems = () => (
     [
       {
-        id: 1,
-        text: 'Item 1',
+        value: 1,
+        label: 'Item 1',
       },
       {
-        id: 2,
-        text: 'Item 2',
+        value: 2,
+        label: 'Item 2',
       },
       {
-        id: 3,
-        text: 'EUR FI00 3333 3333 1111 11 Account ABCDEF',
+        value: 3,
+        label: 'EUR FI00 3333 3333 1111 11 Account ABCDEF',
       },
     ]);
 

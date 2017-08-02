@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Map } from 'immutable';
+import { List } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import MultiSelectItem from './multi-select-item/multi-select-item.component';
@@ -9,42 +9,46 @@ import './multi-select.component.scss';
 export default class MultiSelect extends React.PureComponent {
 
   static propTypes = {
-    items: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]).isRequired,
-      text: PropTypes.string.isRequired,
-    })).isRequired,
-    checkedItems: ImmutablePropTypes.map,
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        value: PropTypes.oneOfType([
+          PropTypes.bool,
+          PropTypes.number,
+          PropTypes.string,
+        ]).isRequired,
+      }),
+    ).isRequired,
+    checkedItems: ImmutablePropTypes.list,
     onChange: PropTypes.func,
   };
 
   static defaultProps = {
-    checkedItems: Map(),
+    checkedItems: List(),
     onChange: () => {},
   };
 
-  handleChange = (id, isChecked) => {
+  handleChange = (value, isChecked) => {
     const { checkedItems, onChange } = this.props;
-    if (isChecked) {
-      onChange(checkedItems.set(id, isChecked));
-    } else {
-      onChange(checkedItems.delete(id));
+    const valueIndex = checkedItems.indexOf(value);
+    if (isChecked && valueIndex === -1) {
+      onChange(checkedItems.push(value));
+    } else if (!isChecked && valueIndex > -1) {
+      onChange(checkedItems.deleteIn([valueIndex]));
     }
   }
 
-  isChecked = (id, checkedItems) => checkedItems.get(id) === true;
+  isChecked = (value, checkedItems) => checkedItems.indexOf(value) > -1;
 
   render() {
     const { items, checkedItems } = this.props;
     return (
       <div className="oc-multi-select">
         {items.map((item) => {
-          const isChecked = this.isChecked(item.id, checkedItems);
+          const isChecked = this.isChecked(item.value, checkedItems);
           return (
             <MultiSelectItem
-              key={item.id}
+              key={item.value}
               isChecked={isChecked}
               item={item}
               onChange={this.handleChange}

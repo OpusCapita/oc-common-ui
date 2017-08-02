@@ -16,12 +16,12 @@ describe('DropdownMultiSelect component', function describe() {
       id: 'dropdownMultiSelectExample',
       items: [
         {
-          id: 1,
-          text: 'Item 1',
+          value: 1,
+          label: 'Item 1',
         },
         {
-          id: 2,
-          text: 'Item 2',
+          value: 2,
+          label: 'Item 2',
         },
       ],
       onChange: sinon.spy(),
@@ -32,7 +32,7 @@ describe('DropdownMultiSelect component', function describe() {
     );
 
     expect(wrapper.find('.oc-multi-select-item-checkbox').length).to.eql(2);
-    expect(wrapper.find('.oc-multi-select-item-text').at(0).text()).to.eql('Item 1');
+    expect(wrapper.find('.oc-multi-select-item-label').at(0).text()).to.eql('Item 1');
 
     wrapper.find('#2').simulate('change');
     expect(props.onChange.called).to.be.true;

@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
-import { Map } from 'immutable';
+import { List } from 'immutable';
 import { FormControl, InputGroup } from 'react-bootstrap';
 
 import { DropdownContainer } from '../dropdown-container/index';
@@ -12,22 +12,28 @@ import './dropdown-multi-select.component.scss';
 export default class DropdownMultiSelect extends React.PureComponent {
 
   static propTypes = {
-    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
-    items: PropTypes.arrayOf(PropTypes.shape({
-      id: PropTypes.oneOfType([
-        PropTypes.string,
-        PropTypes.number,
-      ]).isRequired,
-      text: PropTypes.string.isRequired,
-      textPlaceholder: PropTypes.string,
-    })).isRequired,
-    checkedItems: ImmutablePropTypes.map,
+    checkedItems: ImmutablePropTypes.list,
     defaultPlaceholder: PropTypes.string,
+    id: PropTypes.oneOfType([
+      PropTypes.number,
+      PropTypes.string,
+    ]).isRequired,
+    items: PropTypes.arrayOf(
+      PropTypes.shape({
+        label: PropTypes.string.isRequired,
+        labelPlaceholder: PropTypes.string,
+        value: PropTypes.oneOfType([
+          PropTypes.bool,
+          PropTypes.number,
+          PropTypes.string,
+        ]).isRequired,
+      }),
+    ).isRequired,
     onChange: PropTypes.func,
   };
 
   static defaultProps = {
-    checkedItems: Map(),
+    checkedItems: List(),
     defaultPlaceholder: '{N} items selected',
     onChange: () => {},
   };
@@ -43,11 +49,10 @@ export default class DropdownMultiSelect extends React.PureComponent {
       return defaultPlaceholder.replace('{N}', checkedItems.size);
     }
     if (checkedItems.size === 1) {
-      const [...keys] = checkedItems.keys();
-      const index = items.findIndex(i => i.id === keys[0]);
+      const index = items.findIndex(i => i.value === checkedItems.get(0));
       if (index > -1) {
-        return items[index].textPlaceholder !== undefined ?
-          items[index].textPlaceholder : items[index].text;
+        return items[index].labelPlaceholder !== undefined ?
+          items[index].labelPlaceholder : items[index].label;
       }
     }
     return defaultPlaceholder.replace('{N}', '1');
@@ -64,13 +69,13 @@ export default class DropdownMultiSelect extends React.PureComponent {
 
   filterItems = (items) => {
     const filterValue = this.state.filterValue.replace(/\s/g, '').toLowerCase();
-    return items.filter(i => i.text.replace(/\s/g, '').toLowerCase().match(filterValue) !== null);
+    return items.filter(i => i.label.replace(/\s/g, '').toLowerCase().match(filterValue) !== null);
   }
 
   handleClear = () => {
     this.preventToggle = true;
     if (this.props.checkedItems.size > 0) {
-      this.props.onChange(Map());
+      this.props.onChange(List());
     }
   }
 

@@ -4,7 +4,7 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import { Map } from 'immutable';
+import { List } from 'immutable';
 
 import { MultiSelect } from '../../src/multi-select/index';
 
@@ -12,15 +12,15 @@ import { MultiSelect } from '../../src/multi-select/index';
 describe('MultiSelect component', function describe() {
   it('should render correctly', function it() {
     const props = {
-      checkedItems: Map(),
+      checkedItems: List(),
       items: [
         {
-          id: 1,
-          text: 'Item 1',
+          value: 1,
+          label: 'Item 1',
         },
         {
-          id: 2,
-          text: 'Item 2',
+          value: 2,
+          label: 'Item 2',
         },
       ],
     };
@@ -30,6 +30,6 @@ describe('MultiSelect component', function describe() {
     );
 
     expect(wrapper.find('.oc-multi-select-item-checkbox').length).to.eql(2);
-    expect(wrapper.find('.oc-multi-select-item-text').at(0).text()).to.eql('Item 1');
+    expect(wrapper.find('.oc-multi-select-item-label').at(0).text()).to.eql('Item 1');
   });
 });

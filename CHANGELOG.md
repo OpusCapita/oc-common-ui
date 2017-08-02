@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Change items' structure and checkedItems type of `DropdownMultiSelect` and `MultiSelectItem` components to make them compatible with `react-select` structure
 
 ## 4.2.3
 * Change `string` type to one of `element` and `string` type to `Wizard`'s `localizationTexts` and step `name` props

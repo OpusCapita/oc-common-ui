@@ -16,29 +16,29 @@ It contains **MultiSelect** react component that displays a list of items with c
 
 Prop name | Type | Default | Description
 --- | --- | --- | ---
+checkedItems | Immutable.list | | Values of checked items
 items | array | required | Array of items
-checkedItems | Immutable.Map | | Identifiers of checked items
 onChange | function | | Callback that is called when an item is clicked
 
 #### MultiSelect - items props
 
 Name | Type | Default | Description
 --- | --- | --- | ---
-id | [number, string] | | Item identifier
-text | string | | Item label
+label | string | required | Item label
+value | [bool, number, string] | required | Item value
 
 ### Code example
 
 ```jsx
 import React from 'react';
-import { Map } from 'immutable';
+import { List } from 'immutable';
 import { MultiSelect } from '@opuscapita/oc-common-ui';
 
 export default class MultiSelectView extends React.Component {
   
   constructor(props) {
     super(props);
-    this.state = { checkedItems: Map() };
+    this.state = { checkedItems: List() };
   }
 
   onChange = (checkedItems) => {
@@ -48,7 +48,7 @@ export default class MultiSelectView extends React.Component {
   render() {
     const items = [];
     for (let i = 0; i < 10; i += 1) {
-      items.push({ id: i, text: `Item ${i}` });
+      items.push({ value: i, label: `Item ${i}` });
     }
     return (
       <MultiSelect

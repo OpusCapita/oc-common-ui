@@ -4,6 +4,7 @@
 
 ## <next>
 * Change items' structure and checkedItems type of `DropdownMultiSelect` and `MultiSelectItem` components to make them compatible with `react-select` structure
+* datagrid row/cell height style adjustments
 
 ## 4.2.3
 * Change `string` type to one of `element` and `string` type to `Wizard`'s `localizationTexts` and step `name` props

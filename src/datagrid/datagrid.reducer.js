@@ -13,7 +13,7 @@ const getSessionData = (id) => {
 
 const setSessionData = (id, data) => {
   sessionStorage.setItem(`grid_${id}`, JSON.stringify(data));
-};*/
+}; */
 
 export default function datagridReducer(state = INITIAL_STATE, action) {
   switch (action.type) {

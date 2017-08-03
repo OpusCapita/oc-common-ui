@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 4.2.4
 * Change items' structure and checkedItems type of `DropdownMultiSelect` and `MultiSelectItem` components to make them compatible with `react-select` structure
 * datagrid row/cell height style adjustments
 

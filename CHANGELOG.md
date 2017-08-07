@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Add `hasRequiredProps` and `hasRequiredPropsErrors` to `Wizard`
 
 ## 4.2.4
 * Change items' structure and checkedItems type of `DropdownMultiSelect` and `MultiSelectItem` components to make them compatible with `react-select` structure

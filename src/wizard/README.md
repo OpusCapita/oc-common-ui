@@ -28,7 +28,7 @@ steps | array | required | Steps of the wizard
 
 Name | Type | Default | Description
 --- | --- | --- | ---
-component | element | | Step content
+component | element | required | Step content
 hasRequiredProps | bool | false | Sign of required fields in the content
 hasRequiredPropsErrors | bool | false | Sign of invalidated required props
 id | [number, string] | required | Step id

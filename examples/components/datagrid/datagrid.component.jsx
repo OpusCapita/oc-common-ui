@@ -5,7 +5,7 @@ import { List, Map } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { Datagrid, DatagridActions } from '../../../src/index';
-import { bankAccountData } from './data';
+import { bankAccountData, currencyOptions } from './data';
 import './datagrid.component.scss';
 
 const GRID_ID = 'accounts-grid-example';
@@ -64,8 +64,9 @@ export default class DatagridView extends React.Component {
         header: 'Currency',
         valueKeyPath: ['currency'],
         valueType: 'text',
-        componentType: 'text',
+        componentType: 'select',
         width: 200,
+        selectComponentOptions: currencyOptions,
       },
       {
         header: 'Company Name',

@@ -102,6 +102,7 @@ onEditValueChange | function | | Called on edit value change, called with (value
 onCreateValueChange | function | | Called on create value change, called with (value, valueKeyPath, rowIndex)
 onCreateBlur | function | | Called on create cell input blur, called with (value, rowIndex)
 onEditBlur | function | | Called on edit cell input blur, called with (value, rowIndex, dataId)
+selectComponentOptions | array | | Options data fot the react-select component
 
 #### Datagrid - onValueMatchChangeValue prop attributes
 Name | Type | Default | Description

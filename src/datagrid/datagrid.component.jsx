@@ -23,7 +23,7 @@ import FilteringControls from './filtering-controls.component';
 import DropdownControls from './dropdown-controls.component';
 import * as datagridActions from './datagrid.actions';
 import FloatingSelect from './floating-select/floating-select.component';
-import DateInput from './date-picker/date-picker.component';
+import { DateInput } from '../date-input';
 import CellTooltip from './cell-tooltip.component';
 import './datagrid.component.scss';
 
@@ -122,6 +122,7 @@ const mapDispatchToProps = datagridActions;
  * @prop {function} propTypes.columns.onCreateValueChange - Called on create value change, called with (value, valueKeyPath, rowIndex)
  * @prop {function} propTypes.columns.onCreateBlur - Called on create cell input blur, called with (value, rowIndex)
  * @prop {function} propTypes.columns.onEditBlur - Called on edit cell input blur, called with (value, rowIndex, dataId)
+ * @prop {function} propTypes.columns.selectComponentOptions - Options data for the react-select component
 
  * @prop {number} propTypes.rowsCount - Override rows count otherwise calculated from data
  * @prop {array} propTypes.idKeyPath - Key path to ID data
@@ -265,6 +266,10 @@ export default class DataGrid extends React.PureComponent {
         onCreateValueChange: PropTypes.func,      // callbac with (value, valueKeyPath, rowIndex)
         onCreateBlur: PropTypes.func,             // callback with (value, rowIndex)
         onEditBlur: PropTypes.func,               // callback with (value, rowIndex, dataId)
+        selectComponentOptions: PropTypes.arrayOf(PropTypes.shape({
+          value: PropTypes.oneOfType([PropTypes.number, PropTypes.string, PropTypes.bool]).isRequired,
+          label: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+        })),
       }).isRequired,
     ).isRequired,
     // Optional component properties
@@ -487,28 +492,27 @@ export default class DataGrid extends React.PureComponent {
   getEditItemValue = (rowIndex, col) => {
     // Get the value to display in edit cell
     const id = this.getDataIdByRowIndex(rowIndex);
-    const editValue = this.props.editData.getIn([id, ...col.valueKeyPath], undefined);
-    let originalValue;
+    let editValue = this.props.editData.getIn([id, ...col.valueKeyPath], undefined);
     if (editValue === undefined) {
-      originalValue = this.props.data.getIn([rowIndex, ...col.valueKeyPath], '');
-    } else if (editValue === null) {
-      return '';
-    } else {
-      return editValue;
-    }
-    if (originalValue === null || originalValue === undefined || originalValue === '') {
-      return '';
+      editValue = this.props.data.getIn([rowIndex, ...col.valueKeyPath], undefined);
     }
     // Special formatting by component type
     if (col.componentType === 'date') {
-      return this.props.intl.formatDate(originalValue, { timeZone: 'UTC' });
-    } else if (
-      col.componentType === 'float' &&
-      String(originalValue).length > 0
-    ) {
-      return String(originalValue).replace('.', this.props.decimalSeparator);
+      if (editValue === undefined || editValue === '') {
+        return null;
+      }
+      return new Date(editValue);
     }
-    return originalValue;
+    if (editValue === undefined || editValue === null || editValue === '') {
+      return '';
+    }
+    if (
+      col.componentType === 'float' &&
+      String(editValue).length > 0
+    ) {
+      return String(editValue).replace('.', this.props.decimalSeparator);
+    }
+    return editValue;
   }
 
   getCreateItemValue = (rowIndex, col) => {
@@ -1008,7 +1012,8 @@ export default class DataGrid extends React.PureComponent {
           case 'select': {
             if (this.props.inlineEdit) {
               if (!column.cellEdit) {
-                const selectOptions = this.props.selectComponentOptions.get(column.columnKey);
+                const selectOptions = col.selectComponentOptions ||
+                  this.props.selectComponentOptions.get(column.columnKey);
                 column.cellEdit = rowIndex => (
                   <FloatingSelect
                     name={col.valueKeyPath.join() + '-edit-' + rowIndex}
@@ -1039,7 +1044,8 @@ export default class DataGrid extends React.PureComponent {
                 );
               }
               if (!column.cellCreate) {
-                const selectOptions = this.props.selectComponentOptions.get(column.columnKey);
+                const selectOptions = col.selectComponentOptions ||
+                  this.props.selectComponentOptions.get(column.columnKey);
                 column.cellCreate = rowIndex => (
                   <FloatingSelect
                     name={col.valueKeyPath.join() + '-create-' + rowIndex}
@@ -1072,7 +1078,8 @@ export default class DataGrid extends React.PureComponent {
             }
             if (this.props.filtering) {
               if (!column.cellFilter) {
-                const selectOptions = this.props.selectComponentOptions.get(column.columnKey);
+                const selectOptions = col.selectComponentOptions ||
+                  this.props.selectComponentOptions.get(column.columnKey);
                 column.cellFilter = () => (
                   <FloatingSelect
                     name={col.valueKeyPath.join() + '-filter'}
@@ -1098,6 +1105,7 @@ export default class DataGrid extends React.PureComponent {
             break;
           }
           case 'date': {
+            editValueParser = val => (val && val.toISOString ? val.toISOString() : '');
             columnFilterFunction.filterMatcher = (val, filterVal) =>
               moment(filterVal, 'L').isSame(val, 'day');
             if (this.props.inlineEdit) {
@@ -1110,7 +1118,7 @@ export default class DataGrid extends React.PureComponent {
                       col,
                       editValueParser(data),
                     )}
-                    language={this.props.userLanguage}
+                    locale={this.props.userLanguage}
                     inputProps={{
                       tabIndex,
                       id: `ocDatagridEditInput-${this.props.id}-${column.columnKey}-${rowIndex}`,
@@ -1140,7 +1148,7 @@ export default class DataGrid extends React.PureComponent {
                       editValueParser(data),
                     )}
                     onKeyDown={this.onCreateCellKeyDown}
-                    language={this.props.userLanguage}
+                    locale={this.props.userLanguage}
                     inputProps={{
                       tabIndex,
                       id: `ocDatagridCreateInput-${this.props.id}-${column.columnKey}-${rowIndex}`,
@@ -1160,7 +1168,7 @@ export default class DataGrid extends React.PureComponent {
                       col.valueKeyPath,
                       editValueParser(data),
                     )}
-                    language={this.props.userLanguage}
+                    locale={this.props.userLanguage}
                     inputProps={{
                       tabIndex,
                       id: `ocDatagridFilterInput-${this.props.id}-${column.columnKey}`,

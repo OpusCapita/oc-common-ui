@@ -64,8 +64,11 @@ Wizard.propTypes = {
   save: PropTypes.func.isRequired,
   cancel: PropTypes.func.isRequired,
   steps: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     component: PropTypes.node.isRequired,
+    hasRequiredProps: PropTypes.bool,
+    hasRequiredPropsErrors: PropTypes.bool,
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    name: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   })).isRequired,
   localizationTexts: PropTypes.shape({
     save: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),

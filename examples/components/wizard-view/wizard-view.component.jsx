@@ -22,24 +22,32 @@ export default class WizardView extends React.Component {
       showWizard: false,
     };
 
-    this.steps = [{
-      id: '1',
-      name: 'Wizard page 1',
-      component: this.getContent('Page 1'),
-    }, {
-      id: '2',
-      name: 'Wizard page 2',
-      component: this.getContent('Page 2'),
-    }, {
-      id: '3',
-      name: 'Wizard page 3',
-      component: this.getContent('Page 3'),
-    }, {
-      id: '4',
-      name: 'Wizard page 4',
-      component: this.getContent('Page 4'),
-      isValid: false,
-    }];
+    this.steps = [
+      {
+        id: '1',
+        hasRequiredProps: true,
+        name: 'Wizard page 1',
+        component: this.getContent('Page 1'),
+      },
+      {
+        id: '2',
+        hasRequiredProps: true,
+        hasRequiredPropsErrors: true,
+        name: 'Wizard page 2',
+        component: this.getContent('Page 2'),
+      },
+      {
+        id: '3',
+        name: 'Wizard page 3',
+        component: this.getContent('Page 3'),
+      },
+      {
+        id: '4',
+        name: 'Wizard page 4',
+        component: this.getContent('Page 4'),
+        isValid: false,
+      },
+    ];
   }
 
   getContent = (text) => {

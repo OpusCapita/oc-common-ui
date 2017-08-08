@@ -14,17 +14,25 @@ react-bootstrap
 
 N/A
 
-### API
-
 #### Wizard
 
-| Prop name         | Type                                               | Default | Description                                            |
-| ----------------- | -------------------------------------------------- | ------- | ------------------------------------------------------ |
-| save              | function                                           |         | Callback function called, when the wizard is saved     |
-| cancel            | function                                           |         | Callback function called, when the wizard is cancelled |
-| steps             | list, [{id: id, name: name, component: component}] |         | List of wizard pages (components)                      |
-| localizationTexts | map, { save: 'save', cancel: 'cancel'}             |         | Localization texts                                     |
-| showPageIndicator | boolean                                            | true    | Show page indicator element                            |
+Name | Type | Default | Description
+--- | --- | --- | ---
+cancel | function | required | Callback function called, when the wizard is cancelled
+localizationTexts | map | required| Localization texts for save and close buttons
+save | function | required | Callback function called, when the wizard is saved
+showPageIndicator | bool | true | Sign of page indicator showing
+steps | array | required | Steps of the wizard
+
+#### Wizard - steps props
+
+Name | Type | Default | Description
+--- | --- | --- | ---
+component | element | required | Step content
+hasRequiredProps | bool | false | Sign of required fields in the content
+hasRequiredPropsErrors | bool | false | Sign of invalidated required props
+id | [number, string] | required | Step id
+name | [element, string] | required | Step name
 
 ### Code example
 

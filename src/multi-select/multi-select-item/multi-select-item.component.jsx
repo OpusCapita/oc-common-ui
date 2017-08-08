@@ -8,11 +8,12 @@ export default class MultiSelectItem extends React.PureComponent {
 
   static propTypes = {
     item: PropTypes.shape({
-      id: PropTypes.oneOfType([
-        PropTypes.string,
+      label: PropTypes.string.isRequired,
+      value: PropTypes.oneOfType([
+        PropTypes.bool,
         PropTypes.number,
+        PropTypes.string,
       ]).isRequired,
-      text: PropTypes.string.isRequired,
     }).isRequired,
     isChecked: PropTypes.bool.isRequired,
     onChange: PropTypes.func,
@@ -23,7 +24,7 @@ export default class MultiSelectItem extends React.PureComponent {
   };
 
   render() {
-    const { id, text } = this.props.item;
+    const { label, value } = this.props.item;
     const isChecked = this.props.isChecked;
     const onChange = this.props.onChange;
     return (
@@ -31,11 +32,11 @@ export default class MultiSelectItem extends React.PureComponent {
         <Checkbox
           className="oc-multi-select-item-checkbox"
           checked={isChecked}
-          id={id}
-          onChange={() => onChange(id, !isChecked)}
+          id={value}
+          onChange={() => onChange(value, !isChecked)}
         >
-          <span className="oc-multi-select-item-text">
-            {text}
+          <span className="oc-multi-select-item-label">
+            {label}
           </span>
         </Checkbox>
       </div>

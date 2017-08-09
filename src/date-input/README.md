@@ -16,11 +16,16 @@ It contains **DateInput** react component that allows one to select date using d
 
 Prop name | Type | Default | Description
 --- | --- | --- | ---
-id | string | required | ID of the component
-items | array | required | Array of items to display in the dropdown
-checkedItems | Immutable.Map | | Identifiers of checked items
-defaultPlacehoder | string | '{N} items selected' | Placeholder to be displayed for 0 or more than 1 checked items
-onChange | function | | Callback that is called when an item is clicked
+value | Date | | Current date value or null
+dateFormat | string | | Date format string, eg. 'MM/DD/YYYY'
+disabled | boolean | | Is component disabled
+locale | string | 'en' | Date picker locale
+hideOnDayClick | boolean | true | Hide picker on day click
+clickUnselectsDay | boolean | false | Click on selected day unselects it
+onChange | function(Date) | | Called on date change 
+onValidate | function(boolean) | Called when date is validated
+inputProps | Additional props for input element
+dayPickerProps | Additional props for react-day-picker component
 
 ### Code example
 
@@ -37,11 +42,8 @@ export default class DateInputView extends React.Component {
   render() {
     return (
       <DateInput
-        checkedItems={this.state.checkedItems}
-        id="exampleDropdownMultiSelect"
-        items={items}
+        value={this.state.date}
         onChange={this.onChange}
-        defaultPlaceholder="{N} kpl"
       />
     );
   }

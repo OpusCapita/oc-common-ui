@@ -13,7 +13,6 @@ const HIDE_TIMEOUT = 100;
 
 export default class DateInput extends React.Component {
   static propTypes = {
-    // eslint-disable-next-line react/no-unused-prop-types
     value: PropTypes.instanceOf(Date),
 
     dateFormat: PropTypes.oneOfType([

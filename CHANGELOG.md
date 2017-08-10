@@ -5,6 +5,7 @@
 ## <next>
 * Add `hasRequiredProps` and `hasRequiredPropsErrors` and wrap `name` as a lable in `Wizard`
 * Change hover and selected colors of select options
+* Add `item.id` as required prop to `ResponsiveNavbar`
 
 ## 4.2.4
 * Change items' structure and checkedItems type of `DropdownMultiSelect` and `MultiSelectItem` components to make them compatible with `react-select` structure

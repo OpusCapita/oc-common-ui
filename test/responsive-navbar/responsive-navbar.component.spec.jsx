@@ -15,10 +15,10 @@ import { ResponsiveNavbar } from
 describe('Responsive navbar component', function describe() {
   before(function before() {
     this.list = [
-      { name: 'Style', href: '/autocomplete' },
-      { name: 'Item 2 longer and longer', href: '/autocomplete' },
-      { name: 'Item 3 even longer and longer', href: '/autocomplete' },
-      { name: 'Item 4', href: '/autocomplete' },
+      { id: 'Item1', name: 'Style', href: '/autocomplete' },
+      { id: 'Item2', name: 'Item 2 longer and longer', href: '/autocomplete' },
+      { id: 'Item3', name: 'Item 3 even longer and longer', href: '/autocomplete' },
+      { id: 'Item4', name: 'Item 4', href: '/autocomplete' },
     ];
   });
 

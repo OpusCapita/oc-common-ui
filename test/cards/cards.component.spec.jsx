@@ -10,14 +10,12 @@ import { Cards, Card, CardContent } from '../../src/index';
 
 
 describe('Cards component', function describe() {
-  it('should render correctly', () => {
+  it('should render all cards', () => {
     const props = {
       setExpanded: sinon.spy(),
       showOnlyCard: '',
     };
-
-    // Show all cards
-    let wrapper = mount(
+    const wrapper = mount(
       <Cards {...props}>
         <Card id="card1" expanded>
           <CardContent />
@@ -30,10 +28,14 @@ describe('Cards component', function describe() {
 
     expect(wrapper.find(Card).length).to.eql(2);
     expect(wrapper.childAt(0).childAt(0).props().setExpanded).to.be.defined;
+  });
 
-    // Show only one card
-    props.showOnlyCard = 'card1';
-    wrapper = mount(
+  it('should render only one card', () => {
+    const props = {
+      setExpanded: sinon.spy(),
+      showOnlyCard: 'card1',
+    };
+    const wrapper = mount(
       <Cards {...props}>
         <Card id="card1" expanded>
           <CardContent />

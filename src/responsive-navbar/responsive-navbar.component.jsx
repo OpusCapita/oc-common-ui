@@ -69,6 +69,7 @@ export class ResponsiveNavbar extends React.Component {
   navbar = () => {
     const items = this.props.list.map((item, index) => (
       <NavItem
+        id={item.id}
         key={index}
         eventKey={index}
         ref={`navitemref${String(index)}`}
@@ -122,10 +123,11 @@ ResponsiveNavbar.defaultProps = {
 ResponsiveNavbar.propTypes = {
   activeKey: PropTypes.number.isRequired,
   list: PropTypes.arrayOf(PropTypes.shape({
+    id: PropTypes.string.isRequired,
     name: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.node,
-    ]),
+    ]).isRequired,
     href: PropTypes.string,
   })).isRequired,
   onSelect: PropTypes.func,

@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 4.2.5
 * Add `hasRequiredProps` and `hasRequiredPropsErrors` and wrap `name` as a lable in `Wizard`
 * Change hover and selected colors of select options
 * Add `item.id` as required prop to `ResponsiveNavbar`

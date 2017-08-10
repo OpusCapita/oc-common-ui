@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from 'react-bootstrap';
+import { Button, Checkbox } from 'react-bootstrap';
 
 import { Wizard } from '../../../src/index';
 
@@ -20,6 +20,8 @@ export default class WizardView extends React.Component {
     super();
     this.state = {
       showWizard: false,
+      disableSave: false,
+      disableClose: false,
     };
 
     this.steps = [
@@ -53,7 +55,7 @@ export default class WizardView extends React.Component {
   getContent = (text) => {
     const content = (
       <div style={contentStyle}>
-        { text }
+        {text}
       </div>
     );
 
@@ -79,6 +81,18 @@ export default class WizardView extends React.Component {
     });
   }
 
+  toggleDisableSave = () => {
+    this.setState({
+      disableSave: !this.state.disableSave,
+    });
+  }
+
+  toggleDisableClose = () => {
+    this.setState({
+      disableClose: !this.state.disableClose,
+    });
+  }
+
   render() {
     return (
       <div className="oc-content" style={{ height: '100%' }}>
@@ -87,13 +101,30 @@ export default class WizardView extends React.Component {
             <Wizard
               save={this.saveWizard}
               cancel={this.cancelWizard}
+              disableSave={this.state.disableSave}
+              disableCancel={this.state.disableClose}
               steps={this.steps}
-              localizationTexts={{ save: 'Save', cancel: 'Cancel' }}
+              localizationTexts={{ save: 'Save', cancel: 'Close' }}
               showPageIndicator={false}
             />
-          : <Button onClick={this.showWizard}>
-              Start wizard...
-            </Button>}
+          :
+            <div>
+              <Button onClick={this.showWizard}>
+                Start wizard...
+                </Button>
+              <Checkbox
+                checked={this.state.disableSave}
+                onChange={this.toggleDisableSave}
+              >
+                Disable save button
+                </Checkbox>
+              <Checkbox
+                checked={this.state.disableClose}
+                onChange={this.toggleDisableClose}
+              >
+                Disable close button
+                </Checkbox>
+            </div>}
       </div>
     );
   }

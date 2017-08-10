@@ -11,7 +11,9 @@ export default class WizardFooter extends React.PureComponent {
 
   static propTypes = {
     save: PropTypes.func.isRequired,
+    disableSave: PropTypes.bool,
     cancel: PropTypes.func.isRequired,
+    disableCancel: PropTypes.bool,
     localizationTexts: PropTypes.shape({
       save: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
       cancel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
@@ -27,6 +29,8 @@ export default class WizardFooter extends React.PureComponent {
 
   static defaultProps = {
     showPageIndicator: true,
+    disableSave: false,
+    disableCancel: false,
   }
 
   getIndicators = () => (
@@ -59,6 +63,7 @@ export default class WizardFooter extends React.PureComponent {
           <Button
             id="save-button"
             onClick={this.props.save}
+            disabled={this.props.disableSave}
           >
             {localizationTexts.save}
           </Button>
@@ -66,6 +71,7 @@ export default class WizardFooter extends React.PureComponent {
           <Button
             id="cancel-button"
             onClick={this.props.cancel}
+            disabled={this.props.disableCancel}
           >
             {localizationTexts.cancel}
           </Button>

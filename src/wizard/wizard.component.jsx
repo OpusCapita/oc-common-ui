@@ -83,7 +83,7 @@ Wizard.propTypes = {
   localizationTexts: PropTypes.shape({
     save: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     cancel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  }).isRequired,
+  }),
   activeStep: PropTypes.number,
   showPageIndicator: PropTypes.bool,
 };

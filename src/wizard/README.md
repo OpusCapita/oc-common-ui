@@ -14,17 +14,27 @@ react-bootstrap
 
 N/A
 
-### API
-
 #### Wizard
 
-| Prop name         | Type                                               | Default | Description                                            |
-| ----------------- | -------------------------------------------------- | ------- | ------------------------------------------------------ |
-| save              | function                                           |         | Callback function called, when the wizard is saved     |
-| cancel            | function                                           |         | Callback function called, when the wizard is cancelled |
-| steps             | list, [{id: id, name: name, component: component}] |         | List of wizard pages (components)                      |
-| localizationTexts | map, { save: 'save', cancel: 'cancel'}             |         | Localization texts                                     |
-| showPageIndicator | boolean                                            | true    | Show page indicator element                            |
+Name | Type | Default | Description
+--- | --- | --- | ---
+cancel | function | required | Callback function called, when the wizard is cancelled
+disableCancel | bool | false | Disable the Cancel button
+localizationTexts | map | { save: 'Save', cancel: 'Cancel' } | Localization texts for save and close buttons. Defaults to 'Save' and 'Close'
+save | function | required | Callback function called, when the wizard is saved
+disableSave | bool | false | Disable the Save button
+showPageIndicator | bool | true | Sign of page indicator showing
+steps | array | required | Steps of the wizard
+
+#### Wizard - steps props
+
+Name | Type | Default | Description
+--- | --- | --- | ---
+component | element | required | Step content
+hasRequiredProps | bool | false | Sign of required fields in the content
+hasRequiredPropsErrors | bool | false | Sign of invalidated required props
+id | [number, string] | required | Step id
+name | [element, string] | required | Step name
 
 ### Code example
 
@@ -43,7 +53,7 @@ class WizardView extends React.Component {
       component: <div>My wizard page 2</div>,
     }];
   }
-  
+
   render() {
     return (
       <Wizard

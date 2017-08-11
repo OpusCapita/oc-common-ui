@@ -47,6 +47,8 @@ export default class Wizard extends React.PureComponent {
           selectPage={this.selectPage}
           save={this.props.save}
           cancel={this.props.cancel}
+          disableSave={this.props.disableSave}
+          disableCancel={this.props.disableCancel}
           localizationTexts={this.props.localizationTexts}
           showPageIndicator={this.props.showPageIndicator}
         />
@@ -58,19 +60,30 @@ export default class Wizard extends React.PureComponent {
 Wizard.defaultProps = {
   activeStep: 0,
   showPageIndicator: true,
+  localizationTexts: {
+    save: 'Save',
+    cancel: 'Close',
+  },
+  disableSave: false,
+  disableCancel: false,
 };
 
 Wizard.propTypes = {
   save: PropTypes.func.isRequired,
+  disableSave: PropTypes.bool,
   cancel: PropTypes.func.isRequired,
+  disableCancel: PropTypes.bool,
   steps: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     component: PropTypes.node.isRequired,
+    hasRequiredProps: PropTypes.bool,
+    hasRequiredPropsErrors: PropTypes.bool,
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+    name: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
   })).isRequired,
   localizationTexts: PropTypes.shape({
     save: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     cancel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
-  }).isRequired,
+  }),
   activeStep: PropTypes.number,
   showPageIndicator: PropTypes.bool,
 };

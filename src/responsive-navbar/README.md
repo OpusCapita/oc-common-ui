@@ -18,10 +18,10 @@ N/A
 
 #### ResponsiveNavbar
 
-| Prop name | Type                            | Default  | Description                        |
-| --------- | ------------------------------- | -------- | ---------------------------------- |
-| activeKey | number                          | required | Navbar item to be active initially |
-| list      | list [{name: name, href: href}] | required |                                    |
+| Prop name | Type                                    | Default  | Description                        |
+| --------- | --------------------------------------- | -------- | ---------------------------------- |
+| activeKey | number                                  | required | Navbar item to be active initially |
+| list      | list [{id: id, name: name, href: href}] | required |                                    |
 
 | Function | Parameters   | Returns | Description                              |
 | -------- | ------------ | ------- | ---------------------------------------- |

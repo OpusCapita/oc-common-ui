@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { ControlLabel } from 'react-bootstrap';
 
 import { Icon } from '../icons/index';
 
@@ -10,8 +11,11 @@ export default class WizardHeader extends React.PureComponent {
 
   static propTypes = {
     steps: PropTypes.arrayOf(PropTypes.shape({
-      name: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
       component: PropTypes.node.isRequired,
+      hasRequiredProps: PropTypes.bool,
+      hasRequiredPropsErrors: PropTypes.bool,
+      id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
+      name: PropTypes.oneOfType([PropTypes.string, PropTypes.element]).isRequired,
     })).isRequired,
     selectPage: PropTypes.func.isRequired,
     currentStep: PropTypes.number.isRequired,
@@ -85,26 +89,38 @@ export default class WizardHeader extends React.PureComponent {
             <Icon type="indicator" name="CaretLeft" height={30} width={30} />
           </button> }
         <ul ref={(node) => { this.scrollbar = node; }}>
-          {this.props.steps.map((step, i) => (
-            <li
-              key={step.id}
-              className={i <= this.props.currentStep ? 'doing' : ''}
-              ref={(node) => { this.tabElements[i] = node; }}
-            >
-              <a
-                id={step.id}
-                href="#/"
-                onClick={(event) => {
-                  this.props.selectPage(event, i);
-                  this.centerSelectedTab(i);
-                }}
+          {this.props.steps.map((step, i) => {
+            let labelClassName = '';
+            if (step.hasRequiredPropsErrors) {
+              labelClassName = 'oc-mandatory-error';
+            } else if (step.hasRequiredProps) {
+              labelClassName = 'oc-mandatory';
+            }
+            return (
+              <li
+                key={step.id}
+                className={i === this.props.currentStep ? 'doing' : ''}
+                ref={(node) => { this.tabElements[i] = node; }}
               >
-                <span>{step.name}</span>
-                {this.validateStep(step)}
-              </a>
+                <a
+                  id={step.id}
+                  href="#/"
+                  onClick={(event) => {
+                    this.props.selectPage(event, i);
+                    this.centerSelectedTab(i);
+                  }}
+                >
+                  <span className={labelClassName}>
+                    <ControlLabel>
+                      {step.name}
+                    </ControlLabel>
+                  </span>
+                  {this.validateStep(step)}
+                </a>
 
-            </li>
-          ))}
+              </li>
+            );
+          })}
         </ul>
         { this.state.showScroll &&
           <button className="hidden-button" onClick={this.scrollRight}>

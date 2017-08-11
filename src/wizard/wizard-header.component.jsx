@@ -99,7 +99,7 @@ export default class WizardHeader extends React.PureComponent {
             return (
               <li
                 key={step.id}
-                className={i <= this.props.currentStep ? 'doing' : ''}
+                className={i === this.props.currentStep ? 'doing' : ''}
                 ref={(node) => { this.tabElements[i] = node; }}
               >
                 <a

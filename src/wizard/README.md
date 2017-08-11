@@ -19,8 +19,10 @@ N/A
 Name | Type | Default | Description
 --- | --- | --- | ---
 cancel | function | required | Callback function called, when the wizard is cancelled
-localizationTexts | map | required| Localization texts for save and close buttons
+disableCancel | bool | false | Disable the Cancel button
+localizationTexts | map | { save: 'Save', cancel: 'Cancel' } | Localization texts for save and close buttons. Defaults to 'Save' and 'Close'
 save | function | required | Callback function called, when the wizard is saved
+disableSave | bool | false | Disable the Save button
 showPageIndicator | bool | true | Sign of page indicator showing
 steps | array | required | Steps of the wizard
 
@@ -51,7 +53,7 @@ class WizardView extends React.Component {
       component: <div>My wizard page 2</div>,
     }];
   }
-  
+
   render() {
     return (
       <Wizard

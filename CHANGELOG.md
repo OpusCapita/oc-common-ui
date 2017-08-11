@@ -3,9 +3,12 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Added props `disableSave` and `disableCancel` to disable wizard buttons.
+* Default button titles in `Wizard` set to Save and Close
+* Only the active step is highlighted in the navbar of `Wizard` component.
 
 ## 4.2.5
-* Add `hasRequiredProps` and `hasRequiredPropsErrors` and wrap `name` as a lable in `Wizard`
+* Add `hasRequiredProps` and `hasRequiredPropsErrors` and wrap `name` as a label in `Wizard`
 * Change hover and selected colors of select options
 * Add `item.id` as required prop to `ResponsiveNavbar`
 

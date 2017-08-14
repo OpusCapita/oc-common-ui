@@ -16,3 +16,4 @@ export * from './wizard/index.js';
 export * from './menu/index.js';
 export * from './datagrid/index.js';
 export * from './constants/index.js';
+export * from './date-input/index.js';

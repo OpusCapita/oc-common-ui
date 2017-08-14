@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import moment from 'moment';
 import TetherComponent from 'react-tether';
 import DayPicker from 'react-day-picker';
+import LocaleUtils from 'react-day-picker/moment';
 import 'react-day-picker/lib/style.css';
 
 import DateInputField from './date-input-field.component';
@@ -50,22 +51,40 @@ export default class DateInput extends React.Component {
     this.state = {
       showOverlay: false,
     };
+    this.localeUtils = Object.assign(
+      LocaleUtils,
+      { getFirstDayOfWeek: () => moment.localeData().firstDayOfWeek() },
+    );
+    this.currentYear = new Date().getFullYear();
+    this.currentMonth = new Date().getMonth();
+    const fromMonth = new Date(this.currentYear - 100, 0);
+    const toMonth = new Date(this.currentYear + 100, 11);
+    this.years = [];
+    for (let i = fromMonth.getFullYear(); i <= toMonth.getFullYear(); i += 1) {
+      this.years.push(i);
+    }
+    this.dateInputField = null;
+    this.reactDayPicker = null;
+    this.clickedInside = false;
+    this.clickTimeout = null;
+    this.hideTimeout = null;
   }
 
   componentWillReceiveProps(nextProps) {
-    if (!this.reactDayPicker) return;
-    const hasDifferentValue = this.props.value !== nextProps.value;
-    const month = nextProps.value || new Date();
-    const shouldDisplayAnotherMonth =
-      nextProps.dayPickerProps &&
-      nextProps.dayPickerProps.month &&
-      (nextProps.dayPickerProps.month.getFullYear() !== month.getFullYear() ||
-        nextProps.dayPickerProps.month.getMonth() !== month.getMonth());
+    if (this.reactDayPicker) {
+      const hasDifferentValue = this.props.value !== nextProps.value;
+      const month = nextProps.value || new Date();
+      const shouldDisplayAnotherMonth =
+        nextProps.dayPickerProps &&
+        nextProps.dayPickerProps.month &&
+        (nextProps.dayPickerProps.month.getFullYear() !== month.getFullYear() ||
+          nextProps.dayPickerProps.month.getMonth() !== month.getMonth());
 
-    if (hasDifferentValue && !shouldDisplayAnotherMonth) {
-      this.reactDayPicker.showMonth(month);
-    } else if (shouldDisplayAnotherMonth) {
-      this.reactDayPicker.showMonth(nextProps.dayPickerProps.month);
+      if (hasDifferentValue && !shouldDisplayAnotherMonth) {
+        this.reactDayPicker.showMonth(month);
+      } else if (shouldDisplayAnotherMonth) {
+        this.reactDayPicker.showMonth(nextProps.dayPickerProps.month);
+      }
     }
   }
 
@@ -73,12 +92,6 @@ export default class DateInput extends React.Component {
     clearTimeout(this.clickTimeout);
     clearTimeout(this.hideTimeout);
   }
-
-  dateInputField = null;
-  reactDayPicker = null;
-  clickedInside = false;
-  clickTimeout = null;
-  hideTimeout = null;
 
   showDayPicker = () => {
     this.setState({
@@ -190,6 +203,39 @@ export default class DateInput extends React.Component {
     this.props.onChange(value);
   }
 
+  handleYearMonthChange = (e) => {
+    const { year, month } = e.target.form;
+    this.handleDateChange(new Date(year.value, month.value));
+  }
+
+  renderDayPickerCaption = () => {
+    const months = LocaleUtils.getMonths();
+    const selectedMonth = this.props.value ? this.props.value.getMonth() : this.currentMonth;
+    const selectedYear = this.props.value ? this.props.value.getFullYear() : this.currentYear;
+    return (
+      <form className="DayPicker-Caption">
+        <select
+          name="month"
+          onChange={this.handleYearMonthChange}
+          value={selectedMonth}
+        >
+          {months.map((month, i) => <option key={i} value={i}>{month}</option>)}
+        </select>
+        <select
+          name="year"
+          onChange={this.handleYearMonthChange}
+          value={selectedYear}
+        >
+          {this.years.map((year, i) =>
+            <option key={i} value={year}>
+              {year}
+            </option>
+          )}
+        </select>
+      </form>
+    );
+  }
+
   renderOverlay = () => (
     <div
       className="oc-date-input-overlay-wrapper DayPickerInput-OverlayWrapper"
@@ -199,14 +245,17 @@ export default class DateInput extends React.Component {
         <DayPicker
           {...this.props.dayPickerProps}
           ref={(el) => { this.reactDayPicker = el; }}
-          locale={this.props.locale}
           month={this.props.value}
           selectedDays={this.props.value}
           tabIndex={-1}
           fixedWeeks
           showWeekNumbers
+          canChangeMont
           onChange={this.handleDateChange}
           onDayClick={this.handleDayClick}
+          locale={this.props.locale}
+          localeUtils={this.localeUtils}
+          captionElement={this.renderDayPickerCaption}
         />
       </div>
     </div>

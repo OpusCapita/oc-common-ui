@@ -29,6 +29,7 @@ import ResponsiveNavbarView from
 import WizardView from
   './components/wizard-view/wizard-view.component';
 import MenuView from './components/menu-view/menu-view.component';
+import DateInputView from './components/date-input-view/date-input-view.component';
 
 require('../images/favicon.ico');
 
@@ -67,6 +68,7 @@ render((
           <Route path="/multi-select" component={MultiSelectView} />
           <Route path="/responsive-navbar" component={ResponsiveNavbarView} />
           <Route path="/wizard" component={WizardView} />
+          <Route path="/date-input" component={DateInputView} />
         </Route>
       </Router>
     </IntlProvider>

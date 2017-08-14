@@ -79,6 +79,11 @@ const ITEMS = [
     text: 'Menu',
     to: '/menu',
   },
+  {
+    id: 17,
+    text: 'DateInput',
+    to: '/date-input',
+  },
 ];
 
 export default ITEMS;

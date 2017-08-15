@@ -140,12 +140,6 @@ export default class DateInput extends React.Component {
       showOverlay: this.clickedInside,
     });
 
-    // Force input's focus if blur event was caused
-    // by clicking inside the overlay
-    if (this.clickedInside) {
-      this.dateInputField.focus();
-    }
-
     if (this.props.inputProps.onBlur) {
       e.persist();
       this.props.inputProps.onBlur(e);

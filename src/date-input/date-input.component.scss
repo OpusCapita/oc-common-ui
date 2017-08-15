@@ -12,6 +12,14 @@
   }
 }
 
+.DayPicker-NavBar {
+  top: 1.15rem;
+}
+
+.DayPicker-Caption {
+  height: auto;
+}
+
 // Selected day
 .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
   color: inherit;

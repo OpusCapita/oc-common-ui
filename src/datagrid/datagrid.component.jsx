@@ -32,14 +32,15 @@ import KEY_CODES from '../constants/key-codes.constant';
 
 const mapStateToProps = (state, ownProps) => {
   const locale = {};
+  const defaultDateFormat = moment.localeData()._longDateFormat.L;
   if (ownProps.locale) {
     locale.userLanguage = ownProps.locale.language || 'en';
-    locale.dateFormat = ownProps.locale.dateFormat || 'L';
+    locale.dateFormat = ownProps.locale.dateFormat || defaultDateFormat;
     locale.thousandSeparator = ownProps.locale.thousandSeparator || '';
     locale.decimalSeparator = ownProps.locale.decimalSeparator || '';
   } else if (state.user) {
     locale.userLanguage = state.user.getIn(['user', 'language'], 'en');
-    locale.dateFormat = state.user.getIn(['localeFormat', 'dateFormat'], 'L');
+    locale.dateFormat = state.user.getIn(['localeFormat', 'dateFormat'], defaultDateFormat);
     locale.thousandSeparator = state.user.getIn(['localeFormat', 'thousandSeparator'], '');
     locale.decimalSeparator = state.user.getIn(['localeFormat', 'decimalSeparator'], '');
   }
@@ -60,7 +61,7 @@ const mapStateToProps = (state, ownProps) => {
     createCellMessages: state.datagrid.getIn([ownProps.id, 'createCellMessages'], Map()),
     allDataSize: state.datagrid.getIn([ownProps.id, 'allData'], List()).size,
     userLanguage: locale.userLanguage || 'en',
-    dateFormat: locale.dateFormat || 'L',
+    dateFormat: locale.dateFormat || defaultDateFormat,
     thousandSeparator: locale.thousandSeparator || '',
     decimalSeparator: locale.decimalSeparator || '',
   };
@@ -1119,6 +1120,7 @@ export default class DataGrid extends React.PureComponent {
                       editValueParser(data),
                     )}
                     locale={this.props.userLanguage}
+                    dateFormat={this.props.dateFormat}
                     inputProps={{
                       tabIndex,
                       id: `ocDatagridEditInput-${this.props.id}-${column.columnKey}-${rowIndex}`,
@@ -1149,6 +1151,7 @@ export default class DataGrid extends React.PureComponent {
                     )}
                     onKeyDown={this.onCreateCellKeyDown}
                     locale={this.props.userLanguage}
+                    dateFormat={this.props.dateFormat}
                     inputProps={{
                       tabIndex,
                       id: `ocDatagridCreateInput-${this.props.id}-${column.columnKey}-${rowIndex}`,
@@ -1169,6 +1172,7 @@ export default class DataGrid extends React.PureComponent {
                       editValueParser(data),
                     )}
                     locale={this.props.userLanguage}
+                    dateFormat={this.props.dateFormat}
                     inputProps={{
                       tabIndex,
                       id: `ocDatagridFilterInput-${this.props.id}-${column.columnKey}`,

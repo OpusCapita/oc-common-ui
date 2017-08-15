@@ -1,6 +1,5 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import moment from 'moment';
 import TetherComponent from 'react-tether';
 import DayPicker from 'react-day-picker';
 import LocaleUtils from 'react-day-picker/moment';
@@ -35,7 +34,7 @@ export default class DateInput extends React.Component {
 
   static defaultProps = {
     value: null,
-    dateFormat: moment.localeData()._longDateFormat.L, // eslint-disable-line no-underscore-dangle
+    dateFormat: 'MM/DD/YYYY',
     disabled: false,
     locale: 'en',
     hideOnDayClick: true,
@@ -50,15 +49,11 @@ export default class DateInput extends React.Component {
     super(props);
     this.state = {
       showOverlay: false,
+      currentlyVisibleDate: props.value || new Date(),
     };
-    this.localeUtils = Object.assign(
-      LocaleUtils,
-      { getFirstDayOfWeek: () => moment.localeData().firstDayOfWeek() },
-    );
-    this.currentYear = new Date().getFullYear();
-    this.currentMonth = new Date().getMonth();
-    const fromMonth = new Date(this.currentYear - 100, 0);
-    const toMonth = new Date(this.currentYear + 100, 11);
+    const currentYear = new Date().getFullYear();
+    const fromMonth = new Date(currentYear - 100, 0);
+    const toMonth = new Date(currentYear + 100, 11);
     this.years = [];
     for (let i = fromMonth.getFullYear(); i <= toMonth.getFullYear(); i += 1) {
       this.years.push(i);
@@ -200,18 +195,31 @@ export default class DateInput extends React.Component {
   }
 
   handleDateChange = (value) => {
+    this.setState({
+      currentlyVisibleDate: value || new Date(),
+    });
     this.props.onChange(value);
   }
 
   handleYearMonthChange = (e) => {
     const { year, month } = e.target.form;
-    this.handleDateChange(new Date(year.value, month.value));
+    const newDate = new Date(year.value, month.value);
+    this.setState({
+      currentlyVisibleDate: newDate,
+    });
+    this.reactDayPicker.showMonth(newDate);
+  }
+
+  handleMonthChange = (value) => {
+    this.setState({
+      currentlyVisibleDate: value || new Date(),
+    });
   }
 
   renderDayPickerCaption = () => {
-    const months = LocaleUtils.getMonths();
-    const selectedMonth = this.props.value ? this.props.value.getMonth() : this.currentMonth;
-    const selectedYear = this.props.value ? this.props.value.getFullYear() : this.currentYear;
+    const months = LocaleUtils.getMonths(this.props.locale);
+    const selectedMonth = this.state.currentlyVisibleDate.getMonth();
+    const selectedYear = this.state.currentlyVisibleDate.getFullYear();
     return (
       <form className="DayPicker-Caption">
         <select
@@ -253,8 +261,9 @@ export default class DateInput extends React.Component {
           canChangeMont
           onChange={this.handleDateChange}
           onDayClick={this.handleDayClick}
+          onMonthChange={this.handleMonthChange}
           locale={this.props.locale}
-          localeUtils={this.localeUtils}
+          localeUtils={LocaleUtils}
           captionElement={this.renderDayPickerCaption}
         />
       </div>
@@ -286,7 +295,7 @@ export default class DateInput extends React.Component {
           onValidate={this.props.onValidate}
           className="DayPickerInput"
         />
-        {this.state.showOverlay && this.renderOverlay()}
+        {this.renderOverlay()}
       </TetherComponent>
     );
   }

@@ -1,3 +1,5 @@
+@import '../../styles/colors';
+
 .oc-date-input {
 
 }
@@ -8,4 +10,13 @@
     position: static;
     left: auto;
   }
+}
+
+// Selected day
+.DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
+  color: inherit;
+  background-color: $oc-color-date-picker-selected;
+}
+.DayPicker-Day:not(.DayPicker-Day--disabled):hover {
+  background-color: $oc-color-date-picker-hover;
 }

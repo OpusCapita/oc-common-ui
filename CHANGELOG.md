@@ -7,6 +7,7 @@
 * Default button titles in `Wizard` set to Save and Close
 * Only the active step is highlighted in the navbar of `Wizard` component.
 * Added ConfirmDialog component.
+* Added `DateInput` component.
 
 ## 4.2.5
 * Add `hasRequiredProps` and `hasRequiredPropsErrors` and wrap `name` as a label in `Wizard`

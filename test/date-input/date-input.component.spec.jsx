@@ -19,35 +19,40 @@ function simulateKeyPresses(element, characters) {
 }
 
 describe('DateInput component', function describe() {
-  it('should render and function correctly', function it() {
-    const onChange = sinon.spy();
-    const onValidate = sinon.spy();
-    const props = {
-      value: new Date(2017, 7, 14),
-      locale: 'fi',
-      dateFormat: 'DD.MM.YYYY',
-      onChange: onChange,
-      onValidate: onValidate,
-      inputProps: {
-        id: 'oc-day-picker-input',
-      },
-    };
 
-    const wrapper = mount(
-      <DateInput {...props} />,
-    );
+  const onChange = sinon.spy();
+  const onValidate = sinon.spy();
+  const props = {
+    value: new Date(2017, 7, 14),
+    locale: 'fi',
+    dateFormat: 'DD.MM.YYYY',
+    onChange: onChange,
+    onValidate: onValidate,
+    inputProps: {
+      id: 'oc-day-picker-input',
+    },
+  };
 
-    const inputEl = wrapper.find('#oc-day-picker-input');
+  const wrapper = mount(
+    <DateInput {...props} />,
+  );
 
-    // test input value to be correct
+  const inputEl = wrapper.find('#oc-day-picker-input');
+
+  it('should display formatted date', function it() {
     expect(inputEl.prop('value')).to.eql('14.08.2017');
-    expect(wrapper.state('showOverlay')).to.be.false;
+  });
 
-    // test overlay show
+  it('should not show calendar by default', function it() {
+    expect(wrapper.state('showOverlay')).to.be.false;
+  });
+
+  it('should show calendar when focused', function it() {
     inputEl.simulate('click');
     expect(wrapper.state('showOverlay')).to.be.true;
+  });
 
-    // test validation
+  it('should validate entered date', function it() {
     wrapper.setProps({ value: null });
     simulateKeyPresses(inputEl, '14112016');
     expect(onValidate.args[0][0]).to.be.false;

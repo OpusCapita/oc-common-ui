@@ -1,12 +1,70 @@
+@import '../../styles/colors';
 
-#responsive-navbar-select {
-  margin-bottom: 0;
+$nav-item-width: 200px;
+$nav-bar-height: 44px;
+$select-min-width: $nav-item-width;
+$select-max-width: $nav-item-width * 1.5;
 
-  .Select-control {
-    min-width: 200px;
+#responsive-navbar-container {
+  display: flex;
+  flex-direction: row;
+  background-color: white;
+  min-width: $nav-item-width*2;
+  min-height: $nav-bar-height;
+  flex-grow: 1;
+
+  .responsive-navbar-item {
+    display: flex;
+    align-items:center;
+    max-width: $nav-item-width;
+    border:none;
+    height: $nav-bar-height;
+    background-color: transparent;
+    outline: none;
+
+    &:focus {
+      box-shadow: none;
+      ouline: none;
+    }
+  }
+
+  .inactive-border {
+    border-bottom: 2px solid $oc-color-support-lightgray;
+  }
+
+  .selected-border {
+    box-shadow: none;
+    border-bottom: 2px solid $oc-color-primary-orange;
+  }
+
+  .responsive-navbar-item-text {
+      overflow-x: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
   }
 }
 
-#responsive-navbar {
-  margin: 0;
+#responsive-navbar-select {
+  margin: 5px 0px 0px 0px;
+  font-size: inherit;
+  min-width: $select-min-width;
+  max-width: $select-max-width;
+
+  .selected-border {
+    border-bottom: 2px solid $oc-color-primary-orange;
+  }
+
+  .Select-option {
+    min-height: 32px;
+    color: inherit;
+  }
+
+  .Select-control, .Select-value, .Select-value-label {
+      color: inherit;
+      box-shadow: none;
+  }
+
+  .is-focused:not(.is-open) > .Select-control {
+    border-color: #d9d9d9 #ccc #b3b3b3 !important;
+  }
 }

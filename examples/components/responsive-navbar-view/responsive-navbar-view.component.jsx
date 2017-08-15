@@ -1,6 +1,5 @@
 import React from 'react';
 import { withRouter, routerShape } from 'react-router';
-
 import { ResponsiveNavbar } from '../../../src/index';
 
 
@@ -15,11 +14,13 @@ const ResponsiveNavbarView = (props) => {
   const activeKey = 2;
 
   return (
-    <ResponsiveNavbar
-      activeKey={activeKey}
-      list={list}
-      onSelect={(href) => { props.router.push(href); }}
-    />
+    <div style={{ marginTop: '10px' }}>
+      <ResponsiveNavbar
+        activeKey={activeKey}
+        list={list}
+        onSelect={(href) => { props.router.push(href); }}
+      />
+    </div>
   );
 };
 

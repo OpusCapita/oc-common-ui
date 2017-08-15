@@ -110,8 +110,8 @@
     "url": "https://github.com/OpusCapita/oc-common-ui.git"
   },
   "dependencies": {
-    "@opuscapita/react-cards": "^1.0.1",
-    "@opuscapita/react-grid": "^1.0.1",
-    "@opuscapita/react-icons": "^1.1.0"
+    "@opuscapita/react-cards": "^1.0.3",
+    "@opuscapita/react-grid": "^1.0.2",
+    "@opuscapita/react-icons": "^1.1.1"
   }
 }

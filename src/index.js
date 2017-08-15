@@ -1,7 +1,7 @@
 import '../styles/main.scss';
 
-export * from './cards/index.js';
-export * from './icons/index.js';
+export * from '@opuscapita/react-cards';
+export * from '@opuscapita/react-icons';
 export * from './spinner/index.js';
 export * from './alerts/index.js';
 export * from './dropdown-container/index.js';
@@ -14,5 +14,5 @@ export * from './layouts/application/index.js';
 export * from './extended-search/index.js';
 export * from './wizard/index.js';
 export * from './menu/index.js';
-export * from './datagrid/index.js';
+export * from '@opuscapita/react-grid';
 export * from './constants/index.js';

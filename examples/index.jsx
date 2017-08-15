@@ -9,9 +9,8 @@ import { createStore,
 import { Provider } from 'react-redux';
 import { IntlProvider, intlReducer } from 'react-intl-redux';
 import thunk from 'redux-thunk';
-import { alertsReducer, OCAlert, datagridReducer } from '../src/index';
+import { alertsReducer, OCAlert } from '../src/index';
 import App from './app.component';
-import CardsView from './components/cards-view/cards-view.component';
 import SpinnerView from './components/spinner-view/spinner-view.component';
 import AutocompleteView from './components/autocomplete/autocomplete.component';
 import ButtonView from './components/button/button.component';
@@ -23,7 +22,6 @@ import DropdownContainerView from './components/dropdown-container-view/dropdown
 import DropdownMenuView from './components/dropdown-menu-view/dropdown-menu-view.component';
 import DropdownMultiSelectView from './components/dropdown-multi-select-view/dropdown-multi-select-view.component';
 import MultiSelectView from './components/multi-select-view/multi-select-view.component';
-import DatagridView from './components/datagrid/datagrid.component';
 import ResponsiveNavbarView from
   './components/responsive-navbar-view/responsive-navbar-view.component';
 import WizardView from
@@ -38,7 +36,6 @@ const store = createStore(
   combineReducers({
     alertsReducer,
     intl: intlReducer,
-    datagrid: datagridReducer,
   }),
   composeEnhancers(applyMiddleware(thunk)),
 );
@@ -51,13 +48,11 @@ render((
       <Router history={hashHistory}>
         <Route path="/" component={App} >
           <IndexRedirect to="/autocomplete" />
-          <Route path="/datagrid" component={DatagridView} />
           <Route path="/searchbar" component={SearchbarView} />
           <Route path="/extendedsearch" component={ExtendedSearchView} />
           <Route path="/button" component={ButtonView} />
           <Route path="/autocomplete" component={AutocompleteView} />
           <Route path="/alerts" component={AlertsView} />
-          <Route path="/cards" component={CardsView} />
           <Route path="/spinner" component={SpinnerView} />
           <Route path="/menu" component={MenuView} />
           <Route path="/split-pane" component={SplitPaneView} />

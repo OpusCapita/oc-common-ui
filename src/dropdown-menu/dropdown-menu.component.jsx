@@ -2,8 +2,9 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { MenuItem } from 'react-bootstrap';
 
+import { Icon } from '@opuscapita/react-icons';
+
 import { DropdownContainer } from '../dropdown-container/index';
-import { Icon } from '../icons';
 import './dropdown-menu.component.scss';
 
 export default class DropdownMenu extends React.PureComponent {

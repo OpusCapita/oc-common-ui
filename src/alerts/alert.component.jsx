@@ -5,8 +5,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Alert } from 'react-bootstrap';
 import { FormattedMessage as M } from 'react-intl';
+
+import { Icon } from '@opuscapita/react-icons';
+
 import { OCAlert as alertAction } from './alerts.actions';
-import { Icon } from '../icons';
+
 
 export class OCAlert extends React.Component {
 

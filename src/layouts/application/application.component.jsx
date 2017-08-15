@@ -1,5 +1,5 @@
 import React from 'react';
-import Icon from '../../icons/icon.component';
+import { Icon } from '@opuscapita/react-icons';
 
 const Sidebar = require('react-sidebar').default;
 

@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { Button } from 'react-bootstrap';
 
-import { Icon } from '../icons/index';
+import { Icon } from '@opuscapita/react-icons';
 
 import './wizard-footer.component.scss';
 

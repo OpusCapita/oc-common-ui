@@ -4,9 +4,10 @@ import ImmutablePropTypes from 'react-immutable-proptypes';
 import { List } from 'immutable';
 import { FormControl, InputGroup } from 'react-bootstrap';
 
+import { Icon } from '@opuscapita/react-icons';
+
 import { DropdownContainer } from '../dropdown-container/index';
 import { MultiSelect } from '../multi-select/index';
-import { Icon } from '../icons';
 import './dropdown-multi-select.component.scss';
 
 export default class DropdownMultiSelect extends React.PureComponent {

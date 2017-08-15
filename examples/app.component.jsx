@@ -7,7 +7,7 @@ import { withRouter, routerShape } from 'react-router';
 import PerfProfiler from './utils/perf-profiler/perf-profiler.component';
 import Menu from '../src/menu/menu.component';
 import ITEMS from './layout/menu.constants';
-import { applicationLayout, Icon } from '../src/index';
+import { applicationLayout } from '../src/index';
 
 import './app.component.scss';
 

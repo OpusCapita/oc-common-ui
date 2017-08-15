@@ -295,7 +295,7 @@ export default class DateInput extends React.Component {
           onValidate={this.props.onValidate}
           className="DayPickerInput"
         />
-        {this.renderOverlay()}
+        {this.state.showOverlay && this.renderOverlay()}
       </TetherComponent>
     );
   }

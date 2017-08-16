@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Fix import for `ConfirmDialog`
 
 ## 4.3.0
 * Added props `disableSave` and `disableCancel` to disable wizard buttons.

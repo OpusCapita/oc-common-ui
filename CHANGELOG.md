@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 4.3.0
 * Added props `disableSave` and `disableCancel` to disable wizard buttons.
 * Default button titles in `Wizard` set to Save and Close
 * Only the active step is highlighted in the navbar of `Wizard` component.

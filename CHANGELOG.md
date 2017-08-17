@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 4.3.1
 * Fix import for `ConfirmDialog`
 
 ## 4.3.0

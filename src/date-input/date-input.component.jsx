@@ -274,6 +274,9 @@ export default class DateInput extends React.Component {
           to: 'scrollParent',
           attachment: 'together',
         }]}
+        optimizations={{
+          gpu: false,
+        }}
       >
         <DateInputField
           onRef={this.handleInputRef}

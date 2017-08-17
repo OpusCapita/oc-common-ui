@@ -78,8 +78,12 @@ $oc-color-button-priority-pressed: #d35c0b;
 $oc-color-button-disabled: #f0f0f0;
 
 /* Date picker */
-$oc-color-date-picker-hover: #eff2f4;
-$oc-color-date-picker-selected: #e6e9eb;
+$oc-date-picker-text: $oc-color-primary-azure;
+$oc-color-date-picker-hover-text: $oc-color-primary-azure;
+$oc-color-date-picker-hover-background: #eff2f4;
+$oc-color-date-picker-selected-text: $oc-color-primary-azure;
+$oc-color-date-picker-selected-background: #e6e9eb;
+$oc-color-date-picker-today-text: #000000;
 
 /* Select */
 $oc-color-select-hover: #eff2f4;

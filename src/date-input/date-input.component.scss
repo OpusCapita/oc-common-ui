@@ -9,11 +9,12 @@
   .oc-date-input-overlay {
     position: static;
     left: auto;
+    color: $oc-date-picker-text;
   }
 }
 
 .DayPicker-NavBar {
-  top: 1.15rem;
+  top: 1.1rem;
 }
 
 .DayPicker-Caption {
@@ -22,9 +23,15 @@
 
 // Selected day
 .DayPicker-Day--selected:not(.DayPicker-Day--disabled):not(.DayPicker-Day--outside) {
-  color: inherit;
-  background-color: $oc-color-date-picker-selected;
+  color: $oc-color-date-picker-selected-text;
+  background-color: $oc-color-date-picker-selected-background;
 }
 .DayPicker-Day:not(.DayPicker-Day--disabled):hover {
-  background-color: $oc-color-date-picker-hover;
+  color: $oc-color-date-picker-hover-text;
+  background-color: $oc-color-date-picker-hover-background;
+}
+
+.DayPicker-Day--today {
+  color: $oc-color-date-picker-today-text;
+  font-weight: bold;
 }

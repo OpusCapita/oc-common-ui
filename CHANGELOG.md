@@ -6,6 +6,7 @@
 
 ## 4.3.1
 * Fix import for `ConfirmDialog`
+* Add ID attribute to the datagrid html
 
 ## 4.3.0
 * Added props `disableSave` and `disableCancel` to disable wizard buttons.

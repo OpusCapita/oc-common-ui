@@ -2,6 +2,7 @@
 import React from 'react';
 import Select from 'react-select';
 import ReactDOM from 'react-dom';
+
 import TetherComponent from './tether.component';
 import './floating-select.component.scss';
 
@@ -11,19 +12,16 @@ import './floating-select.component.scss';
 export default class FloatingSelect extends Select {
   constructor(props) {
     super(props);
-
     this.renderOuter = this.renderOuterOverride;
   }
 
   componentDidMount() {
     super.componentDidMount.call(this);
-
     this.dropdownFieldNode = ReactDOM.findDOMNode(this);
   }
 
   renderOuterOverride() {
     const menu = super.renderOuter.apply(this, arguments);
-
     const options = {
       attachment: 'top left',
       targetAttachment: 'bottom left',
@@ -34,7 +32,6 @@ export default class FloatingSelect extends Select {
         },
       ],
     };
-
     return (
       <TetherComponent
         target={this.dropdownFieldNode}

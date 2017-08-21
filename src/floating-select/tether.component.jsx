@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Tether from 'tether';
 
-class TetheredChildrenComponent extends React.Component {
+class TetheredChildrenComponent extends React.PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
     position: PropTypes.func.isRequired,
@@ -23,18 +23,21 @@ class TetheredChildrenComponent extends React.Component {
   }
 }
 
-export default class TetherComponent extends React.Component {
+export default class TetherComponent extends React.PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
     options: PropTypes.object.isRequired,
-    target: PropTypes.node.isRequired,
+    target: PropTypes.any,
     matchWidth: PropTypes.bool.isRequired,
+  }
+
+  static defaultProps = {
+    target: null,
   }
 
   componentDidMount() {
     this.tetherContainer = document.createElement('div');
     document.body.appendChild(this.tetherContainer);
-
     this.renderTetheredContent();
   }
 
@@ -54,19 +57,15 @@ export default class TetherComponent extends React.Component {
         target: this.props.target,
       });
     }
-
     if (this.props.matchWidth) {
       this.tetherContainer.style.width = `${this.props.target.clientWidth}px`;
     }
-
     this.tether.position();
   };
 
   destroyTetheredContent() {
     ReactDOM.unmountComponentAtNode(this.tetherContainer);
-
     this.tether.destroy();
-
     document.body.removeChild(this.tetherContainer);
   }
 

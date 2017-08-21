@@ -5,7 +5,7 @@ import { List, Map } from 'immutable';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
 import { Datagrid, DatagridActions } from '../../../src/index';
-import { bankAccountData } from './data';
+import { bankAccountData, currencyOptions } from './data';
 import './datagrid.component.scss';
 
 const GRID_ID = 'accounts-grid-example';
@@ -64,7 +64,7 @@ export default class DatagridView extends React.Component {
         header: 'Currency',
         valueKeyPath: ['currency'],
         valueType: 'text',
-        componentType: 'text',
+        componentType: 'select',
         width: 200,
       },
       {
@@ -89,6 +89,9 @@ export default class DatagridView extends React.Component {
         width: 200,
       },
     ];
+    const selectOptions = Map({
+      currency: currencyOptions,
+    });
     return (
       <div className="oc-content oc-flex-column">
         <div>
@@ -105,6 +108,7 @@ export default class DatagridView extends React.Component {
           multiSelect
           rowSelect
           rowSelectCheckboxColumn
+          selectComponentOptions={selectOptions}
         />
       </div>
     );

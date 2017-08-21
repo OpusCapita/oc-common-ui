@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 4.4.0
 * Add `FloatingSelect` and `FloatingSelectCreatable` components
 * Fix datagrid tooltip position
 

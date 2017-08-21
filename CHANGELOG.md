@@ -3,6 +3,14 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Add `FloatingSelect` and `FloatingSelectCreatable` components
+* Fix datagrid tooltip position
+
+## 4.3.1
+* Fix import for `ConfirmDialog`
+* Add ID attribute to the datagrid html
+
+## 4.3.0
 * Added props `disableSave` and `disableCancel` to disable wizard buttons.
 * Default button titles in `Wizard` set to Save and Close
 * Only the active step is highlighted in the navbar of `Wizard` component.

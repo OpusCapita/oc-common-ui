@@ -22,6 +22,7 @@ import SplitPaneView from './components/split-pane-view/split-pane-view.componen
 import DropdownContainerView from './components/dropdown-container-view/dropdown-container-view.component';
 import DropdownMenuView from './components/dropdown-menu-view/dropdown-menu-view.component';
 import DropdownMultiSelectView from './components/dropdown-multi-select-view/dropdown-multi-select-view.component';
+import FloatingSelectView from './components/floating-select-view/floating-select-view.component';
 import MultiSelectView from './components/multi-select-view/multi-select-view.component';
 import DatagridView from './components/datagrid/datagrid.component';
 import ResponsiveNavbarView from
@@ -64,6 +65,7 @@ render((
           <Route path="/dropdown-container" component={DropdownContainerView} />
           <Route path="/dropdown-menu" component={DropdownMenuView} />
           <Route path="/dropdown-multi-select" component={DropdownMultiSelectView} />
+          <Route path="/floating-select" component={FloatingSelectView} />
           <Route path="/multi-select" component={MultiSelectView} />
           <Route path="/responsive-navbar" component={ResponsiveNavbarView} />
           <Route path="/wizard" component={WizardView} />

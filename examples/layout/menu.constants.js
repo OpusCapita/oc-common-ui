@@ -1,13 +1,13 @@
 const ITEMS = [
   {
     id: 1,
-    text: 'Autocomplete',
-    to: '/autocomplete',
+    text: 'Alerts',
+    to: '/alerts',
   },
   {
     id: 2,
-    text: 'Alerts',
-    to: '/alerts',
+    text: 'Autocomplete',
+    to: '/autocomplete',
   },
   {
     id: 3,
@@ -26,58 +26,63 @@ const ITEMS = [
   },
   {
     id: 6,
-    text: 'Searchbar',
-    to: '/searchbar',
-  },
-  {
-    id: 7,
-    text: 'ExtendedSearch',
-    to: '/extendedsearch',
-  },
-  {
-    id: 8,
-    text: 'Spinner',
-    to: '/spinner',
-  },
-  {
-    id: 9,
-    text: 'Split Pane',
-    to: '/split-pane',
-  },
-  {
-    id: 10,
-    text: 'Responsive navbar',
-    to: '/responsive-navbar',
-  },
-  {
-    id: 11,
-    text: 'Wizard',
-    to: '/wizard',
-  },
-  {
-    id: 12,
     text: 'DropdownContainer',
     to: '/dropdown-container',
   },
   {
-    id: 13,
+    id: 7,
     text: 'DropdownMenu',
     to: '/dropdown-menu',
   },
   {
-    id: 14,
+    id: 8,
     text: 'DropdownMultiSelect',
     to: '/dropdown-multi-select',
   },
   {
-    id: 15,
+    id: 9,
+    text: 'ExtendedSearch',
+    to: '/extendedsearch',
+  },
+  {
+    id: 10,
+    text: 'FloatingSelect',
+    to: '/floating-select',
+  },
+  {
+    id: 11,
+    text: 'Menu',
+    to: '/menu',
+  },
+  {
+    id: 12,
     text: 'MultiSelect',
     to: '/multi-select',
   },
   {
+    id: 13,
+    text: 'Responsive navbar',
+    to: '/responsive-navbar',
+  },
+  {
+    id: 14,
+    text: 'Searchbar',
+    to: '/searchbar',
+  },
+  {
+    id: 15,
+    text: 'Spinner',
+    to: '/spinner',
+  },
+  {
     id: 16,
-    text: 'Menu',
-    to: '/menu',
+    text: 'Split Pane',
+    to: '/split-pane',
+  },
+  {
+    id: 17,
+    text: 'Wizard',
+    to: '/wizard',
   },
 ];
 

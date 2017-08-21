@@ -22,7 +22,7 @@ import InlineEditControls from './inline-edit-controls.component';
 import FilteringControls from './filtering-controls.component';
 import DropdownControls from './dropdown-controls.component';
 import * as datagridActions from './datagrid.actions';
-import FloatingSelect from './floating-select/floating-select.component';
+import FloatingSelect from '../floating-select/floating-select.component';
 import DateInput from './date-picker/date-picker.component';
 import CellTooltip from './cell-tooltip.component';
 import './datagrid.component.scss';

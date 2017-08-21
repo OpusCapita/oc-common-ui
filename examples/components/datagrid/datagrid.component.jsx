@@ -84,8 +84,8 @@ export default class DatagridView extends React.Component {
       {
         header: 'Last checked',
         valueKeyPath: ['lastChecked'],
-        valueType: 'date',
-        componentType: 'date',
+        valueType: 'text',
+        componentType: 'text',
         width: 200,
       },
     ];

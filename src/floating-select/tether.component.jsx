@@ -27,12 +27,8 @@ export default class TetherComponent extends React.PureComponent {
   static propTypes = {
     children: PropTypes.node.isRequired,
     options: PropTypes.object.isRequired,
-    target: PropTypes.any,
+    target: PropTypes.any.isRequired,
     matchWidth: PropTypes.bool.isRequired,
-  }
-
-  static defaultProps = {
-    target: null,
   }
 
   componentDidMount() {

@@ -78,9 +78,9 @@ export class ResponsiveNavbar extends React.Component {
       <button
         className={index === this.props.activeKey &&
           index <= this.state.lastVisibleItemIndex ?
-          `${className} selected-border` : className}
+          `${className} selected-border` : `${className}`}
         style={{ fontWeight: this.props.fontWeight, fontSize: this.props.fontSize }}
-        id={item.id}
+        id={`navitemref${String(index)}`}
         key={index}
         ref={`navitemref${String(index)}`}
         onClick={() => { this.props.onSelect(item.href); }}
@@ -118,13 +118,15 @@ export class ResponsiveNavbar extends React.Component {
         ref: `navitemref${String(index)}`,
       }),
     );
-    const className = this.props.activeKey >= this.state.lastVisibleItemIndex ?
-    'selected-border' : '';
+
+    const inactiveBorder = this.props.showNavItemBorder ? 'inactive-border' : '';
+    const borderClass = this.props.activeKey >= this.state.lastVisibleItemIndex ?
+    'selected-border' : inactiveBorder;
 
     return (
       <div
         id="responsive-navbar-select"
-        className={className}
+        className={borderClass}
         style={{ fontWeight: this.props.fontWeight, fontSize: this.props.fontSize }}
       >
         <Select
@@ -160,7 +162,6 @@ ResponsiveNavbar.propTypes = {
   fontWeight: PropTypes.string,
   activeKey: PropTypes.number.isRequired,
   list: PropTypes.arrayOf(PropTypes.shape({
-    id: PropTypes.string.isRequired,
     name: PropTypes.oneOfType([
       PropTypes.string,
       PropTypes.node,

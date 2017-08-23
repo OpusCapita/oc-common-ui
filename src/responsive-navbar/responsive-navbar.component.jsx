@@ -50,7 +50,7 @@ export class ResponsiveNavbar extends React.Component {
     const container = this.refs.navbarContainer;
     const containerWidth = ReactDOM.findDOMNode(container) ?
       ReactDOM.findDOMNode(container).offsetWidth : 0;
-    const index = Math.trunc((containerWidth / NAV_ITEM_MIN_WIDTH));
+    const index = Math.floor((containerWidth / NAV_ITEM_MIN_WIDTH));
     return index >= 0 ? index : 0;
   }
 

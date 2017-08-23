@@ -18,6 +18,7 @@ const ResponsiveNavbarView = (props) => {
       <ResponsiveNavbar
         activeKey={activeKey}
         list={list}
+        showNavItemBorder
         onSelect={(href) => { props.router.push(href); }}
       />
     </div>

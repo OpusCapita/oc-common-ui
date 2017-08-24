@@ -22,10 +22,10 @@ N/A
 | ------------------| --------------------------------------- | --------- | ------------------------------------- |
 | activeKey         | number                                  | required  | Navbar item to be active initially    |
 | list              | list [{id: id, name: name, href: href}] | required  |                                       |
-| showNavItemBorder | boolean                                 | false      | show bottom-border below navbar items |
+| showNavItemBorder | boolean                                 | false     | show bottom-border below navbar items |
 | fontSize          | string                                  | 'inherit' | override for  fontSize                |
-| fontWeight        | string                                  | 'inherit' | override ofr fontWeight               |
-
+| fontWeight        | string                                  | 'inherit' | override for fontWeight               |
+| placeholder       | string                                  | 'more...' | ovverided for placeholder text        |
 
 | Function | Parameters   | Returns | Description                              |
 | -------- | ------------ | ------- | ---------------------------------------- |

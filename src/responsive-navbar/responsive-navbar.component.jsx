@@ -134,7 +134,7 @@ export class ResponsiveNavbar extends React.Component {
           multi={false}
           value={this.props.list[this.props.activeKey].href}
           clearable={false}
-          placeholder={'more...'}
+          placeholder={this.props.placeholder}
           options={items}
           onChange={(item) => { this.props.onSelect(item.value); }}
           inputProps={{ id: 'ocResponsiveNavbarSelect' }}
@@ -153,12 +153,14 @@ ResponsiveNavbar.defaultProps = {
   showNavItemBorder: false,
   fontSize: 'inherit',
   fontWeight: 'inherit',
+  placeholder: 'more...',
 };
 
 ResponsiveNavbar.propTypes = {
   showNavItemBorder: PropTypes.bool,
   fontSize: PropTypes.string,
   fontWeight: PropTypes.string,
+  placeholder: PropTypes.string,
   activeKey: PropTypes.number.isRequired,
   list: PropTypes.arrayOf(PropTypes.shape({
     name: PropTypes.oneOfType([

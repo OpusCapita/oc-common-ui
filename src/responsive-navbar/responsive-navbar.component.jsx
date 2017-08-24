@@ -151,7 +151,6 @@ export class ResponsiveNavbar extends React.Component {
 ResponsiveNavbar.defaultProps = {
   onSelect: null,
   showNavItemBorder: false,
-  navbarFontWeight: 'bold',
   fontSize: 'inherit',
   fontWeight: 'inherit',
 };

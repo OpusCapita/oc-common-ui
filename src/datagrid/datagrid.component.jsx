@@ -677,8 +677,10 @@ export default class DataGrid extends React.PureComponent {
       if (col.defaultValue !== undefined) {
         this.columnDefaultValues[column.columnKey] = col.defaultValue;
       }
+      const inputStyle = {};
       if (col.align) {
         column.align = col.align;
+        inputStyle.textAlign = col.align;
       }
       if (col.valueKeyPath) {
         column.valueKeyPath = col.valueKeyPath;
@@ -783,6 +785,7 @@ export default class DataGrid extends React.PureComponent {
                     id={`ocDatagridEditInput-${this.props.id}-${column.columnKey}-${rowIndex}`}
                     {...col.editComponentProps}
                     disabled={this.getComponentDisabledState(rowIndex, col, 'edit')}
+                    style={inputStyle}
                     tabIndex={tabIndex}
                   />
                 );
@@ -806,6 +809,7 @@ export default class DataGrid extends React.PureComponent {
                     id={`ocDatagridCreateInput-${this.props.id}-${column.columnKey}-${rowIndex}`}
                     {...col.createComponentProps}
                     disabled={this.getComponentDisabledState(rowIndex, col, 'create')}
+                    style={inputStyle}
                     tabIndex={tabIndex}
                   />
                 );
@@ -868,6 +872,7 @@ export default class DataGrid extends React.PureComponent {
                     id={`ocDatagridEditInput-${this.props.id}-${column.columnKey}-${rowIndex}`}
                     {...col.editComponentProps}
                     disabled={this.getComponentDisabledState(rowIndex, col, 'edit')}
+                    style={inputStyle}
                     tabIndex={tabIndex}
                   />
                 );
@@ -892,6 +897,7 @@ export default class DataGrid extends React.PureComponent {
                     id={`ocDatagridCreateInput-${this.props.id}-${column.columnKey}-${rowIndex}`}
                     {...col.createComponentProps}
                     disabled={this.getComponentDisabledState(rowIndex, col, 'create')}
+                    style={inputStyle}
                     tabIndex={tabIndex}
                   />
                 );
@@ -960,6 +966,7 @@ export default class DataGrid extends React.PureComponent {
                     id={`ocDatagridEditInput-${this.props.id}-${column.columnKey}-${rowIndex}`}
                     {...col.editComponentProps}
                     disabled={this.getComponentDisabledState(rowIndex, col, 'edit')}
+                    style={inputStyle}
                     tabIndex={tabIndex}
                   />
                 );
@@ -983,6 +990,7 @@ export default class DataGrid extends React.PureComponent {
                     id={`ocDatagridCreateInput-${this.props.id}-${column.columnKey}-${rowIndex}`}
                     {...col.createComponentProps}
                     disabled={this.getComponentDisabledState(rowIndex, col, 'create')}
+                    style={inputStyle}
                     tabIndex={tabIndex}
                   />
                 );

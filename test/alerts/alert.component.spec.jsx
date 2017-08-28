@@ -39,7 +39,7 @@ describe('Alert component', function describe() {
     const alert = wrapper.find(Alert);
     expect(alert.text()).to.contain('hello!');
     expect(alert.props().bsStyle).to.eql('success');
-    expect(alert.props().onDismiss).to.be.defined;
+    expect(alert.props().onDismiss).to.not.be.undefined;
 
     const closeAlertAction = sinon.stub(alertAction, 'closeAlert');
     wrapper.find('button').at(0).simulate('click');
@@ -65,7 +65,7 @@ describe('Alert component', function describe() {
     expect(alert.text()).to.contain('message1');
     expect(alert.text()).to.contain('message2');
     expect(alert.props().bsStyle).to.eql('info');
-    expect(alert.props().onDismiss).to.be.defined;
+    expect(alert.props().onDismiss).to.not.be.undefined;
   });
 
   it('should translate basic success message', function it() {
@@ -83,7 +83,7 @@ describe('Alert component', function describe() {
     const alert = wrapper.find(Alert);
     expect(alert.text()).to.contain('hello translated');
     expect(alert.props().bsStyle).to.eql('warning');
-    expect(alert.props().onDismiss).to.be.defined;
+    expect(alert.props().onDismiss).to.not.be.undefined;
   });
 
   it('should translate basic success message with parameters', function it() {
@@ -104,7 +104,7 @@ describe('Alert component', function describe() {
     const alert = wrapper.find(Alert);
     expect(alert.text()).to.contain('hello world!');
     expect(alert.props().bsStyle).to.eql('success');
-    expect(alert.props().onDismiss).to.be.defined;
+    expect(alert.props().onDismiss).to.not.be.undefined;
   });
 
   it('should translate basic success message from object', function it() {
@@ -126,6 +126,6 @@ describe('Alert component', function describe() {
     expect(alert.text()).to.contain('hello translated');
     expect(alert.text()).to.contain('some translation');
     expect(alert.props().bsStyle).to.eql('danger');
-    expect(alert.props().onDismiss).to.be.defined;
+    expect(alert.props().onDismiss).to.not.be.undefined;
   });
 });

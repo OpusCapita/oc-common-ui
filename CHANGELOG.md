@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 4.4.1
 * Fix Tab issue in editing mode of `Datagrid`
 * Add align to input components of `Datagrid` if prop `align` is set
 

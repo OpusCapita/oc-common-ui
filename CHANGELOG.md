@@ -4,6 +4,7 @@
 
 ## <next>
 * Fix Tab and arrow keys navigation for disabled columns of `Datagrid`
+* responsive navbar modifications and new features
 
 ## 4.4.1
 * Fix Tab issue in editing mode of `Datagrid`

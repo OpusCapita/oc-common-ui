@@ -377,6 +377,7 @@ export default class DataGrid extends React.PureComponent {
           this.moveCellFocus(nextElement, rowIndex - 1, -1);
           break;
         }
+        case KEY_CODES.TAB:
         case KEY_CODES.RIGHT: {
           const columnIndex = columns.findIndex(c => c.valueKeyPath.join('_') === columnKey);
           if (columnIndex !== -1 && columnIndex + 1 < columns.length) {

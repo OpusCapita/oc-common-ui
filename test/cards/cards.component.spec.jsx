@@ -27,7 +27,7 @@ describe('Cards component', function describe() {
     );
 
     expect(wrapper.find(Card).length).to.eql(2);
-    expect(wrapper.childAt(0).childAt(0).props().setExpanded).to.be.defined;
+    expect(wrapper.childAt(0).childAt(0).props().setExpanded).to.not.be.undefined;
   });
 
   it('should render only one card', () => {

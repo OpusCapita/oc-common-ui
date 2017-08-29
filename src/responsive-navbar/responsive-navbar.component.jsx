@@ -7,6 +7,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 import Select from 'react-select';
+import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import 'react-select/dist/react-select.css';
 import './responsive-navbar.scss';
 
@@ -68,6 +69,28 @@ export class ResponsiveNavbar extends React.Component {
     this.props.router.push(item.value);
   }
 
+  tooltipWrapper = (node, index, tooltipContent) => {
+    const tooltip = <Tooltip id="tooltip">{tooltipContent}</Tooltip>;
+    return !this.props.showNavItemTooltip ? node :
+    <OverlayTrigger placement="bottom" key={index} overlay={tooltip} delayShow={this.props.tooltipDelay}>
+      {node}
+    </OverlayTrigger>;
+  }
+
+  navbarItem = (item, index, className) => (
+    <button
+      className={index === this.props.activeKey &&
+        index <= this.state.lastVisibleItemIndex ?
+        `${className} selected-border` : `${className}`}
+      style={{ fontWeight: this.props.fontWeight, fontSize: this.props.fontSize }}
+      id={`navitemref${String(index)}`}
+      ref={`navitemref${String(index)}`}
+      onClick={() => { this.props.onSelect(item.href); }}
+    >
+      <span className="responsive-navbar-item-text">{item.name}</span>
+    </button>
+  )
+
   navbar = () => {
     const list = this.state.lastVisibleItemIndex >= 0 ?
       this.props.list.slice(0, this.state.lastVisibleItemIndex)
@@ -75,18 +98,7 @@ export class ResponsiveNavbar extends React.Component {
     const className = this.props.showNavItemBorder ?
       'responsive-navbar-item inactive-border' : 'responsive-navbar-item';
     const items = list.map((item, index) => (
-      <button
-        className={index === this.props.activeKey &&
-          index <= this.state.lastVisibleItemIndex ?
-          `${className} selected-border` : `${className}`}
-        style={{ fontWeight: this.props.fontWeight, fontSize: this.props.fontSize }}
-        id={`navitemref${String(index)}`}
-        key={index}
-        ref={`navitemref${String(index)}`}
-        onClick={() => { this.props.onSelect(item.href); }}
-      >
-        <span className="responsive-navbar-item-text">{item.name}</span>
-      </button>
+      this.tooltipWrapper(this.navbarItem(item, index, className), index, item.name)
     ));
 
     return (
@@ -151,6 +163,8 @@ export class ResponsiveNavbar extends React.Component {
 ResponsiveNavbar.defaultProps = {
   onSelect: null,
   showNavItemBorder: false,
+  showNavItemTooltip: true,
+  tooltipDelay: 2000,
   fontSize: 'inherit',
   fontWeight: 'inherit',
   placeholder: 'more...',
@@ -158,6 +172,8 @@ ResponsiveNavbar.defaultProps = {
 
 ResponsiveNavbar.propTypes = {
   showNavItemBorder: PropTypes.bool,
+  showNavItemTooltip: PropTypes.bool,
+  tooltipDelay: PropTypes.number,
   fontSize: PropTypes.string,
   fontWeight: PropTypes.string,
   placeholder: PropTypes.string,

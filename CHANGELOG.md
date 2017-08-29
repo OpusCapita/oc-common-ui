@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Fix Tab and arrow keys navigation for disabled columns of `Datagrid`
 
 ## 4.4.1
 * Fix Tab issue in editing mode of `Datagrid`

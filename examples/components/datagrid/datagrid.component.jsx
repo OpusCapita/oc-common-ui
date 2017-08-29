@@ -102,7 +102,6 @@ export default class DatagridView extends React.Component {
           idKeyPath={['accountId']}
           columns={columns}
           disableActionSave={this.props.isEditing && this.props.dataEdited.size === 0}
-          enableArrowNavigation
           filtering
           inlineEdit
           multiSelect

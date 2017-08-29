@@ -366,6 +366,7 @@ export default class DataGrid extends React.PureComponent {
   onEditCellKeyDown = (keyCode, columnKey, rowIndex) => {
     if (this.props.enableArrowNavigation) {
       const columns = this.props.columns;
+      const rowsSize = this.props.data.size;
       switch (keyCode) {
         case KEY_CODES.DOWN: {
           const nextElement = this.cellRefs[`${this.props.id}_${columnKey}_${rowIndex + 1}`];
@@ -378,21 +379,40 @@ export default class DataGrid extends React.PureComponent {
           break;
         }
         case KEY_CODES.TAB:
-        case KEY_CODES.RIGHT: {
-          const columnIndex = columns.findIndex(c => c.valueKeyPath.join('_') === columnKey);
-          if (columnIndex !== -1 && columnIndex + 1 < columns.length) {
-            const nextColumnKey = columns[columnIndex + 1].valueKeyPath.join('_');
-            const nextElement = this.cellRefs[`${this.props.id}_${nextColumnKey}_${rowIndex}`];
-            this.moveCellFocus(nextElement, -1, columnIndex + 1);
-          }
-          break;
-        }
+        case KEY_CODES.RIGHT:
         case KEY_CODES.LEFT: {
-          const columnIndex = columns.findIndex(c => c.valueKeyPath.join('_') === columnKey);
-          if (columnIndex - 1 >= 0) {
-            const nextColumnKey = columns[columnIndex - 1].valueKeyPath.join('_');
-            const nextElement = this.cellRefs[`${this.props.id}_${nextColumnKey}_${rowIndex}`];
-            this.moveCellFocus(nextElement, -1, columnIndex - 1);
+          let columnInd = columns.findIndex(c => c.valueKeyPath.join('_') === columnKey);
+          if (columnInd !== -1) {
+            let disabled = true;
+            let nextElement = null;
+            let rowInd = rowIndex;
+            while (disabled) {
+              if (keyCode === KEY_CODES.LEFT) {
+                if (columnInd - 1 >= 0) {
+                  columnInd -= 1;
+                } else if (rowInd - 1 >= 0) {
+                  columnInd = columns.length -1;
+                  rowInd -= 1;
+                } else {
+                  break;
+                }
+              } else {
+                if (columnInd + 1 < columns.length) {
+                  columnInd += 1;
+                } else if (rowInd + 1 < rowsSize) {
+                  columnInd = 0;
+                  rowInd += 1;
+                } else {
+                  break;
+                }
+              }   
+              const nextColumnKey = columns[columnInd].valueKeyPath.join('_');
+              nextElement = this.cellRefs[`${this.props.id}_${nextColumnKey}_${rowInd}`];
+              disabled = nextElement ? nextElement.disabled : false;
+            }
+            if (!disabled && nextElement) {  
+              this.moveCellFocus(nextElement, rowInd, columnInd);
+            }              
           }
           break;
         }

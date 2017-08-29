@@ -1,7 +1,7 @@
 import React from 'react';
 import { withRouter, routerShape } from 'react-router';
 import { ResponsiveNavbar } from '../../../src/index';
-
+import './responsive-navbar-view.scss';
 
 const ResponsiveNavbarView = (props) => {
   const list = [
@@ -14,7 +14,7 @@ const ResponsiveNavbarView = (props) => {
   const activeKey = 2;
 
   return (
-    <div style={{ marginTop: '10px' }}>
+    <div className="navbar-top-margin">
       <ResponsiveNavbar
         activeKey={activeKey}
         list={list}

@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Map, List } from 'immutable';
 import { connect } from 'react-redux';
-import { injectIntl,
-         FormattedMessage as M,
-         FormattedDate as D,
-         FormattedNumber as N } from 'react-intl';
+import {
+  injectIntl,
+  FormattedMessage as M,
+  FormattedDate as D,
+  FormattedNumber as N,
+} from 'react-intl';
 import { Column, Cell } from 'fixed-data-table-2';
 import { Checkbox, FormControl } from 'react-bootstrap';
 import classNames from 'classnames';
@@ -172,9 +174,7 @@ const mapDispatchToProps = datagridActions;
 @injectIntl
 @connect(mapStateToProps, mapDispatchToProps)
 export default class DataGrid extends React.PureComponent {
-
   /* eslint-disable prefer-template, react/no-unused-prop-types, react/forbid-prop-types */
-
   static propTypes = {
     children: PropTypes.node,
     // App props
@@ -345,7 +345,7 @@ export default class DataGrid extends React.PureComponent {
 
   componentWillMount() {
     this.columnFilterFunctions = {};
-    this.columnDefaultValues = {};        // Used when creating new items
+    this.columnDefaultValues = {}; // Used when creating new items
     this.cellRefs = {};
   }
 
@@ -391,7 +391,7 @@ export default class DataGrid extends React.PureComponent {
                 if (columnInd - 1 >= 0) {
                   columnInd -= 1;
                 } else if (rowInd - 1 >= 0) {
-                  columnInd = columns.length -1;
+                  columnInd = columns.length - 1;
                   rowInd -= 1;
                 } else {
                   break;
@@ -405,14 +405,14 @@ export default class DataGrid extends React.PureComponent {
                 } else {
                   break;
                 }
-              }   
+              }
               const nextColumnKey = columns[columnInd].valueKeyPath.join('_');
               nextElement = this.cellRefs[`${this.props.id}_${nextColumnKey}_${rowInd}`];
               disabled = nextElement ? nextElement.disabled : false;
             }
-            if (!disabled && nextElement) {  
+            if (!disabled && nextElement) {
               this.moveCellFocus(nextElement, rowInd, columnInd);
-            }              
+            }
           }
           break;
         }
@@ -554,14 +554,14 @@ export default class DataGrid extends React.PureComponent {
     if (!componentDisabled && col.disableEditingOnValueMatch) {
       if (mode === 'create') {
         componentDisabled = this.getCreateItemValue(
-            rowIndex,
-            { valueKeyPath: col.disableEditingOnValueMatch.matchValueKeyPath },
-          ) === col.disableEditingOnValueMatch.matchValue;
+          rowIndex,
+          { valueKeyPath: col.disableEditingOnValueMatch.matchValueKeyPath },
+        ) === col.disableEditingOnValueMatch.matchValue;
       } else {
         componentDisabled = this.getEditItemValue(
-            rowIndex,
-            { valueKeyPath: col.disableEditingOnValueMatch.matchValueKeyPath },
-          ) === col.disableEditingOnValueMatch.matchValue;
+          rowIndex,
+          { valueKeyPath: col.disableEditingOnValueMatch.matchValueKeyPath },
+        ) === col.disableEditingOnValueMatch.matchValue;
       }
     }
     return componentDisabled;
@@ -861,7 +861,7 @@ export default class DataGrid extends React.PureComponent {
               val === undefined
             );
             columnFilterFunction.filterMatcher = (val, filterVal) =>
-                parseInt(val, 10) === parseInt(filterVal, 10);
+              parseInt(val, 10) === parseInt(filterVal, 10);
             if (this.props.inlineEdit) {
               if (!column.cellEdit) {
                 column.cellEdit = rowIndex => (
@@ -1042,8 +1042,8 @@ export default class DataGrid extends React.PureComponent {
                   <FloatingSelect
                     name={col.valueKeyPath.join() + '-edit-' + rowIndex}
                     options={col.editSelectOptionsMod && selectOptions ?
-                             col.editSelectOptionsMod(selectOptions.slice(), rowIndex, col) :
-                             selectOptions}
+                      col.editSelectOptionsMod(selectOptions.slice(), rowIndex, col) :
+                      selectOptions}
                     value={this.getEditItemValue(rowIndex, col)}
                     onChange={selectedData => this.onEditCellValueChange(
                       rowIndex,
@@ -1073,8 +1073,8 @@ export default class DataGrid extends React.PureComponent {
                   <FloatingSelect
                     name={col.valueKeyPath.join() + '-create-' + rowIndex}
                     options={col.createSelectOptionsMod && selectOptions ?
-                             col.createSelectOptionsMod(selectOptions.slice(), rowIndex, col) :
-                             selectOptions}
+                      col.createSelectOptionsMod(selectOptions.slice(), rowIndex, col) :
+                      selectOptions}
                     value={this.getCreateItemValue(rowIndex, col)}
                     onChange={selectedData => this.onCreateCellValueChange(
                       rowIndex,
@@ -1106,8 +1106,8 @@ export default class DataGrid extends React.PureComponent {
                   <FloatingSelect
                     name={col.valueKeyPath.join() + '-filter'}
                     options={col.filterSelectOptionsMod && selectOptions ?
-                             col.filterSelectOptionsMod(selectOptions.slice(), col) :
-                             selectOptions}
+                      col.filterSelectOptionsMod(selectOptions.slice(), col) :
+                      selectOptions}
                     value={this.getFilterItemValue(col.valueKeyPath)}
                     onChange={selectedData => this.onFilterCellValueChange(
                       col.valueKeyPath,
@@ -1499,8 +1499,7 @@ export default class DataGrid extends React.PureComponent {
       );
     }
     let rowsCount = (this.props.rowsCount || this.props.rowsCount === 0) ?
-                    this.props.rowsCount :
-                    this.props.data.size;
+      this.props.rowsCount : this.props.data.size;
     if (this.props.isCreating) rowsCount += this.props.createData.size;
     if (this.props.isFiltering) rowsCount += 1;
     let scrollToRow = this.props.scrollToRow || this.state.currentRow;
@@ -1580,5 +1579,4 @@ export default class DataGrid extends React.PureComponent {
       </div>
     );
   }
-
 }

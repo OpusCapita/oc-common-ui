@@ -3,8 +3,11 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 5.0.0
 * Fix Tab and arrow keys navigation for disabled columns of `Datagrid`
-* responsive navbar modifications and new features
+* Responsive navbar modifications and new features
+* Update dependencies, update Webpack to version 3.5.5 and NPM to version 5.4.0
 
 ## 4.4.1
 * Fix Tab issue in editing mode of `Datagrid`

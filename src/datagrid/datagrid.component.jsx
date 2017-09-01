@@ -363,11 +363,12 @@ export default class DataGrid extends React.PureComponent {
     }
   }
 
-  onEditCellKeyDown = (keyCode, columnKey, rowIndex) => {
+  onEditCellKeyDown = (e, columnKey, rowIndex) => {
     if (this.props.enableArrowNavigation) {
+      e.preventDefault();
       const columns = this.props.columns;
       const rowsSize = this.props.data.size;
-      switch (keyCode) {
+      switch (e.keyCode) {
         case KEY_CODES.DOWN: {
           const nextElement = this.cellRefs[`${this.props.id}_${columnKey}_${rowIndex + 1}`];
           this.moveCellFocus(nextElement, rowIndex + 1, -1);
@@ -381,13 +382,13 @@ export default class DataGrid extends React.PureComponent {
         case KEY_CODES.TAB:
         case KEY_CODES.RIGHT:
         case KEY_CODES.LEFT: {
-          let columnInd = columns.findIndex(c => c.valueKeyPath.join('_') === columnKey);
+          let columnInd = this.state.currentColumn;
           if (columnInd !== -1) {
             let disabled = true;
             let nextElement = null;
             let rowInd = rowIndex;
             while (disabled) {
-              if (keyCode === KEY_CODES.LEFT) {
+              if (e.keyCode === KEY_CODES.LEFT || (e.keyCode === KEY_CODES.TAB && e.shiftKey)) {
                 if (columnInd - 1 >= 0) {
                   columnInd -= 1;
                 } else if (rowInd - 1 >= 0) {
@@ -640,7 +641,7 @@ export default class DataGrid extends React.PureComponent {
         this.setState({ currentRow: rowIndex });
       }
       if (columnIndex !== -1) {
-        this.setState({ currentColumn: columnIndex + 1 });
+        this.setState({ currentColumn: columnIndex });
       }
       setTimeout(() => nextElement.select(), 50);
     }
@@ -793,7 +794,7 @@ export default class DataGrid extends React.PureComponent {
                       e.target.value,
                     )}
                     onKeyDown={e => this.onEditCellKeyDown(
-                      e.keyCode,
+                      e,
                       column.columnKey,
                       rowIndex,
                     )}
@@ -880,7 +881,7 @@ export default class DataGrid extends React.PureComponent {
                     )}
                     onFocus={this.onCellFocus}
                     onKeyDown={e => this.onEditCellKeyDown(
-                      e.keyCode,
+                      e,
                       column.columnKey,
                       rowIndex,
                     )}
@@ -974,7 +975,7 @@ export default class DataGrid extends React.PureComponent {
                       editValueParser(e.target.value),
                     )}
                     onKeyDown={e => this.onEditCellKeyDown(
-                      e.keyCode,
+                      e,
                       column.columnKey,
                       rowIndex,
                     )}
@@ -1144,7 +1145,7 @@ export default class DataGrid extends React.PureComponent {
                       tabIndex,
                       id: `ocDatagridEditInput-${this.props.id}-${column.columnKey}-${rowIndex}`,
                       onKeyDown: e => this.onEditCellKeyDown(
-                        e.keyCode,
+                        e,
                         column.columnKey,
                         rowIndex,
                       ),

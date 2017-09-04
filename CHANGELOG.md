@@ -4,7 +4,7 @@
 
 ## <next>
 
-## 5.0.1
+## 5.0.2
 * Fix Tab and arrow keys navigation of `Datagrid` after dependencies update
 
 ## 5.0.0

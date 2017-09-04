@@ -365,7 +365,6 @@ export default class DataGrid extends React.PureComponent {
 
   onEditCellKeyDown = (e, columnKey, rowIndex) => {
     if (this.props.enableArrowNavigation) {
-      e.preventDefault();
       const columns = this.props.columns;
       const rowsSize = this.props.data.size;
       switch (e.keyCode) {
@@ -382,6 +381,7 @@ export default class DataGrid extends React.PureComponent {
         case KEY_CODES.TAB:
         case KEY_CODES.RIGHT:
         case KEY_CODES.LEFT: {
+          e.preventDefault();
           let columnInd = this.state.currentColumn;
           if (columnInd !== -1) {
             let disabled = true;

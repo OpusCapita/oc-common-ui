@@ -4,7 +4,7 @@ Back to [oc-common-ui](../../README.md)
 
 ### Description
 
-Navbar component that changes to dropdown if content doesn't fit horizontally to the navbar content area.
+Navbar component that moves the navbar items to a dropdown, if they do not fit in the content area.
 
 ### Dependencies
 
@@ -18,10 +18,16 @@ N/A
 
 #### ResponsiveNavbar
 
-| Prop name | Type                                    | Default  | Description                        |
-| --------- | --------------------------------------- | -------- | ---------------------------------- |
-| activeKey | number                                  | required | Navbar item to be active initially |
-| list      | list [{id: id, name: name, href: href}] | required |                                    |
+| Prop name         | Type                                    | Default   | Description                           |
+| ------------------| --------------------------------------- | --------- | ------------------------------------- |
+| activeKey         | number                                  | required  | Navbar item to be active initially    |
+| list              | list [{id: id, name: name, href: href}] | required  |                                       |
+| showNavItemBorder | boolean                                 | false     | show bottom-border below navbar items |
+| showNavItemTooltip| boolean                                 | true      | enables tooltips for nav items        |
+| tooltipDelay      | number                                  | 2000      | delay before tooltip becomes visible  |
+| fontSize          | string                                  | 'inherit' | override for  fontSize                |
+| fontWeight        | string                                  | 'inherit' | override for fontWeight               |
+| placeholder       | string                                  | 'more...' | override for placeholder text        |
 
 | Function | Parameters   | Returns | Description                              |
 | -------- | ------------ | ------- | ---------------------------------------- |
@@ -52,4 +58,3 @@ const ResponsiveNavbarView = (props) => {
 
 export default withRouter(ResponsiveNavbarView);
 ```
-

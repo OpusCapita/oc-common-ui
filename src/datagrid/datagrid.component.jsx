@@ -4,10 +4,12 @@ import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { Map, List } from 'immutable';
 import { connect } from 'react-redux';
-import { injectIntl,
-         FormattedMessage as M,
-         FormattedDate as D,
-         FormattedNumber as N } from 'react-intl';
+import {
+  injectIntl,
+  FormattedMessage as M,
+  FormattedDate as D,
+  FormattedNumber as N,
+} from 'react-intl';
 import { Column, Cell } from 'fixed-data-table-2';
 import { Checkbox, FormControl } from 'react-bootstrap';
 import classNames from 'classnames';
@@ -172,9 +174,7 @@ const mapDispatchToProps = datagridActions;
 @injectIntl
 @connect(mapStateToProps, mapDispatchToProps)
 export default class DataGrid extends React.PureComponent {
-
   /* eslint-disable prefer-template, react/no-unused-prop-types, react/forbid-prop-types */
-
   static propTypes = {
     children: PropTypes.node,
     // App props
@@ -345,7 +345,7 @@ export default class DataGrid extends React.PureComponent {
 
   componentWillMount() {
     this.columnFilterFunctions = {};
-    this.columnDefaultValues = {};        // Used when creating new items
+    this.columnDefaultValues = {}; // Used when creating new items
     this.cellRefs = {};
   }
 
@@ -363,10 +363,11 @@ export default class DataGrid extends React.PureComponent {
     }
   }
 
-  onEditCellKeyDown = (keyCode, columnKey, rowIndex) => {
+  onEditCellKeyDown = (e, columnKey, rowIndex) => {
     if (this.props.enableArrowNavigation) {
       const columns = this.props.columns;
-      switch (keyCode) {
+      const rowsSize = this.props.data.size;
+      switch (e.keyCode) {
         case KEY_CODES.DOWN: {
           const nextElement = this.cellRefs[`${this.props.id}_${columnKey}_${rowIndex + 1}`];
           this.moveCellFocus(nextElement, rowIndex + 1, -1);
@@ -378,21 +379,41 @@ export default class DataGrid extends React.PureComponent {
           break;
         }
         case KEY_CODES.TAB:
-        case KEY_CODES.RIGHT: {
-          const columnIndex = columns.findIndex(c => c.valueKeyPath.join('_') === columnKey);
-          if (columnIndex !== -1 && columnIndex + 1 < columns.length) {
-            const nextColumnKey = columns[columnIndex + 1].valueKeyPath.join('_');
-            const nextElement = this.cellRefs[`${this.props.id}_${nextColumnKey}_${rowIndex}`];
-            this.moveCellFocus(nextElement, -1, columnIndex + 1);
-          }
-          break;
-        }
+        case KEY_CODES.RIGHT:
         case KEY_CODES.LEFT: {
-          const columnIndex = columns.findIndex(c => c.valueKeyPath.join('_') === columnKey);
-          if (columnIndex - 1 >= 0) {
-            const nextColumnKey = columns[columnIndex - 1].valueKeyPath.join('_');
-            const nextElement = this.cellRefs[`${this.props.id}_${nextColumnKey}_${rowIndex}`];
-            this.moveCellFocus(nextElement, -1, columnIndex - 1);
+          e.preventDefault();
+          let columnInd = this.state.currentColumn;
+          if (columnInd !== -1) {
+            let disabled = true;
+            let nextElement = null;
+            let rowInd = rowIndex;
+            while (disabled) {
+              if (e.keyCode === KEY_CODES.LEFT || (e.keyCode === KEY_CODES.TAB && e.shiftKey)) {
+                if (columnInd - 1 >= 0) {
+                  columnInd -= 1;
+                } else if (rowInd - 1 >= 0) {
+                  columnInd = columns.length - 1;
+                  rowInd -= 1;
+                } else {
+                  break;
+                }
+              } else {
+                if (columnInd + 1 < columns.length) {
+                  columnInd += 1;
+                } else if (rowInd + 1 < rowsSize) {
+                  columnInd = 0;
+                  rowInd += 1;
+                } else {
+                  break;
+                }
+              }
+              const nextColumnKey = columns[columnInd].valueKeyPath.join('_');
+              nextElement = this.cellRefs[`${this.props.id}_${nextColumnKey}_${rowInd}`];
+              disabled = nextElement ? nextElement.disabled : false;
+            }
+            if (!disabled && nextElement) {
+              this.moveCellFocus(nextElement, rowInd, columnInd);
+            }
           }
           break;
         }
@@ -534,14 +555,14 @@ export default class DataGrid extends React.PureComponent {
     if (!componentDisabled && col.disableEditingOnValueMatch) {
       if (mode === 'create') {
         componentDisabled = this.getCreateItemValue(
-            rowIndex,
-            { valueKeyPath: col.disableEditingOnValueMatch.matchValueKeyPath },
-          ) === col.disableEditingOnValueMatch.matchValue;
+          rowIndex,
+          { valueKeyPath: col.disableEditingOnValueMatch.matchValueKeyPath },
+        ) === col.disableEditingOnValueMatch.matchValue;
       } else {
         componentDisabled = this.getEditItemValue(
-            rowIndex,
-            { valueKeyPath: col.disableEditingOnValueMatch.matchValueKeyPath },
-          ) === col.disableEditingOnValueMatch.matchValue;
+          rowIndex,
+          { valueKeyPath: col.disableEditingOnValueMatch.matchValueKeyPath },
+        ) === col.disableEditingOnValueMatch.matchValue;
       }
     }
     return componentDisabled;
@@ -620,7 +641,7 @@ export default class DataGrid extends React.PureComponent {
         this.setState({ currentRow: rowIndex });
       }
       if (columnIndex !== -1) {
-        this.setState({ currentColumn: columnIndex + 1 });
+        this.setState({ currentColumn: columnIndex });
       }
       setTimeout(() => nextElement.select(), 50);
     }
@@ -773,7 +794,7 @@ export default class DataGrid extends React.PureComponent {
                       e.target.value,
                     )}
                     onKeyDown={e => this.onEditCellKeyDown(
-                      e.keyCode,
+                      e,
                       column.columnKey,
                       rowIndex,
                     )}
@@ -841,7 +862,7 @@ export default class DataGrid extends React.PureComponent {
               val === undefined
             );
             columnFilterFunction.filterMatcher = (val, filterVal) =>
-                parseInt(val, 10) === parseInt(filterVal, 10);
+              parseInt(val, 10) === parseInt(filterVal, 10);
             if (this.props.inlineEdit) {
               if (!column.cellEdit) {
                 column.cellEdit = rowIndex => (
@@ -860,7 +881,7 @@ export default class DataGrid extends React.PureComponent {
                     )}
                     onFocus={this.onCellFocus}
                     onKeyDown={e => this.onEditCellKeyDown(
-                      e.keyCode,
+                      e,
                       column.columnKey,
                       rowIndex,
                     )}
@@ -954,7 +975,7 @@ export default class DataGrid extends React.PureComponent {
                       editValueParser(e.target.value),
                     )}
                     onKeyDown={e => this.onEditCellKeyDown(
-                      e.keyCode,
+                      e,
                       column.columnKey,
                       rowIndex,
                     )}
@@ -1022,8 +1043,8 @@ export default class DataGrid extends React.PureComponent {
                   <FloatingSelect
                     name={col.valueKeyPath.join() + '-edit-' + rowIndex}
                     options={col.editSelectOptionsMod && selectOptions ?
-                             col.editSelectOptionsMod(selectOptions.slice(), rowIndex, col) :
-                             selectOptions}
+                      col.editSelectOptionsMod(selectOptions.slice(), rowIndex, col) :
+                      selectOptions}
                     value={this.getEditItemValue(rowIndex, col)}
                     onChange={selectedData => this.onEditCellValueChange(
                       rowIndex,
@@ -1053,8 +1074,8 @@ export default class DataGrid extends React.PureComponent {
                   <FloatingSelect
                     name={col.valueKeyPath.join() + '-create-' + rowIndex}
                     options={col.createSelectOptionsMod && selectOptions ?
-                             col.createSelectOptionsMod(selectOptions.slice(), rowIndex, col) :
-                             selectOptions}
+                      col.createSelectOptionsMod(selectOptions.slice(), rowIndex, col) :
+                      selectOptions}
                     value={this.getCreateItemValue(rowIndex, col)}
                     onChange={selectedData => this.onCreateCellValueChange(
                       rowIndex,
@@ -1086,8 +1107,8 @@ export default class DataGrid extends React.PureComponent {
                   <FloatingSelect
                     name={col.valueKeyPath.join() + '-filter'}
                     options={col.filterSelectOptionsMod && selectOptions ?
-                             col.filterSelectOptionsMod(selectOptions.slice(), col) :
-                             selectOptions}
+                      col.filterSelectOptionsMod(selectOptions.slice(), col) :
+                      selectOptions}
                     value={this.getFilterItemValue(col.valueKeyPath)}
                     onChange={selectedData => this.onFilterCellValueChange(
                       col.valueKeyPath,
@@ -1124,7 +1145,7 @@ export default class DataGrid extends React.PureComponent {
                       tabIndex,
                       id: `ocDatagridEditInput-${this.props.id}-${column.columnKey}-${rowIndex}`,
                       onKeyDown: e => this.onEditCellKeyDown(
-                        e.keyCode,
+                        e,
                         column.columnKey,
                         rowIndex,
                       ),
@@ -1479,8 +1500,7 @@ export default class DataGrid extends React.PureComponent {
       );
     }
     let rowsCount = (this.props.rowsCount || this.props.rowsCount === 0) ?
-                    this.props.rowsCount :
-                    this.props.data.size;
+      this.props.rowsCount : this.props.data.size;
     if (this.props.isCreating) rowsCount += this.props.createData.size;
     if (this.props.isFiltering) rowsCount += 1;
     let scrollToRow = this.props.scrollToRow || this.state.currentRow;
@@ -1560,5 +1580,4 @@ export default class DataGrid extends React.PureComponent {
       </div>
     );
   }
-
 }

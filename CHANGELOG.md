@@ -4,6 +4,14 @@
 
 ## <next>
 
+## 5.0.2
+* Fix Tab and arrow keys navigation of `Datagrid` after dependencies update
+
+## 5.0.0
+* Fix Tab and arrow keys navigation for disabled columns of `Datagrid`
+* Responsive navbar modifications and new features
+* Update dependencies, update Webpack to version 3.5.5 and NPM to version 5.4.0
+
 ## 4.4.1
 * Fix Tab issue in editing mode of `Datagrid`
 * Add align to input components of `Datagrid` if prop `align` is set

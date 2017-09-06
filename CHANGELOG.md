@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 5.0.3
 * Fixed responsive navbar to handle cases where active key is out of range.
 
 ## 5.0.2

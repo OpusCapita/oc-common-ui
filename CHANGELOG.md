@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Fixed responsive navbar to handle cases where active key is out of range.
 
 ## 5.0.2
 * Fix Tab and arrow keys navigation of `Datagrid` after dependencies update

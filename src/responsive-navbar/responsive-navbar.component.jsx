@@ -134,7 +134,7 @@ export class ResponsiveNavbar extends React.Component {
     const inactiveBorder = this.props.showNavItemBorder ? 'inactive-border' : '';
     const borderClass = this.props.activeKey >= this.state.lastVisibleItemIndex ?
     'selected-border' : inactiveBorder;
-
+    const activeItem = this.props.list[this.props.activeKey];
     return (
       <div
         id="responsive-navbar-select"
@@ -144,7 +144,7 @@ export class ResponsiveNavbar extends React.Component {
         <Select
           name="responsiveNavbarSelect"
           multi={false}
-          value={this.props.list[this.props.activeKey].href}
+          value={activeItem ? activeItem.href : ''}
           clearable={false}
           placeholder={this.props.placeholder}
           options={items}

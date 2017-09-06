@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Separate `Cards`, `FloatingSelect`, `Datagrid` and `Icons` to own repository.
 
 ## 5.0.2
 * Fix Tab and arrow keys navigation of `Datagrid` after dependencies update

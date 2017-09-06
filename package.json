@@ -16,6 +16,10 @@
     "version": "npm run build && git add -A lib",
     "postversion": "git push && git push --tags"
   },
+  "engines": {
+    "node": ">=6.x.x",
+    "npm": ">=5.4.x"
+  },
   "peerDependencies": {
     "classnames": "^2.2.5",
     "immutable": "^3.8.1",
@@ -113,7 +117,7 @@
   },
   "dependencies": {
     "@opuscapita/react-cards": "^1.0.3",
-    "@opuscapita/react-floating-select": "git+https://github.com/OpusCapita/react-floating-select.git",
+    "@opuscapita/react-floating-select": "1.0.0",
     "@opuscapita/react-grid": "^1.0.2",
     "@opuscapita/react-icons": "^1.1.1"
   }

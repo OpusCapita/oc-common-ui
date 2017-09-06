@@ -36,41 +36,36 @@ const ITEMS = [
   },
   {
     id: 8,
-    text: 'FloatingSelect',
-    to: '/floating-select',
-  },
-  {
-    id: 9,
     text: 'Menu',
     to: '/menu',
   },
   {
-    id: 10,
+    id: 9,
     text: 'MultiSelect',
     to: '/multi-select',
   },
   {
-    id: 11,
+    id: 10,
     text: 'Responsive navbar',
     to: '/responsive-navbar',
   },
   {
-    id: 12,
+    id: 11,
     text: 'Searchbar',
     to: '/searchbar',
   },
   {
-    id: 13,
+    id: 12,
     text: 'Spinner',
     to: '/spinner',
   },
   {
-    id: 14,
+    id: 13,
     text: 'Split Pane',
     to: '/split-pane',
   },
   {
-    id: 15,
+    id: 14,
     text: 'Wizard',
     to: '/wizard',
   },

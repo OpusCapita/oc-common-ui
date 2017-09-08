@@ -9,14 +9,12 @@ import { createStore,
 import { Provider } from 'react-redux';
 import { IntlProvider, intlReducer } from 'react-intl-redux';
 import thunk from 'redux-thunk';
-import { alertsReducer, OCAlert } from '../src/index';
 import App from './app.component';
 import SpinnerView from './components/spinner-view/spinner-view.component';
 import AutocompleteView from './components/autocomplete/autocomplete.component';
 import ButtonView from './components/button/button.component';
 import SearchbarView from './components/searchbar/searchbar.component';
 import ExtendedSearchView from './components/extended-search/extended-search.component';
-import AlertsView from './components/alerts-view/alerts-view.component';
 import SplitPaneView from './components/split-pane-view/split-pane-view.component';
 import DropdownContainerView from './components/dropdown-container-view/dropdown-container-view.component';
 import DropdownMenuView from './components/dropdown-menu-view/dropdown-menu-view.component';
@@ -34,13 +32,10 @@ const composeEnhancers = (process.env.NODE_ENV !== 'production' && window.__REDU
 
 const store = createStore(
   combineReducers({
-    alertsReducer,
     intl: intlReducer,
   }),
   composeEnhancers(applyMiddleware(thunk)),
 );
-
-OCAlert.setStore(store);
 
 render((
   <Provider store={store}>
@@ -52,7 +47,6 @@ render((
           <Route path="/extendedsearch" component={ExtendedSearchView} />
           <Route path="/button" component={ButtonView} />
           <Route path="/autocomplete" component={AutocompleteView} />
-          <Route path="/alerts" component={AlertsView} />
           <Route path="/spinner" component={SpinnerView} />
           <Route path="/menu" component={MenuView} />
           <Route path="/split-pane" component={SplitPaneView} />

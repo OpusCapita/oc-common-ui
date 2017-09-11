@@ -2,8 +2,10 @@
 
 import React from 'react';
 
+import { Icon } from '@opuscapita/react-icons';
+
 import { DropdownMenu } from '../../../src/index';
-import { Icon } from '../../../src/icons';
+
 
 function DropdownMenuView() {
   const containerStyle = {

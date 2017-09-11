@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { ControlLabel } from 'react-bootstrap';
 
-import { Icon } from '../icons/index';
+import { Icon } from '@opuscapita/react-icons';
 
 import './wizard-header.component.scss';
 

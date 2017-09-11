@@ -5,6 +5,12 @@
 ## <next>
 * Separate `Alerts`, `Cards`, `FloatingSelect`, `Datagrid` and `Icons` to own repository.
 
+## 5.0.4
+* NavItem id set correctly in responsive-navbar
+
+## 5.0.3
+* Fixed responsive navbar to handle cases where active key is out of range.
+
 ## 5.0.2
 * Fix Tab and arrow keys navigation of `Datagrid` after dependencies update
 

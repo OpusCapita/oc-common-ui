@@ -49,9 +49,9 @@ Some components needs reducers to be loaded in the redux store, those are done i
 
 ### Component descriptions
 
-- [Alerts](./src/alerts/README.md)
-- [Cards](./src/cards/README.md)
-- [Datagrid](./src/datagrid/README.md)
+- [ConfirmDialog](./src/confirm-dialog/README.md)
+- [DropdownMultiSelect](./src/dropdown-multi-select/README.md)
+- [MultiSelect](./src/multi-select/README.md)
 - [ResponsiveNavbar](./src/responsive-navbar/README.md)
 - [Spinner](./src/spinner/README.md)
 - [Wizard](./src/wizard/README.md)

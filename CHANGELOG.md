@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Change disabled label color for checkbox and radio inputs
+* Update favicon icon
 
 ## 6.0.0
 * Separate `Alerts`, `Cards`, `FloatingSelect`, `Datagrid` and `Icons` to own repository.

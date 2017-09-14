@@ -4,6 +4,10 @@ input[type=checkbox], input[type=radio], input[type=file] {
   }
 }
 
+.checkbox.disabled, .radio.disabled > label {
+  color: $oc-color-text-disabled;
+}
+
 .oc-mandatory label::after {
   content: " *";
 }

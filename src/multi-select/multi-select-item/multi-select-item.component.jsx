@@ -16,27 +16,37 @@ export default class MultiSelectItem extends React.PureComponent {
       ]).isRequired,
     }).isRequired,
     isChecked: PropTypes.bool.isRequired,
+    isFocused: PropTypes.bool,
     onChange: PropTypes.func,
+    onKeyDown: PropTypes.func,
+    onMouseDown: PropTypes.func,
   };
 
   static defaultProps = {
+    isFocused: false,
     onChange: () => {},
+    onKeyDown: () => {},
+    onMouseDown: () => {},
   };
 
   render() {
-    const { label, value } = this.props.item;
-    const isChecked = this.props.isChecked;
-    const onChange = this.props.onChange;
+    const { isChecked, isFocused, item, onChange, onKeyDown, onMouseDown } = this.props;
+    const itemClass = `oc-multi-select-item ${isFocused ? 'is-focused' : ''}`;
     return (
-      <div className="oc-multi-select-item">
+      <div
+        className={itemClass}
+        id={`oc-multi-select-item-${item.value}`}
+        onMouseDown={() => onMouseDown(item)}
+      >
         <Checkbox
           className="oc-multi-select-item-checkbox"
           checked={isChecked}
-          id={value}
-          onChange={() => onChange(value, !isChecked)}
+          id={item.value}
+          onChange={() => onChange(item.value, !isChecked)}
+          onKeyDown={e => onKeyDown(e)}
         >
           <span className="oc-multi-select-item-label">
-            {label}
+            {item.label}
           </span>
         </Checkbox>
       </div>

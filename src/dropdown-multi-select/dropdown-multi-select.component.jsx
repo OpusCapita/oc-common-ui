@@ -6,6 +6,7 @@ import { FormControl, InputGroup } from 'react-bootstrap';
 
 import { Icon } from '@opuscapita/react-icons';
 
+import KEY_CODES from '../constants/key-codes.constant';
 import { DropdownContainer } from '../dropdown-container/index';
 import { MultiSelect } from '../multi-select/index';
 import './dropdown-multi-select.component.scss';
@@ -15,10 +16,7 @@ export default class DropdownMultiSelect extends React.PureComponent {
   static propTypes = {
     checkedItems: ImmutablePropTypes.list,
     defaultPlaceholder: PropTypes.string,
-    id: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]).isRequired,
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     items: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string.isRequired,
@@ -31,12 +29,14 @@ export default class DropdownMultiSelect extends React.PureComponent {
       }),
     ).isRequired,
     onChange: PropTypes.func,
+    tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   };
 
   static defaultProps = {
     checkedItems: List(),
     defaultPlaceholder: '{N} items selected',
     onChange: () => {},
+    tabIndex: 1,
   };
 
   constructor(props) {
@@ -80,6 +80,13 @@ export default class DropdownMultiSelect extends React.PureComponent {
     }
   }
 
+  handleKeyDown = (e) => {
+    if (e.keyCode === KEY_CODES.DOWN) {
+      this.setState({ isOpen: true });
+      document.activeElement.blur();
+    }
+  }
+
   handleToggle = (isOpen) => {
     if (this.preventToggle) {
       this.preventToggle = false;
@@ -91,13 +98,22 @@ export default class DropdownMultiSelect extends React.PureComponent {
   }
 
   render() {
-    const { items, checkedItems, onChange, defaultPlaceholder, ...otherProps } = this.props;
+    const {
+      items,
+      checkedItems,
+      onChange,
+      defaultPlaceholder,
+      tabIndex,
+      ...otherProps
+    } = this.props;
     const title = (
       <InputGroup>
         <FormControl
           type="text"
           placeholder={this.getPlaceholder(checkedItems, items, defaultPlaceholder)}
           onChange={this.setFilter}
+          onKeyDown={e => this.handleKeyDown(e)}
+          tabIndex={tabIndex}
           value={this.state.filterValue}
         />
         <InputGroup.Addon
@@ -125,8 +141,9 @@ export default class DropdownMultiSelect extends React.PureComponent {
           {...otherProps}
         >
           <MultiSelect
-            items={filteredItems}
             checkedItems={checkedItems}
+            isRendered={this.state.isOpen}
+            items={filteredItems}
             onChange={onChange}
           />
         </DropdownContainer>

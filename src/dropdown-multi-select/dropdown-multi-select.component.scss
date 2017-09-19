@@ -22,7 +22,8 @@
     .dropdown-menu {
       width: 100%;
       overflow-y: auto;
-      max-height: 242px; // 240 = 29px * 8items + 10px
+      max-height: 234px; // 234 = 29px * 8items + 2px
+      padding: 0;
     }  
   }
 }

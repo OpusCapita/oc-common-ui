@@ -6,6 +6,7 @@ import { FormControl, InputGroup } from 'react-bootstrap';
 
 import { Icon } from '@opuscapita/react-icons';
 
+import KEY_CODES from '../constants/key-codes.constant';
 import { DropdownContainer } from '../dropdown-container/index';
 import { MultiSelect } from '../multi-select/index';
 import './dropdown-multi-select.component.scss';
@@ -15,10 +16,7 @@ export default class DropdownMultiSelect extends React.PureComponent {
   static propTypes = {
     checkedItems: ImmutablePropTypes.list,
     defaultPlaceholder: PropTypes.string,
-    id: PropTypes.oneOfType([
-      PropTypes.number,
-      PropTypes.string,
-    ]).isRequired,
+    id: PropTypes.oneOfType([PropTypes.number, PropTypes.string]).isRequired,
     items: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string.isRequired,
@@ -31,17 +29,19 @@ export default class DropdownMultiSelect extends React.PureComponent {
       }),
     ).isRequired,
     onChange: PropTypes.func,
+    tabIndex: PropTypes.oneOfType([PropTypes.number, PropTypes.string]),
   };
 
   static defaultProps = {
     checkedItems: List(),
     defaultPlaceholder: '{N} items selected',
     onChange: () => {},
+    tabIndex: 1,
   };
 
   constructor(props) {
     super(props);
-    this.state = { isOpen: false, filterValue: '' };
+    this.state = { isOpen: false, isFocusOnChild: false, filterValue: '' };
     this.preventToggle = false;
   }
 
@@ -68,15 +68,36 @@ export default class DropdownMultiSelect extends React.PureComponent {
     }
   }
 
+  blurInput = () => {
+    this.handleToggle(true);
+    if (this.props.items.length > 0) {
+      document.activeElement.blur();
+      this.setState({ isFocusOnChild: true });
+    }
+  }
+
   filterItems = (items) => {
     const filterValue = this.state.filterValue.replace(/\s/g, '').toLowerCase();
     return items.filter(i => i.label.replace(/\s/g, '').toLowerCase().match(filterValue) !== null);
+  }
+
+  focusInput = () => {
+    this.handleToggle(false);
+    const element = document.getElementById(`input_${this.props.id}`);
+    element.focus();
+    this.setState({ isFocusOnChild: false });
   }
 
   handleClear = () => {
     this.preventToggle = true;
     if (this.props.checkedItems.size > 0) {
       this.props.onChange(List());
+    }
+  }
+
+  handleKeyDown = (e) => {
+    if (e.keyCode === KEY_CODES.DOWN) {
+      this.blurInput();
     }
   }
 
@@ -91,13 +112,24 @@ export default class DropdownMultiSelect extends React.PureComponent {
   }
 
   render() {
-    const { items, checkedItems, onChange, defaultPlaceholder, ...otherProps } = this.props;
+    const {
+      id,
+      items,
+      checkedItems,
+      onChange,
+      defaultPlaceholder,
+      tabIndex,
+      ...otherProps
+    } = this.props;
     const title = (
       <InputGroup>
         <FormControl
+          id={`input_${id}`}
           type="text"
           placeholder={this.getPlaceholder(checkedItems, items, defaultPlaceholder)}
           onChange={this.setFilter}
+          onKeyDown={e => this.handleKeyDown(e)}
+          tabIndex={tabIndex}
           value={this.state.filterValue}
         />
         <InputGroup.Addon
@@ -117,6 +149,7 @@ export default class DropdownMultiSelect extends React.PureComponent {
     return (
       <div className="oc-dropdown-multi-select">
         <DropdownContainer
+          id={id}
           isOpen={this.state.isOpen}
           noCaret
           onToggle={this.handleToggle}
@@ -125,8 +158,10 @@ export default class DropdownMultiSelect extends React.PureComponent {
           {...otherProps}
         >
           <MultiSelect
-            items={filteredItems}
             checkedItems={checkedItems}
+            items={filteredItems}
+            isFocused={this.state.isFocusOnChild}
+            onParentFocus={this.focusInput}
             onChange={onChange}
           />
         </DropdownContainer>

@@ -11,7 +11,11 @@
 
       &:hover {
         background-color: $oc-color-select-hover;
-      }
-    }
+      }    
+    }    
   }
+}
+
+.is-focused > .checkbox > label {
+  background-color: $oc-color-select-hover;
 }

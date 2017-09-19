@@ -41,7 +41,7 @@ export default class MultiSelect extends React.PureComponent {
   componentWillReceiveProps(nextProps) {
     // focus on the first item if a parent component calls to move focus on it
     const items = this.props.items;
-    if (nextProps.isFocused === true && !this.props.isFocused && items.length > 0) {
+    if (nextProps.isFocused && !this.props.isFocused && items.length > 0) {
       this.setState({ focusedIndex: 0, focusedItem: items[0] });
       const element = document.getElementById(items[0].value);
       element.focus();
@@ -54,7 +54,7 @@ export default class MultiSelect extends React.PureComponent {
     const newIndex = item !== null ? items.indexOf(item) : this.state.focusedIndex + inc;
     if (newIndex > -1 && newIndex < items.length) {
       this.setState({ focusedIndex: newIndex, focusedItem: items[newIndex] });
-      const element = document.getElementById(`item${items[newIndex].value}`);
+      const element = document.getElementById(`item_${items[newIndex].value}`);
       element.focus();
       element.scrollIntoView();
     } else if (newIndex === -1 && this.props.onParentFocus) {

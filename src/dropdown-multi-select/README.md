@@ -21,6 +21,7 @@ defaultPlacehoder | string | '{N} items selected' | Placeholder to be displayed 
 id | [number, string] | required | ID of the component
 items | array | required | Array of items to display in the dropdown
 onChange | function | | Callback that is called when an item is clicked
+tabIndex | [number, string] | 1 | tabIndex of the element
 
 #### DropdownMultiSelect - items props
 

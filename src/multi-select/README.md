@@ -17,9 +17,10 @@ It contains **MultiSelect** react component that displays a list of items with c
 Prop name | Type | Default | Description
 --- | --- | --- | ---
 checkedItems | Immutable.list | | Values of checked items
-isRendered | bool | true | A sign of a component rendered if called from a parent component
+isFocused | bool | false | A sign of a focus on the component moved from a parent component
 items | array | required | Array of items
 onChange | function | | Callback that is called when an item is clicked
+onParentFocus | function | null | Callback that is called when the focus should move to a parent component if exists
 
 #### MultiSelect - items props
 

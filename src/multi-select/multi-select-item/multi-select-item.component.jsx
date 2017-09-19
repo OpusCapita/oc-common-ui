@@ -35,7 +35,7 @@ export default class MultiSelectItem extends React.PureComponent {
     return (
       <div
         className={itemClass}
-        id={`oc-multi-select-item-${item.value}`}
+        id={`item${item.value}`}
         onMouseDown={() => onMouseDown(item)}
       >
         <Checkbox

@@ -11,7 +11,7 @@ export default class MultiSelect extends React.PureComponent {
 
   static propTypes = {
     checkedItems: ImmutablePropTypes.list,
-    isRendered: PropTypes.bool,
+    isFocused: PropTypes.bool,
     items: PropTypes.arrayOf(
       PropTypes.shape({
         label: PropTypes.string.isRequired,
@@ -23,12 +23,14 @@ export default class MultiSelect extends React.PureComponent {
       }),
     ).isRequired,
     onChange: PropTypes.func,
+    onParentFocus: PropTypes.func,
   };
 
   static defaultProps = {
     checkedItems: List(),
-    isRendered: true,
+    isFocused: false,
     onChange: () => {},
+    onParentFocus: null,
   };
 
   constructor(props) {
@@ -36,10 +38,13 @@ export default class MultiSelect extends React.PureComponent {
     this.state = { focusedIndex: -1, focusedItem: null };
   }
 
-  componentWillUpdate(nextProps) {
-    // focus on the fist option when first rendered
-    if (this.state.focusedIndex === -1 && nextProps.isRendered && nextProps.items.length > 0) {
-      this.focusItem(0, nextProps.items[0]);
+  componentWillReceiveProps(nextProps) {
+    // focus on the first item if a parent component calls to move focus on it
+    const items = this.props.items;
+    if (nextProps.isFocused === true && !this.props.isFocused && items.length > 0) {
+      this.setState({ focusedIndex: 0, focusedItem: items[0] });
+      const element = document.getElementById(items[0].value);
+      element.focus();
     }
   }
 
@@ -49,10 +54,12 @@ export default class MultiSelect extends React.PureComponent {
     const newIndex = item !== null ? items.indexOf(item) : this.state.focusedIndex + inc;
     if (newIndex > -1 && newIndex < items.length) {
       this.setState({ focusedIndex: newIndex, focusedItem: items[newIndex] });
-      const element = document.getElementById(`oc-multi-select-item-${items[newIndex].value}`);
+      const element = document.getElementById(`item${items[newIndex].value}`);
       element.focus();
       element.scrollIntoView();
-      // console.log(element);
+    } else if (newIndex === -1 && this.props.onParentFocus) {
+      this.setState({ focusedIndex: -1, focusedItem: null });
+      this.props.onParentFocus();
     }
   }
 
@@ -79,6 +86,7 @@ export default class MultiSelect extends React.PureComponent {
         this.focusItem(1);
         break;
       case KEY_CODES.UP:
+        e.preventDefault();
         this.focusItem(-1);
         break;
       default:

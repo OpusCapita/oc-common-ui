@@ -5,6 +5,7 @@
 ## <next>
 * Change disabled label color for checkbox and radio inputs
 * Update favicon icon
+* Add keyboard events to `DropdownMultiSelect` and `MultiSelect`
 
 ## 6.0.0
 * Separate `Alerts`, `Cards`, `FloatingSelect`, `Datagrid` and `Icons` to own repository.

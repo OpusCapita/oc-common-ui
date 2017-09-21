@@ -42,23 +42,24 @@ export default class MultiSelect extends React.PureComponent {
     // focus on the first item if a parent component calls to move focus on it
     const items = this.props.items;
     if (nextProps.isFocused && !this.props.isFocused && items.length > 0) {
-      this.setState({ focusedIndex: 0, focusedItem: items[0] });
-      const element = document.getElementById(items[0].value);
-      element.focus();
+      this.setState({ focusedIndex: -1, focusedItem: null }, () => {
+        const element = document.getElementById(items[0].value);
+        element.focus();
+        this.focusItem(1);
+      });
     }
   }
 
-  focusItem = (inc = 0, item = null) => {
+  focusItem = (inc = 0) => {
     const items = this.props.items;
     if (items.length === 0) return;
-    const newIndex = item !== null ? items.indexOf(item) : this.state.focusedIndex + inc;
+    const newIndex = this.state.focusedIndex + inc;
     if (newIndex > -1 && newIndex < items.length) {
       this.setState({ focusedIndex: newIndex, focusedItem: items[newIndex] });
       const element = document.getElementById(`item_${items[newIndex].value}`);
       element.focus();
       element.scrollIntoView();
     } else if (newIndex === -1 && this.props.onParentFocus) {
-      this.setState({ focusedIndex: -1, focusedItem: null });
       this.props.onParentFocus();
     }
   }
@@ -95,7 +96,12 @@ export default class MultiSelect extends React.PureComponent {
   }
 
   handleMouseDown = (item) => {
-    this.focusItem(0, item);
+    const newIndex = this.props.items.indexOf(item);
+    if (newIndex > -1) {
+      this.setState({ focusedIndex: newIndex, focusedItem: item });
+      const element = document.getElementById(`item_${item.value}`);
+      element.focus();
+    }
   }
 
   isChecked = (value, checkedItems) => checkedItems.indexOf(value) > -1;

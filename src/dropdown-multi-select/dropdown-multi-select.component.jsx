@@ -85,7 +85,6 @@ export default class DropdownMultiSelect extends React.PureComponent {
     this.handleToggle(false);
     const element = document.getElementById(`input_${this.props.id}`);
     element.focus();
-    this.setState({ isFocusOnChild: false });
   }
 
   handleClear = () => {
@@ -106,6 +105,8 @@ export default class DropdownMultiSelect extends React.PureComponent {
       this.preventToggle = false;
     } else if (!isOpen && this.state.filterValue !== '') {
       this.setState({ isOpen, filterValue: '' });
+    } else if (!isOpen) {
+      this.setState({ isOpen, isFocusOnChild: isOpen });
     } else {
       this.setState({ isOpen });
     }
@@ -161,8 +162,8 @@ export default class DropdownMultiSelect extends React.PureComponent {
             checkedItems={checkedItems}
             items={filteredItems}
             isFocused={this.state.isFocusOnChild}
-            onParentFocus={this.focusInput}
             onChange={onChange}
+            onParentFocus={this.focusInput}
           />
         </DropdownContainer>
       </div>

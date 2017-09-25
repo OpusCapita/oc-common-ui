@@ -125,6 +125,7 @@ export default class DropdownMultiSelect extends React.PureComponent {
     const title = (
       <InputGroup>
         <FormControl
+          className="oc-input-group-input"
           id={`input_${id}`}
           type="text"
           placeholder={this.getPlaceholder(checkedItems, items, defaultPlaceholder)}

@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 6.1.0
 * Change disabled label color for checkbox and radio inputs
 * Change placeholder color for `DropdownMultiSelect`
 * Update favicon icon

@@ -4,9 +4,12 @@
 
 ## <next>
 * Change disabled label color for checkbox and radio inputs
+* Change placeholder color for `DropdownMultiSelect`
 * Update favicon icon
 * Add keyboard events to `DropdownMultiSelect` and `MultiSelect`
-* Change placeholder color for `DropdownMultiSelect`
+* Upgrade to @opuscapita/react-alerts@1.1.1
+* Upgrade to @opuscapita/react-grid@2.0.4
+* Upgrade packages
 
 ## 6.0.0
 * Separate `Alerts`, `Cards`, `FloatingSelect`, `Datagrid` and `Icons` to own repository.

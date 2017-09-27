@@ -1,71 +1,66 @@
 const ITEMS = [
   {
     id: 1,
-    text: 'Alerts',
-    to: '/alerts',
-  },
-  {
-    id: 2,
     text: 'Autocomplete',
     to: '/autocomplete',
   },
   {
-    id: 3,
+    id: 2,
     text: 'Button',
     to: '/button',
   },
   {
-    id: 4,
+    id: 3,
     text: 'DropdownContainer',
     to: '/dropdown-container',
   },
   {
-    id: 5,
+    id: 4,
     text: 'DropdownMenu',
     to: '/dropdown-menu',
   },
   {
-    id: 6,
+    id: 5,
     text: 'DropdownMultiSelect',
     to: '/dropdown-multi-select',
   },
   {
-    id: 7,
+    id: 6,
     text: 'ExtendedSearch',
     to: '/extendedsearch',
   },
   {
-    id: 8,
+    id: 7,
     text: 'Menu',
     to: '/menu',
   },
   {
-    id: 9,
+    id: 8,
     text: 'MultiSelect',
     to: '/multi-select',
   },
   {
-    id: 10,
+    id: 9,
     text: 'Responsive navbar',
     to: '/responsive-navbar',
   },
   {
-    id: 11,
+    id: 10,
     text: 'Searchbar',
     to: '/searchbar',
   },
   {
-    id: 12,
+    id: 11,
     text: 'Spinner',
     to: '/spinner',
   },
   {
-    id: 13,
+    id: 12,
     text: 'Split Pane',
     to: '/split-pane',
   },
   {
-    id: 14,
+    id: 13,
     text: 'Wizard',
     to: '/wizard',
   },

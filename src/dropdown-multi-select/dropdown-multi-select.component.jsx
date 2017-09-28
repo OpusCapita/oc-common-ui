@@ -2,14 +2,20 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { List } from 'immutable';
-import { FormControl, InputGroup } from 'react-bootstrap';
-
-import { Icon } from '@opuscapita/react-icons';
 
 import KEY_CODES from '../constants/key-codes.constant';
 import { DropdownContainer } from '../dropdown-container/index';
 import { MultiSelect } from '../multi-select/index';
+import TitleInput from './title-input/title-input.component';
 import './dropdown-multi-select.component.scss';
+
+//import Perf from '../../node_modules/react-addons-perf';
+
+//window.Perf = Perf;
+
+//import { whyDidYouUpdate } from '../../node_modules/why-did-you-update/lib';
+// whyDidYouUpdate(React, { include: /^MultiSelect/, exclude: /^Checkbox/ });
+//whyDidYouUpdate(React);
 
 export default class DropdownMultiSelect extends React.PureComponent {
 
@@ -123,29 +129,15 @@ export default class DropdownMultiSelect extends React.PureComponent {
       ...otherProps
     } = this.props;
     const title = (
-      <InputGroup>
-        <FormControl
-          className="oc-input-group-input"
-          id={`input_${id}`}
-          type="text"
-          placeholder={this.getPlaceholder(checkedItems, items, defaultPlaceholder)}
-          onChange={this.setFilter}
-          onKeyDown={e => this.handleKeyDown(e)}
-          tabIndex={tabIndex}
-          value={this.state.filterValue}
-        />
-        <InputGroup.Addon
-          className="oc-input-group-icon-remove"
-          onClick={this.handleClear}
-        >
-          <Icon
-            type="indicator"
-            name="remove"
-            width={17}
-            height={17}
-          />
-        </InputGroup.Addon>
-      </InputGroup>
+      <TitleInput
+        id={`input_${id}`}
+        onChange={this.setFilter}
+        onClear={this.handleClear}
+        onKeyDown={this.handleKeyDown}
+        placeholder={this.getPlaceholder(checkedItems, items, defaultPlaceholder)}
+        tabIndex={tabIndex}
+        value={this.state.filterValue}
+      />
     );
     const filteredItems = this.state.filterValue === '' ? items : this.filterItems(items);
     return (

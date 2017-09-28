@@ -7,23 +7,6 @@ import KEY_CODES from '../constants/key-codes.constant';
 import MultiSelectItem from './multi-select-item/multi-select-item.component';
 import './multi-select.component.scss';
 
-import Perf from '../../node_modules/react-addons-perf';
-
-window.Perf = Perf;
-
-// import { whyDidYouUpdate } from '../../node_modules/why-did-you-update/lib';
-
-/*
-let createClass = React.createClass;
-Object.defineProperty(React, 'createClass', {
-  set: (nextCreateClass) => {
-    createClass = nextCreateClass;
-  },
-});
-*/
-// whyDidYouUpdate(React, { include: /^MultiSelect/, exclude: /^Checkbox/ });
-// whyDidYouUpdate(React);
-
 export default class MultiSelect extends React.PureComponent {
 
   static propTypes = {
@@ -122,7 +105,7 @@ export default class MultiSelect extends React.PureComponent {
     }
   }
 
-  handleMouseDown = (item) => {
+  handleMouseDown = item => () => {
     const newIndex = this.props.items.indexOf(item);
     if (newIndex > -1) {
       this.setState({ focusedIndex: newIndex, focusedItem: item });
@@ -147,7 +130,7 @@ export default class MultiSelect extends React.PureComponent {
               className={itemClass}
               id={`item_${item.value}`}
               key={item.value}
-              onMouseDown={() => this.handleMouseDown(item)}
+              onMouseDown={this.handleMouseDown(item)}
             >
               <MultiSelectItem
                 id={item.value}

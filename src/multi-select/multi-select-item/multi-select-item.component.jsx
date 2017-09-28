@@ -16,40 +16,37 @@ export default class MultiSelectItem extends React.PureComponent {
       ]).isRequired,
     }).isRequired,
     isChecked: PropTypes.bool.isRequired,
-    isFocused: PropTypes.bool,
     onChange: PropTypes.func,
     onKeyDown: PropTypes.func,
-    onMouseDown: PropTypes.func,
   };
 
   static defaultProps = {
-    isFocused: false,
     onChange: () => {},
     onKeyDown: () => {},
-    onMouseDown: () => {},
   };
 
+  onChange = () => {
+    this.props.onChange(this.props.item.value, !this.props.isChecked);
+  }
+
+  onKeyDown = (e) => {
+    this.props.onKeyDown(e);
+  }
+
   render() {
-    const { isChecked, isFocused, item, onChange, onKeyDown, onMouseDown } = this.props;
-    const itemClass = `oc-multi-select-item ${isFocused ? 'is-focused' : ''}`;
+    const { isChecked, item } = this.props;
     return (
-      <div
-        className={itemClass}
-        id={`item_${item.value}`}
-        onMouseDown={() => onMouseDown(item)}
+      <Checkbox
+        className="oc-multi-select-item-checkbox"
+        checked={isChecked}
+        id={item.value}
+        onChange={this.onChange}
+        onKeyDown={this.onKeyDown}
       >
-        <Checkbox
-          className="oc-multi-select-item-checkbox"
-          checked={isChecked}
-          id={item.value}
-          onChange={() => onChange(item.value, !isChecked)}
-          onKeyDown={e => onKeyDown(e)}
-        >
-          <span className="oc-multi-select-item-label">
-            {item.label}
-          </span>
-        </Checkbox>
-      </div>
+        <span className="oc-multi-select-item-label">
+          {item.label}
+        </span>
+      </Checkbox>
     );
   }
 }

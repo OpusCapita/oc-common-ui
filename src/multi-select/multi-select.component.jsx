@@ -7,6 +7,23 @@ import KEY_CODES from '../constants/key-codes.constant';
 import MultiSelectItem from './multi-select-item/multi-select-item.component';
 import './multi-select.component.scss';
 
+import Perf from '../../node_modules/react-addons-perf';
+
+window.Perf = Perf;
+
+// import { whyDidYouUpdate } from '../../node_modules/why-did-you-update/lib';
+
+/*
+let createClass = React.createClass;
+Object.defineProperty(React, 'createClass', {
+  set: (nextCreateClass) => {
+    createClass = nextCreateClass;
+  },
+});
+*/
+// whyDidYouUpdate(React, { include: /^MultiSelect/, exclude: /^Checkbox/ });
+// whyDidYouUpdate(React);
+
 export default class MultiSelect extends React.PureComponent {
 
   static propTypes = {
@@ -49,6 +66,16 @@ export default class MultiSelect extends React.PureComponent {
       });
     }
   }
+
+  /*
+  shouldComponentUpdate(nextProps) {
+    const { isChecked, item } = this.props;
+    if (nextProps.isChecked !== isChecked || nextProps.item.label !== item.label) {
+      return true;
+    }
+    return false;
+  }
+  */
 
   focusItem = (inc = 0) => {
     const items = this.props.items;
@@ -113,17 +140,23 @@ export default class MultiSelect extends React.PureComponent {
       <div className="oc-multi-select">
         {items.map((item) => {
           const isChecked = this.isChecked(item.value, checkedItems);
+          const isFocused = focusedItem !== null && focusedItem.value === item.value;
+          const itemClass = `oc-multi-select-item ${isFocused ? 'is-focused' : ''}`;
           return (
-            <MultiSelectItem
+            <div
+              className={itemClass}
+              id={`item_${item.value}`}
               key={item.value}
-              id={item.value}
-              isChecked={isChecked}
-              isFocused={focusedItem !== null && focusedItem.value === item.value}
-              item={item}
-              onChange={this.handleChange}
-              onKeyDown={this.handleKeyDown}
-              onMouseDown={this.handleMouseDown}
-            />
+              onMouseDown={() => this.handleMouseDown(item)}
+            >
+              <MultiSelectItem
+                id={item.value}
+                isChecked={isChecked}
+                item={item}
+                onChange={this.handleChange}
+                onKeyDown={this.handleKeyDown}
+              />
+            </div>
           );
         })}
       </div>

@@ -50,16 +50,6 @@ export default class MultiSelect extends React.PureComponent {
     }
   }
 
-  /*
-  shouldComponentUpdate(nextProps) {
-    const { isChecked, item } = this.props;
-    if (nextProps.isChecked !== isChecked || nextProps.item.label !== item.label) {
-      return true;
-    }
-    return false;
-  }
-  */
-
   focusItem = (inc = 0) => {
     const items = this.props.items;
     if (items.length === 0) return;

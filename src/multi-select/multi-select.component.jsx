@@ -95,7 +95,7 @@ export default class MultiSelect extends React.PureComponent {
     }
   }
 
-  handleMouseDown = (item) => {
+  handleMouseDown = item => () => {
     const newIndex = this.props.items.indexOf(item);
     if (newIndex > -1) {
       this.setState({ focusedIndex: newIndex, focusedItem: item });
@@ -113,17 +113,23 @@ export default class MultiSelect extends React.PureComponent {
       <div className="oc-multi-select">
         {items.map((item) => {
           const isChecked = this.isChecked(item.value, checkedItems);
+          const isFocused = focusedItem !== null && focusedItem.value === item.value;
+          const itemClass = `oc-multi-select-item ${isFocused ? 'is-focused' : ''}`;
           return (
-            <MultiSelectItem
+            <div
+              className={itemClass}
+              id={`item_${item.value}`}
               key={item.value}
-              id={item.value}
-              isChecked={isChecked}
-              isFocused={focusedItem !== null && focusedItem.value === item.value}
-              item={item}
-              onChange={this.handleChange}
-              onKeyDown={this.handleKeyDown}
-              onMouseDown={this.handleMouseDown}
-            />
+              onMouseDown={this.handleMouseDown(item)}
+            >
+              <MultiSelectItem
+                id={item.value}
+                isChecked={isChecked}
+                item={item}
+                onChange={this.handleChange}
+                onKeyDown={this.handleKeyDown}
+              />
+            </div>
           );
         })}
       </div>

@@ -4,6 +4,10 @@
 
 ## <next>
 
+## 6.1.1
+* DropdownMultiSelect performance update
+* Upgrade to @opuscapita/react-grid@2.0.5
+
 ## 6.1.0
 * Change disabled label color for checkbox and radio inputs
 * Change placeholder color for `DropdownMultiSelect`

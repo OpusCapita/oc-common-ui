@@ -9,14 +9,6 @@ import { MultiSelect } from '../multi-select/index';
 import TitleInput from './title-input/title-input.component';
 import './dropdown-multi-select.component.scss';
 
-//import Perf from '../../node_modules/react-addons-perf';
-
-//window.Perf = Perf;
-
-//import { whyDidYouUpdate } from '../../node_modules/why-did-you-update/lib';
-// whyDidYouUpdate(React, { include: /^MultiSelect/, exclude: /^Checkbox/ });
-//whyDidYouUpdate(React);
-
 export default class DropdownMultiSelect extends React.PureComponent {
 
   static propTypes = {

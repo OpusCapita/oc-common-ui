@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Update favicon icon
 
 ## 6.1.1
 * DropdownMultiSelect performance update

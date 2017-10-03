@@ -3,7 +3,10 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 6.1.2
 * Update favicon icon
+* Upgrade to @opuscapita/react-grid@2.1.0
 
 ## 6.1.1
 * DropdownMultiSelect performance update

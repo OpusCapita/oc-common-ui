@@ -72,12 +72,22 @@ const rules = [
   },
 ];
 
+const resolve = {
+  extensions: ['.webpack.js', '.web.js', '.js', '.json', '.jsx'],
+  alias: {
+    react: path.resolve('./node_modules/react'),
+    'react-dom': path.resolve('./node_modules/react-dom'),
+    'react-redux': path.resolve('./node_modules/react-redux'),
+  },
+};
+
 const config = merge(getBaseConfiguration(params), {
   devtool: 'source-map',
   plugins,
   module: {
     rules,
   },
+  resolve,
 });
 
 const wdsEntries = [

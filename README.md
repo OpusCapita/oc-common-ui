@@ -49,11 +49,18 @@ Some components needs reducers to be loaded in the redux store, those are done i
 
 ### Component descriptions
 
+- Autocomplete
 - [ConfirmDialog](./src/confirm-dialog/README.md)
+- DropdownContainer
+- DropdownMenu
 - [DropdownMultiSelect](./src/dropdown-multi-select/README.md)
+- ExtendedSearch
+- Menu
 - [MultiSelect](./src/multi-select/README.md)
 - [ResponsiveNavbar](./src/responsive-navbar/README.md)
+- SearchBar
 - [Spinner](./src/spinner/README.md)
+- SplitPane
 - [Wizard](./src/wizard/README.md)
 
 ## Links

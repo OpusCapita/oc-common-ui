@@ -3,7 +3,6 @@
 import React from 'react';
 import { expect } from 'chai';
 import { mount } from 'enzyme';
-import ReactSpinner from 'react-spinjs';
 
 import { Spinner } from '../../src/index';
 
@@ -13,7 +12,7 @@ describe('Spinner component', function describe() {
     const wrapper = mount(
       <Spinner />,
     );
-    expect(wrapper.find(ReactSpinner).props().config).to.eql({
+    expect(wrapper.find(Spinner).props().config).to.eql({
       color: '#FAC51D',
       width: 4,
     });

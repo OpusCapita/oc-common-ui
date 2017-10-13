@@ -2,11 +2,14 @@ const webpack = require('webpack');
 const WriteFilePlugin = require('write-file-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const merge = require('webpack-merge');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
 const flexbugs = require('postcss-flexbugs-fixes');
-const merge = require('webpack-merge');
+const utils = require('./webpack/utils.js');
+
+const isProduction = utils.isProduction();
 
 const params = {
   root: __dirname,
@@ -29,49 +32,6 @@ const plugins = [
   new ProgressBarPlugin({ clear: false }),
 ];
 
-const rules = [
-  {
-    test: /\.ejs$/,
-    use: [
-      'ejs-loader?variable=data',
-    ],
-  },
-  {
-    test: /\.scss$/,
-    use: [
-      'style-loader',
-      'css-loader',
-      {
-        loader: 'postcss-loader',
-        options: {
-          plugins: () => [flexbugs, precss, autoprefixer],
-        },
-      },
-      'sass-loader',
-    ],
-  },
-  {
-    test: /\.ico$/,
-    use: [
-      'file-loader?name=[name].[ext]',
-    ],
-    include: /images/,
-  },
-  {
-    test: /\.css$/,
-    use: [
-      'style-loader',
-      'css-loader',
-      {
-        loader: 'postcss-loader',
-        options: {
-          plugins: () => [flexbugs, precss, autoprefixer],
-        },
-      },
-    ],
-  },
-];
-
 const resolve = {
   extensions: ['.webpack.js', '.web.js', '.js', '.json', '.jsx'],
   alias: {
@@ -82,12 +42,27 @@ const resolve = {
 };
 
 const config = merge(getBaseConfiguration(params), {
-  devtool: 'source-map',
   plugins,
-  module: {
-    rules,
-  },
   resolve,
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [flexbugs, precss, autoprefixer],
+              minimize: isProduction,
+            },
+          },
+          'sass-loader',
+        ],
+      },
+    ],
+  },
 });
 
 const wdsEntries = [

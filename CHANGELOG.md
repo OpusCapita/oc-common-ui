@@ -4,6 +4,10 @@
 
 ## <next>
 
+## 6.1.3
+* Both development and production versions added to npm package
+* Uprade to @opuscapita/react-grid@2.1.3
+
 ## 6.1.2
 * Update favicon icon
 * Upgrade to @opuscapita/react-grid@2.1.0

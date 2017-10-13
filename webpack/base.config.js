@@ -56,21 +56,6 @@ function getBaseConfiguration(config) {
           ],
         },
         {
-          test: /\.scss$/,
-          use: [
-            'style-loader',
-            'css-loader',
-            {
-              loader: 'postcss-loader',
-              options: {
-                plugins: () => [flexbugs, precss, autoprefixer],
-                minimize: isProduction,
-              },
-            },
-            'sass-loader',
-          ],
-        },
-        {
           test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
           use: [
             'url-loader?limit=100&mimetype=application/font-woff&name=[name].[ext]',

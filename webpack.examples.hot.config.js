@@ -4,6 +4,12 @@ const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const merge = require('webpack-merge');
+const autoprefixer = require('autoprefixer');
+const precss = require('precss');
+const flexbugs = require('postcss-flexbugs-fixes');
+const utils = require('./webpack/utils.js');
+
+const isProduction = utils.isProduction();
 
 const params = {
   root: __dirname,
@@ -38,6 +44,25 @@ const resolve = {
 const config = merge(getBaseConfiguration(params), {
   plugins,
   resolve,
+  module: {
+    rules: [
+      {
+        test: /\.scss$/,
+        use: [
+          'style-loader',
+          'css-loader',
+          {
+            loader: 'postcss-loader',
+            options: {
+              plugins: () => [flexbugs, precss, autoprefixer],
+              minimize: isProduction,
+            },
+          },
+          'sass-loader',
+        ],
+      },
+    ],
+  },
 });
 
 const wdsEntries = [

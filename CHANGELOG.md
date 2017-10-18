@@ -3,11 +3,14 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 6.1.4
 * Fix for filter items of `DropdownMultiSelect` in IE
+* Upgrade to @opuscapita/react-grid@2.2.0
 
 ## 6.1.3
 * Both development and production versions added to npm package
-* Uprade to @opuscapita/react-grid@2.1.3
+* Upgrade to @opuscapita/react-grid@2.1.3
 
 ## 6.1.2
 * Update favicon icon

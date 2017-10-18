@@ -5,6 +5,9 @@
 ## <next>
 
 ## 6.1.4
+* Upgrade to @opuscapita/react-grid@2.2.1
+
+## 6.1.4
 * Fix for filter items of `DropdownMultiSelect` in IE
 * Upgrade to @opuscapita/react-grid@2.2.0
 

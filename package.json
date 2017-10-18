@@ -118,7 +118,7 @@
     "@opuscapita/react-alerts": "1.1.1",
     "@opuscapita/react-cards": "1.0.3",
     "@opuscapita/react-floating-select": "1.0.0",
-    "@opuscapita/react-grid": "2.2.0",
+    "@opuscapita/react-grid": "2.2.1",
     "@opuscapita/react-icons": "1.1.8",
     "spin.js": "2.3.2"
   }

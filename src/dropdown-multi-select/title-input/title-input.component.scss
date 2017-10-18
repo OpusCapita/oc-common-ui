@@ -1,17 +1,4 @@
-@import '../../../styles/colors';
-
 .oc-input-group-icon-remove {
   height: 34px;
   padding: 2px 8px 0 8px!important;
-}
-
-.oc-input-group-input::-webkit-input-placeholder { // WebKit, Blink, Edge
-  color: $oc-color-text!important;
-}
-.oc-input-group-input::-moz-placeholder { // Mozilla Firefox 19+
-  color: $oc-color-text!important;
-  opacity: 1!important;
-}
-.oc-input-group-input:-ms-input-placeholder { // Internet Explorer 11
-  color: $oc-color-text!important;
 }      

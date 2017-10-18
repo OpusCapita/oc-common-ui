@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Fix for filter items of `DropdownMultiSelect` in IE
 
 ## 6.1.3
 * Both development and production versions added to npm package

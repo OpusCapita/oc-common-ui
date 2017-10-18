@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FormControl } from 'react-bootstrap';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 import { List } from 'immutable';
 
@@ -102,7 +103,7 @@ export default class DropdownMultiSelect extends React.PureComponent {
     if (this.preventToggle) {
       this.preventToggle = false;
     } else if (!isOpen && this.state.filterValue !== '') {
-      this.setState({ isOpen, filterValue: '' });
+      this.setState({ isOpen, isFocusOnChild: isOpen, filterValue: '' });
     } else if (!isOpen) {
       this.setState({ isOpen, isFocusOnChild: isOpen });
     } else {
@@ -120,15 +121,23 @@ export default class DropdownMultiSelect extends React.PureComponent {
       tabIndex,
       ...otherProps
     } = this.props;
+    const input = (
+      <FormControl
+        className="oc-input-group-input"
+        id={`input_${id}`}
+        placeholder={this.getPlaceholder(checkedItems, items, defaultPlaceholder)}
+        onChange={this.setFilter}
+        onMouseDown={this.focusInput}
+        onKeyDown={this.handleKeyDown}
+        tabIndex={tabIndex}
+        type="text"
+        value={this.state.filterValue}
+      />
+    );
     const title = (
       <TitleInput
-        id={`input_${id}`}
-        onChange={this.setFilter}
+        input={input}
         onClear={this.handleClear}
-        onKeyDown={this.handleKeyDown}
-        placeholder={this.getPlaceholder(checkedItems, items, defaultPlaceholder)}
-        tabIndex={tabIndex}
-        value={this.state.filterValue}
       />
     );
     const filteredItems = this.state.filterValue === '' ? items : this.filterItems(items);

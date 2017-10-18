@@ -4,7 +4,7 @@
 
 ## <next>
 
-## 6.1.4
+## 6.1.5
 * Upgrade to @opuscapita/react-grid@2.2.1
 
 ## 6.1.4

@@ -4206,6 +4206,9 @@ button.close {
 .oc-multi-select {
   position: relative;
   -webkit-overflow-scrolling: touch; }
+.oc-input-group-icon-remove {
+  height: 34px;
+  padding: 2px 8px 0 8px !important; }
 /* Primary */
 /* Support */
 /* Attention */
@@ -4220,9 +4223,23 @@ button.close {
 /* Date picker */
 /* Select */
 /* Grids */
-.oc-input-group-icon-remove {
-  height: 34px;
-  padding: 2px 8px 0 8px !important; }
+.oc-dropdown-multi-select {
+  width: 100%; }
+.oc-dropdown-multi-select .dropdown {
+    margin-left: 0;
+    width: 100%; }
+.oc-dropdown-multi-select .dropdown .dropdown-toggle {
+      background-color: inherit !important;
+      border: 0 !important;
+      box-shadow: none !important;
+      color: inherit !important;
+      padding: 0 !important;
+      width: 100%; }
+.oc-dropdown-multi-select .dropdown .dropdown-menu {
+      width: 100%;
+      overflow-y: auto;
+      max-height: 234px;
+      padding: 0; }
 .oc-input-group-input::-webkit-input-placeholder {
   color: #67707c !important; }
 .oc-input-group-input::-moz-placeholder {
@@ -4230,23 +4247,6 @@ button.close {
   opacity: 1 !important; }
 .oc-input-group-input:-ms-input-placeholder {
   color: #67707c !important; }
-.oc-dropdown-multi-select {
-  width: 100%; }
-  .oc-dropdown-multi-select .dropdown {
-    margin-left: 0;
-    width: 100%; }
-  .oc-dropdown-multi-select .dropdown .dropdown-toggle {
-      background-color: inherit !important;
-      border: 0 !important;
-      box-shadow: none !important;
-      color: inherit !important;
-      padding: 0 !important;
-      width: 100%; }
-  .oc-dropdown-multi-select .dropdown .dropdown-menu {
-      width: 100%;
-      overflow-y: auto;
-      max-height: 234px;
-      padding: 0; }
 /* Primary */
 /* Support */
 /* Attention */

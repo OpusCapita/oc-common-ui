@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Update favicon icon
 
 ## 6.1.5
 * Upgrade to @opuscapita/react-grid@2.2.1

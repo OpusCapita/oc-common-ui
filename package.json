@@ -7,7 +7,7 @@
   "main": "lib/oc-common-ui.js",
   "scripts": {
     "lint": "node_modules/.bin/eslint --ext .jsx,.js src/ examples/",
-    "build": "webpack && webpack -p",
+    "build": "cross-env BUILD_TARGET=release webpack",
     "dev": "webpack --progress --colors --watch",
     "test": "cross-env NODE_ENV=test mocha --require ignore-styles --compilers js:babel-core/register --colors test/test.setup.js test/**/*.spec.*",
     "docs": "webpack -p --config webpack.docs.config.js",
@@ -83,7 +83,7 @@
     "react": "15.4.x",
     "react-addons-perf": "15.4.2",
     "react-addons-test-utils": "15.6.2",
-    "react-bootstrap": "0.31.3",
+    "react-bootstrap": "0.31.5",
     "react-dom": "15.4.x",
     "react-hot-loader": "3.1.1",
     "react-immutable-proptypes": "2.1.0",
@@ -105,9 +105,10 @@
     "style-loader": "0.19.0",
     "url-loader": "0.6.2",
     "webpack": "3.8.1",
-    "webpack-dev-server": "2.9.2",
+    "webpack-dev-server": "2.9.3",
     "webpack-merge": "4.1.0",
     "webpack-node-externals": "1.6.0",
+    "webpack-notifier": "1.5.0",
     "write-file-webpack-plugin": "4.2.0"
   },
   "repository": {
@@ -118,7 +119,7 @@
     "@opuscapita/react-alerts": "1.1.1",
     "@opuscapita/react-cards": "1.0.3",
     "@opuscapita/react-floating-select": "1.0.0",
-    "@opuscapita/react-grid": "2.2.1",
+    "@opuscapita/react-grid": "2.3.0",
     "@opuscapita/react-icons": "1.1.8",
     "spin.js": "2.3.2"
   }

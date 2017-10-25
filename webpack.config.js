@@ -5,18 +5,16 @@ const autoprefixer = require('autoprefixer');
 const precss = require('precss');
 const flexbugs = require('postcss-flexbugs-fixes');
 
-const utils = require('./webpack/utils.js');
 const getBaseConfiguration = require('./webpack/base.config.js');
 
 const libraryName = 'oc-common-ui';
-const isProduction = utils.isProduction();
 
 const params = {
   root: __dirname,
   buildPath: 'lib',
   output: {
     path: path.join(__dirname, '/lib'),
-    filename: isProduction ? `${libraryName}.min.js` : `${libraryName}.js`,
+    filename: `${libraryName}.js`,
     library: libraryName,
     libraryTarget: 'umd',
     umdNamedDefine: true,
@@ -52,9 +50,6 @@ const config = merge(getBaseConfiguration(params), {
           use: [
             {
               loader: 'css-loader',
-              options: {
-                minimize: process.env.NODE_ENV === 'production',
-              },
             },
             {
               loader: 'postcss-loader',
@@ -69,7 +64,7 @@ const config = merge(getBaseConfiguration(params), {
     ],
   },
   plugins: [
-    new ExtractTextPlugin({ filename: isProduction ? `${libraryName}.min.css` : `${libraryName}.css` }),
+    new ExtractTextPlugin({ filename: `${libraryName}.css` }),
   ],
 });
 

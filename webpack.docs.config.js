@@ -9,7 +9,8 @@ const flexbugs = require('postcss-flexbugs-fixes');
 const utils = require('./webpack/utils.js');
 const getBaseConfiguration = require('./webpack/base.config.js');
 
-const isProduction = utils.isProduction();
+const target = utils.getTarget();
+const isMinimized = !!target === 'production';
 
 const params = {
   root: __dirname,
@@ -59,7 +60,7 @@ const config = merge(getBaseConfiguration(params), {
             loader: 'postcss-loader',
             options: {
               plugins: () => [flexbugs, precss, autoprefixer],
-              minimize: isProduction,
+              minimize: isMinimized,
             },
           },
           'sass-loader',

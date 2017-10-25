@@ -7,9 +7,6 @@ const merge = require('webpack-merge');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
 const flexbugs = require('postcss-flexbugs-fixes');
-const utils = require('./webpack/utils.js');
-
-const isProduction = utils.isProduction();
 
 const params = {
   root: __dirname,
@@ -55,7 +52,6 @@ const config = merge(getBaseConfiguration(params), {
             loader: 'postcss-loader',
             options: {
               plugins: () => [flexbugs, precss, autoprefixer],
-              minimize: isProduction,
             },
           },
           'sass-loader',

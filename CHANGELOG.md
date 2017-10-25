@@ -4,6 +4,9 @@
 
 ## <next>
 
+## 6.1.9
+* Use minified version of react-grid in production build
+
 ## 6.1.8
 * Upgrade to @opuscapita/react-grid@2.3.2
 * Fix builds

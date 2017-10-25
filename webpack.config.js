@@ -4,17 +4,19 @@ const ExtractTextPlugin = require('extract-text-webpack-plugin');
 const autoprefixer = require('autoprefixer');
 const precss = require('precss');
 const flexbugs = require('postcss-flexbugs-fixes');
+const utils = require('./webpack/utils');
 
 const getBaseConfiguration = require('./webpack/base.config.js');
 
 const libraryName = 'oc-common-ui';
+const isProduction = utils.isProduction();
 
 const params = {
   root: __dirname,
   buildPath: 'lib',
   output: {
     path: path.join(__dirname, '/lib'),
-    filename: `${libraryName}.js`,
+    filename: isProduction ? `${libraryName}.min.js` : `${libraryName}.js`,
     library: libraryName,
     libraryTarget: 'umd',
     umdNamedDefine: true,

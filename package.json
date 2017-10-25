@@ -7,11 +7,11 @@
   "main": "lib/oc-common-ui.js",
   "scripts": {
     "lint": "node_modules/.bin/eslint --ext .jsx,.js src/ examples/",
-    "build": "cross-env BUILD_TARGET=release webpack",
-    "dev": "webpack --progress --colors --watch",
+    "build": "cross-env NODE_ENV=development webpack && cross-env NODE_ENV=production webpack",
+    "dev": "cross-env NODE_ENV=development webpack --progress --colors --watch",
     "test": "cross-env NODE_ENV=test mocha --require ignore-styles --compilers js:babel-core/register --colors test/test.setup.js test/**/*.spec.*",
-    "docs": "webpack -p --config webpack.docs.config.js",
-    "hot": "webpack-dev-server --config webpack.examples.hot.config.js",
+    "docs": "cross-env NODE_ENV=production webpack --config webpack.docs.config.js",
+    "hot": "cross-env NODE_ENV=development webpack-dev-server --config webpack.examples.hot.config.js",
     "preversion": "npm run lint && npm test",
     "version": "npm run build && git add -A lib",
     "postversion": "git push && git push --tags"
@@ -119,7 +119,7 @@
     "@opuscapita/react-alerts": "1.1.1",
     "@opuscapita/react-cards": "1.0.3",
     "@opuscapita/react-floating-select": "1.0.0",
-    "@opuscapita/react-grid": "2.3.0",
+    "@opuscapita/react-grid": "2.3.2",
     "@opuscapita/react-icons": "1.1.8",
     "spin.js": "2.3.2"
   }

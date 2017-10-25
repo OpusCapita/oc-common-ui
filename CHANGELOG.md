@@ -4,6 +4,9 @@
 
 ## <next>
 
+## 6.1.7
+* Fix realease warnings
+
 ## 6.1.6
 * Upgrade to @opuscapita/react-grid@2.3.0
 

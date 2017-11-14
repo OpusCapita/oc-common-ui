@@ -46,14 +46,24 @@ export default class SplitPane extends React.Component {
     children: null,
   }
 
-  onChange = (size) => {
-    this.props.resize(this.props.id, size);
-    // Fire resize event to recalculate component sizes, eg. datagrid
+  componentWillReceiveProps(nextProps) {
+    if (!nextProps.size) {
+      this.onSizeChange();
+    }
+  }
+
+  // Fire resize event to recalculate component sizes, eg. datagrid
+  onSizeChange = () => {
     if (document.createEvent) {
       const evt = document.createEvent('HTMLEvents');
       evt.initEvent('resize', true, false);
       window.dispatchEvent(evt);
     }
+  };
+
+  onChange = (size) => {
+    this.props.resize(this.props.id, size);
+    this.onSizeChange();
   };
 
   render() {

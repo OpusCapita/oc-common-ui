@@ -5,6 +5,8 @@
 ## <next>
 * Breaking changes: Remove `Datagrid` and `FloatingSelect` components, use them directly from `@opuscapita/react-grid` and `@opuscapita/react-floating-select` npm packages.
 * Update favicon icon
+* Update react-split-pane version
+* Resize `SplitPane` if size is nulled
 
 ## 6.1.9
 * Use minified version of react-grid in production build

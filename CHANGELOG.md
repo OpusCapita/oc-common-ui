@@ -3,6 +3,8 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+
+## 7.0.0
 * Breaking changes: Remove `Datagrid` and `FloatingSelect` components, use them directly from `@opuscapita/react-grid` and `@opuscapita/react-floating-select` npm packages.
 * Update favicon icon
 * Update react-split-pane version

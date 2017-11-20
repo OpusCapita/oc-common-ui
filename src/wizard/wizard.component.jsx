@@ -17,7 +17,19 @@ export default class Wizard extends React.PureComponent {
   }
 
   componentDidMount() {
-    this.selectPage(undefined, this.props.activeStep);
+    const stepIndex = this.props.activeStep || this.getStepByUrlParam();
+    this.selectPage(null, stepIndex);
+  }
+
+  getStepByUrlParam() {
+    const steps = this.props.steps;
+    let index = null;
+    const param = /step=([^&]+)/.exec(window.location.href)[1];
+
+    if (param && steps && steps.length > 0) {
+      index = steps.findIndex(step => step.id === param);
+    }
+    return index;
   }
 
   selectPage = (event, index) => {
@@ -28,7 +40,7 @@ export default class Wizard extends React.PureComponent {
     this.setState({
       currentStep: index,
     });
-  }
+  };
 
   render() {
     return (

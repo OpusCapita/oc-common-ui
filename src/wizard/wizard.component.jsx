@@ -17,15 +17,15 @@ export default class Wizard extends React.PureComponent {
   }
 
   componentDidMount() {
-    const stepIndex = this.props.activeStep || this.getStepByUrlParam();
+    const stepIndex = this.getStepByUrlParam() ? this.getStepByUrlParam() : this.props.activeStep;
     this.selectPage(null, stepIndex);
   }
 
   getStepByUrlParam() {
     const steps = this.props.steps;
     let index = null;
-    const param = /step=([^&]+)/.exec(window.location.href)[1];
-
+    let param = /step=([^&]+)/.exec(window.location.href);
+    param = param ? param[1] : null;
     if (param && steps && steps.length > 0) {
       index = steps.findIndex(step => step.id === param);
     }

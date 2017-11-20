@@ -25,6 +25,7 @@ save | function | required | Callback function called, when the wizard is saved
 disableSave | bool | false | Disable the Save button
 showPageIndicator | bool | true | Sign of page indicator showing
 steps | array | required | Steps of the wizard
+activeStep | number | 0 | Index of the active step. You can also set activeStep via URL parameter 'step', e.g. http://localhost/wizard/?step=stepId
 
 #### Wizard - steps props
 

@@ -3,9 +3,13 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Bugfix - Wizard component should now allow to change the active step programmatically.
+
+## 7.0.0
 * Breaking changes: Remove `Datagrid` and `FloatingSelect` components, use them directly from `@opuscapita/react-grid` and `@opuscapita/react-floating-select` npm packages.
 * Update favicon icon
-* Bugfix - Wizard component should now allow to change the active step programmatically.
+* Update react-split-pane version
+* Resize `SplitPane` if size is nulled
 
 ## 6.1.9
 * Use minified version of react-grid in production build

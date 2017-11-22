@@ -1,7 +1,7 @@
 {
   "author": "OpusCapita (www.opuscapita.com)",
   "name": "@opuscapita/oc-common-ui",
-  "version": "6.1.9",
+  "version": "7.0.0",
   "private": false,
   "description": "OpusCapita common UI components",
   "main": "lib/oc-common-ui.js",
@@ -94,7 +94,7 @@
     "react-router": "3.2.0",
     "react-select": "1.0.0-rc.3",
     "react-sidebar": "2.3.2",
-    "react-split-pane": "0.1.66",
+    "react-split-pane": "0.1.70",
     "react-svg-loader": "2.1.0",
     "react-transform-hmr": "1.0.4",
     "redux": "3.7.2",

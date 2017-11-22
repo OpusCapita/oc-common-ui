@@ -3,6 +3,7 @@
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
 ## <next>
+* Bugfix - Wizard component should now allow to change the active step programmatically.
 
 ## 7.0.0
 * Breaking changes: Remove `Datagrid` and `FloatingSelect` components, use them directly from `@opuscapita/react-grid` and `@opuscapita/react-floating-select` npm packages.

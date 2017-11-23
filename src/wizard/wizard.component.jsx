@@ -20,6 +20,12 @@ export default class Wizard extends React.PureComponent {
     this.selectPage(undefined, this.props.activeStep);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.activeStep !== this.state.currentStep) {
+      this.selectPage(undefined, nextProps.activeStep);
+    }
+  }
+
   selectPage = (event, index) => {
     if (event) {
       event.preventDefault();

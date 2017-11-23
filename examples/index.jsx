@@ -11,6 +11,7 @@ import { IntlProvider, intlReducer } from 'react-intl-redux';
 import thunk from 'redux-thunk';
 import App from './app.component';
 import SpinnerView from './components/spinner-view/spinner-view.component';
+import ConfirmDialogView from './components/confirm-dialog-view/confirm-dialog.component';
 import AutocompleteView from './components/autocomplete/autocomplete.component';
 import ButtonView from './components/button/button.component';
 import SearchbarView from './components/searchbar/searchbar.component';
@@ -56,6 +57,7 @@ render((
           <Route path="/multi-select" component={MultiSelectView} />
           <Route path="/responsive-navbar" component={ResponsiveNavbarView} />
           <Route path="/wizard" component={WizardView} />
+          <Route path="/confirm-dialog" component={ConfirmDialogView} />
         </Route>
       </Router>
     </IntlProvider>

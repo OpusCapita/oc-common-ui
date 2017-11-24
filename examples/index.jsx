@@ -10,6 +10,7 @@ import { Provider } from 'react-redux';
 import { IntlProvider, intlReducer } from 'react-intl-redux';
 import thunk from 'redux-thunk';
 import App from './app.component';
+import ITEMS from './layout/menu.constants';
 import SpinnerView from './components/spinner-view/spinner-view.component';
 import ConfirmDialogView from './components/confirm-dialog-view/confirm-dialog.component';
 import AutocompleteView from './components/autocomplete/autocomplete.component';
@@ -27,6 +28,8 @@ import WizardView from
   './components/wizard-view/wizard-view.component';
 import MenuView from './components/menu-view/menu-view.component';
 
+import './index.scss';
+
 require('../images/favicon.ico');
 
 const composeEnhancers = (process.env.NODE_ENV !== 'production' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__) || compose;
@@ -37,6 +40,18 @@ const store = createStore(
   }),
   composeEnhancers(applyMiddleware(thunk)),
 );
+
+function renderRepoRoutes() {
+  const repoRoutes = ITEMS.filter(item => item.url);
+  return repoRoutes.map(repoRoute =>
+    <Route
+      key={repoRoute.id}
+      path={repoRoute.to}
+      getComponent={(nextState, cb) => {
+        cb(null, () => { return (<iframe className="oc-repo-content" src={repoRoute.url} />); });
+      }}
+    />);
+}
 
 render((
   <Provider store={store}>
@@ -58,6 +73,7 @@ render((
           <Route path="/responsive-navbar" component={ResponsiveNavbarView} />
           <Route path="/wizard" component={WizardView} />
           <Route path="/confirm-dialog" component={ConfirmDialogView} />
+          {renderRepoRoutes()}
         </Route>
       </Router>
     </IntlProvider>

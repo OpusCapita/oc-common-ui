@@ -23,7 +23,7 @@ const ITEMS = [
   },
   {
     id: 5,
-    text: 'ConfirmDialog',
+    text: 'Confirm dialog',
     to: '/confirm-dialog',
     url: 'https://opuscapita.github.io/react-confirmation-dialog/#/',
   },
@@ -35,22 +35,22 @@ const ITEMS = [
   },
   {
     id: 7,
-    text: 'DropdownContainer',
+    text: 'Dropdown container',
     to: '/dropdown-container',
   },
   {
     id: 8,
-    text: 'DropdownMenu',
+    text: 'Dropdown menu',
     to: '/dropdown-menu',
   },
   {
     id: 9,
-    text: 'DropdownMultiSelect',
+    text: 'Dropdown multiselect',
     to: '/dropdown-multi-select',
   },
   {
     id: 10,
-    text: 'ExtendedSearch',
+    text: 'Extended search',
     to: '/extendedsearch',
   },
   {
@@ -61,36 +61,31 @@ const ITEMS = [
   },
   {
     id: 12,
-    text: 'Menu',
-    to: '/menu',
-  },
-  {
-    id: 13,
-    text: 'MultiSelect',
+    text: 'Multiselect',
     to: '/multi-select',
   },
   {
-    id: 14,
+    id: 13,
     text: 'Responsive navbar',
     to: '/responsive-navbar',
   },
   {
-    id: 15,
-    text: 'Searchbar',
+    id: 14,
+    text: 'Search bar',
     to: '/searchbar',
   },
   {
-    id: 16,
+    id: 15,
     text: 'Spinner',
     to: '/spinner',
   },
   {
-    id: 17,
-    text: 'Split Pane',
+    id: 16,
+    text: 'Split pane',
     to: '/split-pane',
   },
   {
-    id: 18,
+    id: 17,
     text: 'Wizard',
     to: '/wizard',
   },

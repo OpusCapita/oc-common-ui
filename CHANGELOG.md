@@ -4,6 +4,8 @@
 
 ## <next>
 * Bugfix - Wizard component should now allow to change the active step programmatically.
+* ConfirmaDialog is moved to react-confirmation-dialog
+* react-alerts, react-cards, react-grid, react-icons added to examples
 
 ## 7.0.0
 * Breaking changes: Remove `Datagrid` and `FloatingSelect` components, use them directly from `@opuscapita/react-grid` and `@opuscapita/react-floating-select` npm packages.

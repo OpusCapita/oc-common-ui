@@ -50,7 +50,6 @@ Some components needs reducers to be loaded in the redux store, those are done i
 ### Component descriptions
 
 - Autocomplete
-- [ConfirmDialog](./src/confirm-dialog/README.md)
 - DropdownContainer
 - DropdownMenu
 - [DropdownMultiSelect](./src/dropdown-multi-select/README.md)

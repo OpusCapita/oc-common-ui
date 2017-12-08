@@ -1,4 +1,5 @@
 /* eslint-disable no-underscore-dangle */
+/* eslint-disable arrow-body-style */
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, hashHistory, IndexRedirect } from 'react-router';
@@ -47,7 +48,9 @@ function renderRepoRoutes() {
       key={repoRoute.id}
       path={repoRoute.to}
       getComponent={(nextState, cb) => {
-        cb(null, () => { return (<iframe className="oc-repo-content" src={repoRoute.url} />); });
+        cb(null, () => {
+          return (<iframe className="oc-repo-content" src={repoRoute.url} />);
+        });
       }}
     />);
 }

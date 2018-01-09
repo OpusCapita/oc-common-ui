@@ -21,6 +21,12 @@ export default class Wizard extends React.PureComponent {
     this.selectPage(null, stepIndex);
   }
 
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.activeStep !== this.state.currentStep) {
+      this.selectPage(undefined, nextProps.activeStep);
+    }
+  }
+
   getStepByUrlParam() {
     const steps = this.props.steps;
     let index = null;
@@ -30,12 +36,6 @@ export default class Wizard extends React.PureComponent {
       index = steps.findIndex(step => step.id === param);
     }
     return index;
-  }
-
-  componentWillReceiveProps(nextProps) {
-    if (nextProps.activeStep !== this.state.currentStep) {
-      this.selectPage(undefined, nextProps.activeStep);
-    }
   }
 
   selectPage = (event, index) => {

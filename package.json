@@ -118,7 +118,7 @@
   "dependencies": {
     "@opuscapita/react-alerts": "1.1.1",
     "@opuscapita/react-cards": "1.0.3",
-    "@opuscapita/react-icons": "1.1.8",
+    "@opuscapita/react-icons": "1.3.0",
     "spin.js": "2.3.2"
   }
 }

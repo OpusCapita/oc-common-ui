@@ -2,6 +2,9 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## 8.1.0
+* Upgrade - Update react icons 1.3.0
+
 ## 8.0.0
 * Bugfix - Wizard component should now allow to change the active step programmatically.
 * ConfirmaDialog is moved to react-confirmation-dialog

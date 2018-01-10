@@ -4,6 +4,7 @@
 
 ## 8.1.0
 * Upgrade - Update react icons 1.3.0
+* Fix - Lint error building npm version
 
 ## 8.0.0
 * Bugfix - Wizard component should now allow to change the active step programmatically.

@@ -27,6 +27,7 @@ import ResponsiveNavbarView from
 import WizardView from
   './components/wizard-view/wizard-view.component';
 import MenuView from './components/menu-view/menu-view.component';
+import CheckboxView from './components/checkbox/checkbox.component';
 
 import './index.scss';
 
@@ -74,6 +75,7 @@ render((
           <Route path="/multi-select" component={MultiSelectView} />
           <Route path="/responsive-navbar" component={ResponsiveNavbarView} />
           <Route path="/wizard" component={WizardView} />
+          <Route path="/checkbox" component={CheckboxView} />
           {renderRepoRoutes()}
         </Route>
       </Router>

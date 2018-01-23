@@ -8,7 +8,6 @@ export * from './dropdown-container/index.js';
 export * from './dropdown-menu/index.js';
 export * from './dropdown-multi-select/index.js';
 export * from './responsive-navbar/index.js';
-export * from './searchbar/index.js';
 export * from './spinner/index.js';
 export * from './split-pane/index.js';
 export * from './layouts/application/index.js';

@@ -4,14 +4,14 @@ import React from 'react';
 import {
   Form,
   Checkbox,
+  ControlLabel
 } from 'react-bootstrap';
 
-//import "../../../styles/inputs";
+require('font-awesome-sass-loader');
 
 export default class CheckboxView extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '' };
   }
 
   render() {
@@ -19,26 +19,30 @@ export default class CheckboxView extends React.Component {
       <div className="oc-content">
 
         <h1>Checkbox</h1>
-        <p><ul>
-        <li>Copy _colors.scss and _inputs.scss</li>
-          <li>@import "../../styles/inputs"</li>
-          <li>install font-awesome</li>
-          <li>install font-awesome-sass-loader</li>
-        </ul></p>
+        <h3>Examples:</h3>
         <Form style={{ maxWidth: 450 }}>
-          <Checkbox
-            onChange={this.onAllSelectionChange}
-            checked={true}
-          >
-            {'label'}
+          <ControlLabel>Checkbox with label</ControlLabel>
+          <Checkbox>
+            {'Label'}
           </Checkbox>
-          <Checkbox
-            onChange={this.onAllSelectionChange}
-            checked={false}
-          >
-            {'label 2'}
+          <ControlLabel>Checkbox without label</ControlLabel>
+          <Checkbox />
+          <ControlLabel>Disabled checkbox</ControlLabel>
+          <Checkbox disabled>
+            {'Disabled'}
           </Checkbox>
         </Form>
+        <h3>How to take into use?</h3>
+        <p>
+          <ul>
+            <li>OC style for react-bootstrap checkbox is defined in <a href="https://github.com/OpusCapita/oc-common-ui/blob/master/styles/_inputs.scss">_inputs.scss</a></li>
+            <li>Copy both <a href="https://github.com/OpusCapita/oc-common-ui/blob/master/styles/_inputs.scss">_inputs.scss</a> and 
+            <a href="https://github.com/OpusCapita/oc-common-ui/blob/master/styles/_colors.scss">_colors.scss</a> to the repo</li>
+            <li>Install font-awesome <code>npm install font-awesome --save-dev</code></li>
+            <li>Install font-awesome-sass-loader <code>npm install font-awesome-sass-loader --save-dev</code></li>
+            <li>Follow <a href="https://www.npmjs.com/package/font-awesome-sass-loader">font-awesome-sass-loader instructions</a> to configure loaders and include style</li>
+         </ul>
+        </p>
       </div>
     );
   }

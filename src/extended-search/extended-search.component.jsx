@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button, ControlLabel, FormGroup, Col } from 'react-bootstrap';
-import SearchBar from '../searchbar/searchbar.component';
+import { SearchBar } from '@opuscapita/react-searchbar';
 
 class ExtendedSearch extends React.Component {
   constructor(props) {
@@ -17,8 +17,11 @@ class ExtendedSearch extends React.Component {
     this.setState({ showModal: false });
   }
 
-  open = () => {
-    this.setState({ showModal: true });
+  open = (value) => {
+    this.setState({
+      showModal: true,
+      value,
+    });
   }
 
   handleChange = (value) => {
@@ -38,7 +41,7 @@ class ExtendedSearch extends React.Component {
             {this.props.label}
           </Col>
           <Col sm={10}>
-            <SearchBar onSearch={this.open} value={this.state.value} onChange={this.handleChange} />
+            <SearchBar onSearch={this.open} value={this.state.value} />
           </Col>
         </FormGroup>
 

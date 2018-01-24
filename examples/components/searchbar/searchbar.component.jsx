@@ -43,6 +43,7 @@ export default class SearchbarView extends React.Component {
             onSearch={this.onFilter}
             searchPlaceHolder="Filter..."
             dynamicSearchStartsFrom={3}
+            tooltip="Filtering starts automatically when three characters are typed."
           />
         </Form>
       </div>

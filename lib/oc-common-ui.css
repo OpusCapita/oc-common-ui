@@ -118,7 +118,21 @@ button {
   outline: 0 !important; }
 button:focus {
     box-shadow: 0px 0px 0 1px #FFFFFF, 0 0 0 3px #FECA1D; }
-input[type=checkbox]:focus, input[type=radio]:focus, input[type=file]:focus {
+/* Primary */
+/* Support */
+/* Attention */
+/* Other colors e.g. graphs */
+/* Text */
+/* Statuses */
+/* Tooltip */
+/* Toast a.k.a. notes */
+/* Pseudo classes */
+/* Backgrounds */
+/* Buttons */
+/* Date picker */
+/* Select */
+/* Grids */
+input[type=radio]:focus, input[type=file]:focus {
   outline: 1px auto #FECA1D !important; }
 .checkbox.disabled, .radio.disabled > label {
   color: #a7a7a7; }
@@ -127,6 +141,32 @@ input[type=checkbox]:focus, input[type=radio]:focus, input[type=file]:focus {
 .oc-mandatory-error label::after {
   color: #D82515;
   content: " *"; }
+.checkbox label {
+  max-height: 20px;
+  line-height: 20px !important; }
+input[type=checkbox] {
+  outline: none !important;
+  height: 16px;
+  width: 16px;
+  margin-top: 2px !important; }
+input[type=checkbox]:focus {
+    box-shadow: 0 0 0 1px #FFFFFF, 0 0 0 3px #FECA1D; }
+input[type=checkbox]:before {
+    height: 16px;
+    width: 16px;
+    content: "\F00C";
+    font-family: FontAwesome;
+    color: #FFFFFF;
+    position: absolute;
+    display: inline-block !important;
+    background: #FFFFFF;
+    border: 1px solid #67707c;
+    cursor: pointer; }
+input[type=checkbox]:checked:before {
+    color: #67707c; }
+input[type=checkbox]:disabled:before {
+    color: #a7a7a7;
+    border: 1px solid #a7a7a7; }
 /* Primary */
 /* Support */
 /* Attention */
@@ -4458,7 +4498,7 @@ button.close {
     margin-right: 10px;
     margin-left: 10px; }
   #wizard-header .hidden-button:focus {
-      box-shadow: 0px 0px 0 0px Transparent, 0 0 0 0px Transparent; }
+      box-shadow: 0px 0px 0 0px Transparent, 0 0 0 0px Transparent; }
   #wizard-header > ul {
     display: -webkit-box;
     display: -ms-flexbox;

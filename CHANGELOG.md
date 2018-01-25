@@ -2,6 +2,10 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## next
+* Checkbox - added styling and example
+* SearchBar - replaced with @opuscapita/react-searchbar and added example
+
 ## 8.1.0
 * Upgrade - Update react icons 1.3.0
 * Fix - Lint error building npm version

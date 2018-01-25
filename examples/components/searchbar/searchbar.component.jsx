@@ -2,32 +2,47 @@
 
 import React from 'react';
 import { Form } from 'react-bootstrap';
-import { SearchBar } from '../../../src/index';
+import { SearchBar } from '@opuscapita/react-searchbar';
+
+require('font-awesome-sass-loader');
 
 export default class SearchbarView extends React.Component {
   constructor(props) {
     super(props);
-    this.state = { value: '' };
+    this.state = {
+      search: '',
+      filter: '',
+    };
   }
 
-  handleSearch = (value) => {
-    alert(value);
+  onSearch = (search) => {
+    this.setState({ search });
+    alert(`Searching for ${search}`);
   }
 
-  handleChange = (value) => {
-    this.setState({ value });
+  onFilter = (filter) => {
+    this.setState({ filter });
+    alert(`Filtered by ${filter}`);
   }
 
   render() {
     return (
       <div className="oc-content">
-        <h1>Searchbar</h1>
+        <h1>Search bar</h1>
         <Form style={{ maxWidth: 450 }}>
           <SearchBar
-            value={this.state.value}
-            onSearch={this.handleSearch}
-            onChange={this.handleChange}
-            placeholder="Optional placeholder"
+            value={this.state.search}
+            onSearch={this.onSearch}
+            searchPlaceHolder="Search..."
+          />
+        </Form>
+        <h1>Filter bar</h1>
+        <Form style={{ maxWidth: 450 }}>
+          <SearchBar
+            value={this.state.filter}
+            onSearch={this.onFilter}
+            searchPlaceHolder="Filter..."
+            dynamicSearchStartsFrom={3}
           />
         </Form>
       </div>

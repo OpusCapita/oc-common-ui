@@ -121,7 +121,7 @@
     "@opuscapita/react-alerts": "1.1.1",
     "@opuscapita/react-cards": "1.0.3",
     "@opuscapita/react-icons": "1.3.0",
-    "@opuscapita/react-searchbar": "0.0.8",
+    "@opuscapita/react-searchbar": "0.0.9",
     "spin.js": "2.3.2"
   }
 }

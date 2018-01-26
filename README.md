@@ -27,18 +27,18 @@
 
 #### Creating the first release tag and publishing the first npm version
 * Update `CHANGELOG.md` file by moving changes under `next` line to the created version line in the master branch, commit and push it.
-* Run `npm version [major|minor|patch]` [Info](https://docs.npmjs.com/cli/version)
+* Run `npm version [major|minor|patch]` [info](https://docs.npmjs.com/cli/version)
 * Run `npm publish --access=public` to publish the first version of the component in npm. If you don't have rights to do it, contact `@havanki` or `@ilkkalehtinen`.
 
-##### Finishing a new component creation 
-* Link examples of your component in the `oc-common-ui` repository
+#### Finishing a new component creation 
+* Link examples of your component in the [oc-common-ui] (https://github.com/OpusCapita/oc-common-ui)
 
 
 ### Updating a component
 * Clone the repository with the component to update if you haven't done it yet.
 * Make a new development branch for the changes.
 * Update `CHANGELOG.md` file with your changes under `next` line.
-* Update `LICENSE-3RD-PARTY.md` in case lib changes.
+* Update `LICENSE-3RD-PARTY.md` if lib changes.
 * Commit and push changes (excluding `lib`).
 * Make a pull request for more than one reviewer (the more the better) from the list of contributors below.
 * Merge your branch with the master and delete your development branch.
@@ -46,8 +46,8 @@
 
 ### Creating a release tag and publishing a npm version
 * Update `CHANGELOG.md` file by moving changes under `next` line to the created version line in the master branch, commit and push it.
-* Run `npm version [major|minor|patch]` [Info](https://docs.npmjs.com/cli/version)
-* Run `npm publish` to publish the created version of the component in npm. If you don't have rights to do it, contact `@havanki` or `@ilkkalehtinen`.
+* Run `npm version [major|minor|patch]` [info](https://docs.npmjs.com/cli/version)
+* Run `npm publish` to publish the created version of the component in npm.
 
 
 ### Demo/examples

@@ -4,21 +4,21 @@
 ### Creating a new component
 
 #### Creating a new repository
-* Create a new public repository under OpusCapita organization in github. If you don't have rights to do it, contact `@havanki` or `@ilkkalehtinen`. Choose a descriptive name for the repository that says clearly what kind of component it contains.
+* Create a new public repository under OpusCapita organization in github. If you don't have rights to do it, contact `@havanki` or `@ilkkalehtinen`. Choose a descriptive repository name that states clearly what kind of component it contains. For example, `react-grid` is a React component that creates a grid.
 * Open Settings -> Options -> GitHub Pages and select 'master branch /docs folder' as a Source.
 
 #### Developing a new component
 * Create a development branch in git.
 * Create basic structure for a react component containing at least `README.md`, `CHANGELOG.md` and `package.json` files, `examples`, `test` and `src` folders. We are currently working on creating a template with a basic structure for a new react component.
 * Develop the component.
-  Run `npm install` to get the project's dependencies
-  Run `npm run build` to produce minified version of the library
+  Run `npm install` to get the project's dependencies.
+  Run `npm run build` to produce minified version of the library.
   Run `npm run dev` to produce development version of the library.
-  Run `npm run test` to run tests
-  Run `npm run docs` to run generate examples
-  Run `npm run hot` to run source files
+  Run `npm run test` to run tests.
+  Run `npm run docs` to generate examples.
+  Run `npm run hot` to run source files.
 * Update `CHANGELOG.md` file with your changes under `next` line.
-* Remember to include documentation for your component in `README.md` file, unit tests for all modules and an example showing all possible functions of your component before you make the first pull request with your component.
+* Include documentation for your component in `README.md` file, unit tests for all modules and an example showing all possible functions of your component before you make the first pull request with your component. Pull requests with absent documentation, unit tests and examples will not be approved.
 * Commit and push changes. Don't include `lib` folder in the commits.
 
 #### Merging the development branch with the master 
@@ -31,7 +31,7 @@
 * Run `npm publish --access=public` to publish the first version of the component in npm. If you don't have rights to do it, contact `@havanki` or `@ilkkalehtinen`.
 
 #### Finishing a new component creation 
-* Link examples of your component in the [oc-common-ui] (https://github.com/OpusCapita/oc-common-ui)
+* Link examples of your component in the [oc-common-ui](https://github.com/OpusCapita/oc-common-ui)
 
 
 ### Updating a component

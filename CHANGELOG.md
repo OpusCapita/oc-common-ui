@@ -2,7 +2,7 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
-## next
+## 8.2.0
 * Checkbox - added styling and example
 * SearchBar - replaced with @opuscapita/react-searchbar and added example
 

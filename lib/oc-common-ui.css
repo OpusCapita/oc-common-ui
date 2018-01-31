@@ -148,7 +148,7 @@ input[type=checkbox] {
   outline: none !important;
   height: 16px;
   width: 16px;
-  margin-top: 2px !important; }
+  margin-top: 1px !important; }
 input[type=checkbox]:focus {
     box-shadow: 0 0 0 1px #FFFFFF, 0 0 0 3px #FECA1D; }
 input[type=checkbox]:before {

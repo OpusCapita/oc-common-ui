@@ -17,12 +17,10 @@ export default class SearchbarView extends React.Component {
 
   onSearch = (search) => {
     this.setState({ search });
-    alert(`Searching for ${search}`);
   }
 
   onFilter = (filter) => {
     this.setState({ filter });
-    alert(`Filtered by ${filter}`);
   }
 
   render() {
@@ -36,12 +34,12 @@ export default class SearchbarView extends React.Component {
             searchPlaceHolder="Search..."
           />
         </Form>
-        <h1>Filter bar</h1>
+        <h1>Search bar auto</h1>
         <Form style={{ maxWidth: 450 }}>
           <SearchBar
             value={this.state.filter}
             onSearch={this.onFilter}
-            searchPlaceHolder="Filter..."
+            searchPlaceHolder="Search..."
             dynamicSearchStartsFrom={3}
           />
         </Form>

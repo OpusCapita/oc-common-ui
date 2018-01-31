@@ -2,7 +2,7 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
-## new
+## 8.2.1
 * @opuscapita/react-searchbar version updated
 * Search bar - example enhanced according to UX feedback
 * Checkbox - alignment changed according to UX feedback

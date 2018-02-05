@@ -118,10 +118,13 @@
     "url": "https://github.com/OpusCapita/oc-common-ui.git"
   },
   "dependencies": {
+    "spin.js": "2.3.2",
     "@opuscapita/react-alerts": "1.1.1",
     "@opuscapita/react-cards": "1.0.3",
     "@opuscapita/react-icons": "1.3.0",
     "@opuscapita/react-searchbar": "0.0.10",
-    "spin.js": "2.3.2"
+    "@opuscapita/react-spinner": "1.1.1",
+    "@opuscapita/react-dropdown-container": "1.0.1",
+    "@opuscapita/react-dropdown-menu": "https://github.com/OpusCapita/react-dropdown-menu.git#task/90106"
   }
 }

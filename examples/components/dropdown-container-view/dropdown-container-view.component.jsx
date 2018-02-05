@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { DropdownContainer } from '../../../src/index';
+import { DropdownContainer } from '@opuscapita/react-dropdown-container';
 
 function DropdownContainerView() {
   const containerStyle = {

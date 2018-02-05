@@ -2,10 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { FormControl } from 'react-bootstrap';
 import ImmutablePropTypes from 'react-immutable-proptypes';
+import { DropdownContainer } from '@opuscapita/react-dropdown-container';
 import { List } from 'immutable';
 
 import KEY_CODES from '../constants/key-codes.constant';
-import { DropdownContainer } from '../dropdown-container/index';
 import { MultiSelect } from '../multi-select/index';
 import TitleInput from './title-input/title-input.component';
 import './dropdown-multi-select.component.scss';

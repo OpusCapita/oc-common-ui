@@ -1,5 +1,5 @@
 import React from 'react';
-import { Spinner } from '../../../src/index';
+import { Spinner } from '@opuscapita/react-spinner';
 
 function SpinnerView() {
   return (
@@ -8,4 +8,3 @@ function SpinnerView() {
 }
 
 export default SpinnerView;
-

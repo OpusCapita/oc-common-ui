@@ -6,11 +6,9 @@ import WizardFooter from './wizard-footer.component';
 
 import './wizard.component.scss';
 
-
 export default class Wizard extends React.PureComponent {
   constructor() {
     super();
-
     this.state = {
       currentStep: 0,
     };
@@ -30,7 +28,7 @@ export default class Wizard extends React.PureComponent {
   getStepByUrlParam() {
     const steps = this.props.steps;
     let index = null;
-    let param = /step=([^&]+)/.exec(window.location.href);
+    let param = /initialStep=([^&]+)/.exec(window.location.href);
     param = param ? param[1] : null;
     if (param && steps && steps.length > 0) {
       index = steps.findIndex(step => step.id === param);
@@ -69,6 +67,7 @@ export default class Wizard extends React.PureComponent {
           disableCancel={this.props.disableCancel}
           localizationTexts={this.props.localizationTexts}
           showPageIndicator={this.props.showPageIndicator}
+          showSaveSuccess={this.props.showSaveSuccess}
         />
       </div>
     );
@@ -81,9 +80,11 @@ Wizard.defaultProps = {
   localizationTexts: {
     save: 'Save',
     cancel: 'Close',
+    saved: 'Saved',
   },
   disableSave: false,
   disableCancel: false,
+  showSaveSuccess: false,
 };
 
 Wizard.propTypes = {
@@ -101,7 +102,9 @@ Wizard.propTypes = {
   localizationTexts: PropTypes.shape({
     save: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
     cancel: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
+    saved: PropTypes.oneOfType([PropTypes.string, PropTypes.element]),
   }),
   activeStep: PropTypes.number,
   showPageIndicator: PropTypes.bool,
+  showSaveSuccess: PropTypes.bool,
 };

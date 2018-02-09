@@ -2,6 +2,9 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## <next>
+* Remove dropdowns & multi-select
+
 ## 8.2.1
 * @opuscapita/react-searchbar version updated
 * Search bar - example enhanced according to UX feedback

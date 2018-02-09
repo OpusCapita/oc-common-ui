@@ -25,12 +25,14 @@ export default class WizardFooter extends React.PureComponent {
     selectPage: PropTypes.func.isRequired,
     currentStep: PropTypes.number.isRequired,
     showPageIndicator: PropTypes.bool,
+    showSaveSuccess: PropTypes.bool,
   };
 
   static defaultProps = {
     showPageIndicator: true,
     disableSave: false,
     disableCancel: false,
+    showSaveSuccess: false,
   };
 
   getIndicators = () => (
@@ -43,7 +45,10 @@ export default class WizardFooter extends React.PureComponent {
   );
 
   render() {
-    const { currentStep, localizationTexts, showPageIndicator, showSaveSuccess, steps } = this.props;
+    const {
+      currentStep, localizationTexts, showPageIndicator, showSaveSuccess,
+      steps,
+    } = this.props;
     return (
       <div id="wizard-footer">
         <div className="left column" />

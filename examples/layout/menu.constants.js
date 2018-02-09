@@ -85,16 +85,22 @@ const ITEMS = [
   },
   {
     id: 16,
+    text: 'Select and order list',
+    to: '/select-order-list',
+    url: 'https://opuscapita.github.io/react-select-order-list/#/',
+  },
+  {
+    id: 17,
     text: 'Spinner',
     to: '/spinner',
   },
   {
-    id: 17,
+    id: 18,
     text: 'Split pane',
     to: '/split-pane',
   },
   {
-    id: 18,
+    id: 19,
     text: 'Wizard',
     to: '/wizard',
   },

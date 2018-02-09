@@ -1,63 +1,85 @@
 #wizard-footer {
+  $footer-height: 80px;
+  display: flex;
+  flex: 0 0 auto;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  width: 100%;
+  height: $footer-height;
+
+  #bottom-indicators {
     display: flex;
-    flex-direction: column;
-    flex: 0 0 auto;
+    flex-direction: row;
+    height: calc(#{$footer-height} / 2);
     justify-content: center;
-    align-items: center;
-    background-color: white;
-    width: 100%;
+  }
 
-    #bottom-indicators {
-      display: flex;
-      flex-direction: row;
-      height: 35px;
-    }
-
-    #bottom-buttons {
-      display: flex;
-      flex-direction: row;
+  > .column {
+    display: flex;
+    flex: 1 1 0;
+    height: 100%;
+    &.center {
+      flex-direction: column;
       justify-content: center;
-      align-content: space-around;
-      height: 33px;
-      flex-wrap: wrap;
-
-      .divider {
-        width: 50px;
-        flex: 4 0 auto;
-      }
-
-      .divider-small {
-        min-width: 10px;
-        flex: 1 0 auto;
-      }
-
-      button {
+      align-content: center;
+    }
+    &.right {
+      align-items: flex-end;
+      .save-success-container {
         display: flex;
-        flex: 1 0 auto;
-        flex-grow: 0;
-        justify-content: center;
-
-        svg {
-          margin-top: -5px;
-        }
-
-        .oc-icon-indicator {
-          fill: white;
-        }
+        align-items: center;
+        margin-left: 1rem;
+        height: calc(#{$footer-height} / 2);
       }
-    }
-
-    .tab-indicator {
-      width: 10px;
-      height: 10px;
-      background: gray;
-      -moz-border-radius: 5px;
-      -webkit-border-radius: 5px;
-      border-radius: 5px;
-      margin: 5px;
-    }
-
-    .tab-highlight {
-      background: #EC6608;
     }
   }
+  #bottom-buttons {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-content: space-around;
+    height: calc(#{$footer-height} / 2);
+    flex-wrap: wrap;
+
+    .divider {
+      width: 50px;
+      flex: 4 0 auto;
+    }
+
+    .divider-small {
+      min-width: 10px;
+      flex: 1 0 auto;
+    }
+
+    button {
+      display: flex;
+      flex: 1 0 auto;
+      flex-grow: 0;
+      justify-content: center;
+
+      svg {
+        margin-top: -5px;
+      }
+
+      .oc-icon-indicator {
+        fill: white;
+      }
+    }
+  }
+
+  .tab-indicator {
+    width: 10px;
+    height: 10px;
+    background: gray;
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    margin: 5px;
+  }
+
+  .tab-highlight {
+    background: #EC6608;
+  }
+
+}

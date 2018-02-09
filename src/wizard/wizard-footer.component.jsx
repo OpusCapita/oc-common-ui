@@ -25,13 +25,13 @@ export default class WizardFooter extends React.PureComponent {
     selectPage: PropTypes.func.isRequired,
     currentStep: PropTypes.number.isRequired,
     showPageIndicator: PropTypes.bool,
-  }
+  };
 
   static defaultProps = {
     showPageIndicator: true,
     disableSave: false,
     disableCancel: false,
-  }
+  };
 
   getIndicators = () => (
     this.props.steps.map((step, i) => {
@@ -40,49 +40,60 @@ export default class WizardFooter extends React.PureComponent {
       }
       return <span key={step.id} className="tab-indicator" />;
     })
-  )
+  );
 
   render() {
-    const { currentStep, localizationTexts, showPageIndicator, steps } = this.props;
+    const { currentStep, localizationTexts, showPageIndicator, showSaveSuccess, steps } = this.props;
     return (
       <div id="wizard-footer">
-        {showPageIndicator &&
+        <div className="left column" />
+        <div className="center column">
+          {showPageIndicator &&
           <div id="bottom-indicators">
             {this.getIndicators()}
           </div>
-        }
-        <div id="bottom-buttons">
-          <Button
-            disabled={currentStep === 0}
-            id="previous-step"
-            onClick={event => this.props.selectPage(event, currentStep - 1)}
-          >
-            <Icon type="indicator" name="CaretLeft" height={30} width={30} />
-          </Button>
-          <span className="divider" />
-          <Button
-            id="save-button"
-            onClick={this.props.save}
-            disabled={this.props.disableSave}
-          >
-            {localizationTexts.save}
-          </Button>
-          <span className="divider-small" />
-          <Button
-            id="cancel-button"
-            onClick={this.props.cancel}
-            disabled={this.props.disableCancel}
-          >
-            {localizationTexts.cancel}
-          </Button>
-          <span className="divider" />
-          <Button
-            disabled={currentStep === steps.length - 1}
-            id="next-step"
-            onClick={event => this.props.selectPage(event, currentStep + 1)}
-          >
-            <Icon type="indicator" name="CaretRight" height={30} width={30} />
-          </Button>
+          }
+          <div id="bottom-buttons">
+            <Button
+              disabled={currentStep === 0}
+              id="previous-step"
+              onClick={event => this.props.selectPage(event, currentStep - 1)}
+            >
+              <Icon type="indicator" name="CaretLeft" height={30} width={30} />
+            </Button>
+            <span className="divider" />
+            <Button
+              id="save-button"
+              onClick={this.props.save}
+              disabled={this.props.disableSave}
+            >
+              {localizationTexts.save}
+            </Button>
+            <span className="divider-small" />
+            <Button
+              id="cancel-button"
+              onClick={this.props.cancel}
+              disabled={this.props.disableCancel}
+            >
+              {localizationTexts.cancel}
+            </Button>
+            <span className="divider" />
+            <Button
+              disabled={currentStep === steps.length - 1}
+              id="next-step"
+              onClick={event => this.props.selectPage(event, currentStep + 1)}
+            >
+              <Icon type="indicator" name="CaretRight" height={30} width={30} />
+            </Button>
+
+
+          </div>
+        </div>
+        <div className="right column">
+          {showSaveSuccess && <div className="save-success-container">
+            <Icon type="indicator" name="ok" height={30} width={30} />
+            {localizationTexts.saved}
+          </div>}
         </div>
       </div>
     );

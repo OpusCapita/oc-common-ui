@@ -20,12 +20,13 @@ Name | Type | Default | Description
 --- | --- | --- | ---
 cancel | function | required | Callback function called, when the wizard is cancelled
 disableCancel | bool | false | Disable the Cancel button
-localizationTexts | map | { save: 'Save', cancel: 'Cancel' } | Localization texts for save and close buttons. Defaults to 'Save' and 'Close'
+localizationTexts | map | { save: 'Save', cancel: 'Cancel', saved: 'Saved' } | Localization texts for save and close buttons and a save success message. Defaults to 'Save', Close' and 'Saved'.
 save | function | required | Callback function called, when the wizard is saved
 disableSave | bool | false | Disable the Save button
 showPageIndicator | bool | true | Sign of page indicator showing
 steps | array | required | Steps of the wizard
-activeStep | number | 0 | Index of the active step. You can also set activeStep via URL parameter 'step', e.g. http://localhost/wizard/?step=stepId
+activeStep | number | 0 | Index of the active step. You can also set initial active step via URL parameter 'initialStep', e.g. http://localhost/wizard/?initialStep=stepId
+showSaveSuccess | bool | false | If true, shows a success message in the footer
 
 #### Wizard - steps props
 

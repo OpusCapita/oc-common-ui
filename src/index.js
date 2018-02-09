@@ -3,10 +3,8 @@ import '../styles/main.scss';
 export * from '@opuscapita/react-alerts';
 export * from '@opuscapita/react-cards';
 export * from '@opuscapita/react-icons';
+export * from '@opuscapita/react-dropdown';
 
-export * from './dropdown-container/index.js';
-export * from './dropdown-menu/index.js';
-export * from './dropdown-multi-select/index.js';
 export * from './responsive-navbar/index.js';
 export * from './spinner/index.js';
 export * from './split-pane/index.js';

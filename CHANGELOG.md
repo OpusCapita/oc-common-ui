@@ -2,9 +2,12 @@
 
 * In general follow (https://docs.npmjs.com/getting-started/semantic-versioning) versioning.
 
+## <next>
+  
 ## 8.3.0
 * Message about successful save can now be shown in Wizard footer
 * Changes in setting initial Wizard step by URL: changed query parameter "step" to "initialStep"
+* Remove dropdowns & multi-select
 
 ## 8.2.1
 * @opuscapita/react-searchbar version updated

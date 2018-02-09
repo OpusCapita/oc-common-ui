@@ -42,16 +42,19 @@ const ITEMS = [
     id: 8,
     text: 'Dropdown container',
     to: '/dropdown-container',
+    url: 'https://opuscapita.github.io/react-dropdown/#/',
   },
   {
     id: 9,
     text: 'Dropdown menu',
     to: '/dropdown-menu',
+    url: 'https://opuscapita.github.io/react-dropdown/#/',
   },
   {
     id: 10,
     text: 'Dropdown multiselect',
     to: '/dropdown-multi-select',
+    url: 'https://opuscapita.github.io/react-dropdown/#/',
   },
   {
     id: 11,
@@ -68,6 +71,7 @@ const ITEMS = [
     id: 13,
     text: 'Multiselect',
     to: '/multi-select',
+    url: 'https://opuscapita.github.io/react-dropdown/#/',
   },
   {
     id: 14,

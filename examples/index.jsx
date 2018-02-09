@@ -18,10 +18,6 @@ import ButtonView from './components/button/button.component';
 import SearchbarView from './components/searchbar/searchbar.component';
 import ExtendedSearchView from './components/extended-search/extended-search.component';
 import SplitPaneView from './components/split-pane-view/split-pane-view.component';
-import DropdownContainerView from './components/dropdown-container-view/dropdown-container-view.component';
-import DropdownMenuView from './components/dropdown-menu-view/dropdown-menu-view.component';
-import DropdownMultiSelectView from './components/dropdown-multi-select-view/dropdown-multi-select-view.component';
-import MultiSelectView from './components/multi-select-view/multi-select-view.component';
 import ResponsiveNavbarView from
   './components/responsive-navbar-view/responsive-navbar-view.component';
 import WizardView from
@@ -69,10 +65,6 @@ render((
           <Route path="/spinner" component={SpinnerView} />
           <Route path="/menu" component={MenuView} />
           <Route path="/split-pane" component={SplitPaneView} />
-          <Route path="/dropdown-container" component={DropdownContainerView} />
-          <Route path="/dropdown-menu" component={DropdownMenuView} />
-          <Route path="/dropdown-multi-select" component={DropdownMultiSelectView} />
-          <Route path="/multi-select" component={MultiSelectView} />
           <Route path="/responsive-navbar" component={ResponsiveNavbarView} />
           <Route path="/wizard" component={WizardView} />
           <Route path="/checkbox" component={CheckboxView} />

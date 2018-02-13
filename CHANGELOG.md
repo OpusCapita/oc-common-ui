@@ -4,7 +4,10 @@
 
 
 ## <next>
-  
+
+## 8.3.1
+* Small layout fixes in Wizard
+
 ## 8.3.0
 * Message about successful save can now be shown in Wizard footer
 * Changes in setting initial Wizard step by URL: changed query parameter "step" to "initialStep"

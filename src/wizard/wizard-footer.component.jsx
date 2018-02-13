@@ -51,55 +51,57 @@ export default class WizardFooter extends React.PureComponent {
     } = this.props;
     return (
       <div id="wizard-footer">
-        <div className="left column" />
-        <div className="center column">
+        <section className="left column" />
+        <section className="center column">
           {showPageIndicator &&
           <div id="bottom-indicators">
             {this.getIndicators()}
           </div>
           }
           <div id="bottom-buttons">
-            <Button
-              disabled={currentStep === 0}
-              id="previous-step"
-              onClick={event => this.props.selectPage(event, currentStep - 1)}
-            >
-              <Icon type="indicator" name="CaretLeft" height={30} width={30} />
-            </Button>
-            <span className="divider" />
-            <Button
-              id="save-button"
-              onClick={this.props.save}
-              disabled={this.props.disableSave}
-            >
-              {localizationTexts.save}
-            </Button>
-            <span className="divider-small" />
-            <Button
-              id="cancel-button"
-              onClick={this.props.cancel}
-              disabled={this.props.disableCancel}
-            >
-              {localizationTexts.cancel}
-            </Button>
-            <span className="divider" />
-            <Button
-              disabled={currentStep === steps.length - 1}
-              id="next-step"
-              onClick={event => this.props.selectPage(event, currentStep + 1)}
-            >
-              <Icon type="indicator" name="CaretRight" height={30} width={30} />
-            </Button>
+            <section>
+              <Button
+                disabled={currentStep === 0}
+                id="previous-step"
+                onClick={event => this.props.selectPage(event, currentStep - 1)}
+              >
+                <Icon type="indicator" name="CaretLeft" height={30} width={30} />
+              </Button>
+            </section>
+            <section>
+              <Button
+                id="save-button"
+                onClick={this.props.save}
+                disabled={this.props.disableSave}
+              >
+                {localizationTexts.save}
+              </Button>
 
-
+              <Button
+                id="cancel-button"
+                onClick={this.props.cancel}
+                disabled={this.props.disableCancel}
+              >
+                {localizationTexts.cancel}
+              </Button>
+            </section>
+            <section>
+              <Button
+                disabled={currentStep === steps.length - 1}
+                id="next-step"
+                onClick={event => this.props.selectPage(event, currentStep + 1)}
+              >
+                <Icon type="indicator" name="CaretRight" height={30} width={30} />
+              </Button>
+            </section>
           </div>
-        </div>
-        <div className="right column">
+        </section>
+        <section className="right column">
           {showSaveSuccess && <div className="save-success-container">
             <Icon type="indicator" name="ok" height={30} width={30} />
             {localizationTexts.saved}
           </div>}
-        </div>
+        </section>
       </div>
     );
   }

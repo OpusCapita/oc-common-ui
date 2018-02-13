@@ -4502,7 +4502,8 @@ button.close {
           -ms-flex-pack: center;
               justify-content: center;
       -ms-flex-line-pack: center;
-          align-content: center; }
+          align-content: center;
+      max-width: 350px; }
   #wizard-footer > .column.right {
       -webkit-box-align: end;
           -ms-flex-align: end;
@@ -4531,17 +4532,31 @@ button.close {
         align-content: space-around;
     height: calc(80px / 2);
     -ms-flex-wrap: wrap;
-        flex-wrap: wrap; }
-  #wizard-footer #bottom-buttons .divider {
-      width: 50px;
-      -webkit-box-flex: 4;
-          -ms-flex: 4 0 auto;
-              flex: 4 0 auto; }
-  #wizard-footer #bottom-buttons .divider-small {
-      min-width: 10px;
-      -webkit-box-flex: 1;
-          -ms-flex: 1 0 auto;
-              flex: 1 0 auto; }
+        flex-wrap: wrap;
+    -ms-flex-item-align: center;
+        align-self: center;
+    width: 100%; }
+  #wizard-footer #bottom-buttons > section {
+      display: -webkit-box;
+      display: -ms-flexbox;
+      display: flex;
+      -webkit-box-flex: 2;
+          -ms-flex: 2 1;
+              flex: 2 1; }
+  #wizard-footer #bottom-buttons > section:nth-of-type(1) {
+        -webkit-box-pack: start;
+            -ms-flex-pack: start;
+                justify-content: flex-start; }
+  #wizard-footer #bottom-buttons > section:nth-of-type(2) {
+        -webkit-box-pack: center;
+            -ms-flex-pack: center;
+                justify-content: center; }
+  #wizard-footer #bottom-buttons > section:nth-of-type(2) > button {
+          margin: 0 5px; }
+  #wizard-footer #bottom-buttons > section:nth-of-type(3) {
+        -webkit-box-pack: end;
+            -ms-flex-pack: end;
+                justify-content: flex-end; }
   #wizard-footer #bottom-buttons button {
       display: -webkit-box;
       display: -ms-flexbox;

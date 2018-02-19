@@ -10,8 +10,7 @@
 
 #### Developing a new component
 * Create a development branch in git.
-* Create basic structure for a react component containing at least `README.md`, `CHANGELOG.md` and `package.json` files, `examples`, `test` and `src` folders. We are currently working on creating a template with a basic structure for a new react component.
-* Develop the component.
+* Create basic structure for a react component. It's recommended to use the [template](https://github.com/OpusCapita/react-component-template). Develop the component.
   Run `npm install` to get the project's dependencies.
   Run `npm run build` to produce minified version of the library.
   Run `npm run dev` to produce development version of the library.

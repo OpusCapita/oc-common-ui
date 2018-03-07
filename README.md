@@ -1,16 +1,15 @@
 # OpusCapita React components guideline
 
+### [demo](https://opuscapita.github.io/oc-common-ui)
 
 ### Creating a new component
 
 #### Creating a new repository
 * Create a new public repository under OpusCapita organization in github. If you don't have rights to do it, contact `@havanki` or `@ilkkalehtinen`. Choose a descriptive repository name that states clearly what kind of component it contains. For example, `react-grid` is a React component that creates a grid.
-* Open Settings -> Options -> GitHub Pages and select 'master branch /docs folder' as a Source.
 
 #### Developing a new component
 * Create a development branch in git.
-* Create basic structure for a react component containing at least `README.md`, `CHANGELOG.md` and `package.json` files, `examples`, `test` and `src` folders. We are currently working on creating a template with a basic structure for a new react component.
-* Develop the component.
+* Create basic structure for a react component. It's recommended to use the [template](https://github.com/OpusCapita/react-component-template). Develop the component.
   Run `npm install` to get the project's dependencies.
   Run `npm run build` to produce minified version of the library.
   Run `npm run dev` to produce development version of the library.
@@ -20,6 +19,7 @@
 * Update `CHANGELOG.md` file with your changes under `next` line.
 * Include documentation for your component in `README.md` file, unit tests for all modules and an example showing all possible functions of your component before you make the first pull request with your component. Pull requests with absent documentation, unit tests and examples will not be approved.
 * Commit and push changes. Don't include `lib` folder in the commits.
+* Open Settings -> Options -> GitHub Pages and select 'master branch /docs folder' as a Source.
 
 #### Merging the development branch with the master 
 * Make a pull request for more than one reviewer (the more the better) from the list of contributors below.

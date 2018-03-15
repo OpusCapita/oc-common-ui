@@ -5,6 +5,7 @@
 
 ## <next>
 * Removed wizard code. Added a link to react-wizard component
+* Added select-order-list to examples layout
 
 ## 8.3.1
 * Small layout fixes in Wizard

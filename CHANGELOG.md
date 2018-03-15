@@ -4,6 +4,7 @@
 
 
 ## <next>
+* Removed wizard code. Added a link to react-wizard component
 
 ## 8.3.1
 * Small layout fixes in Wizard

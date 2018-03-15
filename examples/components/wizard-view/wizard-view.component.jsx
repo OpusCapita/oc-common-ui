@@ -1,7 +1,7 @@
 import React from 'react';
 import { Button, Checkbox } from 'react-bootstrap';
 
-import { Wizard } from '../../../src/index';
+import Wizard from '@opuscapita/react-wizard';
 
 const contentStyle = {
   display: 'flex',

@@ -23,10 +23,6 @@ $select-max-width: $nav-item-width * 1.5;
     border: none;
     border-bottom: 2px solid $oc-color-support-lightgray;
 
-    .selected-border {
-      border-color: $oc-color-primary-orange;
-    }
-
     &:focus {
       box-shadow: none;
       outline: none;

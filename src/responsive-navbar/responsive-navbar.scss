@@ -15,16 +15,21 @@ $select-max-width: $nav-item-width * 1.5;
 
   .responsive-navbar-item {
     display: flex;
-    align-items:center;
+    align-items: center;
     max-width: $nav-item-width;
-    border:none;
     height: $nav-bar-height;
     background-color: transparent;
     outline: none;
+    border: none;
+    border-bottom: 2px solid $oc-color-support-lightgray;
+
+    .selected-border {
+      border-color: $oc-color-primary-orange;
+    }
 
     &:focus {
       box-shadow: none;
-      ouline: none;
+      outline: none;
     }
   }
 
@@ -38,10 +43,10 @@ $select-max-width: $nav-item-width * 1.5;
   }
 
   .responsive-navbar-item-text {
-      overflow-x: hidden;
-      white-space: nowrap;
-      text-overflow: ellipsis;
-      margin: 0 5px 0 5px;
+    overflow-x: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    margin: 0 5px 0 5px;
   }
 }
 
@@ -50,10 +55,6 @@ $select-max-width: $nav-item-width * 1.5;
   font-size: inherit;
   min-width: $select-min-width;
   max-width: $select-max-width;
-
-  .selected-border {
-    border-bottom: 2px solid $oc-color-primary-orange;
-  }
 
   .Select {
     margin-left: 5px;
@@ -65,8 +66,8 @@ $select-max-width: $nav-item-width * 1.5;
   }
 
   .Select-control, .Select-value, .Select-value-label {
-      color: inherit;
-      box-shadow: none;
+    color: inherit;
+    box-shadow: none;
   }
 
   .is-focused:not(.is-open) > .Select-control {

@@ -15,7 +15,6 @@ import ITEMS from './layout/menu.constants';
 import SpinnerView from './components/spinner-view/spinner-view.component';
 import AutocompleteView from './components/autocomplete/autocomplete.component';
 import ButtonView from './components/button/button.component';
-import SearchbarView from './components/searchbar/searchbar.component';
 import ExtendedSearchView from './components/extended-search/extended-search.component';
 import SplitPaneView from './components/split-pane-view/split-pane-view.component';
 import ResponsiveNavbarView from
@@ -23,7 +22,6 @@ import ResponsiveNavbarView from
 import WizardView from
   './components/wizard-view/wizard-view.component';
 import MenuView from './components/menu-view/menu-view.component';
-import CheckboxView from './components/checkbox/checkbox.component';
 
 import './index.scss';
 
@@ -58,7 +56,6 @@ render((
       <Router history={hashHistory}>
         <Route path="/" component={App} >
           <IndexRedirect to="/autocomplete" />
-          <Route path="/searchbar" component={SearchbarView} />
           <Route path="/extendedsearch" component={ExtendedSearchView} />
           <Route path="/button" component={ButtonView} />
           <Route path="/autocomplete" component={AutocompleteView} />
@@ -67,7 +64,6 @@ render((
           <Route path="/split-pane" component={SplitPaneView} />
           <Route path="/responsive-navbar" component={ResponsiveNavbarView} />
           <Route path="/wizard" component={WizardView} />
-          <Route path="/checkbox" component={CheckboxView} />
           {renderRepoRoutes()}
         </Route>
       </Router>

@@ -5,6 +5,10 @@
 
 ## <next>
 
+## 8.3.3
+* Added react-checkbox
+* Updated react-searchbar version & example
+
 ## 8.3.2
 * Removed wizard code. Added a link to react-wizard component
 * Added select-order-list to examples layout

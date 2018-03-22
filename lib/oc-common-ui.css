@@ -2856,6 +2856,11 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
     border-top-color: #e4b9c0; }
 .alert-danger .alert-link {
     color: #aa1d10; }
+@-webkit-keyframes progress-bar-stripes {
+  from {
+    background-position: 40px 0; }
+  to {
+    background-position: 0 0; } }
 @keyframes progress-bar-stripes {
   from {
     background-position: 40px 0; }
@@ -2883,6 +2888,7 @@ a.thumbnail:hover, a.thumbnail:focus, a.thumbnail.active {
   background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
   background-size: 40px 40px; }
 .progress.active .progress-bar, .progress-bar.active {
+  -webkit-animation: progress-bar-stripes 2s linear infinite;
   animation: progress-bar-stripes 2s linear infinite; }
 .progress-bar-success {
   background-color: #3AA57B; }
@@ -3295,9 +3301,13 @@ button.close {
   -webkit-overflow-scrolling: touch;
   outline: 0; }
 .modal.fade .modal-dialog {
+    -webkit-transform: translate(0, -25%);
     transform: translate(0, -25%);
-    transition: transform 0.3s ease-out; }
+    transition: -webkit-transform 0.3s ease-out;
+    transition: transform 0.3s ease-out;
+    transition: transform 0.3s ease-out, -webkit-transform 0.3s ease-out; }
 .modal.in .modal-dialog {
+    -webkit-transform: translate(0, 0);
     transform: translate(0, 0); }
 .modal-open .modal {
   overflow-x: hidden;
@@ -3604,17 +3614,23 @@ button.close {
       line-height: 1; }
 @media all and (transform-3d), (-webkit-transform-3d) {
       .carousel-inner > .item {
+        transition: -webkit-transform 0.6s ease-in-out;
         transition: transform 0.6s ease-in-out;
+        transition: transform 0.6s ease-in-out, -webkit-transform 0.6s ease-in-out;
         -webkit-backface-visibility: hidden;
         backface-visibility: hidden;
+        -webkit-perspective: 1000px;
         perspective: 1000px; }
         .carousel-inner > .item.next, .carousel-inner > .item.active.right {
+          -webkit-transform: translate3d(100%, 0, 0);
           transform: translate3d(100%, 0, 0);
           left: 0; }
         .carousel-inner > .item.prev, .carousel-inner > .item.active.left {
+          -webkit-transform: translate3d(-100%, 0, 0);
           transform: translate3d(-100%, 0, 0);
           left: 0; }
         .carousel-inner > .item.next.left, .carousel-inner > .item.prev.right, .carousel-inner > .item.active {
+          -webkit-transform: translate3d(0, 0, 0);
           transform: translate3d(0, 0, 0);
           left: 0; } }
 .carousel-inner > .active, .carousel-inner > .next, .carousel-inner > .prev {
@@ -3911,7 +3927,11 @@ button.close {
 */
 @keyframes Select-animation-spin {
   to {
-    transform: rotate(1turn); } }
+    -webkit-transform: rotate(1turn);
+            transform: rotate(1turn); } }
+@-webkit-keyframes Select-animation-spin {
+  to {
+    -webkit-transform: rotate(1turn); } }
 .Select {
   position: relative; }
 .Select, .Select div, .Select input, .Select span {
@@ -4015,6 +4035,7 @@ button.close {
   vertical-align: middle;
   width: 16px; }
 .Select-loading {
+  -webkit-animation: Select-animation-spin 400ms infinite linear;
   animation: Select-animation-spin 400ms infinite linear;
   width: 16px;
   height: 16px;
@@ -4026,6 +4047,7 @@ button.close {
   position: relative;
   vertical-align: middle; }
 .Select-clear-zone {
+  -webkit-animation: Select-animation-fadeIn 200ms;
   animation: Select-animation-fadeIn 200ms;
   color: #999;
   cursor: pointer;
@@ -4069,6 +4091,11 @@ button.close {
   position: relative; }
 .is-open .Select-arrow, .Select-arrow-zone:hover > .Select-arrow {
   border-top-color: #666; }
+@-webkit-keyframes Select-animation-fadeIn {
+  from {
+    opacity: 0; }
+  to {
+    opacity: 1; } }
 @keyframes Select-animation-fadeIn {
   from {
     opacity: 0; }
@@ -4169,7 +4196,11 @@ button.close {
     background-color: #fcfcfc; }
 @keyframes Select-animation-spin {
   to {
-    transform: rotate(1turn); } }
+    -webkit-transform: rotate(1turn);
+            transform: rotate(1turn); } }
+@-webkit-keyframes Select-animation-spin {
+  to {
+    -webkit-transform: rotate(1turn); } }
 /* Primary */
 /* Support */
 /* Attention */
@@ -4185,20 +4216,26 @@ button.close {
 /* Select */
 /* Grids */
 #responsive-navbar-container {
+  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   background-color: white;
   min-width: 400px;
   min-height: 44px;
-  -ms-flex-positive: 1;
-      flex-grow: 1; }
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1; }
 #responsive-navbar-container .responsive-navbar-item {
+    display: -webkit-box;
     display: -ms-flexbox;
     display: flex;
-    -ms-flex-align: center;
-        align-items: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
     max-width: 200px;
     border: none;
     height: 44px;
@@ -4304,24 +4341,32 @@ button.close {
   padding: 0;
   margin: 0;
   height: 100%;
+  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: column;
-      flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   background-color: #FFFFFF; }
 .oc-layout-application-header {
-  -ms-flex: 1 1 auto;
-      flex: 1 1 auto;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
   box-shadow: 0px 2px 4px 0px rgba(0, 0, 0, 0.15); }
 .oc-layout-application-header-content {
+  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
   height: 100%;
-  -ms-flex-direction: row;
-      flex-direction: row;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
   background-color: #FFFFFF;
-  -ms-flex-align: center;
-      align-items: center; }
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center; }
 .oc-layout-application-footer {
   margin: 0; }
 .oc-layout-application-aside {
@@ -4337,12 +4382,15 @@ button.close {
   outline: none;
   border: none;
   background-color: transparent;
+  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-align: center;
-      align-items: center;
-  -ms-flex-pack: center;
-      justify-content: center; }
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center; }
 /* Primary */
 /* Support */
 /* Attention */
@@ -4379,12 +4427,16 @@ button.close {
   display: block;
   text-decoration: none; }
 .oc-menu-item {
+  display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
-  -ms-flex-direction: row;
-      flex-direction: row;
-  -ms-flex-align: center;
-      align-items: center;
+  -webkit-box-orient: horizontal;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: row;
+          flex-direction: row;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
   padding: 1rem;
   outline: none;
   color: #FFFFFF;
@@ -4403,9 +4455,11 @@ button.close {
     text-decoration: none;
     color: #FFFFFF; }
 .oc-menu-item .rotate90 {
-    transform: rotate(90deg); }
+    -webkit-transform: rotate(90deg);
+            transform: rotate(90deg); }
 .oc-menu-item .rotate90-back {
-    transform: rotate(-90deg); }
+    -webkit-transform: rotate(-90deg);
+            transform: rotate(-90deg); }
 .oc-menu-item-prefix {
   margin-right: 0.5rem; }
 .oc-menu-item-uppercase {
@@ -4416,12 +4470,14 @@ button.close {
   font-size: 0.9em;
   background: #516473; }
 .oc-menu-sub-item-content {
-  -ms-flex: 1 1 auto;
-      flex: 1 1 auto;
+  -webkit-box-flex: 1;
+      -ms-flex: 1 1 auto;
+          flex: 1 1 auto;
   outline: none; }
 .oc-menu-sub-item-extra {
-  -ms-flex-positive: 0;
-      flex-grow: 0;
+  -webkit-box-flex: 0;
+      -ms-flex-positive: 0;
+          flex-grow: 0;
   height: 20px;
   margin-left: 1rem;
   outline: none; }

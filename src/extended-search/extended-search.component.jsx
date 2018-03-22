@@ -2,7 +2,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Modal, Button, ControlLabel, FormGroup, Col } from 'react-bootstrap';
-import { SearchBar } from '@opuscapita/react-searchbar';
+import SearchBar from '@opuscapita/react-searchbar';
 
 class ExtendedSearch extends React.Component {
   constructor(props) {

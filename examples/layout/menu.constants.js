@@ -25,6 +25,7 @@ const ITEMS = [
     id: 5,
     text: 'Checkbox',
     to: '/checkbox',
+    url: 'https://opuscapita.github.io/react-checkbox/#/',
   },
   {
     id: 6,
@@ -100,6 +101,7 @@ const ITEMS = [
     id: 18,
     text: 'Search bar',
     to: '/searchbar',
+    url: 'https://opuscapita.github.io/react-searchbar/',
   },
   {
     id: 19,

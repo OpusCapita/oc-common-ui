@@ -17,8 +17,6 @@ import AutocompleteView from './components/autocomplete/autocomplete.component';
 import ButtonView from './components/button/button.component';
 import ExtendedSearchView from './components/extended-search/extended-search.component';
 import SplitPaneView from './components/split-pane-view/split-pane-view.component';
-import ResponsiveNavbarView from
-  './components/responsive-navbar-view/responsive-navbar-view.component';
 import WizardView from
   './components/wizard-view/wizard-view.component';
 import MenuView from './components/menu-view/menu-view.component';
@@ -62,7 +60,6 @@ render((
           <Route path="/spinner" component={SpinnerView} />
           <Route path="/menu" component={MenuView} />
           <Route path="/split-pane" component={SplitPaneView} />
-          <Route path="/responsive-navbar" component={ResponsiveNavbarView} />
           <Route path="/wizard" component={WizardView} />
           {renderRepoRoutes()}
         </Route>

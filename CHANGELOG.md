@@ -5,6 +5,9 @@
 
 ## <next>
 
+## 8.3.4
+* Removed responsive-navbar code. Added a link to react-responsive-navbar component
+
 ## 8.3.3
 * Added react-checkbox
 * Updated react-searchbar version & example

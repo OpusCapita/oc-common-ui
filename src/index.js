@@ -5,8 +5,8 @@ export * from '@opuscapita/react-cards';
 export * from '@opuscapita/react-icons';
 export * from '@opuscapita/react-dropdown';
 export * from '@opuscapita/react-wizard';
+export * from '@opuscapita/react-responsive-navbar';
 
-export * from './responsive-navbar/index.js';
 export * from './spinner/index.js';
 export * from './split-pane/index.js';
 export * from './layouts/application/index.js';

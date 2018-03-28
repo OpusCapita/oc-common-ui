@@ -96,6 +96,7 @@ const ITEMS = [
     id: 17,
     text: 'Responsive navbar',
     to: '/responsive-navbar',
+    url: 'https://opuscapita.github.io/react-responsive-navbar/#/',
   },
   {
     id: 18,
